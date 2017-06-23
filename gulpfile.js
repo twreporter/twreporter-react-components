@@ -13,15 +13,32 @@ gulp.task('build-packages', function (done) {
       process.env.BABEL_DISABLE_CACHE = 1;
       process.env.BABEL_ENV = 'BUILDPKG';
       process.env.NODE_ENV = 'production';
-
-      spawn('babel', ['--out-dir=dist', 'src'], {stdio: 'inherit'})
+      spawn(
+        'babel',
+        [
+          '--out-dir=dist',
+          'src'
+        ],
+        {
+          stdio: 'inherit'
+        })
         .on('close', callback)
         .on('error', function(err) {
           callback(err);
         })
     },
-    buildBootstrap:[ 'buildJs', function(callback) {
-      spawn('webpack', ['--verbose', '--colors', '--display-error-details', '--config', __dirname + '/webpack/bootstrap.config.js'], {stdio: 'inherit'})
+    buildBootstrap: [ 'buildJs', function(callback) {
+      spawn(
+        'webpack',
+        [
+          '--verbose', // Show more details
+          '--colors',
+          '--display-error-details',
+          '--config ' + __dirname + '/webpack/bootstrap.config.js'
+        ],
+        {
+          stdio: 'inherit'
+        })
         .on('close', callback)
         .on('error', function(err) {
           callback(err);
