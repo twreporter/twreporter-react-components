@@ -8,25 +8,57 @@ var gulp = require('gulp');
  */
 gulp.task('build-packages', function (done) {
   async.auto({
-    buildJs: function(callback) {
-      process.env.WEBPACK_CONFIG = __dirname + '/webpack/config.js';
+    /* Clear output folders */
+    clearOutputFolders: function(callback) {
+      spawn('rimraf', [ __dirname + '/lib-css', __dirname + '/dist' ], { stdio: 'inherit' })
+        .on('close', callback)
+        .on('error', function(err) {
+          callback(err)
+        })
+    },
+    /* Build components with babel: src -> dist (JS) and lib-css (CSS) */
+    /* Babel with webpack will compile: (1) ES6 to ES5 (2) scss to css module (3) svg file to inline svg */
+    /* Related configs are in .babelrc and webpack/components.config.js */
+    buildComponents: ['clearOutputFolders', function(callback) {
+      process.env.WEBPACK_CONFIG = __dirname + '/webpack/components.config.js';
       process.env.BABEL_DISABLE_CACHE = 1;
       process.env.BABEL_ENV = 'BUILDPKG';
       process.env.NODE_ENV = 'production';
-
-      spawn('babel', ['--out-dir=dist', 'src'], {stdio: 'inherit'})
-        .on('close', callback)
-        .on('error', function(err) {
-          callback(err);
+      spawn(
+        'babel',
+        [
+          '--out-dir=dist',
+          'src'
+        ],
+        {
+          stdio: 'inherit'
         })
-    },
-    buildBootstrap:[ 'buildJs', function(callback) {
-      spawn('webpack', ['--verbose', '--colors', '--display-error-details', '--config', __dirname + '/webpack/bootstrap.config.js'], {stdio: 'inherit'})
         .on('close', callback)
         .on('error', function(err) {
           callback(err);
         })
     }],
+    /* Build bootstrap with webpack: bootstrap -> lib-css (JS and CSS) */
+    /* Related config is in webpack/bootsreap.config.js */
+    buildBootstrap: [ 'buildComponents', function(callback) {
+      spawn(
+        'webpack',
+        [
+          '--verbose', // show more details in console
+          '--colors',
+          '--display-error-details',
+          '--config=' + __dirname + '/webpack/bootstrap.config.js'
+        ],
+        {
+          stdio: 'inherit'
+        })
+        .on('close', callback)
+        .on('error', function(err) {
+          callback(err);
+        })
+    }],
+    /* Merge css of components and bootstrap: lib-css -> dist/styles/main.css */
+    /* Related config is in concatCssFiles.js */
     buildCss: ['buildBootstrap', function(callback) {
       async.auto({
         createFolder: function(cb) {
