@@ -34,7 +34,7 @@ gulp.task('build-packages', function (done) {
           '--verbose', // Show more details
           '--colors',
           '--display-error-details',
-          '--config ' + __dirname + '/webpack/bootstrap.config.js'
+          '--config=' + __dirname + '/webpack/bootstrap.config.js'
         ],
         {
           stdio: 'inherit'
