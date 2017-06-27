@@ -8,6 +8,7 @@ export * from './strings'
 export * from './page-themes'
 export * from './page-types'
 export * from './author-page'
+export * from './topic-page'
 
 export const SITE_NAME = {
   FULL: '報導者 The Reporter',
@@ -100,6 +101,9 @@ export const navPath = [ {
 }, {
   title: '評論',
   path: '/category/review'
+}, {
+  title: '作者群',
+  path: '/authors'
 } ]
 
 export const colors = {
@@ -107,4 +111,14 @@ export const colors = {
   superWhite: '#FFFFFF',
   darkBg: '#08192d',
   darkText: '#262626'
+}
+
+export const TWITTER_CARD = {
+  SUMMARY_LARGE_IMAGE: 'summary_large_image',
+  SUMMARY: 'summary'
+}
+
+export const OG_TYPE = {
+  PROFILE: 'profile',
+  WEBSITE: 'website'
 }
