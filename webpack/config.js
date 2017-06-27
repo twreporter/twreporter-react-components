@@ -14,21 +14,21 @@ module.exports = {
     loaders: [
       { test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: [strip.loader('debug'), 'babel']
+        loaders: [strip.loader('debug'), 'babel-loader']
       },
       { test: /\.scss$/,
         loader: ExtractTextPlugin.extract(
-          'style',
-          'css?modules&importLoaders=2&sourceMap&localIdentName=[name]__[local]___[hash:base64:5]' +
-          '!postcss' +
-          '!sass'
+          'style-loader',
+          'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]___[hash:base64:5]' +
+          '!postcss-loader' +
+          '!sass-loader'
         )
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'postcss-loader'),
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader'),
       },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=image/svg+xml" },
     ],
   },
   postcss: [autoprefixer({ browsers: ['> 1%'] })],
