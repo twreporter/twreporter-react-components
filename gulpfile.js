@@ -10,6 +10,7 @@ gulp.task('build-packages', function (done) {
   async.auto({
     /* Clear output folders */
     clearOutputFolders: function(callback) {
+      console.log('------ clearOutputFolders ------')
       spawn('rimraf', [ __dirname + '/lib-css', __dirname + '/dist' ], { stdio: 'inherit' })
         .on('close', callback)
         .on('error', function(err) {
@@ -19,7 +20,8 @@ gulp.task('build-packages', function (done) {
     /* Build components with babel: src -> dist (JS) and lib-css (CSS) */
     /* Babel with webpack will compile: (1) ES6 to ES5 (2) scss to css module (3) svg file to inline svg */
     /* Related configs are in .babelrc and webpack/components.config.js */
-    buildComponents: ['clearOutputFolders', function(callback) {
+    buildComponents: ['clearOutputFolders', function(results, callback) {
+      console.log('------ buildComponents ------')
       process.env.WEBPACK_CONFIG = __dirname + '/webpack/components.config.js';
       process.env.BABEL_DISABLE_CACHE = 1;
       process.env.BABEL_ENV = 'BUILDPKG';
@@ -38,9 +40,10 @@ gulp.task('build-packages', function (done) {
           callback(err);
         })
     }],
-    /* Build bootstrap with webpack: bootstrap -> lib-css (JS and CSS) */
-    /* Related config is in webpack/bootsreap.config.js */
-    buildBootstrap: [ 'buildComponents', function(callback) {
+    /* Build bootstrap with webpack: bootstrap-sass -> lib-css/bootstrap.js and lib-css/bootstrap.css */
+    /* Related config is in webpack/bootsreap.config.js and .bootstraprc */
+    buildBootstrap: [ 'buildComponents', function(results, callback) {
+      console.log('------ buildBootstrap ------')
       spawn(
         'webpack',
         [
@@ -57,9 +60,10 @@ gulp.task('build-packages', function (done) {
           callback(err);
         })
     }],
-    /* Merge css of components and bootstrap: lib-css -> dist/styles/main.css */
+    /* Combine css of components and bootstrap: lib-css -> dist/styles/main.css */
     /* Related config is in concatCssFiles.js */
-    buildCss: ['buildBootstrap', function(callback) {
+    buildCss: ['buildBootstrap', function(results, callback) {
+      console.log('------ buildCss ------')
       async.auto({
         createFolder: function(cb) {
           spawn('mkdir', ['-p', 'dist/styles'], {stdio: 'inherit'})
@@ -68,14 +72,14 @@ gulp.task('build-packages', function (done) {
               cb(err);
             })
         },
-        concatCss: [ 'createFolder', function(cb) {
+        concatCss: [ 'createFolder', function(results, cb) {
           spawn('node', ['./concatCssFiles', __dirname], {stdio: 'inherit'})
             .on('close', cb)
             .on('error', function(err) {
               cb(err)
             })
         }],
-        removeFolder: [ 'concatCss', function(cb) {
+        removeFolder: [ 'concatCss', function(results, cb) {
           spawn('rimraf', [ __dirname + '/lib-css' ], {stdio: 'inherit'})
             .on('close', cb)
             .on('error', function(err) {
