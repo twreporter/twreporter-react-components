@@ -32,7 +32,9 @@ module.exports = {
           }, {
             loader: 'postcss-loader',
             options: {
-                plugin: autoprefixer({ browsers: [ '> 1%' ] })
+              plugins: function (loader) {
+                return [ autoprefixer({ browsers: [ '> 1%' ] }) ]
+              }
             }}, 'sass-loader']
         })
       },
@@ -40,7 +42,7 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [ {
+          use: [{
             loader: 'css-loader',
             options: {
               importLoaders: 1
@@ -48,7 +50,9 @@ module.exports = {
           }, {
             loader: 'postcss-loader',
             options: {
-              plugin: autoprefixer({ browsers: [ '> 1%' ] })
+              plugins: function (loader) {
+                return [ autoprefixer({ browsers: [ '> 1%' ] }) ]
+              }
             }
           }]
         })
