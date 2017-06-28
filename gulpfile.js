@@ -62,8 +62,8 @@ gulp.task('build-packages', function (done) {
     }],
     /* Combine css of components and bootstrap: lib-css -> dist/styles/main.css */
     /* Related config is in concatCssFiles.js */
-    buildCss: ['buildBootstrap', function(results, callback) {
-      console.log('------ buildCss ------')
+    buildMainCss: ['buildBootstrap', function(results, callback) {
+      console.log('------ buildMainCss ------')
       async.auto({
         createFolder: function(cb) {
           spawn('mkdir', ['-p', 'dist/styles'], {stdio: 'inherit'})
