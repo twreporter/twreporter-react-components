@@ -7,8 +7,7 @@
     "release": "gulp release",
     "clean": "./node_modules/.bin/rimraf dist",
     "lint": "eslint -c .eslintrc src",
-    "validate": "npm ls",
-    "comp": "BABEL_ENV=BUILDPKG NODE_ENV=production BABEL_DISABLE_CACHE=1 WEBPACK_CONFIG=.//webpack/components.config.js babel --out-dir=dist src/components/article/slideshow"
+    "validate": "npm ls"
   },
   "repository": {
     "type": "git",
