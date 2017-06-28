@@ -10,7 +10,6 @@ gulp.task('build-packages', function (done) {
   async.auto({
     /* Clear output folders */
     clearOutputFolders: function(callback) {
-      console.log('------ clearOutputFolders ------')
       spawn('rimraf', [ __dirname + '/lib-css', __dirname + '/dist' ], { stdio: 'inherit' })
         .on('close', callback)
         .on('error', function(err) {
@@ -21,7 +20,6 @@ gulp.task('build-packages', function (done) {
     /* Babel with webpack will compile: (1) ES6 to ES5 (2) scss to css module (3) svg file to inline svg */
     /* Related configs are in .babelrc and webpack/components.config.js */
     buildComponents: ['clearOutputFolders', function(results, callback) {
-      console.log('------ buildComponents ------')
       process.env.WEBPACK_CONFIG = __dirname + '/webpack/components.config.js';
       process.env.BABEL_DISABLE_CACHE = 1;
       process.env.BABEL_ENV = 'BUILDPKG';
@@ -43,7 +41,6 @@ gulp.task('build-packages', function (done) {
     /* Build bootstrap with webpack: bootstrap-sass -> lib-css/bootstrap.js and lib-css/bootstrap.css */
     /* Related config is in webpack/bootsreap.config.js and .bootstraprc */
     buildBootstrap: [ 'buildComponents', function(results, callback) {
-      console.log('------ buildBootstrap ------')
       spawn(
         'webpack',
         [
@@ -63,7 +60,6 @@ gulp.task('build-packages', function (done) {
     /* Combine css of components and bootstrap: lib-css -> dist/styles/main.css */
     /* Related config is in concatCssFiles.js */
     buildMainCss: ['buildBootstrap', function(results, callback) {
-      console.log('------ buildMainCss ------')
       async.auto({
         createFolder: function(cb) {
           spawn('mkdir', ['-p', 'dist/styles'], {stdio: 'inherit'})
