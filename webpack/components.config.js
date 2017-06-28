@@ -11,28 +11,61 @@ module.exports = {
     path: path.resolve(__dirname, '../lib-css'), // where to place webpack files
   },
   module: {
-    loaders: [
-      { test: /\.jsx?$/,
+    rules: [
+      {
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: [strip.loader('debug'), 'babel-loader']
+        use: 'babel-loader'
       },
-      { test: /\.scss$/,
-        loader: ExtractTextPlugin.extract(
-          'style-loader',
-          'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]___[hash:base64:5]' +
-          '!postcss-loader' +
-          '!sass-loader'
-        )
+      {
+        test: /\.(scss|sass)$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [ {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              modules: true,
+              sourceMap: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            }
+          }, {
+            loader: 'postcss-loader',
+            options: {
+                plugin: autoprefixer({ browsers: [ '> 1%' ] })
+            }}, 'sass-loader']
+        })
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader'),
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [ {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          }, {
+            loader: 'postcss-loader',
+            options: {
+              plugin: autoprefixer({ browsers: [ '> 1%' ] })
+            }
+          }]
+        })
       },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=image/svg+xml" },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            mimetype: 'image/svg+xml'
+          }
+        }]
+      }
     ],
   },
-  postcss: [autoprefixer({ browsers: ['> 1%'] })],
   plugins: [
-    new ExtractTextPlugin(`${path.parse(process.argv[2]).name}.css`),
-  ],
-};
+    new ExtractTextPlugin(`${path.parse(process.argv[2]).name}.css`)
+  ]
+}
