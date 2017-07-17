@@ -1,15 +1,17 @@
 /*eslint no-unused-vars:0*/
 'use strict'
-import { authorTypes } from '../../constants/index'
+
+import { LINK_PREFIX, authorTypes } from '../../constants/index'
 import React, { Component } from 'react'
+
+import { Link } from 'react-router'
 import classNames from 'classnames'
 import commonStyles from './Common.scss'
-import styles from './HeadingAuthor.scss'
-
 // lodash
 import forIn from 'lodash/forIn'
 import groupBy from 'lodash/groupBy'
 import map from 'lodash/map'
+import styles from './HeadingAuthor.scss'
 
 export const HeadingAuthor = ({ authors, children, extendByline }) => {
 
@@ -18,20 +20,14 @@ export const HeadingAuthor = ({ authors, children, extendByline }) => {
   }
 
   function _renderAuthor(author, key) {
-    // TBD After we have author page,
-    // we can add link onto each author
-    /*
+    const title = author.jobTitle ? `（${author.jobTitle}）` : ''
     return (
-      <a href="">
-        <span className={commonStyles['text-link']}>
-          {author.name}
-        </span>
-      </a>
+      <span itemProp="author" key={key} className={styles['author-name-link']}>
+        <Link to={`${LINK_PREFIX.AUTHOR}${author.id}`}>
+          {author.name+title}
+        </Link>
+      </span>
       )
-      */
-    return (
-      <span itemProp="author" key={key}>{author.name}</span>
-    )
   }
 
   function _renderAuthors(authors) {

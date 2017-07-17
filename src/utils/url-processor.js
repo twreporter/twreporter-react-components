@@ -1,9 +1,9 @@
-/*global __DEVELOPMENT__*/
+/*global __SERVER__, __DEVELOPMENT__*/
 'use strict'
-import { google as storageConfig } from '../conf/storage'
 import { SITE_META } from '../constants/index'
+import { google as storageConfig } from '../conf/storage'
 
-function replaceStorageUrlPrefix(url='', isDev = __DEVELOPMENT__) {
+export function replaceStorageUrlPrefix(url='', isDev = __DEVELOPMENT__) {
   if (isDev || typeof url !== 'string') {
     return url
   }
@@ -13,5 +13,3 @@ function replaceStorageUrlPrefix(url='', isDev = __DEVELOPMENT__) {
 
   return url.replace(toBeReplaced, toReplace)
 }
-
-export { replaceStorageUrlPrefix }
