@@ -4,15 +4,14 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
-    'bootstrap': 'bootstrap-sass!./src/themes/bootstrap.config.prod.js'
+    'bootstrap': 'bootstrap-loader/extractStyles' /* bootstrap-loader takes .bootstraprc as config file */
   },
   output: {
     publicPath: '/',
     filename: '[name].js',
-    path: path.resolve(__dirname, '../lib-css'), // where to place webpack files
+    path: path.resolve(__dirname, '../lib-css'), // where to place bootstrap.js and bootstrap.css
   },
   plugins: [
-    // css files from the extract-text-plugin loader
-    new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin('[name].css')
   ]
 };
