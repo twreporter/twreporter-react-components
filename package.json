@@ -1,0 +1,24 @@
+{
+  "name": "twreporter-react-components",
+  "repository": "https://github.com/twreporter/twreporter-react-components.git",
+  "license": "MIT",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "eslint \"**/src/**.js\" --config .eslintrc",
+    "lint:eslint": "eslint --config .eslintrc",
+    "lint:staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": "lint:eslint"
+  },
+  "pre-commit": "lint:staged",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "lint-staged": "^4.0.2",
+    "pre-commit": "^1.2.2"
+  }
+}
