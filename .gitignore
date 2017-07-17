@@ -6,6 +6,11 @@ static/dist
 .jshintignore
 .jshintrc
 npm-debug.log
+yarn-error.log
 
 # Ignore transpiled files
 dist/
+lib/
+
+# Ignore shared files in subfolders
+**/src/shared/
