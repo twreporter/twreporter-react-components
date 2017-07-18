@@ -1,11 +1,8 @@
 {
   "name": "twreporter-react-bookmarks-components",
   "scripts": {
-    "build": "npm run clean:shared && npm run shared && npm run clean:lib && npm run build:lib",
-    "shared": "gulp copy-shared-files",
-    "clean:lib": "rimraf lib",
-    "clean:shared": "rimraf src/shared",
-    "build:lib": "babel src --out-dir lib"
+    "build": "gulp build-package --color",
+    "dev": "gulp dev"
   },
   "version": "1.0.0-beta.4",
   "author": "twreporter",
@@ -20,6 +17,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "gulp": "^3.9.1",
     "rimraf": "^2.6.1"
   },
   "peerDependencies": {
