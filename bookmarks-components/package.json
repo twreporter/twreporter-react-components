@@ -2,7 +2,8 @@
   "name": "twreporter-react-bookmarks-components",
   "scripts": {
     "build": "gulp build-package --color",
-    "dev": "gulp dev"
+    "dev": "gulp dev",
+    "publish": "yarn publish"
   },
   "version": "1.0.0-beta.4",
   "author": "twreporter",
