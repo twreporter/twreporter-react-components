@@ -1,0 +1,30 @@
+{
+  "name": "twreporter-react-bookmarks-components",
+  "scripts": {
+    "build": "npm run clean:shared && npm run shared && npm run clean:lib && npm run build:lib",
+    "shared": "gulp copy-shared-files",
+    "clean:lib": "rimraf lib",
+    "clean:shared": "rimraf src/shared",
+    "build:lib": "babel src --out-dir lib"
+  },
+  "version": "1.0.0-beta.4",
+  "author": "twreporter",
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.17.0",
+    "babel-plugin-inline-react-svg": "^0.4.0",
+    "babel-plugin-module-resolver": "^2.7.1",
+    "babel-plugin-styled-components": "^1.1.7",
+    "babel-plugin-wrap-in-js": "^1.1.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "rimraf": "^2.6.1"
+  },
+  "peerDependencies": {
+    "lodash": "^4.17.4",
+    "react": "^15.4.1",
+    "styled-components": "^2.1.1"
+  }
+}
