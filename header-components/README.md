@@ -5,13 +5,13 @@
 Need Peer Dependencies: 
 
 ```
-yarn add lodash react styled-components prop-types react-dom react-transition-group
+yarn add lodash react react-dom lodash prop-types react-router react-transition-group styled-components
 ```
 
 Install:
 
 ```
-yarn add twreporter-react-bookmarks-components --save
+yarn add twreporter-react-header-components
 ```
 
 ## USE
@@ -23,7 +23,11 @@ import Header from 'twreporter-react-header-components/lib/components/header'
 
 const Page = (props) => (
   <div>
-    <Header isChannelsDisplayed />
+    <Header
+      isChannelsDisplayed
+      pageTheme={props.pageTheme}
+      pathName={props.pathName}
+    />
     {props.children}
   </div>
 )
@@ -31,7 +35,9 @@ const Page = (props) => (
 
 **Props:**
 
-`isChannelsDisplayed`: Config to display channels menu or not.
+* `isChannelsDisplayed`: Config to display channels menu or not.
+* `pageTheme`: The page theme passed by `twreporter-react`. `DARK` or `BRIGHT`.
+* `pathName`: The pathname passed by `twreporter-react`. With format likes `/categories/inforgraphic`, `/photography` .
 
 ## Developement
 
@@ -60,10 +66,5 @@ npm run build
 
 ```
 cd twreporter-react-components/header-components
-yarn publish
-```
-
-```
-cd twreporter-react-components/header-components
-npm run publish
+npm publish
 ```
