@@ -1,0 +1,75 @@
+{
+  "name": "twreporter-react-components",
+  "version": "0.1.0",
+  "description": "The Reporter React Components",
+  "scripts": {
+    "build-pkg": "gulp build-packages",
+    "release": "gulp release",
+    "clean": "./node_modules/.bin/rimraf dist",
+    "lint": "eslint -c .eslintrc src",
+    "validate": "npm ls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twreporter/twreporter-react-components"
+  },
+  "license": "AGPL-3.0",
+  "engines": {
+    "node": ">=4.1.1"
+  },
+  "bugs": {
+    "url": "https://github.com/twreporter/twreporter-react-components/issues"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "es6-error": "^2.1.1",
+    "lodash": "^4.17.4",
+    "mobile-detect": "^1.3.5",
+    "raf": "^3.3.0",
+    "rc-slider": "^3.8.2",
+    "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.3.2",
+    "react-addons-pure-render-mixin": "^15.3.2",
+    "react-dom": "^15.4.2",
+    "react-howler": "^3.5.0",
+    "react-intl": "^2.2.3",
+    "react-lazyload": "^2.2.4",
+    "react-responsive": "^1.2.6",
+    "react-router": "^2.8.1",
+    "react-social": "^1.7.1",
+    "react-swipeable": "^3.9.2",
+    "react-visibility-sensor": "^3.6.2",
+    "react-youtube": "^7.3.0",
+    "video.js": "^5.12.1"
+  },
+  "devDependencies": {
+    "async": "^2.4.1",
+    "autoprefixer": "^6.7.7",
+    "babel-cli": "^6.24.1",
+    "babel-plugin-webpack-loaders": "^0.9.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "bootstrap-loader": "^2.1.0",
+    "bootstrap-sass": "^3.3.7",
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^0.11.2",
+    "gulp": "^3.9.1",
+    "gulp-git": "^2.4.1",
+    "node-sass": "^4.5.3",
+    "postcss-loader": "^2.0.6",
+    "postcss-scss": "^1.0.2",
+    "resolve-url-loader": "^2.1.0",
+    "rimraf": "^2.6.1",
+    "sass-loader": "^6.0.6",
+    "strip-loader": "^0.1.2",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
+    "watchpack": "^1.3.1",
+    "webpack": "^2.6.1"
+  },
+  "pre-commit": [
+    "lint"
+  ]
+}
