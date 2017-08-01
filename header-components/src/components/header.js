@@ -6,6 +6,7 @@ import Channels from './channels'
 import Icons from './icons'
 import { arrayToCssShorthand, screen } from 'shared/style-utils'
 import { pageThemes } from 'shared/configs'
+import { colors } from 'shared/common-variables'
 import { selectBgColor } from '../styles/theme'
 import LogoBright from '../../static/twreporter-logo.svg'
 import LogoDark from '../../static/twreporter-logo-dark.svg'
@@ -13,12 +14,22 @@ import { Link } from 'react-router'
 
 const styles = {
   headerHeight: 109, // px
+  headerHeightIndex: 62, // px
   topRowPadding: {
     mobile: [34, 10, 35, 24], // px
     tablet: [34, 20, 35, 35], // px
     desktop: [34, 58, 35, 70], // px
+    index: {
+      mobile: [18, 16, 18, 16], // px
+      tablet: [18, 34, 18, 34], // px
+      desktop: [18, 47, 18, 47], // px
+    },
   },
-  topRowMaxWidth: 1440, // px
+  topRowMaxWidth: {
+    tablet: 768, // px
+    desktop: 1024,
+    hd: 1440, // px
+  },
 }
 
 const HeaderContainer = styled.div`
@@ -28,26 +39,34 @@ const HeaderContainer = styled.div`
 `
 
 const TopRow = styled.div`
-  background-color: ${props => selectBgColor(props.pageTheme)};
-  height: ${styles.headerHeight}px;
+  background-color: ${props => (props.isIndex ? colors.indexBodyBgWhite : selectBgColor(props.pageTheme))};
+  height: ${props => (props.isIndex ? styles.headerHeightIndex : styles.headerHeight)}px;
 `
 
 const TopRowContent = styled.div`
-  padding: ${arrayToCssShorthand(styles.topRowPadding.mobile)};
+  padding: ${props => (!props.isIndex ? arrayToCssShorthand(styles.topRowPadding.mobile) : arrayToCssShorthand(styles.topRowPadding.index.mobile))};
   ${screen.tabletOnly`
-    padding: ${arrayToCssShorthand(styles.topRowPadding.tablet)};
+    padding: ${props => (!props.isIndex ? arrayToCssShorthand(styles.topRowPadding.tablet) : arrayToCssShorthand(styles.topRowPadding.index.tablet))};
   `}
   ${screen.desktopAbove`
-    padding: ${arrayToCssShorthand(styles.topRowPadding.desktop)};
+    padding: ${props => (!props.isIndex ? arrayToCssShorthand(styles.topRowPadding.desktop) : arrayToCssShorthand(styles.topRowPadding.index.desktop))};
   `}
   box-sizing: border-box;
-    height: ${styles.headerHeight}px;
+  height: ${props => (props.isIndex ? styles.headerHeightIndex : styles.headerHeight)}px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  max-width: ${styles.topRowMaxWidth}px;
+  ${screen.tabletOnly`
+    max-width: ${styles.topRowMaxWidth.tablet}px;
+  `}
+  ${screen.desktopOnly`
+    max-width: ${styles.topRowMaxWidth.desktop}px;
+  `}
+  ${screen.hdAbove`
+    max-width: ${styles.topRowMaxWidth.hd}px;
+  `}
   margin: 0 auto;
 `
 
@@ -88,34 +107,34 @@ class Header extends React.PureComponent {
   }
 
   render() {
-    const { isChannelsDisplayed, pageTheme, pathName } = this.props
+    const { pageTheme, pathName, isIndex } = this.props
     const { categoriesIsOpen } = this.state
     return (
       <HeaderContainer>
-        <TopRow pageTheme={pageTheme}>
-          <TopRowContent>
+        <TopRow pageTheme={pageTheme} isIndex={isIndex}>
+          <TopRowContent isIndex={isIndex}>
             <Link to="/">
               {Header._selectLogo(pageTheme)}
             </Link>
             <Icons pageTheme={pageTheme} />
           </TopRowContent>
         </TopRow>
-        {!isChannelsDisplayed ? null : <Channels handleToggleCategoriesMenu={this._handleToggleCategoriesMenu} pageTheme={pageTheme} pathName={pathName} categoriesIsOpen={categoriesIsOpen} />}
-        {!isChannelsDisplayed ? null : <Categories categoriesIsOpen={categoriesIsOpen} handleToggleCategoriesMenu={this._handleToggleCategoriesMenu} pageTheme={pageTheme} />}
+        {isIndex ? null : <Channels handleToggleCategoriesMenu={this._handleToggleCategoriesMenu} pageTheme={pageTheme} pathName={pathName} categoriesIsOpen={categoriesIsOpen} />}
+        {isIndex ? null : <Categories categoriesIsOpen={categoriesIsOpen} handleToggleCategoriesMenu={this._handleToggleCategoriesMenu} pageTheme={pageTheme} />}
       </HeaderContainer>
     )
   }
 }
 
 Header.propTypes = {
-  isChannelsDisplayed: PropTypes.bool,
   pageTheme: PropTypes.string,
   pathName: PropTypes.string.isRequired,
+  isIndex: PropTypes.bool,
 }
 
 Header.defaultProps = {
-  isChannelsDisplayed: true,
   pageTheme: pageThemes.bright,
+  isIndex: false,
 }
 
 export default Header

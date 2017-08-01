@@ -53,6 +53,7 @@ const colors = {
   footerBg: '#cdcdcd',
   footerTextLight: '#808080',
   footerTextDark: '#4a4a4a',
+  indexBodyBgWhite: '#fdfffa',
 }
 
 export { fonts, colors }

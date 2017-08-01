@@ -7,7 +7,6 @@ import { colors, fonts } from 'shared/common-variables'
 import { CSSTransitionGroup } from 'react-transition-group'
 import { searchBoxEffect } from 'shared/css-transition-group'
 import { searchConfigs } from 'shared/configs'
-import { selectBgColor } from '../styles/theme'
 
 const _ = {
   get,
@@ -33,7 +32,6 @@ const SearchBoxContainer = styled.form`
   transform: translateY(-50%);
   height: ${styles.containerHeight}px;
   box-sizing: border-box;
-  background-color: ${props => selectBgColor(props.pageTheme)};
 `
 
 const CellBlock = styled.div`

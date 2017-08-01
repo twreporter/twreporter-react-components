@@ -80,9 +80,9 @@ const IconContainer = styled.div`
 
 const DisplayOnDesktop = IconContainer.extend`
   display: none;
-  ${screen.desktopAbove`
+  ${props => (props.isSearchOpened ? '' : screen.desktopAbove`
     display: table-cell;
-  `}
+  `)}
 `
 
 const HideOnDesktop = IconContainer.extend`
@@ -117,7 +117,10 @@ class Icons extends React.PureComponent {
     const { isSearchOpened } = this.state
     return (
       <IconsContainer>
-        <DisplayOnDesktop onClick={this._handleClickSearch}>
+        <DisplayOnDesktop
+          onClick={this._handleClickSearch}
+          isSearchOpened={isSearchOpened}
+        >
           <SearchIcon />
           <span>{ICON_ALT_TEXT.SEARCH}</span>
         </DisplayOnDesktop>

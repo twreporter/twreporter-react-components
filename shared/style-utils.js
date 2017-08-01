@@ -154,6 +154,11 @@ export const screen = {
     mediaType: 'only screen',
     'max-width': bp.medium.max,
   })(...cssCode),
+  desktopOnly: (...cssCode) => mq({
+    mediaType: 'only screen',
+    'min-width': bp.large.min,
+    'max-width': bp.large.max,
+  })(...cssCode),
   desktopAbove: (...cssCode) => mq({
     mediaType: 'only screen',
     'min-width': bp.large.min,
