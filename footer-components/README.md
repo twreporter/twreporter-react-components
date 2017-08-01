@@ -5,13 +5,13 @@
 Need Dependencies: 
 
 ```
-yarn add lodash react styled-components prop-types
+yarn add react lodash prop-types react-router styled-components
 ```
 
 Install the package:
 
 ```
-yarn add twreporter-react-footer-components --save
+yarn add twreporter-react-footer-components
 ```
 
 ## USE
@@ -23,8 +23,8 @@ import Footer from 'twreporter-react-footer-components/lib/components/footer'
 
 const Page = (props) => (
   <div>
-    <Footer />
     {props.children}
+    <Footer />
   </div>
 )
 ```
@@ -60,10 +60,5 @@ npm run build
 
 ```
 cd twreporter-react-components/footer-components
-yarn publish
-```
-
-```
-cd twreporter-react-components/footer-components
-npm run publish
+npm publish
 ```
