@@ -98,3 +98,14 @@ export const channelConfigs = {
 }
 
 export const channels = ['review', 'photography', 'infographic', 'categories']
+
+export const externalLinks = {
+  monthlyDonation: 'https://twreporter.backme.tw/cashflow/checkout?project_id=175&reward_id=1305',
+  onceDonation: 'https://twreporter.backme.tw/cashflow/checkout?project_id=175&reward_id=718',
+  github: 'https://github.com/twreporter',
+  line: 'http://line.me/ti/p/%40nbs5015j',
+  facebook: 'https://www.facebook.com/twreporter/',
+  rss: 'https://www.twreporter.org/a/rss2.xml',
+  instagram: 'https://www.instagram.com/twreporter/',
+  ccLicense: 'https://creativecommons.org/licenses/by-nc-nd/3.0/tw/',
+}

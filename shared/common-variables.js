@@ -50,6 +50,9 @@ const colors = {
   bookmarkTextGrey: '#3e3f3f',
   iconAltText: '#e60013',
   greyishBrown: '#4a4a4a',
+  footerBg: '#cdcdcd',
+  footerTextLight: '#808080',
+  footerTextDark: '#4a4a4a',
 }
 
 export { fonts, colors }
