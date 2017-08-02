@@ -1,6 +1,6 @@
 {
   "name": "twreporter-react-header-components",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "scripts": {
     "build": "gulp build-package --color",
     "dev": "gulp dev",

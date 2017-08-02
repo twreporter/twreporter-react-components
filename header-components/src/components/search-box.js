@@ -15,6 +15,7 @@ const _ = {
 const styles = {
   inputHeight: 35, // px
   containerHeight: 65, // px
+  inputWidth: 220, // px
 }
 
 const StyledCSSTransitionGroup = styled(CSSTransitionGroup)`
@@ -46,6 +47,7 @@ const CellBlock = styled.div`
 `
 
 const SearchInput = styled.input`
+  width: ${styles.inputWidth}px;
   margin-right: .5em;
   font-size: ${fonts.size.base};
   font-weight: ${fonts.size.medium};

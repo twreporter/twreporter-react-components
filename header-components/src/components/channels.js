@@ -82,7 +82,7 @@ const ChannelsContent = styled.ul`
 const ChannelContainer = styled.li`
   padding: ${arrayToCssShorthand(styles.itemPadding.mobile)};
   margin: ${arrayToCssShorthand(styles.itemMargin.mobile)};
-  color: ${colors.black}
+  color: ${colors.black};
   a {
     &, :hover, :active, :link, :visited {
       color: inherit;
@@ -140,9 +140,11 @@ class Channels extends React.PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.pathName !== nextProps.pathName) {
+    const nextPathName = nextProps.pathName
+    const nextActiveChannel = Channels._pathToActiveChannel(nextPathName)
+    if (nextActiveChannel !== this.state.activeChannel && this.props.pathName !== nextPathName) {
       this.setState({
-        activeChannel: Channels._pathToActiveChannel(nextProps.pathName),
+        activeChannel: nextActiveChannel,
       })
     }
   }

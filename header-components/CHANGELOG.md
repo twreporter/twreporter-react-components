@@ -1,3 +1,14 @@
+### 1.0.5
+
+- Update index background-color
+- Fix searchbox input width
+- Prevent duplicate setState on channels
+
+### 1.0.4
+
+- Fix typo in styles of Channel
+- Update Channel underline style and effect
+
 ### 1.0.3
 
 - Update categories style

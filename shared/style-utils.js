@@ -2,7 +2,7 @@ import { css } from 'styled-components'
 import { breakpoints } from './configs'
 import reduce from 'lodash/reduce'
 import isArray from 'lodash/isArray'
-import { changeSize } from './animation'
+import { changeOpacity } from './animation'
 
 const _ = {
   isArray,
@@ -15,14 +15,14 @@ export const centerBlock = css`
 `
 
 export const linkUnderline = css`
-  animation: ${changeSize('width', '0', '100%')} .1s linear;
+  animation: ${changeOpacity('0', '1')} .5s linear;
   position: absolute;
   left: 0;
   bottom: 0;
   display: block;
   content: "";
   width: 100%;
-  height: 2px;
+  height: 3px;
   background-color: red;
 `
 
