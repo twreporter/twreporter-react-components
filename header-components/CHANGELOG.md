@@ -1,3 +1,7 @@
+### 1.0.4
+
+- Fix typo in styles of Channel
+
 ### 1.0.3
 
 - Update categories style

@@ -82,7 +82,7 @@ const ChannelsContent = styled.ul`
 const ChannelContainer = styled.li`
   padding: ${arrayToCssShorthand(styles.itemPadding.mobile)};
   margin: ${arrayToCssShorthand(styles.itemMargin.mobile)};
-  color: ${colors.black}
+  color: ${colors.black};
   a {
     &, :hover, :active, :link, :visited {
       color: inherit;
