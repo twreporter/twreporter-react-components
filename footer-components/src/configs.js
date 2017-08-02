@@ -78,14 +78,14 @@ export const footerSections = [
       },
     ],
   },
-  {
-    name: 'newsletter',
-    items: [
-      {
-        slug: 'subcribe',
-        text: '訂閱電子報',
-        link: '',
-      },
-    ],
-  },
+  // {
+  //   name: 'newsletter',
+  //   items: [
+  //     {
+  //       slug: 'subcribe',
+  //       text: '訂閱電子報',
+  //       link: '',
+  //     },
+  //   ],
+  // },
 ]
