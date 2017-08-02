@@ -1,6 +1,7 @@
 ### 1.0.4
 
 - Fix typo in styles of Channel
+- Update Channel underline style and effect
 
 ### 1.0.3
 
