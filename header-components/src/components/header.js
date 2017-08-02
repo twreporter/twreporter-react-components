@@ -62,7 +62,7 @@ const TopRowContent = styled.div`
     max-width: ${styles.topRowMaxWidth.tablet}px;
   `}
   ${screen.desktopOnly`
-    max-width: ${styles.topRowMaxWidth.desktop}px;
+    max-width: ${props => (props.isIndex ? styles.topRowMaxWidth.desktop : styles.topRowMaxWidth.hd)}px;
   `}
   ${screen.hdAbove`
     max-width: ${styles.topRowMaxWidth.hd}px;
