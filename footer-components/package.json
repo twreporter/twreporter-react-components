@@ -1,6 +1,6 @@
 {
   "name": "twreporter-react-footer-components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "scripts": {
     "build": "gulp build-package --color",
     "dev": "gulp dev",

@@ -20,16 +20,20 @@ const styles = {
   iconWidth: 32, // px
   iconHeight: 32, // px
   footerContentPadding: {
-    desktop: [72, 120, 45, 45], // px
-    mobile: [60, 46, 70, 46], // px
+    desktop: [72, 45, 45, 45], // px
+    mobile: [60, 43, 70, 43], // px
   },
   sectionWidth: {
     desktop: '10rem',
     mobile: '6rem',
   },
   footerContentMaxWidth: {
-    mobile: 284, // px
+    mobile: 273, // px
     desktop: 1440, // px
+  },
+  sectionMargin: {
+    mobile: [0, 0, 65, 0],
+    desktop: [0, 50],
   },
 }
 
@@ -45,10 +49,10 @@ const FooterContainer = styled.div`
 `
 
 const FooterContent = styled.div`
+  max-width: ${styles.footerContentMaxWidth.desktop}px;
   ${screen.mobileOnly`
     max-width: ${styles.footerContentMaxWidth.mobile}px;
   `}
-  max-width: ${styles.footerContentMaxWidth.desktop}px;
 
   margin: 0 auto;
   box-sizing: border-box;
@@ -58,10 +62,11 @@ const FooterContent = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-between;
   ${screen.tabletAbove`
     flex-wrap: nowrap;
+    justify-content: center;
   `}
-  justify-content: space-between;
   align-items: flex-start;
 `
 
@@ -71,9 +76,9 @@ const SectionContainer = styled.div`
   ${screen.tabletAbove`
     width: ${styles.sectionWidth.desktop};
   `}
-  margin: 0 auto;
+  margin: ${arrayToCssShorthand(styles.sectionMargin.desktop)};
   ${screen.mobileOnly`
-    margin-bottom: 30px;
+    margin: ${arrayToCssShorthand(styles.sectionMargin.mobile)};
   `}
 `
 
