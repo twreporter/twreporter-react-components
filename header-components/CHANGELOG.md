@@ -1,3 +1,7 @@
+### 1.0.5
+
+- Update index background-color
+
 ### 1.0.4
 
 - Fix typo in styles of Channel
