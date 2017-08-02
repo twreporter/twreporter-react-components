@@ -1,6 +1,7 @@
 ### 1.0.5
 
 - Update index background-color
+- Fix searchbox input width
 
 ### 1.0.4
 
