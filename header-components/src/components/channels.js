@@ -6,7 +6,7 @@ import map from 'lodash/map'
 import { channelConfigs, channels } from 'shared/configs'
 import { arrayToCssShorthand, linkUnderline, screen } from 'shared/style-utils'
 import { colors, fonts } from 'shared/common-variables'
-import { selectBgColor, selectTextColor } from '../styles/theme'
+import { selectTextColor } from '../styles/theme'
 import { Link } from 'react-router'
 
 const _ = {
@@ -54,7 +54,7 @@ const ChannelsContainer = styled.div`
 const ChannelsContent = styled.ul`
   justify-content: space-between;
   padding: ${arrayToCssShorthand(styles.channelsPadding.mobile)};
-  background-color: ${props => selectBgColor(props.pageTheme)};
+  background-color: ${colors.white};
   ${screen.tabletOnly`
     justify-content: space-around;
     padding: ${arrayToCssShorthand(styles.channelsPadding.tablet)};
@@ -82,6 +82,13 @@ const ChannelsContent = styled.ul`
 const ChannelContainer = styled.li`
   padding: ${arrayToCssShorthand(styles.itemPadding.mobile)};
   margin: ${arrayToCssShorthand(styles.itemMargin.mobile)};
+  color: ${colors.black}
+  a {
+    &, :hover, :active, :link, :visited {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
   ${screen.tabletOnly`
     padding: ${arrayToCssShorthand(styles.itemPadding.tablet)};
     margin: ${arrayToCssShorthand(styles.itemMargin.tablet)};
@@ -89,6 +96,7 @@ const ChannelContainer = styled.li`
   ${screen.desktopAbove`
     padding: ${arrayToCssShorthand(styles.itemPadding.desktop)};
     margin: ${arrayToCssShorthand(styles.itemMargin.desktop)};
+    color: ${props => selectTextColor(props.pageTheme)};
     &:hover {
       color: ${colors.hoverCategories};
     }
@@ -97,13 +105,6 @@ const ChannelContainer = styled.li`
   font-size: ${fonts.size.medium};
   font-weight: ${fonts.weight.bold};
   letter-spacing: .5px;
-  color: ${props => selectTextColor(props.pageTheme)};
-  a {
-    &, :hover, :active, :link, :visited {
-      color: inherit;
-      text-decoration: none;
-    }
-  }
   cursor: pointer;
   &::after {
     ${props => (props.isActive ? linkUnderline : '')}

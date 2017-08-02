@@ -166,8 +166,8 @@ class Categories extends React.PureComponent {
         <StyledCSSTransitionGroup
           key="transition"
           transitionName="effect"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}
+          transitionEnterTimeout={600}
+          transitionLeaveTimeout={400}
         >
           {!categoriesIsOpen ? null : (
             <ViewPort>

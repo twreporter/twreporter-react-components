@@ -3,24 +3,20 @@ import { css } from 'styled-components'
 export const categoriesMenuEffect = css`
   .effect-enter {
     max-height: 0;
-    opacity: .5;
   }
 
   .effect-enter.effect-enter-active {
     max-height: 400px;
-    opacity: 1;
-    transition: max-height 300ms ease-in 100ms, opacity 400ms ease-out;
+    transition: max-height 600ms ease-in 100ms;
   }
 
   .effect-leave {
     max-height: 400px;
-    opacity: 1;
   }
 
   .effect-leave.effect-leave-active {
     max-height: 0;
-    opacity: .6;
-    transition: max-height 400ms ease-out, opacity 200ms ease-out 200ms;
+    transition: max-height 400ms ease-out;
   }
 `
 

@@ -1,12 +1,12 @@
 {
   "name": "twreporter-react-header-components",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "scripts": {
     "build": "gulp build-package --color",
     "dev": "gulp dev",
     "clean": "gulp clean-build"
   },
-  "main": "lib/components/header.js'",
+  "main": "lib/components/header.js",
   "author": "twreporter",
   "license": "AGPL-3.0",
   "devDependencies": {
