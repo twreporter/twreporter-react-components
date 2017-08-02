@@ -24,7 +24,7 @@ import Header from 'twreporter-react-header-components/lib/components/header'
 const Page = (props) => (
   <div>
     <Header
-      isChannelsDisplayed
+      isIndex
       pageTheme={props.pageTheme}
       pathName={props.pathName}
     />
@@ -35,9 +35,9 @@ const Page = (props) => (
 
 **Props:**
 
-* `isChannelsDisplayed`: Config to display channels menu or not.
-* `pageTheme`: The page theme passed by `twreporter-react`. `DARK` or `BRIGHT`.
-* `pathName`: The pathname passed by `twreporter-react`. With format likes `/categories/inforgraphic`, `/photography` .
+* `isIndex`: (boolean) The Component is used on index page or not.
+* `pageTheme`: (string) The page theme passed by `twreporter-react`. `DARK` or `BRIGHT`.
+* `pathName`: (string) The pathname passed by `twreporter-react`. With format likes `/categories/inforgraphic`, `/photography` .
 
 ## Developement
 
