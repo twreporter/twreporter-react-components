@@ -2,6 +2,7 @@
 
 - Update index background-color
 - Fix searchbox input width
+- Prevent duplicate setState on channels
 
 ### 1.0.4
 
