@@ -128,13 +128,14 @@ class Header extends React.PureComponent {
 
 Header.propTypes = {
   pageTheme: PropTypes.string,
-  pathName: PropTypes.string.isRequired,
+  pathName: PropTypes.string,
   isIndex: PropTypes.bool,
 }
 
 Header.defaultProps = {
   pageTheme: pageThemes.bright,
   isIndex: false,
+  pathName: '',
 }
 
 export default Header
