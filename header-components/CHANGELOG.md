@@ -1,3 +1,8 @@
+### 1.0.6
+
+- Fix icon style
+- Set default prop pathname of Header
+
 ### 1.0.5
 
 - Update index background-color
