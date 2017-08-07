@@ -1,3 +1,7 @@
+### 1.0.7
+
+- Remove testing icon
+
 ### 1.0.6
 
 - Fix icon style
