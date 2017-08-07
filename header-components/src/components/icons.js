@@ -25,6 +25,7 @@ const IconsContainer = styled.div`
   position: relative;
   display: table;
 `
+
 const IconContainer = styled.div`
   font-size: ${fonts.size.base};
   cursor: pointer;
@@ -38,17 +39,10 @@ const IconContainer = styled.div`
   svg {
     height: 100%;
   }
+  span {
+    display: none;
+  }
   ${screen.desktopAbove`
-    &:hover {
-      svg {
-        transform: scale(1.7, .5);
-        opacity: 0;
-      }
-      span {
-        transform: scale(1, 1);
-        opacity: 1;
-      }
-    }
     svg {
       opacity: 1;
       transition: transform .3s ease-in-out, opacity .3s ease-in-out;
@@ -59,6 +53,7 @@ const IconContainer = styled.div`
       z-index: 1;
     }
     span {
+      display: inline;
       white-space: nowrap;
       overflow: hidden;
       color: ${colors.iconAltText};
@@ -74,6 +69,16 @@ const IconContainer = styled.div`
       top: 0;
       left: 17%;
       z-index: 2;
+    }
+    &:hover {
+      svg {
+        transform: scale(1.7, .5);
+        opacity: 0;
+      }
+      span {
+        transform: scale(1, 1);
+        opacity: 1;
+      }
     }
   `}
 `
@@ -134,6 +139,10 @@ class Icons extends React.PureComponent {
             <SearchIcon />
           </Link>
         </HideOnDesktop>
+        <IconContainer>
+          <SearchIcon />
+          <span>{ICON_ALT_TEXT.SEARCH}</span>
+        </IconContainer>
       </IconsContainer>
     )
   }

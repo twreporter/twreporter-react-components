@@ -35,9 +35,9 @@ const Page = (props) => (
 
 **Props:**
 
-* `isIndex`: (boolean) The Component is used on index page or not.
-* `pageTheme`: (string) The page theme passed by `twreporter-react`. `DARK` or `BRIGHT`.
-* `pathName`: (string) The pathname passed by `twreporter-react`. With format likes `/categories/inforgraphic`, `/photography` .
+* `isIndex`: (boolean) The Component is used on index page or not. (default: `false`)
+* `pageTheme`: (string) The page theme passed by `twreporter-react`. `DARK` or `BRIGHT`. (default: `'BRIGHT'`)
+* `pathName`: (string) The pathname passed by `twreporter-react`. With format likes `/categories/inforgraphic`, `/photography` . (default: `''`)
 
 ## Developement
 
