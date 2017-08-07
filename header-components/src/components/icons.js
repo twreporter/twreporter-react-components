@@ -139,10 +139,6 @@ class Icons extends React.PureComponent {
             <SearchIcon />
           </Link>
         </HideOnDesktop>
-        <IconContainer>
-          <SearchIcon />
-          <span>{ICON_ALT_TEXT.SEARCH}</span>
-        </IconContainer>
       </IconsContainer>
     )
   }
