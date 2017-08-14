@@ -17,8 +17,8 @@ const _ = {
 }
 
 const styles = {
-  iconWidth: 32, // px
-  iconHeight: 32, // px
+  iconWidth: 30, // px
+  iconHeight: 30, // px
   footerContentPadding: {
     desktop: [72, 45, 45, 45], // px
     mobile: [60, 43, 70, 43], // px
@@ -58,7 +58,7 @@ const FooterContent = styled.div`
   box-sizing: border-box;
   position: relative;
   width: 100%;
-  
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
