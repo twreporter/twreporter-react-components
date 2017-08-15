@@ -37,8 +37,13 @@ gulp.task(
   })
 
 gulp.task(
-  'clean-twreporter-node-modules',
-  cb => clean(path.resolve(__dirname, '../../twreporter-react/node_modules/twreporter-react-header-components'), cb))
+  'clean-twreporter-node-modules', (cb) => {
+    let customerFolder = process.env.CUSTOMER_FOLDER
+    if (typeof customerFolder !== 'string') {
+      customerFolder = path.resolve(__dirname + '/../../twreporter-react')
+    }
+    return clean(customerFolder+'/node_modules/twreporter-react-header-components/lib', cb)
+  })
 
 gulp.task(
   'copy-lib-to-twreporter',
@@ -71,12 +76,26 @@ gulp.task(
   'build-package',
   gulp.series('clean-build', 'build'))
 
-gulp.task('build-to-twreporter',
-  gulp.series('build-package', 'clean-twreporter-node-modules', 'copy-lib-to-twreporter'))
+// This function will copy the transpiled files to
+// the customer folder. You can specify the customer folder path
+// by running gulp command  like
+// `CUSTOMER_FOLDER=/home/nick/codes/twreporter-react gulp run dev`,
+// and those transpiled files will be copyed into
+// `/home/nick/codes/twreporter-react/node_modules/twreporter-react-header-components/lib`
+gulp.task('teleport', gulp.series('clean-twreporter-node-modules', () => {
+  let customerFolder = process.env.CUSTOMER_FOLDER
+  if (typeof customerFolder !== 'string') {
+    customerFolder = path.resolve(__dirname + '/../../twreporter-react')
+  }
+  return gulp
+    .src('./lib/**/*')
+    .pipe(gulp.dest(customerFolder+'/node_modules/twreporter-react-header-components/lib'))
+}))
 
-gulp.task('dev', () => {
-  const watcher = gulp.watch(['../shared/**', 'src/**', 'static/**'], gulp.series('build-package', 'clean-twreporter-node-modules', 'copy-lib-to-twreporter'))
+// promise chain
+gulp.task('dev', gulp.series('build', 'teleport', () => {
+  const watcher = gulp.watch(['../shared/**', 'src/**', 'static/**'], gulp.series('clean-build', 'build', 'teleport'))
   watcher.on('change', (filePath) => {
     console.log(`File ${filePath} was changed, running tasks...`)
   })
-})
+}))
