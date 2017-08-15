@@ -1,5 +1,4 @@
-### 1.0.4
-
+### 1.0.5
 - Style tuning after designer review. Update the sns-icon.svg.
 
 ### 1.0.3
