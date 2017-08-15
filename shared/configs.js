@@ -53,6 +53,10 @@ export const searchConfigs = {
   path: 'search',
 }
 
+export const memberConfigs = {
+  path: 'signin',
+}
+
 export const linkPrefix = {
   article: '/a/',
   interactiveArticle: '/i/',
