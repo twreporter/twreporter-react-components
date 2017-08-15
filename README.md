@@ -2,7 +2,7 @@
 
 ## INSTALL
 
-Need Peer Dependencies: 
+Need Peer Dependencies:
 
 ```
 yarn add react react-dom react-router
@@ -92,6 +92,75 @@ const Page = (props) =>(
 `currentPage`(number): current page
 `topics`(array): topics data
 `isFetching`(boolean): is data ready
+
+### bookmarks-components
+
+#### twreporter-react -> src -> container -> BookmarkList
+
+```javascript
+import { Bookmark } from 'twreporter-react-components'
+
+
+const Page = (props) =>(
+  <div>
+    <Bookmark
+      bookmarkData={bookmarkData}
+      handleBookmarkIconOnClick={this.handleBookmarkIconOnClick}
+      total={total}
+    />
+  </div>
+)
+```
+
+**props:**
+
+* `bookmarkData`(array): array of objs. The obj should has following keys
+```javascript
+const {
+  thumbnail,
+  category,
+  title,
+  desc,
+  published_date,
+  slug,
+  is_external,
+  host,
+} = _.get(this.props, 'bookmarkData', {})
+```
+* `handleBookmarkIconOnClick`(func): Each bookmark row contains a bookmark icon. OnClick the icon will trigger the func
+* `total`(number): total number of bookmarks of the user.
+
+
+### confirmation-components
+
+#### twreporter-react -> src -> container -> BookmarkList
+
+```javascript
+import { Confirmation } from 'twreporter-react-components'
+
+
+const Page = (props) =>(
+  <div>
+    <Confirmation
+      onCancel={this.onCancel}
+      onConfirm={this.onConfirm}
+      content={DIALOG_CONTENT}
+      confirm={DIALOG_CONFIRM}
+      cancel={DIALOG_CANCEL}
+    />
+  </div>
+)
+```
+
+**props:**
+
+* `onCancel`(func): User click on cancel button will trigger onCancel
+* `onConfirm`(func): User click on cancel button will trigger onConfirm
+* `content`(string): Information in dialog
+* `confirm`(string): confirm button text
+* `cancel`(string): cancel button text
+
+
 
 ## Developement
 

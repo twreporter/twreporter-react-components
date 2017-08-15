@@ -54,6 +54,23 @@ export const searchConfigs = {
   path: 'search',
 }
 
+export const memberConfigs = {
+  path: 'signin',
+}
+
+export const bookmarkConfigs = {
+  path: 'bookmarks',
+}
+
+// external: html a tag
+// internal: react-router Link
+// redirect: react-router router.push() or browserHistory.push()
+export const linkType = {
+  external: 'external',
+  internal: 'internal',
+  redirect: 'redirect',
+}
+
 export const linkPrefix = {
   article: '/a/',
   interactiveArticle: '/i/',
@@ -91,9 +108,10 @@ export const channelConfigs = {
     path: 'infographic',
   },
   categories: {
-    text: '分類',
+    text: '議題',
     type: 'submenu',
-    prefix: linkPrefix.categories,
+    prefix: '/',
+    path: '?section=category',
   },
   hiring: {
     text: '徵才中',
@@ -106,7 +124,7 @@ export const channelConfigs = {
   },
 }
 
-export const channels = ['review', 'topics', 'photography', 'infographic', 'categories', 'hiring']
+export const channels = ['review', 'topics', 'photography', 'infographic', 'categories']
 
 export const externalLinks = {
   monthlyDonation: 'https://twreporter.backme.tw/cashflow/checkout?project_id=175&reward_id=1305',
