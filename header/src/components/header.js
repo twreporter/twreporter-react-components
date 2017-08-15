@@ -5,6 +5,7 @@ import Logo from '../../static/twreporter-logo.svg'
 import LogoBright from '../../static/twreporter-logo-bright.svg'
 import PropTypes from 'prop-types'
 import React from 'react'
+import SlideDownPanel from './header-slide-down-panel'
 import styled from 'styled-components'
 import { Link } from 'react-router'
 import { arrayToCssShorthand, screen } from 'shared/style-utils'
@@ -69,6 +70,43 @@ const TopRowContent = styled.div`
   margin: 0 auto;
 `
 
+const HamburgerContainer = styled.div`
+  position: absolute;
+  ${screen.mobileOnly`
+    position: static;
+  `}
+`
+
+const HamburgerFrame = styled.div`
+  cursor: pointer;
+  display: none;
+  ${screen.mobileOnly`
+    display: initial;
+  `}
+`
+
+const Storke = styled.div`
+  width: 25px;
+  height: 4px;
+  margin-bottom: 5px;
+  background-color: ${colors.primaryColor};
+  border-radius: 10px;
+`
+
+const Hamburger = ({ onClick }) => (
+  <HamburgerContainer>
+    <HamburgerFrame onClick={onClick}>
+      <Storke />
+      <Storke />
+      <Storke />
+    </HamburgerFrame>
+  </HamburgerContainer>
+)
+
+Hamburger.propTypes = {
+  onClick: PropTypes.func.isRequired,
+}
+
 class Header extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -77,6 +115,7 @@ class Header extends React.PureComponent {
     }
     this._closeCategoriesMenu = this._handleToggleCategoriesMenu.bind(this, 'close')
     this._handleToggleCategoriesMenu = this._handleToggleCategoriesMenu.bind(this)
+    this.handleOnHamburgerClick = this._handleOnHamburgerClick.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -95,6 +134,12 @@ class Header extends React.PureComponent {
     })
   }
 
+  _handleOnHamburgerClick() {
+    this.setState({
+      ifShowSlideInPanel: !this.state.ifShowSlideInPanel,
+    })
+  }
+
   _selectLogo(logoColor) {
     switch (logoColor) {
       case Header.logoColor.bright:
@@ -106,10 +151,19 @@ class Header extends React.PureComponent {
   }
 
   render() {
-    const { bgColor, fontColor, logoColor, pathName, isIndex, headerPosition } = this.props
-    const { categoriesIsOpen } = this.state
+    const { bgColor, categoryId, fontColor, ifAuthenticated,
+      logoColor, pathName, isIndex, headerPosition, signOutAction } = this.props
+    const { categoriesIsOpen, ifShowSlideInPanel } = this.state
     return (
       <HeaderContainer>
+        <SlideDownPanel
+          showUp={ifShowSlideInPanel}
+          isIndex={isIndex}
+          categoryId={categoryId}
+          ifAuthenticated={ifAuthenticated}
+          signOutAction={signOutAction}
+          handleOnHamburgerClick={this.handleOnHamburgerClick}
+        />
         <TopRow
           bgColor={bgColor}
           isIndex={isIndex}
@@ -118,7 +172,11 @@ class Header extends React.PureComponent {
             <Link to="/">
               {this._selectLogo(logoColor)}
             </Link>
-            <Icons />
+            <Icons
+              ifAuthenticated={ifAuthenticated}
+              signOutAction={signOutAction}
+            />
+            <Hamburger onClick={this.handleOnHamburgerClick} />
           </TopRowContent>
         </TopRow>
         {isIndex ? null : <Channels handleToggleCategoriesMenu={this._handleToggleCategoriesMenu} fontColor={fontColor} pathName={pathName} categoriesIsOpen={categoriesIsOpen} headerPosition={headerPosition} />}
@@ -135,15 +193,19 @@ Header.logoColor = {
 
 Header.propTypes = {
   bgColor: PropTypes.string,
+  categoryId: PropTypes.string,
   fontColor: PropTypes.string,
   logoColor: PropTypes.string,
   pathName: PropTypes.string,
+  ifAuthenticated: PropTypes.bool.isRequired,
   isIndex: PropTypes.bool,
   headerPosition: PropTypes.string,
+  signOutAction: PropTypes.func.isRequired,
 }
 
 Header.defaultProps = {
   bgColor: '',
+  categoryId: '',
   fontColor: colors.black,
   logoColor: Header.logoColor.dark,
   isIndex: false,

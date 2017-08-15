@@ -3,6 +3,8 @@ static/main.js
 static/main.css
 static/dist
 
+**/.DS_Store
+
 .jshintignore
 .jshintrc
 npm-debug.log

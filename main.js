@@ -1,22 +1,25 @@
-import { Cinemagraph, CinemagraphHelper } from './cinemagraph'
+import Bookmark from './bookmarks'
+import Confirmation from './confirmation'
+import FadeText from './fade-text'
 import FetchingWrapper from './shared/components/is-fetching-wrapper'
 import Footer from './footer'
 import Header from './header'
 import IndexPageComposite from './index-page'
-import ListingComposite from './listing-page'
+import { TopicsList, List } from './listing-page'
 import Pagination from './pagination'
-import FadeText from './fade-text'
+import { Cinemagraph, CinemagraphHelper } from './cinemagraph'
 import { FullpageSlides, FullpageSlidesConstants } from './fullpage-slides'
-
-const { TopicsList, List } = ListingComposite
 
 const Wrapper = {
   FetchingWrapper,
 }
 
 export default {
-  CinemagraphHelper,
+  Bookmark,
   Cinemagraph,
+  CinemagraphHelper,
+  Confirmation,
+  FadeText,
   Footer,
   FullpageSlides,
   FullpageSlidesConstants,
@@ -24,14 +27,16 @@ export default {
   IndexPageComposite,
   List,
   Pagination,
-  FadeText,
   TopicsList,
   Wrapper,
 }
 
 export {
-  CinemagraphHelper,
+  Bookmark,
   Cinemagraph,
+  CinemagraphHelper,
+  Confirmation,
+  FadeText,
   Footer,
   FullpageSlides,
   FullpageSlidesConstants,
@@ -39,7 +44,6 @@ export {
   IndexPageComposite,
   List,
   Pagination,
-  FadeText,
   TopicsList,
   Wrapper,
 }

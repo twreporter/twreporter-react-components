@@ -1,5 +1,9 @@
-### 1.3.5
-- [index-page] Optimize about-hiring.svg
+### UNRELEASED
+### 2.0.2
+- Code adjustments after merging Mobile narvar and Bookmark features
+
+### 2.0.1
+- Create Mobile navbar feature
 
 ### 1.3.3
 - [index-page] Change velocity-react to scoped version
@@ -16,11 +20,6 @@
 
 ### 1.2.2
 - Update .npmignore
-
-### 1.2.1
-- [cinemagraph] Add cinemagraph
-- [fullpage-slides] Add fullpage-slides
-- Fix eslint imports resloving
 
 ### 1.1.5
 - Update fade-text components with new solution for locking scroll.

@@ -29,6 +29,8 @@ index-page/
 listing-page/
 pagination/
 shared/
+bookmarks-components/
+confirmation-components/
 
 # NPM debug
 npm-debug.log
