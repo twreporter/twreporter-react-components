@@ -116,13 +116,15 @@ class Channels extends React.PureComponent {
     const currentPaths = pathName.split('/')
     switch (true) {
       case (currentPaths[1] === channelConfigs.photography.path):
-        return 'photography'
+        return 'photography' // key of channelConfigs
+      case (currentPaths[1] === channelConfigs.topic.path):
+        return 'topic' // key of channelConfigs
       case (currentPaths[1] === 'categories'):
         switch (true) {
           case (currentPaths[2] === channelConfigs.infographic.path):
-            return 'infographic'
+            return 'infographic' // key of channelConfigs
           case (currentPaths[2] === channelConfigs.review.path):
-            return 'review'
+            return 'review' // key of channelConfigs
           default:
             return 'none'
         }
