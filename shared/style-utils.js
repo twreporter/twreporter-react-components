@@ -30,9 +30,22 @@ export const linkUnderline = css`
 * @prop {array|number} values - Array or number of values
 * @prop {string} unit - Unit
 **/
-export const arrayToCssShorthand = (values, unit = 'px') => (
-  !_.isArray(values) ? `${values}${unit}` : values.map(value => `${value}${unit}`).join(' ')
-)
+export const arrayToCssShorthand = (values, unit = 'px') => {
+  const _handleValue = (value) => {
+    switch (typeof value) {
+      case 'number':
+        return (value === 0) ? '0' : `${value}${unit}`
+      case 'string':
+        return value
+      default:
+        return ''
+    }
+  }
+  if (!_.isArray(values)) {
+    return _handleValue(values)
+  }
+  return values.map(_handleValue).join(' ')
+}
 
 export const media = {
   mobile: (...args) => css`
@@ -168,3 +181,21 @@ export const screen = {
     'min-width': bp.xlarge.min,
   })(...cssCode),
 }
+
+export const linkHoverFadeOut = css`
+  ${screen.desktopAbove`
+    &:hover {
+      opacity: .7;
+      transition: 200ms opacity linear;  
+    }
+  `}
+`
+
+export const resetLinkStyle = css`
+  a {
+    &, :hover, :active, :link, :visited {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+`
