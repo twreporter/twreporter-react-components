@@ -116,7 +116,11 @@ PostItem.propTypes = {
   title: PropTypes.string.isRequired,
   imgUrl: PropTypes.string.isRequired,
   linkTo: PropTypes.string.isRequired,
-  linkTarget: PropTypes.oneOf(['_blank', null]).isRequired,
+  linkTarget: PropTypes.oneOf(['_blank']),
+}
+
+PostItem.defaultProps = {
+  linkTarget: null,
 }
 
 export default PostItem
