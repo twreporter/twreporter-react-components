@@ -4,9 +4,10 @@ import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 import { arrayToCssShorthand, screen, linkHoverFadeOut, resetLinkStyle } from 'shared/style-utils'
 import { colors, fonts } from 'shared/common-variables'
+import Image from '../image'
 
 const styles = {
-  imgLanscape: {
+  imgLandscape: {
     mobile: {
       width: 122,
       height: 92,
@@ -32,18 +33,15 @@ const styles = {
 
 const PostBox = styled(Link)`
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
   ${screen.mobileOnly`
     padding: ${arrayToCssShorthand(styles.postBoxPadding.mobile)};
     width: 100%;
   `}
   ${screen.tabletOnly`
-    width: ${styles.imgLanscape.tablet.width}px;
+    width: ${styles.imgLandscape.tablet.width}px;
   `}
   ${screen.desktopAbove`
-    width: ${styles.imgLanscape.desktop.width}px;
+    width: ${styles.imgLandscape.desktop.width}px;
   `}
   ${screen.tabletAbove`
     border: solid .5px ${colors.lineGrey};
@@ -55,24 +53,23 @@ const PostBox = styled(Link)`
 `
 
 const PostImage = styled.div`
-  width: ${styles.imgLanscape.mobile.width}px;
+  width: ${styles.imgLandscape.mobile.width}px;
   order: 1;
   ${screen.tabletAbove`
-    width: ${styles.imgLanscape.tablet.width}px;
+    width: ${styles.imgLandscape.tablet.width}px;
     order: 2;
   `}
   flex: 0 0 auto;
-  img {
-    object-fit: cover;
-    width: ${styles.imgLanscape.mobile.width}px;
-    height: ${styles.imgLanscape.mobile.height}px;
+  > div {
+    width: ${styles.imgLandscape.mobile.width}px;
+    height: ${styles.imgLandscape.mobile.height}px;
     ${screen.tabletOnly`
-      width: ${styles.imgLanscape.tablet.width}px;
-      height: ${styles.imgLanscape.tablet.height}px;
+      width: ${styles.imgLandscape.tablet.width}px;
+      height: ${styles.imgLandscape.tablet.height}px;
     `}
     ${screen.desktopAbove`
-      width: ${styles.imgLanscape.desktop.width}px;
-      height: ${styles.imgLanscape.desktop.height}px;
+      width: ${styles.imgLandscape.desktop.width}px;
+      height: ${styles.imgLandscape.desktop.height}px;
     `}
   }
 `
@@ -104,7 +101,12 @@ class PostItem extends PureComponent {
     return (
       <PostBox to={linkTo} target={linkTarget}>
         <PostImage>
-          <img src={imgUrl} alt={title} />
+          <div>
+            <Image
+              src={imgUrl}
+              alt={title}
+            />
+          </div>
         </PostImage>
         <PostText>{title}</PostText>
       </PostBox>

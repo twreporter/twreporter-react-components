@@ -4,8 +4,6 @@ import { colors } from 'shared/common-variables'
 
 const PostsContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: stretch;
   ${

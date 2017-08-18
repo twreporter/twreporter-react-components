@@ -5,6 +5,7 @@ import { colors, fonts } from 'shared/common-variables'
 import { Link } from 'react-router'
 import { TEXT } from '../../constants/topics'
 import PropTypes from 'prop-types'
+import Image from '../image'
 
 const styles = {
   imgPortrait: {
@@ -58,11 +59,7 @@ const StyledLink = styled(Link)`
 const TopicBox = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
   align-items: stretch;
-  align-content: flex-start;
 `
 
 const ItemContainer = styled.div`
@@ -87,8 +84,7 @@ const ImageBlock = styled.div`
     width: ${styles.imgPortrait.tablet.width}px;
   `}
   flex: 0 0 auto;
-  img {
-    object-fit: cover;
+  div {
     width: ${styles.imgPortrait.mobile.width}px;
     height: ${styles.imgPortrait.mobile.height}px;
     ${screen.tabletAbove`
@@ -111,10 +107,8 @@ const TextBlock = styled.div`
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  ${screen.mobileOnly`
-    justify-content: flex-start;
+  ${screen.tabletAbove`
+    justify-content: space-between;
   `}
   color: ${colors.textGrey};
 `
@@ -172,7 +166,9 @@ class TopicItem extends PureComponent {
         <ItemContainer isFull={isFull}>
           <TopicBox>
             <ImageBlock>
-              <img src={imgUrl} alt={imgAlt} />
+              <div>
+                <Image src={imgUrl} alt={imgAlt} />
+              </div>
             </ImageBlock>
             <TextBlock>
               <TopicTitle>{title}</TopicTitle>
