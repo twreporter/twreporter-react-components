@@ -37,6 +37,18 @@ gulp.task(
   })
 
 gulp.task(
+  'clean-twreporter-node-modules',
+  cb => clean(path.resolve(__dirname, '../../twreporter-react/node_modules/twreporter-react-header-components'), cb))
+
+gulp.task(
+  'copy-lib-to-twreporter',
+  () => {
+    return gulp
+      .src('./lib/**', { base: './lib' })
+      .pipe(gulp.dest('../../twreporter-react/node_modules/twreporter-react-header-components'))
+  })
+
+gulp.task(
   'babel-shared',
   cb => babel(path.resolve(__dirname, './tmp'), path.resolve(__dirname, './lib/shared'), cb))
 
@@ -59,8 +71,11 @@ gulp.task(
   'build-package',
   gulp.series('clean-build', 'build'))
 
+gulp.task('build-to-twreporter',
+  gulp.series('build-package', 'clean-twreporter-node-modules', 'copy-lib-to-twreporter'))
+
 gulp.task('dev', () => {
-  const watcher = gulp.watch(['../shared/**', 'src/**', 'static/**'], gulp.series('clean-build', 'build'))
+  const watcher = gulp.watch(['../shared/**', 'src/**', 'static/**'], gulp.series('build-package', 'clean-twreporter-node-modules', 'copy-lib-to-twreporter'))
   watcher.on('change', (filePath) => {
     console.log(`File ${filePath} was changed, running tasks...`)
   })

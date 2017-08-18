@@ -1,3 +1,7 @@
+### 1.0.8
+
+- Add topics in header
+
 ### 1.0.7
 
 - Remove testing icon

@@ -71,13 +71,12 @@ export const channelConfigs = {
     prefix: linkPrefix.categories,
     path: 'reviews',
   },
-  // Wait for implement
-  // topic: {
-  //   text: '專題',
-  //   type: 'link',
-  //   prefix: '',
-  //   path: '',
-  // },
+  topics: {
+    text: '專題',
+    type: 'link',
+    prefix: '/',
+    path: 'topics',
+  },
   photography: {
     text: '攝影',
     type: 'link',
@@ -97,7 +96,7 @@ export const channelConfigs = {
   },
 }
 
-export const channels = ['review', 'photography', 'infographic', 'categories']
+export const channels = ['review', 'topics', 'photography', 'infographic', 'categories']
 
 export const externalLinks = {
   monthlyDonation: 'https://twreporter.backme.tw/cashflow/checkout?project_id=175&reward_id=1305',
