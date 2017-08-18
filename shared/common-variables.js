@@ -9,6 +9,7 @@ const fonts = {
     h1: '28px',
     h2: '20px',
     title: {
+      xlarge: '36px',
       large: '32px',
       bookmark: '27px',
       bookmarkMobile: '20px',
@@ -30,6 +31,7 @@ const fonts = {
 }
 
 const colors = {
+  h1Black: '#000000',
   black: '#262626',
   primaryColor: '#c4333e',  // red
   textGrey: '#4a4949',
@@ -37,6 +39,7 @@ const colors = {
   categorySeparator: '#979797',
   moreBlue: '#55a1e5',
   lightBlue: '#5eb2fe',
+  linkBlue: '#5eb2fd',
   blue: '#56a2e6',
   white: '#ffffff',
   sectionWhite: '#ffffff',
@@ -54,6 +57,7 @@ const colors = {
   footerTextLight: '#808080',
   footerTextDark: '#4a4a4a',
   indexBodyBgWhite: '#ffffff',
+  lineGrey: '#d8d8d8',
 }
 
 export { fonts, colors }
