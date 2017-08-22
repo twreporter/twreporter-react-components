@@ -103,9 +103,6 @@ const TextBlock = styled.div`
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  ${screen.tabletAbove`
-    justify-content: space-between;
-  `}
   color: ${colors.textGrey};
 `
 
@@ -126,8 +123,12 @@ const TopicTitle = styled.h2`
 `
 
 const TopicDate = styled.div`
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  ${screen.tabletOnly`
+    padding-top: 12px;
+    padding-bottom: 12px;
+  `}
   font-size: ${fonts.size.base};
   font-weight: ${fonts.weight.bold};
   letter-spacing: .5px;
@@ -140,7 +141,6 @@ const TopicDescription = styled.div`
 `
 
 const DesktopDescription = TopicDescription.extend`
-  display: block;
   ${screen.mobileOnly`
     display: none;
   `}

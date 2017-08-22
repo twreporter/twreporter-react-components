@@ -67,11 +67,11 @@ const GoToTopic = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     letter-space: .1px;
-    font-size: ${fonts.size.large};
+    font-size: ${fonts.size.medium};
     font-weight: ${fonts.weight.medium};
   }
   svg {
-    height: ${fonts.size.large};
+    height: ${fonts.size.medium};
     vertical-align: baseline;
     margin-left: .5em;
   }
