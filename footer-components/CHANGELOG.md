@@ -1,3 +1,6 @@
+### 1.0.6
+- Enable to subscribe news letter
+
 ### 1.0.5
 - Style tuning after designer review. Update the sns-icon.svg.
 
