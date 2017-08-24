@@ -24,6 +24,30 @@ const babel = (sourcePath, outputPath, cb) => {
       })
 }
 
+// This function will copy the transpiled files to
+// the customer folder. You can specify the customer folder path
+// by running gulp command  like
+// `CUSTOMER_FOLDER=/home/nick/codes/twreporter-react gulp run dev`,
+// and those transpiled files will be copyed into
+// `/home/nick/codes/twreporter-react/node_modules/twreporter-react-footer-components/lib`
+function copyToCustomerFolder() {
+  let customerFolder = process.env.CUSTOMER_FOLDER
+  if (typeof customerFolder !== 'string') {
+    customerFolder = path.resolve(`${__dirname}/../../twreporter-react`)
+  }
+  const destFolder = `${customerFolder}/node_modules/twreporter-react-footer-components/lib`
+  clean(destFolder, (error) => {
+    if (error) {
+      console.error(error)
+      return
+    }
+
+    gulp
+      .src('./lib/**/*')
+      .pipe(gulp.dest(destFolder))
+  })
+}
+
 gulp.task(
   'clean-build',
   cb => clean(path.resolve(__dirname, './lib'), cb))
@@ -60,7 +84,7 @@ gulp.task(
   gulp.series('clean-build', 'build'))
 
 gulp.task('dev', () => {
-  const watcher = gulp.watch(['../shared/**', 'src/**', 'static/**'], gulp.series('clean-build', 'build'))
+  const watcher = gulp.watch(['../shared/**', 'src/**', 'static/**'], gulp.series('clean-build', 'build', copyToCustomerFolder))
   watcher.on('change', (filePath) => {
     console.log(`File ${filePath} was changed, running tasks...`)
   })
