@@ -35,9 +35,17 @@ function copyToCustomerFolder() {
   if (typeof customerFolder !== 'string') {
     customerFolder = path.resolve(`${__dirname}/../../twreporter-react`)
   }
-  return gulp
-    .src('./lib/**/*')
-    .pipe(gulp.dest(`${customerFolder}/node_modules/twreporter-react-footer-components/lib`))
+  const destFolder = `${customerFolder}/node_modules/twreporter-react-footer-components/lib`
+  clean(destFolder, (error) => {
+    if (error) {
+      console.error(error)
+      return
+    }
+
+    gulp
+      .src('./lib/**/*')
+      .pipe(gulp.dest(destFolder))
+  })
 }
 
 gulp.task(
