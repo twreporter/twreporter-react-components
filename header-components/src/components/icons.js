@@ -4,11 +4,11 @@ import SearchBox from './search-box'
 import SearchIcon from '../../static/search-icon.svg'
 import { screen } from 'shared/style-utils'
 import { colors, fonts } from 'shared/common-variables'
-import { searchConfigs } from 'shared/configs'
+import { searchConfigs, memberConfigs } from 'shared/configs'
 import { Link } from 'react-router'
 import PropTypes from 'prop-types'
 
-// import MemberIcon from '../../static/member-icon.svg'
+import MemberIcon from '../../static/member-icon.svg'
 // import BookmarkListIcon from '../../static/bookmark-list-icon.svg'
 // import DonateIcon from '../../static/donate-icon.svg'
 
@@ -120,6 +120,17 @@ class Icons extends React.PureComponent {
   render() {
     const { pageTheme } = this.props
     const { isSearchOpened } = this.state
+    const Member = (() => {
+      const { ifAuthenticated, signOutAction } = this.props
+      return (
+        <Link to={`/${memberConfigs.path}`} onClick={() => {
+          signOutAction()
+        }}>
+          <MemberIcon />
+          <span>{ifAuthenticated ? '登出' : '會員'}</span>
+        </Link>
+      )
+    })()
     return (
       <IconsContainer>
         <DisplayOnDesktop
@@ -139,6 +150,9 @@ class Icons extends React.PureComponent {
             <SearchIcon />
           </Link>
         </HideOnDesktop>
+        <IconContainer>
+          {Member}
+        </IconContainer>
       </IconsContainer>
     )
   }
@@ -146,6 +160,8 @@ class Icons extends React.PureComponent {
 
 Icons.propTypes = {
   pageTheme: PropTypes.string.isRequired,
+  ifAuthenticated: PropTypes.bool.isRequired,
+  signOutAction: PropTypes.func.isRequired,
 }
 
 export default Icons
