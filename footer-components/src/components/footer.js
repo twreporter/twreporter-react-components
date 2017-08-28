@@ -33,7 +33,7 @@ const styles = {
   },
   sectionMargin: {
     mobile: [0, 0, 65, 0],
-    desktop: [0, 50],
+    desktop: [0, 40],
   },
 }
 
@@ -128,6 +128,7 @@ const SectionItems = styled.ul`
 const SectionItem = styled.li`
   display: block;
   box-sizing: border-box;
+  white-space: nowrap;
   height: ${styles.iconHeight}px;
   line-height: ${styles.iconHeight}px;
   letter-spacing: .3px;

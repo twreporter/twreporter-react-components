@@ -30,23 +30,23 @@ const babel = (sourcePath, outputPath, cb) => {
 // `CUSTOMER_FOLDER=/home/nick/codes/twreporter-react gulp run dev`,
 // and those transpiled files will be copyed into
 // `/home/nick/codes/twreporter-react/node_modules/twreporter-react-footer-components/lib`
-function copyToCustomerFolder() {
-  let customerFolder = process.env.CUSTOMER_FOLDER
-  if (typeof customerFolder !== 'string') {
-    customerFolder = path.resolve(`${__dirname}/../../twreporter-react`)
-  }
-  const destFolder = `${customerFolder}/node_modules/twreporter-react-footer-components/lib`
-  clean(destFolder, (error) => {
-    if (error) {
-      console.error(error)
-      return
-    }
+let customerFolder = process.env.CUSTOMER_FOLDER
+if (typeof customerFolder !== 'string') {
+  customerFolder = path.resolve(__dirname, '../../twreporter-react')
+}
+const destFolder = `${customerFolder}/node_modules/twreporter-redux/lib`
 
-    gulp
-      .src('./lib/**/*')
+gulp.task(
+  'clean-customer-folder',
+  cb => clean(destFolder, cb))
+
+gulp.task(
+  'copy-lib-to-customer-folder',
+  () => {
+    return gulp
+      .src('./lib/**', { base: './lib' })
       .pipe(gulp.dest(destFolder))
   })
-}
 
 gulp.task(
   'clean-build',
@@ -84,7 +84,7 @@ gulp.task(
   gulp.series('clean-build', 'build'))
 
 gulp.task('dev', () => {
-  const watcher = gulp.watch(['../shared/**', 'src/**', 'static/**'], gulp.series('clean-build', 'build', copyToCustomerFolder))
+  const watcher = gulp.watch(['../shared/**', 'src/**', 'static/**'], gulp.series('clean-build', 'build', 'clean-customer-folder', 'copy-lib-to-customer-folder'))
   watcher.on('change', (filePath) => {
     console.log(`File ${filePath} was changed, running tasks...`)
   })
