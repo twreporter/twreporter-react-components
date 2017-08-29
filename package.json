@@ -6,23 +6,50 @@
   "scripts": {
     "lint": "eslint \"**/src/**.js\" --config .eslintrc",
     "lint:eslint": "eslint --config .eslintrc",
-    "lint:staged": "lint-staged"
+    "lint:staged": "lint-staged",
+    "clean:lib": "gulp clean-build",
+    "build:lib": "gulp build",
+    "build": "npm run clean:lib && npm run build:lib",
+    "clean:customer": "gulp clean-customer-folder",
+    "build:customer": "npm run build && gulp copy-files-to-customer-folder",
+    "watch": "gulp watch",
+    "dev": "npm run build:customer && gulp watch",
+    "publish": "npm run build && npm publish"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
   },
   "pre-commit": "lint:staged",
   "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^15.0.2",
+    "babel-core": "^6.17.0",
+    "babel-plugin-inline-react-svg": "^0.4.0",
+    "babel-plugin-module-resolver": "^2.7.1",
+    "babel-plugin-styled-components": "^1.1.7",
+    "babel-plugin-wrap-in-js": "^1.1.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-import-resolver-babel-module": "^3.0.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
+    "gulp": "gulpjs/gulp#4.0",
+    "gulp-babel": "^7.0.0",
     "lint-staged": "^4.0.2",
-    "pre-commit": "^1.2.2"
+    "merge-stream": "^1.0.1",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^2.6.1"
   },
   "peerDependencies": {
-    "styled-components": "^2.2.1",
-    "lodash": "^4.17.4"
+    "react": "^15.4.1",
+    "react-router": "^2.5.1",
+    "react-dom": "^15.4.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "prop-types": "^15.5.10",
+    "styled-components": "^2.1.1"
   }
 }
