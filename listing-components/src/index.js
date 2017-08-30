@@ -1,5 +1,5 @@
-import TopicsComponents from './components/topics'
+import TopicsComposite from './components/topics'
 
 export {
-  TopicsComponents,
+  TopicsComposite,
 }
