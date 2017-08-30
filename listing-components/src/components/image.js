@@ -1,15 +1,23 @@
+/* eslint-disable react/no-did-mount-set-state */
+import LogoIcon from '../static/logo.svg'
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import get from 'lodash/get'
+import styled from 'styled-components'
 
 const _ = {
   get,
 }
 
-const ImgObjectFit = styled.div`
+const ImgContainer = styled.div`
   width: 100%;
   height: 100%;
+  position: relative;
+`
+
+const ImgObjectFit = ImgContainer.extend`
+  opacity: ${props => props.opacity};
+  transition: opacity 1s ease;
   > img {
     width: 100%;
     height: 100%;
@@ -17,9 +25,7 @@ const ImgObjectFit = styled.div`
   }
 `
 
-const ImgFallback = styled.div`
-  width: 100%;
-  height: 100%;
+const ImgFallback = ImgContainer.extend`
   background-size: cover;
   background-image: ${(props) => {
     return `url(${_.get(props, 'url')})`
@@ -27,12 +33,25 @@ const ImgFallback = styled.div`
   background-position: center center;
 `
 
+// Vertically and horizontally centering
+const LogoCenteringBlock = ImgContainer.extend`
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  display: ${props => props.display}
+`
+
 class Image extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
       isObjectFit: true,
+      isImgOnLoad: false,
     }
+
+    this.handleImgOnLoad = this._handleImgOnLoad.bind(this)
+    this.imgNode = null
   }
 
   componentWillMount() {
@@ -43,22 +62,68 @@ class Image extends React.PureComponent {
     }
   }
 
+  componentDidMount() {
+    // Check if img is already loaded, and cached on the browser.
+    // If cached, React.img won't trigger onLoad event.
+    // Hence, we need to trigger re-rendering.
+    if (this.imgNode) {
+      this.setState({
+        isImgOnLoad: this.imgNode.complete,
+      })
+    }
+  }
+
+  componentWillUnMount() {
+    this.imgNode = null
+  }
+
+  _handleImgOnLoad() {
+    this.setState({
+      isImgOnLoad: true,
+    })
+  }
+
   render() {
     const { src, alt, srcSet } = this.props
-    const isObjectFit = this.state.isObjectFit
+    const { isObjectFit, isImgOnLoad } = this.state
+    let logoDisplay = 'flex'
+    if (!isObjectFit) {
+      logoDisplay = 'none'
+    } else if (isImgOnLoad) {
+      logoDisplay = 'none'
+    }
 
-    return isObjectFit ? (
-      <ImgObjectFit>
+    const LogoJSX = (
+      <LogoCenteringBlock
+        display={logoDisplay}
+      >
+        <LogoIcon />
+      </LogoCenteringBlock>
+    )
+
+    const ImgJSX = isObjectFit ? (
+      <ImgObjectFit
+        opacity={isImgOnLoad ? 1 : 0}
+      >
         <img
+          ref={(node) => { this.imgNode = node }}
           alt={alt}
           src={src}
           srcSet={srcSet}
+          onLoad={this.handleImgOnLoad}
         />
       </ImgObjectFit>
     ) : (
       <ImgFallback
         url={src}
       />
+    )
+
+    return (
+      <ImgContainer>
+        {LogoJSX}
+        {ImgJSX}
+      </ImgContainer>
     )
   }
 }

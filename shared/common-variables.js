@@ -35,6 +35,7 @@ const colors = {
   black: '#262626',
   primaryColor: '#c4333e',  // red
   textGrey: '#4a4949',
+  ListHeader: '#404040',
   headerCategory: '#818283',
   categorySeparator: '#979797',
   moreBlue: '#55a1e5',
