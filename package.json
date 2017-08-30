@@ -1,8 +1,9 @@
 {
   "name": "twreporter-react-components",
   "repository": "https://github.com/twreporter/twreporter-react-components.git",
-  "license": "MIT",
+  "license": "AGPL-3.0",
   "version": "1.0.0",
+  "main": "lib/main.js",
   "scripts": {
     "lint": "eslint \"**/src/**.js\" --config .eslintrc",
     "lint:eslint": "eslint --config .eslintrc",
@@ -13,8 +14,7 @@
     "clean:customer": "gulp clean-customer-folder",
     "build:customer": "npm run build && gulp copy-files-to-customer-folder",
     "watch": "gulp watch",
-    "dev": "npm run build:customer && gulp watch",
-    "publish": "npm run build && npm publish"
+    "dev": "npm run build:customer && gulp watch"
   },
   "lint-staged": {
     "*.js": "lint:eslint"

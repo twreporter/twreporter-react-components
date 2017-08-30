@@ -13,6 +13,7 @@
 babelrc.js
 gulpfile.js
 err.log
+CHANGELOG.md
 README.md
 
 # source folders
@@ -20,6 +21,7 @@ node_modules/
 footer-components/
 header-components/
 listing-components/
+index-components/
 shared/
 
 # NPM debug

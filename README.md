@@ -18,10 +18,18 @@ yarn add twreporter-react-components
 
 ### index-components
 
+```javascript
+import { IndexPageComposite } from 'twreporter-react-components'
+
+const { CategorySection, EditorPicks, Header, InforgraphicSection,
+  LatestSection, LatestTopicSection, NewsLetterSection, PhotographySection,
+  ReporterIntro,  ReviewsSection, SideBar, TopicsSection } = IndexPageComposite.components
+```
+
 ### header-components
 
 ```javascript
-import Header from 'twreporter-react-components/lib/header-components'
+import { Header } from 'twreporter-react-components'
 
 const Page = (props) => (
   <div>
@@ -44,7 +52,7 @@ const Page = (props) => (
 ### footer-components
 
 ```javascript
-import Footer from 'twreporter-react-footer-components/lib/components/footer'
+import { Footer } from 'twreporter-react-components'
 
 const Page = (props) => (
   <div>
@@ -63,9 +71,9 @@ none
 #### Topics
 
 ```javascript
-import { TopicsComponents } from 'twreporter-react-listing-components'
+import { TopicsComposite } from 'twreporter-react-components'
 
-const { PageContent, TopSection, ListSection, PostsContainer, PostItem, TopicItem, LoadMore } = TopicsComponents
+const { PageContent, TopSection, ListSection, PostsContainer, PostItem, TopicItem, LoadMore } = TopicsComposite
 
 const Page = (props) =>(
   <div>

@@ -6,7 +6,7 @@ module.exports = {
         roont: '.',
         alias: {
           shared: './shared',
-          'header-components': './header-components',
+          'header-components': './header-components/src',
         },
       },
     ],
@@ -38,5 +38,7 @@ module.exports = {
   ],
   presets: ['env', 'stage-0', 'react'],
   comments: false,
-  ignore: [],
+  ignore: [
+    'src/**/*.json',
+  ],
 }

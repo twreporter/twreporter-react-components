@@ -7,12 +7,13 @@ const merge = require('merge-stream')
 const babelOptions = require('./babelrc')
 
 const clean = target => cb => rimraf(target, { glob: false }, cb)
+const folderBlackList = ['node_modules', 'lib']
 
 const getFolderNames = dir => fs
   .readdirSync(dir)
   .filter(fileName => fs.lstatSync(path.resolve(dir, fileName)).isDirectory())
-  .filter(dirName => dirName !== 'node_modules')
-  .filter(dirName => dirName !== '.vgit')
+  .filter(dirName => !dirName.startsWith('.'))
+  .filter(dirName => folderBlackList.indexOf(dirName) === -1)
 
 const outputPath = path.resolve(__dirname, './lib')
 
@@ -29,10 +30,17 @@ gulp.task(
   () => {
     const folders = getFolderNames(__dirname)
     const tasks = folders.map(folder => gulp
-      .src([path.resolve(__dirname, folder, './**/*.js'), '!(**/gulpfile.js)'])
+      .src([
+        path.resolve(__dirname, folder, './**/*.js'),
+        path.resolve(__dirname, folder, './**/src/**/*.json'),
+        '!(**/gulpfile.js)',
+      ], { base: '.' })
       .pipe(babel(babelOptions))
-      .pipe(gulp.dest(path.resolve(outputPath, folder))))
-    return merge(tasks)
+      .pipe(gulp.dest(outputPath)))
+    const babelMain = gulp.src(path.resolve(__dirname, './main.js'), { base: '.' })
+      .pipe(babel(babelOptions))
+      .pipe(gulp.dest(outputPath))
+    return merge(babelMain, tasks)
   })
 
 // The tasks below will copy the transpiled files to
