@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "main": "lib/main.js",
   "scripts": {
-    "lint": "eslint \"**/src/**.js\" --config .eslintrc",
+    "lint": "eslint \"**/src/**/*.js\" --config .eslintrc",
     "lint:eslint": "eslint --config .eslintrc",
     "lint:staged": "lint-staged",
     "clean:lib": "gulp clean-build",

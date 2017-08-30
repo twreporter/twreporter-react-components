@@ -64,16 +64,12 @@ const TopicBox = styled.div`
 
 const ItemContainer = styled.div`
   margin-bottom: ${props => (!props.isFull ? `${styles.topicBox.mobile.marginBottom}px` : `${styles.topicBox.mobile.marginBottom - 10}px`)};
-  ${
-    screen.tabletOnly`
-      margin-bottom: ${props => (!props.isFull ? `${styles.topicBox.tablet.marginBottom}px` : `${styles.topicBox.tablet.marginBottom - 10}px`)};
-    `
-  }
-  ${
-    screen.desktopAbove`
-      margin-bottom: ${props => (!props.isFull ? `${styles.topicBox.desktop.marginBottom}px` : `${styles.topicBox.desktop.marginBottom - 10}px`)};
-    `
-  }
+  ${screen.tabletOnly`
+    margin-bottom: ${props => (!props.isFull ? `${styles.topicBox.tablet.marginBottom}px` : `${styles.topicBox.tablet.marginBottom - 10}px`)};
+  `}
+  ${screen.desktopAbove`
+    margin-bottom: ${props => (!props.isFull ? `${styles.topicBox.desktop.marginBottom}px` : `${styles.topicBox.desktop.marginBottom - 10}px`)};
+  `}
   width: 100%;
   ${linkHoverFadeOut}
 `
