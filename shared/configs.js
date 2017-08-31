@@ -57,6 +57,10 @@ export const memberConfigs = {
   path: 'signin',
 }
 
+export const bookmarkConfigs = {
+  path: 'bookmark',
+}
+
 export const linkPrefix = {
   article: '/a/',
   interactiveArticle: '/i/',
