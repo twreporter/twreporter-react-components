@@ -7,8 +7,9 @@ import map from 'lodash/map'
 import mockup from '../constants/mockup-spec'
 import styled from 'styled-components'
 import { colors, fonts } from 'shared/common-variables'
-import { screen } from 'shared/style-utils'
 import { date2yyyymmdd } from 'shared/utils'
+import { linkPrefix } from 'shared/configs'
+import { screen } from 'shared/style-utils'
 
 const _ = {
   forEach,
@@ -69,7 +70,7 @@ class List extends PureComponent {
       const style = _.get(item, 'style')
       const slug = _.get(item, 'slug')
       // TODO extract interactive as to a const file
-      const to = style === 'interactive' ? `/i/${slug}` : `/a/${slug}`
+      const to = style === 'interactive' ? linkPrefix.interactiveArticle + slug : linkPrefix.article + slug
       let tags = []
       if (tagName) {
         tags = _.map(_.get(item, 'tags'), (tag) => {

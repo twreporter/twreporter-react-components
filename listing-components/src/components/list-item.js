@@ -7,6 +7,7 @@ import mockup from '../constants/mockup-spec'
 import styled from 'styled-components'
 import { Link } from 'react-router'
 import { colors, fonts } from 'shared/common-variables'
+import { linkPrefix } from 'shared/configs'
 import { screen } from 'shared/style-utils'
 
 const _ = {
@@ -128,7 +129,7 @@ class ListItem extends PureComponent {
         tagsJSX.push(
           <Link
             key={id}
-            to={`/tag/${id}`}
+            to={linkPrefix.tag + id}
           >
             <Tag
               selected={_.get(tag, 'selected')}
