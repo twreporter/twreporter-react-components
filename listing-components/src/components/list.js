@@ -1,4 +1,5 @@
 import ListItem from './list-item'
+import FetchingWrapper from 'shared/components/is-fetching-wrapper'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import forEach from 'lodash/forEach'
@@ -145,4 +146,4 @@ List.propTypes = {
   catName: PropTypes.string,
 }
 
-export default List
+export default FetchingWrapper(List)
