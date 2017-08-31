@@ -11,6 +11,7 @@ import { date2yyyymmdd } from 'shared/utils'
 import { linkPrefix } from 'shared/configs'
 import { screen } from 'shared/style-utils'
 
+
 const _ = {
   forEach,
   get,
@@ -71,6 +72,7 @@ class List extends PureComponent {
       const slug = _.get(item, 'slug')
       // TODO extract interactive as to a const file
       const to = style === 'interactive' ? linkPrefix.interactiveArticle + slug : linkPrefix.article + slug
+
       let tags = []
       if (tagName) {
         tags = _.map(_.get(item, 'tags'), (tag) => {
