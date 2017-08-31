@@ -7,6 +7,7 @@ import mockup from '../constants/mockup-spec'
 import styled from 'styled-components'
 import { Link } from 'react-router'
 import { colors, fonts } from 'shared/common-variables'
+import { linkPrefix } from 'shared/configs'
 import { screen } from 'shared/style-utils'
 
 const _ = {
@@ -15,12 +16,12 @@ const _ = {
 }
 
 const Container = styled.div`
-  width: 555px;
+  width: ${mockup.hd.cardWidth}px;
   ${screen.desktopOnly`
-    width: 451px;
+    width: ${mockup.desktop.cardWidth}px;
   `}
   ${screen.tabletOnly`
-    width: 340px;
+    width: ${mockup.tablet.cardWidth}px;
   `}
   ${screen.mobileOnly`
     width: ${(mockup.mobile.cardWidth / mockup.mobile.maxWidth) * 100}%;
@@ -38,15 +39,15 @@ const HoverEffect = styled.div`
 `
 
 const ImgFrame = styled.div`
-  height: 350px;
+  height: ${mockup.hd.imgHeight}px;
   ${screen.desktopOnly`
-    height: 285px;
+    height: ${mockup.desktop.imgHeight}px;
   `}
   ${screen.tabletOnly`
-    height: 214px;
+    height: ${mockup.tablet.imgHeight}px;
   `}
   ${screen.mobileOnly`
-    height: 205px;
+    height: ${mockup.mobile.imgHeight}px;
   `}
 `
 
@@ -128,7 +129,7 @@ class ListItem extends PureComponent {
         tagsJSX.push(
           <Link
             key={id}
-            to={`/tag/${id}`}
+            to={linkPrefix.tag + id}
           >
             <Tag
               selected={_.get(tag, 'selected')}
@@ -147,8 +148,8 @@ class ListItem extends PureComponent {
           <HoverEffect>
             <ImgFrame>
               <ImgWrapper
-                alt={_.get(img, 'alt')}
-                src={_.get(img, 'src')}
+                alt={_.get(img, 'alt', '')}
+                src={_.get(img, 'src', '')}
               />
             </ImgFrame>
             <TextBlock>
@@ -173,16 +174,24 @@ class ListItem extends PureComponent {
   }
 }
 
-export const propTypes = {
+ListItem.defaultProps = {
+  tags: [],
+  link: {
+    to: '',
+    target: '',
+  },
+}
+
+ListItem.propTypes = {
   title: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
-  img: {
+  img: PropTypes.shape({
     src: PropTypes.string.isRequired,
     alt: PropTypes.string,
-  }.isRequired,
+  }).isRequired,
   link: PropTypes.shape({
     to: PropTypes.string.isRequired,
-    target: PropTypes.oneOfType([PropTypes.string, undefined]),
+    target: PropTypes.string,
   }),
   category: PropTypes.string.isRequired,
   pubDate: PropTypes.string.isRequired,
@@ -192,15 +201,5 @@ export const propTypes = {
     selected: PropTypes.bool,
   })),
 }
-
-ListItem.defaultProps = {
-  tags: [],
-  link: {
-    to: '',
-    target: undefined,
-  },
-}
-
-ListItem.propTypes = propTypes
 
 export default ListItem

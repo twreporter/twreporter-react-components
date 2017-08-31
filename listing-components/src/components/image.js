@@ -93,14 +93,6 @@ class Image extends React.PureComponent {
       logoDisplay = 'none'
     }
 
-    const LogoJSX = (
-      <LogoCenteringBlock
-        display={logoDisplay}
-      >
-        <LogoIcon />
-      </LogoCenteringBlock>
-    )
-
     const ImgJSX = isObjectFit ? (
       <ImgObjectFit
         opacity={isImgOnLoad ? 1 : 0}
@@ -121,7 +113,11 @@ class Image extends React.PureComponent {
 
     return (
       <ImgContainer>
-        {LogoJSX}
+        <LogoCenteringBlock
+          display={logoDisplay}
+        >
+          <LogoIcon />
+        </LogoCenteringBlock>
         {ImgJSX}
       </ImgContainer>
     )

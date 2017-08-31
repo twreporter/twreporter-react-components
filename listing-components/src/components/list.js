@@ -1,14 +1,16 @@
-import ListItem, { propTypes as itemPropTypes } from '../list-item'
+import ListItem from './list-item'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import forEach from 'lodash/forEach'
 import get from 'lodash/get'
 import map from 'lodash/map'
-import mockup from '../../constants/mockup-spec'
+import mockup from '../constants/mockup-spec'
 import styled from 'styled-components'
 import { colors, fonts } from 'shared/common-variables'
-import { screen } from 'shared/style-utils'
 import { date2yyyymmdd } from 'shared/utils'
+import { linkPrefix } from 'shared/configs'
+import { screen } from 'shared/style-utils'
+
 
 const _ = {
   forEach,
@@ -42,7 +44,7 @@ const FlexItems = styled.div`
   flex-wrap: wrap;
 
   > div:nth-child(odd) {
-    margin-right: 20px;
+    margin-right: ${mockup.marginBetweenItems}px;
   }
 
   ${screen.desktopOnly`
@@ -69,7 +71,8 @@ class List extends PureComponent {
       const style = _.get(item, 'style')
       const slug = _.get(item, 'slug')
       // TODO extract interactive as to a const file
-      const to = style === 'interactive' ? `/i/${slug}` : `/a/${slug}`
+      const to = style === 'interactive' ? linkPrefix.interactiveArticle + slug : linkPrefix.article + slug
+
       let tags = []
       if (tagName) {
         tags = _.map(_.get(item, 'tags'), (tag) => {
@@ -100,7 +103,7 @@ class List extends PureComponent {
           tags={tags}
           link={{
             to,
-            target: style === 'interactive' ? '_blank' : undefined,
+            target: style === 'interactive' ? '_blank' : '',
           }}
         />,
       )
@@ -126,7 +129,18 @@ List.defaultProps = {
 }
 
 List.propTypes = {
-  data: PropTypes.arrayOf(itemPropTypes),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      og_description: PropTypes.string.isRequired,
+      hero_image: PropTypes.object.isRequired,
+      categories: PropTypes.array,
+      published_date: PropTypes.string.isRequired,
+      tags: PropTypes.array,
+      style: PropTypes.string,
+    }),
+  ),
   tagName: PropTypes.string,
   catName: PropTypes.string,
 }
