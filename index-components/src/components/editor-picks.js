@@ -4,8 +4,10 @@ import ContentWrapper from './common-utils/section-content-wrapper'
 import EditorPicksMobile from './editor-picks-mobile'
 import FadeInFadeOut from './animations/fadein-fadeout'
 import ImgWrapper from './common-utils/img-wrapper'
+import LeftArrowIcon from '../static/left-arrow.svg'
 import PropTypes from 'prop-types'
 import React from 'react'
+import RightArrowIcon from '../static/right-arrow.svg'
 import TRLink from './common-utils/twreporter-link'
 import clone from 'lodash/clone'
 import get from 'lodash/get'
@@ -91,13 +93,37 @@ const ImgFrame = styled.div`
   top: 236px;
   transform: translateX(-50%);
   ${finalMedia.desktop`
-    width: 608px;
+    width: 610px;
     height: 391px;
   `}
   ${finalMedia.tablet`
-    width: 459.2px;
+    width: 450px;
     height: 295px;
   `}
+`
+
+const Arrow = styled.div`
+  cursor: pointer;
+  position: absolute;
+  top: 480px;
+`
+
+// top: sideCategory + 27px
+const LeftArrow = Arrow.extend`
+  left: 17%;
+  display: ${props => (props.selected === 0 ? 'none' : 'inline')};
+  @media (max-width: ${breakPoints.desktopMaxWidth}) {
+    top: 365px;
+  }
+  transition: .2s display linear;
+`
+const RightArrow = Arrow.extend`
+  right: 17%;
+  display: ${props => (props.selected === (props.dataLength - 1) ? 'none' : 'inline')};
+  @media (max-width: ${breakPoints.desktopMaxWidth}) {
+    top: 365px;
+  }
+  transition: .2s display linear;
 `
 
 const SideCategory = CategoryName.extend`
@@ -144,9 +170,12 @@ const Title = styled.div`
   left: 50%;
   transform: translateX(-50%);
   overflow: hidden;
-  @media (max-width: ${breakPoints.tabletMaxWidth}) {
-    width: ${props => (props.middle ? '450px' : '100px')};
-  }
+  ${finalMedia.desktop`
+    width: ${props => (props.middle ? '450px' : '120px')};
+  `}
+  ${finalMedia.tabletBelow`
+    width: ${props => (props.middle ? '450px' : '90px')};
+  `}
 `
 const Description = styled.div`
   position: absolute;
@@ -296,7 +325,7 @@ class EditorPicks extends React.Component {
                     </Title>
                   </HoverEffect>
                 </TRLink>
-                :
+              :
                 <Title middle={propsMap.middle}>
                   <div>{ propsMap.middle ? getTruncate(obj.title) : obj.title }</div>
                 </Title>
@@ -404,11 +433,32 @@ class EditorPicks extends React.Component {
       )
     })
 
+    const Arrows = (() => {
+      return (
+        <div>
+          <LeftArrow
+            onClick={this.onShiftToRight}
+            selected={this.state.selected}
+          >
+            <LeftArrowIcon />
+          </LeftArrow>
+          <RightArrow
+            onClick={this.onShiftToLeft}
+            selected={this.state.selected}
+            dataLength={this.props.data.length}
+          >
+            <RightArrowIcon />
+          </RightArrow>
+        </div>
+      )
+    })()
+
     return (
       <div>
         <CarouselContainer>
           <FlexContainer>
             {Types}
+            {Arrows}
             {Images}
             {FlexItems}
           </FlexContainer>

@@ -22,13 +22,33 @@ export const finalMedia = {
       ${css(...args)}
     }
   `,
+  tabletAbove: (...args) => css`
+    @media (min-width: ${breakPoints.tabletMinWidth}) {
+      ${css(...args)}
+    }
+  `,
   tablet: (...args) => css`
     @media (min-width: ${breakPoints.tabletMinWidth}) and (max-width: ${breakPoints.tabletMaxWidth}) {
       ${css(...args)}
     }
   `,
+  tabletBelow: (...args) => css`
+    @media (max-width: ${breakPoints.tabletMaxWidth}) {
+      ${css(...args)}
+    }
+  `,
+  desktopAbove: (...args) => css`
+    @media (min-width: ${breakPoints.desktopMinWidth}) {
+      ${css(...args)}
+    }
+  `,
   desktop: (...args) => css`
     @media (min-width: ${breakPoints.desktopMinWidth}) and (max-width: ${breakPoints.desktopMaxWidth}) {
+      ${css(...args)}
+    }
+  `,
+  desktopBelow: (...args) => css`
+    @media (max-width: ${breakPoints.desktopMaxWidth}) {
       ${css(...args)}
     }
   `,
@@ -45,7 +65,7 @@ export const finalMedia = {
 * @prop {number} numberOfLine - number of line that you need in div
 * @prop {string} backgroundColor - background
 * @prop {string} textAlign - text-align
-* */
+**/
 export function truncate(position, lineHeight, numberOfLine, backgroundColor, textAlign) {
   const maxHeight = lineHeight * numberOfLine
   const textAlignValue = textAlign || 'justify'

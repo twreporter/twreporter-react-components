@@ -73,9 +73,12 @@ const Description = styled.div`
 const FlexBox = styled.div`
   margin-top: 48px;
   min-height: 335px;
-  padding: 0 45px;
+  padding: 0 48px;
   display: flex;
   justify-content: center;
+  ${finalMedia.desktop`
+    padding: 0 49px;
+  `}
   ${finalMedia.tablet`
     padding: 0 34px;
   `}
@@ -89,13 +92,19 @@ const FlexItem = styled.div`
   min-height: 335px;
   width: 426px;
   &:nth-child(2) {
-    margin: 0 36px;
+    margin: 0 33px;
   }
   ${finalMedia.desktop`
     width: 290px;
+    &:nth-child(2) {
+      margin: 0 28px;
+    }
   `}
   ${finalMedia.tablet`
-    width: 219px;
+    width: 220px;
+    &:nth-child(2) {
+      margin: 0 20px;
+    }
   `}
   ${finalMedia.mobile`
     width: 100%;
@@ -121,7 +130,7 @@ const RelatedTitle = styled.div`
   font-size: ${fonts.size.title.base};
   font-weight: ${fonts.weight.semiBold};
   color: ${colors.textGrey};
-  ${truncate('relative', 1.5, 2, '#f2f2f2')};
+  line-height: 1.5;
 `
 
 const RelatedDescription = styled.div`
@@ -130,8 +139,7 @@ const RelatedDescription = styled.div`
   font-size: ${fonts.size.medium};
   line-height: 20px;
   color: ${colors.textGrey};
-  ${truncate('relative', 1.43, 3, '#f2f2f2')};
-
+  ${truncate('relative', 1.43, 4, '#f2f2f2')};
   ${finalMedia.mobile`
     font-size: ${fonts.size.large};
   `}
