@@ -1,5 +1,7 @@
-import TopicsComposite from './components/topics'
+import TopicsList from './components/topics'
+import List from './components/list'
 
-export {
-  TopicsComposite,
+export default {
+  TopicsList,
+  List,
 }
