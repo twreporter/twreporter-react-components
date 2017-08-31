@@ -80,7 +80,7 @@ const ImageBlock = styled.div`
     width: ${styles.imgPortrait.tablet.width}px;
   `}
   flex: 0 0 auto;
-  div {
+  > div {
     width: ${styles.imgPortrait.mobile.width}px;
     height: ${styles.imgPortrait.mobile.height}px;
     ${screen.tabletAbove`
