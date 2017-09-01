@@ -33,7 +33,7 @@ const fonts = {
 const colors = {
   h1Black: '#000000',
   black: '#262626',
-  primaryColor: '#c4333e',  // red
+  primaryColor: '#c4333e', // red
   textGrey: '#4a4949',
   ListHeader: '#404040',
   headerCategory: '#818283',
