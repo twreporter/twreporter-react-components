@@ -1,4 +1,4 @@
-### 1.0.3
+### 1.0.4
 - Bug fix. Listing page is not center on mobile. 
 
 ### 1.0.2
