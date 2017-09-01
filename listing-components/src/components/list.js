@@ -61,6 +61,7 @@ const FlexItems = styled.div`
     > div:nth-child(odd) {
       margin-right: 0;
     }
+    justify-content: center;
   `}
 `
 
