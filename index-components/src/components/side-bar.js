@@ -132,9 +132,7 @@ class SideBar extends React.PureComponent {
     e.preventDefault()
     const node = this.moduleMap[moduleID]
     if (node) {
-      const latestSectionOffset = document.getElementById('latestSection').offsetHeight || 278
-      const offsetTop = moduleID === _.get(this.props, 'anchors.0.id') ? node.offsetTop + latestSectionOffset : node.offsetTop
-      return smoothScroll(offsetTop)
+      return smoothScroll(node.offsetTop)
     }
     return null
   }

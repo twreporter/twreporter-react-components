@@ -1,5 +1,5 @@
 import CategoryName from './common-utils/category-name'
-import Header from 'twreporter-react-header-components'
+import Header from '../../../header-components/src'
 import ImgWrapper from './common-utils/img-wrapper'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -37,7 +37,7 @@ const ContentContainer = ContentWrapper.extend`
   display: flex;
   padding: 30px ${headerPadding.desktop};
   overflow-x: hidden;
-  justify-content: space-between;
+  justify-content: center;
   ${finalMedia.tablet`
     padding: 30px ${headerPadding.tablet};
   `}
@@ -206,7 +206,7 @@ class LatestSection extends React.Component {
         <HeaderContainer ifPinned={this.state.ifPinned}>
           <Header isIndex />
         </HeaderContainer>
-        <ContentContainer id="latestSection" innerRef={(node) => { this.ContentContainer = node }}>
+        <ContentContainer innerRef={(node) => { this.ContentContainer = node }}>
           {latestItems}
         </ContentContainer>
       </Container>
