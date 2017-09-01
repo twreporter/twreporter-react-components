@@ -1,3 +1,6 @@
+### 1.0.6
+- Change image loading placeholder 
+
 ### 1.0.5
 - Bug fix. Show tags on Category listing page.
 
