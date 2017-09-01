@@ -75,22 +75,20 @@ class List extends PureComponent {
       // TODO extract interactive as to a const file
       const to = style === 'interactive' ? linkPrefix.interactiveArticle + slug : linkPrefix.article + slug
 
-      let tags = []
-      if (tagName) {
-        tags = _.map(_.get(item, 'tags'), (tag) => {
-          if (_.get(tag, 'name') === tagName) {
-            return {
-              id: tag.id,
-              name: tag.name,
-              selected: true,
-            }
-          }
+      const tags = _.map(_.get(item, 'tags'), (tag) => {
+        if (_.get(tag, 'name') === tagName) {
           return {
-            id: _.get(tag, 'id'),
-            name: _.get(tag, 'name', ''),
+            id: tag.id,
+            name: tag.name,
+            selected: true,
           }
-        })
-      }
+        }
+        return {
+          id: _.get(tag, 'id'),
+          name: _.get(tag, 'name', ''),
+        }
+      })
+
       listJSX.push(
         <ListItem
           key={_.get(item, 'id')}

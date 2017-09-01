@@ -1,3 +1,6 @@
+### 1.0.5
+- Bug fix. Show tags on Category listing page.
+
 ### 1.0.4
 - Bug fix. Listing page is not center on mobile. 
 
