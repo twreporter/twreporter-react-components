@@ -1,11 +1,17 @@
+### 1.0.7
+- Add arrows to editor-picks
+- Update style-utils (finalMedia with more options in index-compmonents)
+- Update smooth scroll in side-bar
+- Solve gutter problem of index page
+
 ### 1.0.6
-- Change image loading placeholder 
+- Change image loading placeholder
 
 ### 1.0.5
 - Bug fix. Show tags on Category listing page.
 
 ### 1.0.4
-- Bug fix. Listing page is not center on mobile. 
+- Bug fix. Listing page is not center on mobile.
 
 ### 1.0.2
 - Add shared/components/is-fetching-wrapper.js, which will make wrapped component animated.
