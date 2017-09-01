@@ -1,5 +1,5 @@
 import CategoryName from './common-utils/category-name'
-import Header from 'header-components'
+import Header from '../../../header-components/src'
 import ImgWrapper from './common-utils/img-wrapper'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -10,15 +10,17 @@ import postPropType from './prop-types/post'
 import styled from 'styled-components'
 import { fonts } from '../styles/common-variables'
 import { getHref } from '../utils/getHref'
-import { truncate, breakPoints, finalMedia } from '../utils/style-utils'
+import { breakPoints, finalMedia } from '../utils/style-utils'
 
 const _ = {
   get,
 }
 
-const mobileMaxWidth = '600px'
-const mobileMidWidth = '550px'
-const mobileMinWidth = '414px'
+const mobileMaxWidth = breakPoints.mobileMaxWidth
+const mobileMidWidth = '578px'
+const mobileSemiMidWidth = '414px'
+const mobileMinWidth = '320px'
+
 const headerPadding = {
   desktop: '47px',
   tablet: '34px',
@@ -35,7 +37,7 @@ const ContentContainer = ContentWrapper.extend`
   display: flex;
   padding: 30px ${headerPadding.desktop};
   overflow-x: hidden;
-  justify-content: space-between;
+  justify-content: center;
   ${finalMedia.tablet`
     padding: 30px ${headerPadding.tablet};
   `}
@@ -43,36 +45,42 @@ const ContentContainer = ContentWrapper.extend`
     padding: 30px ${headerPadding.mobile};
   `}
 `
+
 const ItemFrame = styled.div`
-  width: 200px;
+  width: 199px;
   padding: 0;
   margin-left: 30px;
   &:first-child {
     margin: 0;
   }
-  @media (max-width: ${breakPoints.tabletMaxWidth}) {
-    width: 189px;
-    margin-left: 20px;
+  ${finalMedia.desktop`
+    width: 130px;
+  `}
+  ${finalMedia.tabletBelow`
     &:nth-child(6) {
       display: none;
     }
     &:nth-child(5) {
       display: none;
     }
-  }
-  @media (max-width: ${breakPoints.mobileMaxWidth}) {
+  `}
+  ${finalMedia.tablet`
+    width: 160px;
+    margin-left: 20px;
+  `}
+  @media (max-width: ${mobileMidWidth}) {
     &:nth-child(4) {
       display: none;
     }
   }
-  @media (max-width: ${mobileMaxWidth}) {
-    width: 150px;
-  }
-  @media (max-width: ${mobileMidWidth}) {
-    width: 200px;
+  @media (max-width: ${mobileSemiMidWidth}) {
     &:nth-child(3) {
       display: none;
     }
+  }
+  @media (max-width: ${mobileMinWidth}) {
+    width: 136px;
+    margin-left: 16px;
   }
 `
 
@@ -92,11 +100,11 @@ const ImageFrame = styled.div`
   @media (max-width: ${mobileMaxWidth}) {
     height: 100px;
   }
-  @media (max-width: ${mobileMidWidth}) {
-    height: 130px;
+  @media (max-width: ${mobileSemiMidWidth}) {
+    height: 93px;
   }
   @media (max-width: ${mobileMinWidth}) {
-    height: 110px;
+    height: 88px;
   }
 `
 
@@ -116,7 +124,6 @@ const Title = styled.div`
   font-size: ${fonts.size.medium};
   font-weight: ${fonts.weight.semiBold};
   color: #4a4949;
-  ${truncate('relative', 1.5, 4, '#f1f1f1', 'left')}
 `
 
 const HeaderContainer = styled.div`
@@ -199,7 +206,7 @@ class LatestSection extends React.Component {
         <HeaderContainer ifPinned={this.state.ifPinned}>
           <Header isIndex />
         </HeaderContainer>
-        <ContentContainer id="latestSection" innerRef={(node) => { this.ContentContainer = node }}>
+        <ContentContainer innerRef={(node) => { this.ContentContainer = node }}>
           {latestItems}
         </ContentContainer>
       </Container>

@@ -74,6 +74,10 @@ const FlexItem = styled.div`
   `}
   ${finalMedia.tablet`
     width: 210px;
+    &:nth-child(3n+2) {
+      margin-right: 20px;
+      margin-left: 20px;
+    }
   `}
   ${finalMedia.mobile`
     width: 100%;

@@ -15,7 +15,7 @@ import postPropType from './prop-types/post'
 import styled from 'styled-components'
 import { fonts, colors } from '../styles/common-variables'
 import { getHref } from '../utils/getHref'
-import { truncate, breakPoints, finalMedia } from '../utils/style-utils'
+import { breakPoints, finalMedia, truncate } from '../utils/style-utils'
 
 const _ = {
   get,
@@ -48,22 +48,27 @@ const FlexBox = styled.div`
 const FlexItem = styled.div`
   width: 312px;
   &:nth-child(3) {
-    margin-left: 30px;
+    margin-left: 32.6px;
   }
   &:nth-child(even) {
-    margin-left: 30px;
+    margin-left: 32.6px;
   }
   ${finalMedia.desktop`
     width: 210px;
+    &:nth-child(3) {
+      margin-left: 30px;
+    }
+    &:nth-child(even) {
+      margin-left: 30px;
+    }
   `}
-
   ${finalMedia.tablet`
     width: 160px;
     &:nth-child(3) {
-      margin-left: 10px;
+      margin-left: 20px;
     }
     &:nth-child(even) {
-      margin-left: 10px;
+      margin-left: 20px;
     }
   `}
   ${finalMedia.mobile`
@@ -112,13 +117,13 @@ const Description = styled.div`
   margin-top: 8px;
   font-size: ${fonts.size.medium};
   color: ${colors.textGrey};
-  ${truncate('relative', 1.5, 3, 'white')}
   ${finalMedia.tablet`
     width: 144px;
   `}
   ${finalMedia.mobile`
     font-size: ${fonts.size.large};
   `}
+  ${truncate('relative', 1.5, 5, 'white')}
 `
 
 const More = styled.div`

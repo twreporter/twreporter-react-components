@@ -97,6 +97,9 @@ const Column = styled.div`
 
   ${finalMedia.tablet`
     flex: 0 0 ${mockup.tablet.width.default}px;
+    &:first-child {
+      margin-right: 20px;
+    }
   `}
 `
 
