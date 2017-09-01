@@ -29,7 +29,7 @@ export const linkUnderline = css`
 /**
 * @prop {array|number} values - Array or number of values
 * @prop {string} unit - Unit
-**/
+* */
 export const arrayToCssShorthand = (values, unit = 'px') => {
   const _handleValue = (value) => {
     switch (typeof value) {
@@ -86,7 +86,7 @@ export const media = {
 * @prop {number} numberOfLine - number of line that you need in div
 * @prop {string} backgroundColor - background
 * @prop {string} textAlign - text-align
-**/
+* */
 export function truncate(position, lineHeight, numberOfLine, backgroundColor, textAlign) {
   const maxHeight = lineHeight * numberOfLine
   const textAlignValue = textAlign || 'justify'

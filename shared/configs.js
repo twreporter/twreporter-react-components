@@ -109,3 +109,15 @@ export const externalLinks = {
   ccLicense: 'https://creativecommons.org/licenses/by-nc-nd/3.0/tw/',
   newsLetter: 'https://twreporter.us14.list-manage.com/subscribe/post?u=4da5a7d3b98dbc9fdad009e7e&id=e0eb0c8c32',
 }
+
+export const storage = {
+  google: {
+    schema: 'https',
+    hostname: 'storage.googleapis.com',
+    bucket: 'twreporter-multimedia',
+  },
+}
+
+export const mainSite = {
+  url: 'https://www.twreporter.org',
+}
