@@ -1,5 +1,5 @@
 /* eslint-disable react/no-did-mount-set-state */
-import LogoIcon from '../static/logo.svg'
+import LogoIcon from '../static/img-loading-placeholder.svg'
 import React from 'react'
 import PropTypes from 'prop-types'
 import get from 'lodash/get'
