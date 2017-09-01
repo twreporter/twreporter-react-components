@@ -1,5 +1,6 @@
 ### 1.0.2
 - Add shared/components/is-fetching-wrapper.js, which will make wrapped component animated.
+- Update gulpfile. Watch ./main.js. Remove copy node_modules when copy-files-to-customer-folder.
 
 ### 1.0.1
 - [Feature] Category/Tag listing page
