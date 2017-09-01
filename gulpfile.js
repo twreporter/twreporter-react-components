@@ -87,14 +87,13 @@ gulp.task(
   'copy-files-to-customer-folder',
   gulp.parallel([
     'copy-lib-to-customer-folder',
-    'copy-node-modules-to-customer-folder',
     'copy-package-json-to-customer-folder']))
 
 
 /* watch all .js files and babel changed file to customer module folder */
 gulp.task('watch', () => {
   const folders = getFolderNames(__dirname)
-  const watchedGlobs = folders.map(folder => path.resolve(folder, './**/*.js'))
+  const watchedGlobs = folders.map(folder => path.resolve(folder, './**/*.js')).concat(path.resolve(__dirname, './main.js'))
   const destLib = path.resolve(moduleFolder, './lib')
   const watcher = gulp.watch(watchedGlobs)
   watcher
