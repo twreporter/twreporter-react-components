@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { colors, fonts } from 'shared/common-variables'
 import { linkPrefix } from 'shared/configs'
 import FetchingWrapper from 'shared/components/is-fetching-wrapper'
+import styled from 'styled-components'
 
 import PageContent from './page-content'
 import { TopSection, ListSection } from './section'
@@ -17,6 +19,13 @@ const _ = {
   map,
 }
 
+const NoData = styled.div`
+  width: 100%;
+  fonts: ${fonts.size.medium};
+  color: ${colors.textGrey};
+  font-weight: ${fonts.weight.medium};
+  text-align: center;
+`
 
 class Topics extends Component {
   _buildRelatedPosts(posts) {
@@ -57,6 +66,13 @@ class Topics extends Component {
 
   render() {
     const { topics, currentPage } = this.props
+    if (_.get(topics, 'length', 0) <= 0) {
+      return (
+        <PageContent>
+          <NoData>無資料</NoData>
+        </PageContent>
+      )
+    }
     const isFirstPage = currentPage === 1
     /* Build PageContent */
     const topicsJSX = this._buildTopicBoxes(topics)
