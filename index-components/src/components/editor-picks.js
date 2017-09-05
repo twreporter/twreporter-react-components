@@ -276,7 +276,7 @@ class EditorPicks extends React.Component {
     const { data } = this.props
     const swappedData = swapArrayElements(data, 0, 1)
     const getTruncate = (title) => {
-      if (title.length > 28) {
+      if (title.length > 26) {
         return `${title.slice(0, 25)}...`
       }
       return title
@@ -325,7 +325,7 @@ class EditorPicks extends React.Component {
                     </Title>
                   </HoverEffect>
                 </TRLink>
-              :
+                :
                 <Title middle={propsMap.middle}>
                   <div>{ propsMap.middle ? getTruncate(obj.title) : obj.title }</div>
                 </Title>

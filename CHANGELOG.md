@@ -1,3 +1,6 @@
+### 1.0.8
+- Update editor-picks truncate number from 28 to 26
+
 ### 1.0.7
 - Add arrows to editor-picks
 - Update style-utils (finalMedia with more options in index-compmonents)
