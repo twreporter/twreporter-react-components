@@ -1,12 +1,12 @@
-import React from 'react'
-import styled from 'styled-components'
+import PageDownIcon from '../../static/page-down.svg'
+import PageUpIcon from '../../static/page-up.svg'
 import PropTypes from 'prop-types'
+import React from 'react'
 import concat from 'lodash/concat'
 import get from 'lodash/get'
-import { colors, fonts } from 'shared/common-variables'
+import styled from 'styled-components'
 import { absoluteCentering, arrayToCssShorthand, screen } from 'shared/style-utils'
-import PageUpIcon from '../../static/page-up.svg'
-import PageDownIcon from '../../static/page-down.svg'
+import { colors, fonts } from 'shared/common-variables'
 
 const _ = {
   concat,
@@ -17,7 +17,6 @@ const options = {
   nOfCenterPages: 4,
   nOfMarginPages: 1,
   ellipsis: '…',
-  currentPageBgColor: '',
 }
 
 const styles = {
@@ -55,7 +54,7 @@ const Box = styled.div`
   cursor: pointer;
   color: ${colors.pageMain};
   position: relative;
-  > span {
+  > :first-child {
     ${absoluteCentering}
   }
 `
@@ -118,12 +117,12 @@ class Pagination extends React.PureComponent {
   constructor(props) {
     super(props)
     this._buildPagesArray = this._buildPagesArray.bind(this)
+    this._buildPageBox = this._buildPageBox.bind(this)
+    this._buildCenterJSX = this._buildCenterJSX.bind(this)
   }
 
-  _buildPagesArray(currentPage, totalPages) {
-    const { nOfMarginPages, nOfCenterPages, ellipsis } = options
-    const pagesArrayMaxLength = nOfCenterPages + ((nOfMarginPages + 1) * 2)
-    const _buildPageBox = index => (
+  _buildPageBox(index, currentPage) {
+    return (
       <PageNumberBox
         key={`page-num-box-${index}`}
         isCurrent={index === currentPage}
@@ -132,58 +131,59 @@ class Pagination extends React.PureComponent {
         <span>{index}</span>
       </PageNumberBox>
     )
+  }
+
+  _buildCenterJSX(startAt, length, currentPage) {
+    const centerJSX = []
+    const endAt = startAt + length - 1
+    for (let i = startAt; i <= endAt; i += 1) {
+      centerJSX.push(this._buildPageBox(i, currentPage))
+    }
+    return centerJSX
+  }
+
+  _buildPagesArray(currentPage, totalPages) {
+    const { nOfMarginPages, nOfCenterPages, ellipsis } = options
+    const pagesArrayMaxLength = nOfCenterPages + ((nOfMarginPages + 1) * 2)
     /* Case 1: display all pages (no ellipsis) */
     if (totalPages <= pagesArrayMaxLength) {
       const pagesArray = []
-      for (let i = 1; i <= totalPages; i += 1) {
-        pagesArray.push(_buildPageBox(i))
+      for (let page = 1; page <= totalPages; page += 1) {
+        pagesArray.push(this._buildPageBox(page, currentPage))
       }
       return pagesArray
     }
     /* Case 2: display ellipsis */
-    const isCurrentPageInLeftRange = (currentPage <= nOfMarginPages + nOfCenterPages)
-    const isCurrentPageInRightRange = (currentPage > totalPages - nOfMarginPages - nOfCenterPages)
+    const isCurrentPageInLeftRange = currentPage <= (nOfMarginPages + nOfCenterPages)
+    const isCurrentPageInRightRange = currentPage > (totalPages - nOfMarginPages - nOfCenterPages)
     const leftEllipsisJSX = <EllipsisBox key="left-ellipsis">{ellipsis}</EllipsisBox>
     const rightEllipsisJSX = <EllipsisBox key="right-ellipsis">{ellipsis}</EllipsisBox>
-    /* Build margin page boxes */
+    /* build margin page boxes */
     const leftMarginJSX = []
-    for (let i = 1; i <= nOfMarginPages; i += 1) {
-      leftMarginJSX.push(_buildPageBox(i))
+    for (let page = 1; page <= nOfMarginPages; page += 1) {
+      leftMarginJSX.push(this._buildPageBox(page, currentPage))
     }
     const rightMarginJSX = []
     for (let i = 1; i <= nOfMarginPages; i += 1) {
       const page = totalPages - nOfMarginPages + i
-      rightMarginJSX.push(_buildPageBox(page))
+      rightMarginJSX.push(this._buildPageBox(page, currentPage))
     }
-    /*
-      Build center page boxes.
-      Concat margin, center, and ellipsis.
-    */
-    const _buildCenterJSX = (startAt, length) => {
-      const centerJSX = []
-      const endAt = startAt + length - 1
-      for (let i = startAt; i <= endAt; i += 1) {
-        centerJSX.push(_buildPageBox(i))
-      }
-      return centerJSX
-    }
-    let ellipsisStatus
+
     if (isCurrentPageInLeftRange) {
-      ellipsisStatus = 'right-ellipsis'
+      /* Case 2-1: only show right ellipsis */
+      const startAt = nOfMarginPages + 1
+      const length = nOfCenterPages + 1
+      return _.concat(leftMarginJSX, this._buildCenterJSX(startAt, length, currentPage), rightEllipsisJSX, rightMarginJSX)
     } else if (isCurrentPageInRightRange) {
-      ellipsisStatus = 'left-ellipsis'
-    } else {
-      ellipsisStatus = 'both-ellipsis'
+      /* Case 2-2: only show left ellipsis */
+      const startAt = totalPages - nOfMarginPages - nOfCenterPages
+      const length = nOfCenterPages + 1
+      return _.concat(leftMarginJSX, leftEllipsisJSX, this._buildCenterJSX(startAt, length, currentPage), rightMarginJSX)
     }
-    switch (ellipsisStatus) {
-      case 'right-ellipsis':
-        return _.concat(leftMarginJSX, _buildCenterJSX(nOfMarginPages + 1, nOfCenterPages + 1), rightEllipsisJSX, rightMarginJSX)
-      case 'left-ellipsis':
-        return _.concat(leftMarginJSX, leftEllipsisJSX, _buildCenterJSX(totalPages - nOfMarginPages - nOfCenterPages, nOfCenterPages + 1), rightMarginJSX)
-      case 'both-ellipsis':
-      default:
-        return _.concat(leftMarginJSX, leftEllipsisJSX, _buildCenterJSX(currentPage - Math.floor(nOfCenterPages / 2) + 1, nOfCenterPages), rightEllipsisJSX, rightMarginJSX)
-    }
+    /* Case 2-3: show both ellipses */
+    const startAt = currentPage - Math.floor(nOfCenterPages / 2) + 1
+    const length = nOfCenterPages
+    return _.concat(leftMarginJSX, leftEllipsisJSX, this._buildCenterJSX(startAt, length, currentPage), rightEllipsisJSX, rightMarginJSX)
   }
 
   render() {
@@ -194,10 +194,9 @@ class Pagination extends React.PureComponent {
     return (
       <PaginationContainer>
         <Boxes>
-          {_.concat(
-            belowFirstPage ? null : <PrevNextBtn key="prev-btn" onClick={handleClickPrev}><span><PageUpIcon /></span></PrevNextBtn>,
-            pagesArrayJSX,
-            aboveFinalPage ? null : <PrevNextBtn key="next-btn" onClick={handleClickNext}><span><PageDownIcon /></span></PrevNextBtn>)}
+          {belowFirstPage ? null : <PrevNextBtn key="prev-btn" onClick={handleClickPrev}><PageUpIcon /></PrevNextBtn>}
+          {pagesArrayJSX}
+          {aboveFinalPage ? null : <PrevNextBtn key="next-btn" onClick={handleClickNext}><PageDownIcon /></PrevNextBtn>}
         </Boxes>
       </PaginationContainer>
     )

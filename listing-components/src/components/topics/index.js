@@ -65,28 +65,28 @@ class Topics extends Component {
     let topRelatedPosts = null
     let topTopicName = null
     let topTopicSlug = null
+    let topSectionJSX = null
     if (isFirstPage) {
       topTopicJSX = topicsJSX[0]
       listedTopicsJSX = topicsJSX.slice(1)
-      topRelatedPosts = _.get(topics, [0, 'relateds'], []).slice(0, 3)
+      topRelatedPosts = _.get(topics, [0, 'relateds'], []).slice(0, 3) /* take 3 posts */
       topTopicName = _.get(topics, [0, 'topic_name'], '')
       topTopicSlug = _.get(topics, [0, 'slug'], '')
+      topSectionJSX = (
+        <TopSection topicName={topTopicName} topicUrl={`${linkPrefix.TOPICS}${topTopicSlug}`}>
+          {topTopicJSX}
+          <PostsContainer>
+            {this._buildRelatedPosts(topRelatedPosts)}
+          </PostsContainer>
+        </TopSection>
+      )
     } else {
       listedTopicsJSX = topicsJSX
     }
 
-    const TopSectionJSX = isFirstPage ? (
-      <TopSection topicName={topTopicName} topicUrl={`${linkPrefix.TOPICS}${topTopicSlug}`}>
-        {topTopicJSX}
-        <PostsContainer>
-          {this._buildRelatedPosts(topRelatedPosts)}
-        </PostsContainer>
-      </TopSection>
-    ) : null
-
     return (
       <PageContent>
-        {TopSectionJSX}
+        {topSectionJSX}
         <ListSection>
           {listedTopicsJSX}
         </ListSection>
