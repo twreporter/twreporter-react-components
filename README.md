@@ -71,54 +71,27 @@ none
 #### Topics
 
 ```javascript
-import { TopicsComposite } from 'twreporter-react-components'
+import { TopicsList } from 'twreporter-react-components'
 
-const { PageContent, TopSection, ListSection, PostsContainer, PostItem, TopicItem, LoadMore } = TopicsComposite
 
 const Page = (props) =>(
   <div>
     <PageContent>
-        <TopSection topicName={props.topTopicName} topicUrl={props.topicUrl}>
-          <TopicItem
-            key={props.topTopic.key}
-            title={props.topTopic.title}
-            updatedAt={props.topTopic.updatedAt}
-            description={props.topTopic.description}
-            imgUrl={props.topTopic.imgUrl}
-            imgAlt={props.topTopic.imgAlt}
-            isFull={props.topTopic.isFull}
-            url={props.topTopic.url}
-          />
-          <PostsContainer>
-            {props.postsArray.map(post => (
-              <PostItem
-                key={post.key}
-                title={post.title}
-                imgUrl={post.imgUrl}
-                linkTo={post.linkTo}
-                linkTarget={post.linkTarget}
-              />
-            ))}
-          </PostsContainer>
-        </TopSection>)}
-      <ListSection>
-        {props.topicsArray.map(topic => (
-          <TopicItem
-            key={topic.key}
-            title={topic.title}
-            updatedAt={topic.updatedAt}
-            description={topic.description}
-            imgUrl={topic.imgUrl}
-            imgAlt={topic.imgAlt}
-            isFull={topic.isFull}
-            url={topic.url}
-          />
-        ))}
-      </ListSection>
+      <TopicsList
+        currentPage={props.page}
+        topics={props.data}
+        isFetching={props.isFetching}
+        />
     </PageContent>
   </div>
 )
 ```
+
+**props:**
+
+`currentPage`(number): current page
+`topics`(array): topics data
+`isFetching`(boolean): is data ready
 
 ## Developement
 

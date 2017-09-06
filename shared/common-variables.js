@@ -31,6 +31,7 @@ const fonts = {
 }
 
 const colors = {
+  pageMain: '#a67a44',
   h1Black: '#000000',
   black: '#262626',
   primaryColor: '#c4333e', // red

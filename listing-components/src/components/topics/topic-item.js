@@ -63,12 +63,12 @@ const TopicBox = styled.div`
 `
 
 const ItemContainer = styled.div`
-  margin-bottom: ${props => (!props.isFull ? `${styles.topicBox.mobile.marginBottom}px` : `${styles.topicBox.mobile.marginBottom - 10}px`)};
+  margin-bottom: ${props => (!props.isTop ? `${styles.topicBox.mobile.marginBottom}px` : `${styles.topicBox.mobile.marginBottom - 10}px`)};
   ${screen.tabletOnly`
-    margin-bottom: ${props => (!props.isFull ? `${styles.topicBox.tablet.marginBottom}px` : `${styles.topicBox.tablet.marginBottom - 10}px`)};
+    margin-bottom: ${props => (!props.isTop ? `${styles.topicBox.tablet.marginBottom}px` : `${styles.topicBox.tablet.marginBottom - 10}px`)};
   `}
   ${screen.desktopAbove`
-    margin-bottom: ${props => (!props.isFull ? `${styles.topicBox.desktop.marginBottom}px` : `${styles.topicBox.desktop.marginBottom - 10}px`)};
+    margin-bottom: ${props => (!props.isTop ? `${styles.topicBox.desktop.marginBottom}px` : `${styles.topicBox.desktop.marginBottom - 10}px`)};
   `}
   width: 100%;
   ${linkHoverFadeOut}
@@ -103,9 +103,6 @@ const TextBlock = styled.div`
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  ${screen.tabletAbove`
-    justify-content: space-between;
-  `}
   color: ${colors.textGrey};
 `
 
@@ -126,8 +123,12 @@ const TopicTitle = styled.h2`
 `
 
 const TopicDate = styled.div`
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  ${screen.tabletOnly`
+    padding-top: 12px;
+    padding-bottom: 12px;
+  `}
   font-size: ${fonts.size.base};
   font-weight: ${fonts.weight.bold};
   letter-spacing: .5px;
@@ -140,7 +141,6 @@ const TopicDescription = styled.div`
 `
 
 const DesktopDescription = TopicDescription.extend`
-  display: block;
   ${screen.mobileOnly`
     display: none;
   `}
@@ -156,10 +156,10 @@ const MobileDescription = TopicDescription.extend`
 
 class TopicItem extends PureComponent {
   render() {
-    const { title, updatedAt, description, imgUrl, imgAlt, url, isFull } = this.props
+    const { title, updatedAt, description, imgUrl, imgAlt, linkTo, isTop } = this.props
     return (
-      <StyledLink to={url}>
-        <ItemContainer isFull={isFull}>
+      <StyledLink to={linkTo}>
+        <ItemContainer isTop={isTop}>
           <TopicBox>
             <ImageBlock>
               <div>
@@ -185,12 +185,12 @@ TopicItem.propTypes = {
   description: PropTypes.string.isRequired,
   imgUrl: PropTypes.string.isRequired,
   imgAlt: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  isFull: PropTypes.bool,
+  linkTo: PropTypes.string.isRequired,
+  isTop: PropTypes.bool,
 }
 
 TopicItem.defaultProps = {
-  isFull: false,
+  isTop: false,
 }
 
 export default TopicItem

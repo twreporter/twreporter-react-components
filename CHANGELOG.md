@@ -1,3 +1,7 @@
+### 1.0.9
+- Add pagination
+- Pack topics components into one topicsList
+
 ### 1.0.8
 - Update editor-picks truncate number from 28 to 26
 

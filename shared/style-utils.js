@@ -9,6 +9,13 @@ const _ = {
   reduce,
 }
 
+export const absoluteCentering = css`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`
+
 export const centerBlock = css`
   margin-left: auto;
   margin-right: auto;

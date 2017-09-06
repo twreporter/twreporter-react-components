@@ -35,8 +35,8 @@
     "no-restricted-syntax": 0,
     "arrow-body-style": 0,
     "camelcase": 0,
-    "no-console": 0,
-    "no-mixed-operators": ["error", { "allowSamePrecedence": true }]
+    "no-mixed-operators": ["error", { "allowSamePrecedence": true }],
+    "consistent-return": 0
   },
   "plugins": [
     "react", "import"
