@@ -1,11 +1,12 @@
+/* eslint no-console:0 */
 const gulp = require('gulp')
 const rimraf = require('rimraf')
 const path = require('path')
 const babel = require('gulp-babel')
 const fs = require('fs')
 const merge = require('merge-stream')
-const babelOptions = require('./babelrc')
 
+const babelOptions = JSON.parse(fs.readFileSync(path.resolve(__dirname, './.babelrc'), 'utf8'))
 const clean = target => cb => rimraf(target, { glob: false }, cb)
 const folderBlackList = ['node_modules', 'lib']
 

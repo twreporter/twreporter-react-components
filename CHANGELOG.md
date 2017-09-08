@@ -1,3 +1,6 @@
+### UNRELEASED
+- Update babelrc
+
 ### 1.0.9
 - Add pagination
 - Pack topics components into one topicsList
