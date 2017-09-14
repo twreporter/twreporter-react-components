@@ -1,3 +1,3 @@
 # twreporter-react-index-page-components
 
-See See [twreporter-react-components](../)
+It has been merged in [twreporter-react-components](../../)
