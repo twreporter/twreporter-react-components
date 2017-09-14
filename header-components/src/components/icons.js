@@ -126,9 +126,12 @@ class Icons extends React.PureComponent {
     const Member = (() => {
       const { ifAuthenticated, signOutAction } = this.props
       return (
-        <Link to={`/${memberConfigs.path}`} onClick={() => {
-          signOutAction()
-        }}>
+        <Link
+          to={`/${memberConfigs.path}`}
+          onClick={() => {
+            signOutAction()
+          }}
+        >
           <MemberIcon />
           <span>{ifAuthenticated ? `${ICON_ALT_TEXT.SIGN_OUT}` : `${ICON_ALT_TEXT.MEMBER}` }</span>
         </Link>

@@ -1,15 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 // import PropTypes from 'prop-types'
-import { colors, fonts } from '../shared/common-variables'
 import get from 'lodash/get'
-import { date2yyyymmdd } from '../shared/utils'
-import { media, truncate } from '../shared/style-utils'
 import BookmarkIcon from '../../static/bookmark.svg'
+// import { AUTHORS } from 'shared/constants'
+import { date2yyyymmdd } from 'shared/utils'
+import { media, truncate, screen } from 'shared/style-utils'
+import { Link } from 'react-router'
+import { colors, fonts } from 'shared/common-variables'
+import { LINK_PREFIX } from 'shared/link-prefix'
 
 const _ = {
   get,
 }
+
+const READ_MORE = '閱讀更多...'
+
+// const authorsKey = ['writers', 'photographers', 'designers', 'engineers']
 
 const styles = {
   desktop: {
@@ -31,7 +38,12 @@ const styles = {
   },
 }
 
-const BookmarkContainer = styled.li`
+const BookmarkFrame = styled.div`
+  margin: 0;
+  margin-bottom: 15px;
+`
+
+const BookmarkContentContainer = styled.li`
   position: relative;
   width: 100%;
   box-sizing: border-box;
@@ -47,7 +59,6 @@ const BookmarkContainer = styled.li`
     align-items: center;
   `}
   margin: 0;
-  margin-bottom: 15px;
   :last-of-type {
     margin-bottom: 0;
   }
@@ -149,8 +160,17 @@ const Description = styled.div`
   `}
 `
 
+const ReadMore = styled.div`
+  font-size: 18px;
+  text-align: left;
+  color: #8c8c8c;
+  font-size: ${fonts.size.large};
+  cursor: pointer;
+  margin-top: 1em;
+`
+
 const InfoRow = styled.div`
-  margin-top: 33px;
+  margin-top: 27px;
   font-size: ${fonts.size.large};
   ${media.tablet`
     margin-top: 40px;
@@ -158,7 +178,7 @@ const InfoRow = styled.div`
   ${media.largeMobile`
     margin-top: 29px;
     font-size: ${fonts.size.medium};
-    
+
   `}
   width: 100%;
   line-height: 1;
@@ -173,7 +193,7 @@ const Info = styled.div`
   position: absolute;
   bottom: 0;
 `
-
+/*
 const AuthorInfo = styled.span`
   max-width: 50%;
   display: inline-block;
@@ -182,23 +202,23 @@ const AuthorInfo = styled.span`
   text-overflow: ellipsis;
 `
 
-const AuthorTitle = styled.span`
+const AuthorTitle = styled.div`
+  width: 38px;
+  text-align: center;
   margin-right: 1em;
   ${media.largeMobile`
     margin-right: .8em;
   `}
   vertical-align: top;
+  display: inline-block;
 `
 
 const AuthorName = styled.span`
   vertical-align: top;
 `
+*/
 
 const Date = styled.span`
-  margin-left: 2.2em;
-  ${media.largeMobile`
-    margin-left: 1em;
-  `}
   vertical-align: top;
   font-weight: ${fonts.weight.light};
   color: ${colors.greyishBrown};
@@ -221,45 +241,218 @@ const RemoveBookMarkBtn = styled.div`
     width: 15px;
     height: auto;
   }
+  cursor: pointer;
 `
 
-class Bookmark extends React.Component {
+// BookmarkContainer
+
+const PageContainer = styled.div`
+  box-sizing: border-box;
+  padding: 50px 0;
+  margin: 0;
+`
+
+const Column = styled.div`
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 97%;
+  max-width: 834px;
+  ${screen.tabletOnly`
+    width: 100%;
+    max-width: 707px;
+  `}
+  ${screen.mobileOnly`
+    width: 100%;
+  `}
+`
+
+const StatusBar = styled.div`
+  ${screen.mobileOnly`
+    padding-left: 1em;
+  `}
+  box-sizing: border-box;
+  padding-bottom: 25px;
+  width: 100%;
+`
+
+const CountTitle = styled.span`
+  font-size: ${fonts.size.xlarge};
+  ${screen.mobileOnly`
+    font-size: ${fonts.size.large};
+  `}
+  margin-right: 1em;
+`
+const CountNumber = styled.span`
+  font-size: ${fonts.size.xlarge};
+  ${screen.mobileOnly`
+    font-size: ${fonts.size.large};
+  `}
+  font-weight: ${fonts.weight.bold};
+`
+
+const BookmarksContainer = styled.ul`
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+`
+
+const CustomizedLink = ({ children, isExternal, slug, host }) => {
+  if (isExternal) {
+    return (
+      <a href={`${host}/${LINK_PREFIX.INTERACTIVE_ARTICLE}/${slug}`}>
+        {children}
+      </a>
+    )
+  }
+  return (
+    <Link to={`${LINK_PREFIX.ARTICLE}/${slug}`}>
+      {children}
+    </Link>
+  )
+}
+
+const BookmarkIconComp = styled(BookmarkIcon)`
+  &:hover {
+    path {
+      fill: #99000a;
+      transition: fill 200ms linear;
+    }
+  }
+`
+
+class Bookmark extends React.PureComponent {
+  constructor(props) {
+    super(props)
+    this.handleBookmarkIconOnClick = this._handleBookmarkIconOnClick.bind(this)
+  }
+
+  _handleBookmarkIconOnClick(slug) {
+    this.props.handleBookmarkIconOnClick(slug)
+  }
+
   render() {
     const {
-      imgSrc,
+      thumbnail,
       category,
       title,
-      description,
-      authorTitle,
-      authorName,
-      publishDate } = _.get(this.props, 'bookmarkData', {})
+      desc,
+      published_date,
+      slug,
+      is_external,
+      host,
+    } = _.get(this.props, 'bookmarkData', {})
+
+    /* After consulting with designers, we reach the concensus that
+       authorGroup is not necessary.
+
+    const authorsObj = JSON.parse(authors)
+    const keyToLabelMap = {
+      writers: AUTHORS.WRITERS,
+      photographers: AUTHORS.PHOTOGRAPHERS,
+      designers: AUTHORS.DESIGNERS,
+      engineers: AUTHORS.ENGINEERS,
+    }
+
+    const AuthorGroup = authorsKey.map((key) => {
+      const contributorArr = authorsObj[key]
+      const jobTitle = keyToLabelMap[key]
+      if (contributorArr) {
+        return contributorArr.map((a) => {
+          return (
+            <div>
+              <AuthorTitle>{jobTitle}</AuthorTitle>
+              <AuthorName>{a.name}</AuthorName>
+            </div>
+          )
+        })
+      }
+    })
+    <AuthorInfo>
+      {AuthorGroup}
+    </AuthorInfo>
+    */
     return (
-      <BookmarkContainer>
-        <ImageBox>
-          <Image src={imgSrc} />
-        </ImageBox>
-        <TextBox>
-          <Category>{category}</Category>
-          <Title>{title}</Title>
-          <Description>
-            {description}
-          </Description>
-          <InfoRow>
-            <Info>
-              <AuthorInfo>
-                <AuthorTitle>{authorTitle}</AuthorTitle>
-                <AuthorName>{authorName}</AuthorName>
-              </AuthorInfo>
-              <Date>{date2yyyymmdd(publishDate, '.')}</Date>
-            </Info>
-          </InfoRow>
-        </TextBox>
-        <RemoveBookMarkBtn>
-          <BookmarkIcon />
-        </RemoveBookMarkBtn>
-      </BookmarkContainer>
+      <BookmarkFrame>
+        <BookmarkContentContainer>
+          <ImageBox>
+            <Image src={thumbnail} />
+          </ImageBox>
+          <TextBox>
+            <Category>{category}</Category>
+            <CustomizedLink isExternal={is_external} slug={slug} host={host}>
+              <Title>{title}</Title>
+            </CustomizedLink>
+            <Description>
+              {desc}
+            </Description>
+            <CustomizedLink isExternal={is_external} slug={slug} host={host}>
+              <ReadMore>{READ_MORE}</ReadMore>
+            </CustomizedLink>
+            <InfoRow>
+              <Info>
+                <Date>{date2yyyymmdd(published_date * 1000, '.')}</Date>
+              </Info>
+            </InfoRow>
+          </TextBox>
+          <RemoveBookMarkBtn>
+            <BookmarkIconComp
+              onClick={() => { this.handleBookmarkIconOnClick(slug) }}
+            />
+          </RemoveBookMarkBtn>
+        </BookmarkContentContainer>
+      </BookmarkFrame>
     )
   }
 }
 
-export default Bookmark
+Bookmark.propTypes = {
+  handleBookmarkIconOnClick: React.PropTypes.func.isRequired,
+}
+
+class BookmarkContainer extends React.Component {
+  render() {
+    const bookmarksJSX = this.props.bookmarkData.map((bookmark) => {
+      return (
+        <Bookmark
+          key={`bookmark_${_.get(bookmark, 'id', 0)}`}
+          bookmarkData={bookmark}
+          handleBookmarkIconOnClick={this.props.handleBookmarkIconOnClick}
+        />
+      )
+    })
+    return (
+      <PageContainer>
+        <Column>
+          <StatusBar>
+            <CountTitle>全部</CountTitle>
+            <CountNumber>{this.props.total}</CountNumber>
+          </StatusBar>
+          <BookmarksContainer>
+            {bookmarksJSX}
+          </BookmarksContainer>
+        </Column>
+      </PageContainer>
+    )
+  }
+}
+
+BookmarkContainer.defaultProps = {
+  bookmarkData: [],
+  total: 0,
+}
+
+BookmarkContainer.propTypes = {
+  bookmarkData: React.PropTypes.array,
+  total: React.PropTypes.number,
+  handleBookmarkIconOnClick: React.PropTypes.func.isRequired,
+}
+
+CustomizedLink.propTypes = {
+  children: React.PropTypes.element.isRequired,
+  isExternal: React.PropTypes.bool.isRequired,
+  slug: React.PropTypes.string.isRequired,
+  host: React.PropTypes.string.isRequired,
+}
+
+export default BookmarkContainer

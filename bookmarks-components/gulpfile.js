@@ -18,10 +18,10 @@ const babel = (sourcePath, outputPath, cb) => {
   return spawn(
     'babel',
     [sourcePath, `--out-dir=${outputPath}`])
-      .on('close', cb)
-      .on('error', err => cb(err), {
-        stdio: 'inherit',
-      })
+    .on('close', cb)
+    .on('error', err => cb(err), {
+      stdio: 'inherit',
+    })
 }
 
 gulp.task(
@@ -40,9 +40,9 @@ gulp.task(
   'clean-twreporter-node-modules', (cb) => {
     let customerFolder = process.env.CUSTOMER_FOLDER
     if (typeof customerFolder !== 'string') {
-      customerFolder = path.resolve(__dirname + '/../../twreporter-react')
+      customerFolder = path.resolve(`${__dirname}/../../twreporter-react`)
     }
-    return clean(customerFolder+'/node_modules/twreporter-react-bookmarks-components/lib', cb)
+    return clean(`${customerFolder}/node_modules/twreporter-react-bookmarks-components/lib`, cb)
   })
 
 gulp.task(
@@ -85,11 +85,11 @@ gulp.task(
 gulp.task('teleport', gulp.series('clean-twreporter-node-modules', () => {
   let customerFolder = process.env.CUSTOMER_FOLDER
   if (typeof customerFolder !== 'string') {
-    customerFolder = path.resolve(__dirname + '/../../twreporter-react')
+    customerFolder = path.resolve(`${__dirname}/../../twreporter-react`)
   }
   return gulp
     .src('./lib/**/*')
-    .pipe(gulp.dest(customerFolder+'/node_modules/twreporter-react-bookmarks-components/lib'))
+    .pipe(gulp.dest(`${customerFolder}/node_modules/twreporter-react-components/lib/twreporter-react-bookmarks-components/lib`))
 }))
 
 // promise chain

@@ -58,7 +58,7 @@ export const memberConfigs = {
 }
 
 export const bookmarkConfigs = {
-  path: 'bookmark',
+  path: 'bookmarks',
 }
 
 export const linkPrefix = {
