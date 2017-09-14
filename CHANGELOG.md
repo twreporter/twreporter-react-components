@@ -1,4 +1,5 @@
 ### UNRELEASED
+- Remove useless subfolder configs
 - Update babelrc
 
 ### 1.0.9

@@ -1,3 +1,3 @@
 # twreporter-react-header-components
 
-See [twreporter-react-components](../)
+It has been merged in [twreporter-react-components](../../)
