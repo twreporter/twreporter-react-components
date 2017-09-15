@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { colors, fonts } from 'shared/common-variables'
-import FetchingWrapper from 'shared/components/is-fetching-wrapper'
-import styled from 'styled-components'
 
+import { colors, fonts } from 'shared/common-variables'
+import { TEXT } from '../../constants/topics'
+import { TopSectionContent, ListSectionContent, SectionTitle } from './section'
+import FetchingWrapper from 'shared/components/is-fetching-wrapper'
 import PageContent from './page-content'
-import { TopSection, ListSection } from './section'
-import PostsContainer from './posts'
 import PostItem from './post-item'
+import PostsContainer from './posts'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import styled from 'styled-components'
 import TopicItem from './topic-item'
 
 import get from 'lodash/get'
@@ -64,8 +65,8 @@ class Topics extends Component {
 
 
   render() {
-    const { topics, currentPage } = this.props
-    if (_.get(topics, 'length', 0) <= 0) {
+    const { topics, currentPage, isFetching } = this.props
+    if (!isFetching && _.get(topics, 'length', 0) <= 0) {
       return (
         <PageContent>
           <NoData>無資料</NoData>
@@ -81,30 +82,36 @@ class Topics extends Component {
     let topTopicName = null
     let topicUrl = null
     let topSectionJSX = null
-    if (isFirstPage) {
+    if (isFirstPage && !isFetching) {
       topTopicJSX = topicsJSX[0]
       listedTopicsJSX = topicsJSX.slice(1)
       topRelatedPosts = _.get(topics, [0, 'relateds'], []).slice(0, 3) /* take 3 posts */
       topTopicName = _.get(topics, [0, 'topic_name'], '')
       topicUrl = _.get(topics, [0, 'linkTo'], '')
-      topSectionJSX = (
-        <TopSection topicName={topTopicName} topicUrl={topicUrl}>
+      topSectionJSX = [
+        (<SectionTitle key="top-title">{TEXT.SECTION_TITLE_FEATURED}</SectionTitle>),
+        (<TopSectionContent key="top-section" topicName={topTopicName} topicUrl={topicUrl}>
           {topTopicJSX}
           <PostsContainer>
             {this._buildRelatedPosts(topRelatedPosts)}
           </PostsContainer>
-        </TopSection>
-      )
+        </TopSectionContent>
+        )]
     } else {
       listedTopicsJSX = topicsJSX
     }
 
+    const WrappedListSectionContent = FetchingWrapper((
+      <ListSectionContent>
+        {listedTopicsJSX}
+      </ListSectionContent>
+    ))
+
     return (
       <PageContent>
         {topSectionJSX}
-        <ListSection>
-          {listedTopicsJSX}
-        </ListSection>
+        {isFetching && isFirstPage ? null : <SectionTitle>{TEXT.SECTION_TITLE_OTHERS}</SectionTitle>}
+        <WrappedListSectionContent isFetching={isFetching} />
       </PageContent>
     )
   }
@@ -133,6 +140,7 @@ Topics.propTypes = {
     }),
   ),
   currentPage: PropTypes.number.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 }
 
 Topics.defaultProps = {
@@ -140,4 +148,4 @@ Topics.defaultProps = {
   currentPage: 1,
 }
 
-export default FetchingWrapper(Topics)
+export default Topics
