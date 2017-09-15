@@ -1,7 +1,7 @@
 const strings = {
   editorPick: '編輯精選',
   latestTopic: '最新專題',
-  review: '觀點',
+  review: '評論',
   category: '分類',
   topic: '專題',
   photography: '攝影',

@@ -24,7 +24,7 @@ const _ = {
 const tabletMaxWidth = '1023px'
 const mobileWidth = breakPoints.mobileMaxWidth
 const maxSwipableItems = 3
-const moreText = '更多觀點文章'
+const moreText = '更多評論文章'
 
 const Container = Section.extend`
   background-color: white;
