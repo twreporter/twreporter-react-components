@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { colors, fonts } from 'shared/common-variables'
-import { linkPrefix } from 'shared/configs'
 import FetchingWrapper from 'shared/components/is-fetching-wrapper'
 import styled from 'styled-components'
 
@@ -80,16 +79,16 @@ class Topics extends Component {
     let listedTopicsJSX = null
     let topRelatedPosts = null
     let topTopicName = null
-    let topTopicSlug = null
+    let topicUrl = null
     let topSectionJSX = null
     if (isFirstPage) {
       topTopicJSX = topicsJSX[0]
       listedTopicsJSX = topicsJSX.slice(1)
       topRelatedPosts = _.get(topics, [0, 'relateds'], []).slice(0, 3) /* take 3 posts */
       topTopicName = _.get(topics, [0, 'topic_name'], '')
-      topTopicSlug = _.get(topics, [0, 'slug'], '')
+      topicUrl = _.get(topics, [0, 'linkTo'], '')
       topSectionJSX = (
-        <TopSection topicName={topTopicName} topicUrl={`${linkPrefix.TOPICS}${topTopicSlug}`}>
+        <TopSection topicName={topTopicName} topicUrl={topicUrl}>
           {topTopicJSX}
           <PostsContainer>
             {this._buildRelatedPosts(topRelatedPosts)}
