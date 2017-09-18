@@ -1,14 +1,15 @@
+import { colors, fonts } from 'shared/common-variables'
+import { media, screen, truncate } from 'shared/style-utils'
+
+import BookmarkIcon from '../../static/bookmark.svg'
+import { linkPrefix } from 'shared/configs'
+import { Link } from 'react-router'
 import React from 'react'
-import styled from 'styled-components'
+import { date2yyyymmdd } from 'shared/utils'
 // import PropTypes from 'prop-types'
 import get from 'lodash/get'
-import BookmarkIcon from '../../static/bookmark.svg'
-// import { AUTHORS } from 'shared/constants'
-import { date2yyyymmdd } from 'shared/utils'
-import { media, truncate, screen } from 'shared/style-utils'
-import { Link } from 'react-router'
-import { colors, fonts } from 'shared/common-variables'
-import { LINK_PREFIX } from 'shared/link-prefix'
+import ImgWrapper from 'shared/components/img-wrapper'
+import styled from 'styled-components'
 
 const _ = {
   get,
@@ -78,8 +79,7 @@ const ImageBox = styled.div`
   flex-grow: 0;
   line-height: 1;
 `
-const Image = styled.img`
-  object-fit: cover;
+const ImageFrame = styled.div`
   width: ${styles.desktop.imageWidth}px;
   height: ${styles.desktop.imageHeight}px;
   ${media.tablet`
@@ -300,13 +300,13 @@ const BookmarksContainer = styled.ul`
 const CustomizedLink = ({ children, isExternal, slug, host }) => {
   if (isExternal) {
     return (
-      <a href={`${host}/${LINK_PREFIX.INTERACTIVE_ARTICLE}/${slug}`}>
+      <a href={`${host}${linkPrefix.interactiveArticle}${slug}`}>
         {children}
       </a>
     )
   }
   return (
-    <Link to={`${LINK_PREFIX.ARTICLE}/${slug}`}>
+    <Link to={`${linkPrefix.article}${slug}`}>
       {children}
     </Link>
   )
@@ -315,7 +315,7 @@ const CustomizedLink = ({ children, isExternal, slug, host }) => {
 const BookmarkIconComp = styled(BookmarkIcon)`
   &:hover {
     path {
-      fill: #99000a;
+      fill: ${colors.darkRed};
       transition: fill 200ms linear;
     }
   }
@@ -376,7 +376,9 @@ class Bookmark extends React.PureComponent {
       <BookmarkFrame>
         <BookmarkContentContainer>
           <ImageBox>
-            <Image src={thumbnail} />
+            <ImageFrame>
+              <ImgWrapper src={thumbnail} alt={`Bookmark_Image_${title}`} />
+            </ImageFrame>
           </ImageBox>
           <TextBox>
             <Category>{category}</Category>

@@ -1,16 +1,17 @@
-import React from 'react'
-import styled from 'styled-components'
-import PropTypes from 'prop-types'
+import { arrayToCssShorthand, screen } from 'shared/style-utils'
+
 import Categories from './categories'
 import Channels from './channels'
 import Icons from './icons'
-import { arrayToCssShorthand, screen } from 'shared/style-utils'
-import { colors } from 'shared/common-variables'
 import { Link } from 'react-router'
-import { pageThemes } from 'shared/configs'
-import { selectBgColor } from '../styles/theme'
 import LogoBright from '../../static/twreporter-logo.svg'
 import LogoDark from '../../static/twreporter-logo-dark.svg'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { colors } from 'shared/common-variables'
+import { pageThemes } from 'shared/configs'
+import { selectBgColor } from '../styles/theme'
+import styled from 'styled-components'
 
 const styles = {
   headerHeight: 109, // px

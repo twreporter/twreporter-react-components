@@ -79,7 +79,7 @@ const Confirmation = (props) => {
 }
 
 Confirmation.defaultProps = {
-  content: 'testing content',
+  content: '',
   cancel: 'Cancel',
   confirm: 'Confirm',
   width: '490px',
