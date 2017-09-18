@@ -49,6 +49,9 @@ const ChannelsContainer = styled.div`
     left: 50%;
     transform: translateX(-50%);
   `}
+  ${screen.mobileOnly`
+    display: none;
+  `}
 `
 
 const ChannelsContent = styled.ul`

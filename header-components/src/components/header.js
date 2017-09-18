@@ -1,23 +1,23 @@
 import { arrayToCssShorthand, screen } from 'shared/style-utils'
-
+import { colors } from 'shared/common-variables'
+import { Link } from 'react-router'
+import { pageThemes } from 'shared/configs'
+import { selectBgColor } from '../styles/theme'
 import Categories from './categories'
 import Channels from './channels'
 import Icons from './icons'
-import { Link } from 'react-router'
 import LogoBright from '../../static/twreporter-logo.svg'
 import LogoDark from '../../static/twreporter-logo-dark.svg'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { colors } from 'shared/common-variables'
-import { pageThemes } from 'shared/configs'
-import { selectBgColor } from '../styles/theme'
+import SlideDownPanel from './header-slide-down-panel'
 import styled from 'styled-components'
 
 const styles = {
   headerHeight: 109, // px
   headerHeightIndex: 62, // px
   topRowPadding: {
-    mobile: [34, 10, 35, 24], // px
+    mobile: [34, 24, 35, 24], // px
     tablet: [34, 20, 35, 35], // px
     desktop: [34, 58, 35, 70], // px
     index: {
@@ -71,6 +71,43 @@ const TopRowContent = styled.div`
   margin: 0 auto;
 `
 
+const HamburgerContainer = styled.div`
+  position: absolute;
+  ${screen.mobileOnly`
+    position: static;
+  `}
+`
+
+const HamburgerFrame = styled.div`
+  cursor: pointer;
+  display: none;
+  ${screen.mobileOnly`
+    display: initial;
+  `}
+`
+
+const Storke = styled.div`
+  width: 25px;
+  height: 4px;
+  margin-bottom: 5px;
+  background-color: ${colors.primaryColor};
+  border-radius: 10px;
+`
+
+const Hamburger = ({ onClick }) => (
+  <HamburgerContainer>
+    <HamburgerFrame onClick={onClick}>
+      <Storke />
+      <Storke />
+      <Storke />
+    </HamburgerFrame>
+  </HamburgerContainer>
+)
+
+Hamburger.propTypes = {
+  onClick: PropTypes.func.isRequired,
+}
+
 class Header extends React.PureComponent {
   static _selectLogo(pageTheme) {
     switch (pageTheme) {
@@ -86,9 +123,11 @@ class Header extends React.PureComponent {
     super(props)
     this.state = {
       categoriesIsOpen: false,
+      ifShowSlideInPanel: false,
     }
     this._closeCategoriesMenu = this._handleToggleCategoriesMenu.bind(this, 'close')
     this._handleToggleCategoriesMenu = this._handleToggleCategoriesMenu.bind(this)
+    this.handleOnHamburgerClick = this._handleOnHamburgerClick.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -107,11 +146,25 @@ class Header extends React.PureComponent {
     })
   }
 
+  _handleOnHamburgerClick() {
+    this.setState({
+      ifShowSlideInPanel: !this.state.ifShowSlideInPanel,
+    })
+  }
+
   render() {
-    const { pageTheme, pathName, isIndex } = this.props
-    const { categoriesIsOpen } = this.state
+    const { pageTheme, pathName, isIndex, categoryId, signOutAction, ifAuthenticated } = this.props
+    const { categoriesIsOpen, ifShowSlideInPanel } = this.state
     return (
       <HeaderContainer>
+        <SlideDownPanel
+          showUp={ifShowSlideInPanel}
+          isIndex={isIndex}
+          categoryId={categoryId}
+          ifAuthenticated={ifAuthenticated}
+          signOutAction={signOutAction}
+          handleOnHamburgerClick={this.handleOnHamburgerClick}
+        />
         <TopRow pageTheme={pageTheme} isIndex={isIndex}>
           <TopRowContent isIndex={isIndex}>
             <Link to="/">
@@ -119,9 +172,10 @@ class Header extends React.PureComponent {
             </Link>
             <Icons
               pageTheme={pageTheme}
-              ifAuthenticated={this.props.ifAuthenticated}
-              signOutAction={this.props.signOutAction}
+              ifAuthenticated={ifAuthenticated}
+              signOutAction={signOutAction}
             />
+            <Hamburger onClick={this.handleOnHamburgerClick} />
           </TopRowContent>
         </TopRow>
         {isIndex ? null : <Channels handleToggleCategoriesMenu={this._handleToggleCategoriesMenu} pageTheme={pageTheme} pathName={pathName} categoriesIsOpen={categoriesIsOpen} />}
@@ -137,12 +191,14 @@ Header.propTypes = {
   isIndex: PropTypes.bool,
   ifAuthenticated: PropTypes.bool.isRequired,
   signOutAction: PropTypes.func.isRequired,
+  categoryId: PropTypes.string,
 }
 
 Header.defaultProps = {
   pageTheme: pageThemes.bright,
   isIndex: false,
   pathName: '',
+  categoryId: '',
 }
 
 export default Header

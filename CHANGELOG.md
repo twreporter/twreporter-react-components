@@ -1,5 +1,8 @@
 ### UNRELEASED
+
+### 1.1.0-beta.1.1.0
 - Make the text area of editor-picks be swipeable
+- Create Mobile navbar feature
 
 ### 1.1.0-beta.1.0.2
 - Update README.md

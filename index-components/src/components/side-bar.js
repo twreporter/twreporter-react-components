@@ -122,6 +122,15 @@ class SideBar extends React.PureComponent {
     this.moduleMap = {}
     this.currentSection = ''
     this.previousSection = ''
+    this.categoryModule = {}
+  }
+
+  // Goal: pass category module to header
+  // this.ModuleMap only load completely after render
+  // case: index -> article -> back to index -> hamburger -> category
+  componentDidMount() {
+    this.categoryModule = this.moduleMap.category
+    this.forceUpdate()
   }
 
   componentWillUnmount() {
