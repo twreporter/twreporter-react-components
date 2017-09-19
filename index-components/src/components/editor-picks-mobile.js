@@ -156,19 +156,19 @@ class EditorPicksMobile extends SwipableMixin {
       <CarouselContainer
         mobileWidth={mobileWidth}
       >
-        <SectionName
-          mobileWidth={mobileWidth}
-        >
-          <span>{sectionStrings.editorPick}</span>
-        </SectionName>
-        <TextFrame>
-          {textFrameContent}
-        </TextFrame>
         <Swipeable
           onSwipedRight={this.onSwipedRight}
           onSwipedLeft={this.onSwipedLeft}
           onSwiping={onSwiping}
         >
+          <SectionName
+            mobileWidth={mobileWidth}
+          >
+            <span>{sectionStrings.editorPick}</span>
+          </SectionName>
+          <TextFrame>
+            {textFrameContent}
+          </TextFrame>
           <MobileFlexSwipeable.FlexList
             selected={this.state.selected}
             mobileWidth={mobileWidth}
