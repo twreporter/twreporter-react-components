@@ -17,11 +17,14 @@ CHANGELOG.md
 README.md
 
 # source folders
-node_modules/
+cinemagraph/
 footer-components/
+fullpage-slides/
 header-components/
-listing-components/
 index-components/
+listing-components/
+node_modules/
+pagination/
 shared/
 
 # NPM debug
