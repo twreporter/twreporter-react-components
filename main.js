@@ -5,6 +5,7 @@ import Header from './header-components/src'
 import IndexPageComposite from './index-components/src'
 import ListingComposite from './listing-components/src'
 import Pagination from './pagination/src'
+import { FullpageSlides, FullpageSlidesConstants } from './fullpage-slides/src'
 
 const { TopicsList, List } = ListingComposite
 
@@ -16,6 +17,8 @@ export default {
   CinemagraphHelper,
   Cinemagraph,
   Footer,
+  FullpageSlides,
+  FullpageSlidesConstants,
   Header,
   IndexPageComposite,
   List,
@@ -28,6 +31,8 @@ export {
   CinemagraphHelper,
   Cinemagraph,
   Footer,
+  FullpageSlides,
+  FullpageSlidesConstants,
   Header,
   IndexPageComposite,
   List,
