@@ -23,6 +23,8 @@ header-components/
 listing-components/
 index-components/
 shared/
+bookmarks-components/
+confirmation-components/
 
 # NPM debug
 npm-debug.log

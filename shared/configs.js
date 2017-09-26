@@ -98,7 +98,7 @@ export const channelConfigs = {
     path: 'infographic',
   },
   categories: {
-    text: '分類',
+    text: '議題',
     type: 'submenu',
     prefix: linkPrefix.categories,
   },
