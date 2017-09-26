@@ -53,6 +53,14 @@ export const searchConfigs = {
   path: 'search',
 }
 
+export const memberConfigs = {
+  path: 'signin',
+}
+
+export const bookmarkConfigs = {
+  path: 'bookmarks',
+}
+
 export const linkPrefix = {
   article: '/a/',
   interactiveArticle: '/i/',
@@ -66,7 +74,7 @@ export const linkPrefix = {
 
 export const channelConfigs = {
   review: {
-    text: '觀點',
+    text: '評論',
     type: 'link',
     prefix: linkPrefix.categories,
     path: 'reviews',

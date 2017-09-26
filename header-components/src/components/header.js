@@ -1,16 +1,17 @@
-import React from 'react'
-import styled from 'styled-components'
-import PropTypes from 'prop-types'
+import { arrayToCssShorthand, screen } from 'shared/style-utils'
+
 import Categories from './categories'
 import Channels from './channels'
 import Icons from './icons'
-import { arrayToCssShorthand, screen } from 'shared/style-utils'
-import { pageThemes } from 'shared/configs'
-import { colors } from 'shared/common-variables'
-import { selectBgColor } from '../styles/theme'
+import { Link } from 'react-router'
 import LogoBright from '../../static/twreporter-logo.svg'
 import LogoDark from '../../static/twreporter-logo-dark.svg'
-import { Link } from 'react-router'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { colors } from 'shared/common-variables'
+import { pageThemes } from 'shared/configs'
+import { selectBgColor } from '../styles/theme'
+import styled from 'styled-components'
 
 const styles = {
   headerHeight: 109, // px
@@ -116,7 +117,11 @@ class Header extends React.PureComponent {
             <Link to="/">
               {Header._selectLogo(pageTheme)}
             </Link>
-            <Icons pageTheme={pageTheme} />
+            <Icons
+              pageTheme={pageTheme}
+              ifAuthenticated={this.props.ifAuthenticated}
+              signOutAction={this.props.signOutAction}
+            />
           </TopRowContent>
         </TopRow>
         {isIndex ? null : <Channels handleToggleCategoriesMenu={this._handleToggleCategoriesMenu} pageTheme={pageTheme} pathName={pathName} categoriesIsOpen={categoriesIsOpen} />}
@@ -130,6 +135,8 @@ Header.propTypes = {
   pageTheme: PropTypes.string,
   pathName: PropTypes.string,
   isIndex: PropTypes.bool,
+  ifAuthenticated: PropTypes.bool.isRequired,
+  signOutAction: PropTypes.func.isRequired,
 }
 
 Header.defaultProps = {

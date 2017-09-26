@@ -4,12 +4,12 @@ import SearchBox from './search-box'
 import SearchIcon from '../../static/search-icon.svg'
 import { screen } from 'shared/style-utils'
 import { colors, fonts } from 'shared/common-variables'
-import { searchConfigs } from 'shared/configs'
+import { searchConfigs, memberConfigs, bookmarkConfigs } from 'shared/configs'
 import { Link } from 'react-router'
 import PropTypes from 'prop-types'
 
-// import MemberIcon from '../../static/member-icon.svg'
-// import BookmarkListIcon from '../../static/bookmark-list-icon.svg'
+import MemberIcon from '../../static/member-icon.svg'
+import BookmarkListIcon from '../../static/bookmark-list-icon.svg'
 // import DonateIcon from '../../static/donate-icon.svg'
 
 const styles = {
@@ -19,6 +19,9 @@ const styles = {
 /* Icon alt text takes 2 fullwidth characters specifically */
 const ICON_ALT_TEXT = {
   SEARCH: '搜尋',
+  SIGN_OUT: '登出',
+  MEMBER: '會員',
+  BOOKMARK: '書籤',
 }
 
 const IconsContainer = styled.div`
@@ -120,6 +123,20 @@ class Icons extends React.PureComponent {
   render() {
     const { pageTheme } = this.props
     const { isSearchOpened } = this.state
+    const Member = (() => {
+      const { ifAuthenticated, signOutAction } = this.props
+      return (
+        <Link
+          to={`/${memberConfigs.path}`}
+          onClick={() => {
+            signOutAction()
+          }}
+        >
+          <MemberIcon />
+          <span>{ifAuthenticated ? `${ICON_ALT_TEXT.SIGN_OUT}` : `${ICON_ALT_TEXT.MEMBER}` }</span>
+        </Link>
+      )
+    })()
     return (
       <IconsContainer>
         <DisplayOnDesktop
@@ -139,6 +156,15 @@ class Icons extends React.PureComponent {
             <SearchIcon />
           </Link>
         </HideOnDesktop>
+        <IconContainer>
+          <Link to={`/${bookmarkConfigs.path}`}>
+            <BookmarkListIcon />
+            <span>{ICON_ALT_TEXT.BOOKMARK}</span>
+          </Link>
+        </IconContainer>
+        <IconContainer>
+          {Member}
+        </IconContainer>
       </IconsContainer>
     )
   }
@@ -146,6 +172,8 @@ class Icons extends React.PureComponent {
 
 Icons.propTypes = {
   pageTheme: PropTypes.string.isRequired,
+  ifAuthenticated: PropTypes.bool.isRequired,
+  signOutAction: PropTypes.func.isRequired,
 }
 
 export default Icons

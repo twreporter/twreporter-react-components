@@ -1,6 +1,14 @@
 ### UNRELEASED
+- Make the text area of editor-picks be swipeable
+
+### 1.1.0-beta.1.0.0
+- Create bookmark component ( based on registration system )
+- Create confirmation component ( based on bookmark component )
+
+### 1.0.10
 - Remove useless subfolder configs
 - Update babelrc
+- Change wording from '觀點' to '評論'
 
 ### 1.0.9
 - Add pagination
