@@ -1,6 +1,13 @@
 ### UNRELEASED
 - Make the text area of editor-picks be swipeable
 
+### 1.1.0-beta.1.0.2
+- Update README.md
+- Update style of confirmation component
+
+### 1.1.0-beta.1.0.1
+- Update README.md
+
 ### 1.1.0-beta.1.0.0
 - Create bookmark component ( based on registration system )
 - Create confirmation component ( based on bookmark component )

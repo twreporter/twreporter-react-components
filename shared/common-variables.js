@@ -52,7 +52,7 @@ const colors = {
   photographyBg: '#07192e',
   warmGrey: '#8c8c8c',
   hoverCategories: '#7f7f7f',
-  bookmarkIcon: '#7f7f7f',
+  bookmarkIcon: '#C7000D',
   bookmarkTextGrey: '#3e3f3f',
   iconAltText: '#e60013',
   greyishBrown: '#4a4a4a',
