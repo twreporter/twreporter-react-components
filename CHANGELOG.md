@@ -1,4 +1,6 @@
 ### UNRELEASED
+
+### 1.0.11
 - Make the text area of editor-picks be swipeable
 
 ### 1.0.10
