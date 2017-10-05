@@ -23,7 +23,7 @@ gulp.task(
   'clean-build',
   clean(outputPath))
 
-/* 
+/*
   babel .js files of every sub-folder to ./lib
 */
 gulp.task(
@@ -54,7 +54,7 @@ let customerFolder = process.env.CUSTOMER_FOLDER
 if (typeof customerFolder !== 'string') {
   customerFolder = path.resolve(__dirname, '../twreporter-react')
 }
-const moduleFolder = `${customerFolder}/node_modules/twreporter-react-components`
+const moduleFolder = `${customerFolder}/node_modules/@twreporter/react-components`
 
 gulp.task(
   'clean-customer-folder',

@@ -1,16 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import { footerSections } from '../configs.js'
-import map from 'lodash/map'
-import { Link } from 'react-router'
 import DonateIcon from '../../static/donate-icon.svg'
+import PropTypes from 'prop-types'
+import React from 'react'
 import ReporterLogo from '../../static/reporter-large.svg'
 import SnsIcon from '../../static/sns-icon.svg'
 import SubscribeIcon from '../../static/subscribe-icon.svg'
-import { colors, fonts } from 'shared/common-variables'
+import map from 'lodash/map'
+import styled from 'styled-components'
+import { Link } from 'react-router'
 import { arrayToCssShorthand, screen } from 'shared/style-utils'
-import { selectBgColor, selectTextColor } from '../styles/theme'
+import { colors, fonts } from 'shared/common-variables'
+import { footerSections } from '../configs.js'
 
 const _ = {
   map,
@@ -41,7 +40,7 @@ const FooterContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
   position: relative;
-  background-color: ${props => selectBgColor(props.pageTheme)};
+  background-color: ${props => props.bgColor};
   padding: ${arrayToCssShorthand(styles.footerContentPadding.mobile)};
   ${screen.tabletAbove`
     padding: ${arrayToCssShorthand(styles.footerContentPadding.desktop)};
@@ -112,10 +111,10 @@ const SectionItems = styled.ul`
   `}
   a {
     cursor: pointer;
-    color: ${props => selectTextColor(props.pageTheme)};
+    color: ${props => props.fontColor};
     text-decoration: none;
     &:link, :active, :visited, :focus {
-      color: ${props => selectTextColor(props.pageTheme)};
+      color: ${props => props.fontColor};
       text-decoration: none;
     }
     &:hover {
@@ -164,7 +163,7 @@ EnhancedLink.propTypes = {
   to: PropTypes.string.isRequired,
 }
 
-const buildSectionsJSX = (sections, pageTheme) => _.map(sections, (section) => {
+const buildSectionsJSX = (sections, fontColor) => _.map(sections, (section) => {
   const sectionName = section.name
   const sectionItems = section.items
   return (
@@ -173,7 +172,7 @@ const buildSectionsJSX = (sections, pageTheme) => _.map(sections, (section) => {
         <SectionTitle>
           {selectIcon(sectionName)}
         </SectionTitle>
-        <SectionItems pageTheme={pageTheme} >
+        <SectionItems fontColor={fontColor} >
           {_.map(sectionItems, item => (
             <EnhancedLink to={item.link} target={item.target || null} key={item.slug}>
               <SectionItem>
@@ -189,11 +188,13 @@ const buildSectionsJSX = (sections, pageTheme) => _.map(sections, (section) => {
 
 class Footer extends React.PureComponent {
   render() {
-    const { pageTheme } = this.props
+    const { bgColor, fontColor } = this.props
     return (
-      <FooterContainer pageTheme={pageTheme}>
+      <FooterContainer
+        bgColor={bgColor}
+      >
         <FooterContent>
-          {buildSectionsJSX(footerSections, pageTheme)}
+          {buildSectionsJSX(footerSections, fontColor)}
         </FooterContent>
       </FooterContainer>
     )
@@ -201,11 +202,13 @@ class Footer extends React.PureComponent {
 }
 
 Footer.propTypes = {
-  pageTheme: PropTypes.string,
+  fontColor: PropTypes.string,
+  bgColor: PropTypes.string,
 }
 
 Footer.defaultProps = {
-  pageTheme: 'BRIGHT',
+  fontColor: colors.footerTextDark,
+  bgColor: colors.footerBg,
 }
 
 export default Footer

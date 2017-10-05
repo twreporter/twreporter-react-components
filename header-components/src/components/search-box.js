@@ -103,7 +103,7 @@ class SearchBox extends React.Component {
   }
 
   render() {
-    const { isSearchOpened, pageTheme } = this.props
+    const { isSearchOpened } = this.props
     return (
       <StyledCSSTransitionGroup
         key="transition"
@@ -113,7 +113,6 @@ class SearchBox extends React.Component {
       >
         {!isSearchOpened ? null : (
           <SearchBoxContainer
-            pageTheme={pageTheme}
             onSubmit={this._handleSubmit}
             onReset={this._onReset}
             noValidate="novalidate"
@@ -141,7 +140,6 @@ class SearchBox extends React.Component {
 SearchBox.propTypes = {
   isSearchOpened: PropTypes.bool,
   closeSearchBox: PropTypes.func.isRequired,
-  pageTheme: PropTypes.string.isRequired,
 }
 
 SearchBox.defaultProps = {

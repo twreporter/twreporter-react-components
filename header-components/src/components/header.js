@@ -1,16 +1,14 @@
-import React from 'react'
-import styled from 'styled-components'
-import PropTypes from 'prop-types'
 import Categories from './categories'
 import Channels from './channels'
 import Icons from './icons'
-import { arrayToCssShorthand, screen } from 'shared/style-utils'
-import { pageThemes } from 'shared/configs'
-import { colors } from 'shared/common-variables'
-import { selectBgColor } from '../styles/theme'
-import LogoBright from '../../static/twreporter-logo.svg'
-import LogoDark from '../../static/twreporter-logo-dark.svg'
+import Logo from '../../static/twreporter-logo.svg'
+import LogoBright from '../../static/twreporter-logo-bright.svg'
+import PropTypes from 'prop-types'
+import React from 'react'
+import styled from 'styled-components'
 import { Link } from 'react-router'
+import { arrayToCssShorthand, screen } from 'shared/style-utils'
+import { colors } from 'shared/common-variables'
 
 const styles = {
   headerHeight: 109, // px
@@ -39,7 +37,7 @@ const HeaderContainer = styled.div`
 `
 
 const TopRow = styled.div`
-  background-color: ${props => (props.isIndex ? colors.indexBodyBgWhite : selectBgColor(props.pageTheme))};
+  background-color: ${props => props.bgColor};
   height: ${props => (props.isIndex ? styles.headerHeightIndex : styles.headerHeight)}px;
 `
 
@@ -71,16 +69,6 @@ const TopRowContent = styled.div`
 `
 
 class Header extends React.PureComponent {
-  static _selectLogo(pageTheme) {
-    switch (pageTheme) {
-      case pageThemes.dark:
-        return <LogoDark onMouseDown={this._closeCategoriesMenu} />
-      case pageThemes.bright:
-      default:
-        return <LogoBright onMouseDown={this._closeCategoriesMenu} />
-    }
-  }
-
   constructor(props) {
     super(props)
     this.state = {
@@ -106,34 +94,56 @@ class Header extends React.PureComponent {
     })
   }
 
+  _selectLogo(logoColor) {
+    switch (logoColor) {
+      case Header.logoColor.bright:
+        return <LogoBright onMouseDown={this._closeCategoriesMenu} />
+      case Header.logoColor.dark:
+      default:
+        return <Logo onMouseDown={this._closeCategoriesMenu} />
+    }
+  }
+
   render() {
-    const { pageTheme, pathName, isIndex } = this.props
+    const { bgColor, fontColor, logoColor, pathName, isIndex } = this.props
     const { categoriesIsOpen } = this.state
     return (
       <HeaderContainer>
-        <TopRow pageTheme={pageTheme} isIndex={isIndex}>
+        <TopRow
+          bgColor={bgColor}
+          isIndex={isIndex}
+        >
           <TopRowContent isIndex={isIndex}>
             <Link to="/">
-              {Header._selectLogo(pageTheme)}
+              {this._selectLogo(logoColor)}
             </Link>
-            <Icons pageTheme={pageTheme} />
+            <Icons />
           </TopRowContent>
         </TopRow>
-        {isIndex ? null : <Channels handleToggleCategoriesMenu={this._handleToggleCategoriesMenu} pageTheme={pageTheme} pathName={pathName} categoriesIsOpen={categoriesIsOpen} />}
-        {isIndex ? null : <Categories categoriesIsOpen={categoriesIsOpen} handleToggleCategoriesMenu={this._handleToggleCategoriesMenu} pageTheme={pageTheme} />}
+        {isIndex ? null : <Channels handleToggleCategoriesMenu={this._handleToggleCategoriesMenu} fontColor={fontColor} pathName={pathName} categoriesIsOpen={categoriesIsOpen} />}
+        {isIndex ? null : <Categories categoriesIsOpen={categoriesIsOpen} handleToggleCategoriesMenu={this._handleToggleCategoriesMenu} bgColor={bgColor} />}
       </HeaderContainer>
     )
   }
 }
 
+Header.logoColor = {
+  dark: 'dark',
+  bright: 'bright',
+}
+
 Header.propTypes = {
-  pageTheme: PropTypes.string,
+  bgColor: PropTypes.string,
+  fontColor: PropTypes.string,
+  logoColor: PropTypes.string,
   pathName: PropTypes.string,
   isIndex: PropTypes.bool,
 }
 
 Header.defaultProps = {
-  pageTheme: pageThemes.bright,
+  bgColor: colors.white,
+  fontColor: colors.black,
+  logoColor: Header.logoColor.dark,
   isIndex: false,
   pathName: '',
 }
