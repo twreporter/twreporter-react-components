@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router'
 import { arrayToCssShorthand, screen } from 'shared/style-utils'
 import { colors } from 'shared/common-variables'
+import { HEADER_POSITION_UPON } from '../styles/constants'
 
 const styles = {
   headerHeight: 109, // px
@@ -63,7 +64,7 @@ const TopRowContent = styled.div`
     max-width: ${props => (props.isIndex ? styles.topRowMaxWidth.desktop : styles.topRowMaxWidth.hd)}px;
   `}
   ${screen.hdAbove`
-    max-width: ${styles.topRowMaxWidth.hd}px;
+    max-width: ${props => (props.headerPosition === HEADER_POSITION_UPON ? '100%' : `${styles.topRowMaxWidth.hd}px`)};
   `}
   margin: 0 auto;
 `
@@ -105,7 +106,7 @@ class Header extends React.PureComponent {
   }
 
   render() {
-    const { bgColor, fontColor, logoColor, pathName, isIndex } = this.props
+    const { bgColor, fontColor, logoColor, pathName, isIndex, headerPosition } = this.props
     const { categoriesIsOpen } = this.state
     return (
       <HeaderContainer>
@@ -113,14 +114,14 @@ class Header extends React.PureComponent {
           bgColor={bgColor}
           isIndex={isIndex}
         >
-          <TopRowContent isIndex={isIndex}>
+          <TopRowContent isIndex={isIndex} headerPosition={headerPosition} >
             <Link to="/">
               {this._selectLogo(logoColor)}
             </Link>
             <Icons />
           </TopRowContent>
         </TopRow>
-        {isIndex ? null : <Channels handleToggleCategoriesMenu={this._handleToggleCategoriesMenu} fontColor={fontColor} pathName={pathName} categoriesIsOpen={categoriesIsOpen} />}
+        {isIndex ? null : <Channels handleToggleCategoriesMenu={this._handleToggleCategoriesMenu} fontColor={fontColor} pathName={pathName} categoriesIsOpen={categoriesIsOpen} headerPosition={headerPosition} />}
         {isIndex ? null : <Categories categoriesIsOpen={categoriesIsOpen} handleToggleCategoriesMenu={this._handleToggleCategoriesMenu} bgColor={bgColor} />}
       </HeaderContainer>
     )
@@ -138,14 +139,16 @@ Header.propTypes = {
   logoColor: PropTypes.string,
   pathName: PropTypes.string,
   isIndex: PropTypes.bool,
+  headerPosition: PropTypes.string,
 }
 
 Header.defaultProps = {
-  bgColor: colors.white,
+  bgColor: '',
   fontColor: colors.black,
   logoColor: Header.logoColor.dark,
   isIndex: false,
   pathName: '',
+  headerPosition: '',
 }
 
 export default Header
