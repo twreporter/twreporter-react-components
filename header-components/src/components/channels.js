@@ -6,7 +6,6 @@ import map from 'lodash/map'
 import { channelConfigs, channels } from 'shared/configs'
 import { arrayToCssShorthand, linkUnderline, screen } from 'shared/style-utils'
 import { colors, fonts } from 'shared/common-variables'
-import { selectTextColor } from '../styles/theme'
 import { Link } from 'react-router'
 
 const _ = {
@@ -96,7 +95,7 @@ const ChannelContainer = styled.li`
   ${screen.desktopAbove`
     padding: ${arrayToCssShorthand(styles.itemPadding.desktop)};
     margin: ${arrayToCssShorthand(styles.itemMargin.desktop)};
-    color: ${props => selectTextColor(props.pageTheme)};
+    color: ${props => props.fontColor};
     &:hover {
       color: ${colors.hoverCategories};
     }
@@ -176,7 +175,7 @@ class Channels extends React.PureComponent {
   }
 
   render() {
-    const { pageTheme } = this.props
+    const { fontColor } = this.props
     const { activeChannel } = this.state
     const channelsJSX = _.map(channels, (channelName) => {
       const channelConfig = _.get(channelConfigs, channelName, {})
@@ -192,7 +191,7 @@ class Channels extends React.PureComponent {
           onClick={this._handleClickChannel}
           data-channel-type={channelType}
           data-channel-name={channelName}
-          pageTheme={pageTheme}
+          fontColor={fontColor}
         >
           <Link to={channelType !== 'link' ? null : `${channelPrefix}${channelPath}`}>
             {channelText}
@@ -202,7 +201,7 @@ class Channels extends React.PureComponent {
     })
     return (
       <ChannelsContainer>
-        <ChannelsContent pageTheme={pageTheme}>
+        <ChannelsContent>
           {channelsJSX}
         </ChannelsContent>
       </ChannelsContainer>
@@ -212,9 +211,13 @@ class Channels extends React.PureComponent {
 
 Channels.propTypes = {
   handleToggleCategoriesMenu: PropTypes.func.isRequired,
-  pageTheme: PropTypes.string.isRequired,
   pathName: PropTypes.string.isRequired,
   categoriesIsOpen: PropTypes.bool.isRequired,
+  fontColor: PropTypes.string,
+}
+
+Channels.defaultProps = {
+  fontColor: colors.black,
 }
 
 export default Channels

@@ -6,7 +6,6 @@ import { screen } from 'shared/style-utils'
 import { colors, fonts } from 'shared/common-variables'
 import { searchConfigs } from 'shared/configs'
 import { Link } from 'react-router'
-import PropTypes from 'prop-types'
 
 // import MemberIcon from '../../static/member-icon.svg'
 // import BookmarkListIcon from '../../static/bookmark-list-icon.svg'
@@ -118,7 +117,6 @@ class Icons extends React.PureComponent {
     })
   }
   render() {
-    const { pageTheme } = this.props
     const { isSearchOpened } = this.state
     return (
       <IconsContainer>
@@ -132,7 +130,6 @@ class Icons extends React.PureComponent {
         <SearchBox
           isSearchOpened={isSearchOpened}
           closeSearchBox={this._closeSearchBox}
-          pageTheme={pageTheme}
         />
         <HideOnDesktop>
           <Link to={`/${searchConfigs.path}`}>
@@ -144,8 +141,5 @@ class Icons extends React.PureComponent {
   }
 }
 
-Icons.propTypes = {
-  pageTheme: PropTypes.string.isRequired,
-}
 
 export default Icons
