@@ -66,7 +66,7 @@ export const linkPrefix = {
 
 export const channelConfigs = {
   review: {
-    text: '觀點',
+    text: '評論',
     type: 'link',
     prefix: linkPrefix.categories,
     path: 'reviews',

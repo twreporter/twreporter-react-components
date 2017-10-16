@@ -4,7 +4,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { colors, fonts } from 'shared/common-variables'
 import { arrayToCssShorthand, screen, resetLinkStyle } from 'shared/style-utils'
-import { TEXT } from '../../constants/topics'
 import RightArrowIcon from '../../static/arrow-right.svg'
 
 const styles = {
@@ -41,7 +40,7 @@ const SectionTitle = styled.div`
     margin: ${arrayToCssShorthand(styles.titleMargin.tablet)};
   `}
 `
-const Section = styled.div`
+const SectionContent = styled.div`
   width: 100%;
   margin: ${arrayToCssShorthand(styles.sectionMargin.mobile)};
   ${screen.tabletOnly`
@@ -77,33 +76,31 @@ const GoToTopic = styled.div`
   }
 `
 
-const TopSection = props => (
-  <Section>
-    <SectionTitle>{TEXT.SECTION_TITLE_FEATURED}</SectionTitle>
+const TopSectionContent = props => (
+  <SectionContent>
     {props.children}
     {!props.topicName ? null : <StyledLink to={props.topicUrl}><GoToTopic><span>{`更多${props.topicName}文章`}</span><RightArrowIcon /></GoToTopic></StyledLink>}
-  </Section>
+  </SectionContent>
 )
 
-TopSection.propTypes = {
+TopSectionContent.propTypes = {
   children: PropTypes.node.isRequired,
   topicUrl: PropTypes.string.isRequired,
   topicName: PropTypes.string,
 }
 
-TopSection.defaultProps = {
+TopSectionContent.defaultProps = {
   topicName: '',
 }
 
-const ListSection = props => (
-  <Section>
-    <SectionTitle>{TEXT.SECTION_TITLE_OTHERS}</SectionTitle>
+const ListSectionContent = props => (
+  <SectionContent>
     {props.children}
-  </Section>
+  </SectionContent>
 )
 
-ListSection.propTypes = {
+ListSectionContent.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export { TopSection, ListSection }
+export { TopSectionContent, ListSectionContent, SectionTitle }

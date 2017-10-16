@@ -1,6 +1,18 @@
 ### UNRELEASED
+### 1.1.0
+- Add theme to header and footer component
+
+### 1.0.11
+- Make the text area of editor-picks be swipeable
+
+### 1.0.11
+- Only wrap list section in Topics component for isFetching
+- Fix topics linkto bug
+
+### 1.0.10
 - Remove useless subfolder configs
 - Update babelrc
+- Change wording from '觀點' to '評論'
 
 ### 1.0.9
 - Add pagination
