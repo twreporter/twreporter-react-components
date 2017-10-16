@@ -1,4 +1,9 @@
 ### UNRELEASED
+### 1.1.0
+- Add theme to header and footer component
+
+### 1.0.11
+- Make the text area of editor-picks be swipeable
 
 ### 1.0.11
 - Only wrap list section in Topics component for isFetching

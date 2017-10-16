@@ -8,7 +8,6 @@ import { arrayToCssShorthand, screen } from 'shared/style-utils'
 import { colors, fonts } from 'shared/common-variables'
 import { CSSTransitionGroup } from 'react-transition-group'
 import { categoriesMenuEffect } from 'shared/css-transition-group'
-import { selectBgColor } from '../styles/theme'
 import { Link } from 'react-router'
 
 const _ = {
@@ -61,7 +60,7 @@ const CategoriesContainer = styled.div`
   background-color: ${colors.white};
   user-select: none;
   ${screen.tabletBelow`
-    border: ${arrayToCssShorthand(styles.categoriesContainerBorder)} solid ${props => selectBgColor(props.pageTheme)};
+    border: ${arrayToCssShorthand(styles.categoriesContainerBorder)} solid ${props => props.bgColor};
   `}
   ${screen.desktopAbove`
     padding: ${arrayToCssShorthand(styles.containerPadding.desktop)};
@@ -160,7 +159,7 @@ class Categories extends React.PureComponent {
     this.props.handleToggleCategoriesMenu('close')
   }
   render() {
-    const { categoriesIsOpen, pageTheme } = this.props
+    const { categoriesIsOpen, bgColor } = this.props
     return (
       <Positioning>
         <StyledCSSTransitionGroup
@@ -171,7 +170,7 @@ class Categories extends React.PureComponent {
         >
           {!categoriesIsOpen ? null : (
             <ViewPort>
-              <CategoriesContainer pageTheme={pageTheme}>
+              <CategoriesContainer bgColor={bgColor}>
                 <CategoriesContent>
                   {this.categoriesJSX}
                 </CategoriesContent>
@@ -186,11 +185,12 @@ class Categories extends React.PureComponent {
 Categories.propTypes = {
   categoriesIsOpen: PropTypes.bool,
   handleToggleCategoriesMenu: PropTypes.func.isRequired,
-  pageTheme: PropTypes.string.isRequired,
+  bgColor: PropTypes.string,
 }
 
 Categories.defaultProps = {
   categoriesIsOpen: false,
+  bgColor: colors.bodyBgWhite,
 }
 
 export default Categories
