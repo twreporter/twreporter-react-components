@@ -25,7 +25,7 @@ const ButtonContainer = styled.div`
 `
 
 const NextPageBtn = (props) => {
-  if (!props.shouldMount) return null
+  if (!props.shouldLoad) return null
   return (
     <ButtonContainer shouldDisplay={props.shouldDisplay} onClick={props.handleClick}>
       <ArrowDown />
@@ -34,7 +34,7 @@ const NextPageBtn = (props) => {
 }
 
 NextPageBtn.propTypes = {
-  shouldMount: PropTypes.bool.isRequired,
+  shouldLoad: PropTypes.bool.isRequired,
   shouldDisplay: PropTypes.bool.isRequired,
   handleClick: PropTypes.func.isRequired,
 }

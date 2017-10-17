@@ -50,9 +50,48 @@ export const fontSizes = {
   },
   caption: {
     mobile: '16px',
+    tablet: '18px',
+    desktop: '18px',
+    hd: '27px',
+  },
+  subtitle: {
+    mobile: '16px',
     tablet: '20px',
     desktop: '20px',
     hd: '30px',
+  },
+  topicTitle: {
+    mobile: '18px',
+    tablet: '24px',
+    desktop: '24px',
+    hd: '24px',
+  },
+  itemTitle: '18px',
+  colophonTitle: {
+    mobile: '16px',
+    tablet: '18px',
+  },
+  colophonContent: {
+    mobile: '14px',
+    tablet: '16px',
+  },
+  leftMainTitle: {
+    mobile: '48px',
+    tablet: '64px',
+    desktop: '72px',
+    hd: '114px',
+  },
+  leftMainSubtitle: {
+    mobile: '18px',
+    tablet: '28px',
+    desktop: '28px',
+    hd: '48px',
+  },
+  leftDate: {
+    mobile: '16px',
+    tablet: '20px',
+    desktop: '20px',
+    hd: '36px',
   },
 }
 
@@ -60,9 +99,9 @@ export const fontSizes = {
 export const fontWeight = {
   extraLight: '100',
   light: '200',
-  // normal: '300',
+  normal: '300',
   // regular: '400',
-  // medium: '500',
+  medium: '500',
   // bold: '700',
   // heavy: '900',
 }
@@ -70,5 +109,6 @@ export const fontWeight = {
 export const colors = {
   white: '#ffffff',
   black: '#000000',
+  itemGrey: '#6B6B6B',
 }
 

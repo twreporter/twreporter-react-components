@@ -1,4 +1,4 @@
-import { pageItemEntranceDuration, pageTransitionDuration } from '../constants/time'
+import { pageTransitionDuration } from '../constants/time'
 import * as CONTENT_TYPES from '../constants/content-types'
 import * as styles from '../constants/style-variables'
 import Header from './header'
@@ -6,14 +6,18 @@ import Pagination from './pagination'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import Slide from './slide'
-import styled, { injectGlobal } from 'styled-components'
+import styled from 'styled-components'
+import DetectPlayWithoutGesture from 'shared/components/detect-play-without-gesture'
+import FirstPageButton from './first-page-button'
 
+import forOwn from 'lodash/forOwn'
 import get from 'lodash/get'
 import map from 'lodash/map'
 import set from 'lodash/set'
 import throttle from 'lodash/throttle'
 
 const _ = {
+  forOwn,
   get,
   map,
   set,
@@ -21,8 +25,8 @@ const _ = {
 }
 
 let prevTouchClientY
-const touchToNextPageThreshold = 50
-const touchToPrevPageThreshold = 50
+const touchThreshold = 10
+const wheelThreshold = 0
 
 const ViewportWrapper = styled.div`
   margin: 0;
@@ -36,7 +40,9 @@ const ViewportWrapper = styled.div`
 `
 
 const SlidesContainer = styled.div`
+  touch-action: none;
   position: relative;
+  pointer-events: auto;
   width: ${styles.pageWidth};
   height: ${styles.pageHeight};
   will-change: transform;
@@ -52,62 +58,116 @@ class Slides extends PureComponent {
       index: 0,
       isChanging: false,
       toIndex: undefined,
+      canPlayWithoutGesture: false,
     }
-    this._audioPlayers = {} // for ios 8 we can only play audio on user interaction
-    this._getAudioPlayer = this._getAudioPlayer.bind(this)
-    this._onKeyDown = this._onKeyDown.bind(this)
-    this._onTouchStart = this._onTouchStart.bind(this)
-    this._onTouchMove = this._onTouchMove.bind(this)
-    this._onTouchEnd = this._onTouchEnd.bind(this)
-    this._onTouchCancel = this._onTouchCancel.bind(this)
-    this._onWheel = this._onWheel.bind(this)
-    this._goNextIndex = this._goNextIndex.bind(this)
-    this._changeIndex = _.throttle(this._changeIndex, (pageTransitionDuration + pageItemEntranceDuration + 100), { leading: true, trailing: false }).bind(this)
-    this._handleTouchClientY = _.throttle(this._handleTouchClientY, 200)
-    this._changingFinished = this._changingFinished.bind(this)
-    // this._loadAudio = this._loadAudio.bind(this)
+    this._audioElements = [] // for android and ios we can only play audio on user interaction
+
+    this.onKeyDown = this.onKeyDown.bind(this)
+    this.onTouchStart = this.onTouchStart.bind(this)
+    this.onTouchMove = this.onTouchMove.bind(this)
+    this.onTouchEnd = this.onTouchEnd.bind(this)
+    this.onTouchCancel = this.onTouchCancel.bind(this)
+    this.onTransitionEnd = this.onTransitionEnd.bind(this)
+    /* Action of two fingers swiping on laptop touchpad may cause lots of wheeling events during about 1.6s. So we need to throttle it. */
+    this.onWheel = _.throttle(this.onWheel, 1600, { leading: true, trailing: false }).bind(this)
+
+    this.getAudioPlayer = this.getAudioPlayer.bind(this)
+    this.handlePlayed = this.handlePlayed.bind(this)
+    this.goNextIndex = this.goNextIndex.bind(this)
+    this.goNextAndPreplay = this.goNextAndPreplay.bind(this)
+
+    this._handleTouchClientY = _.throttle(this._handleTouchClientY, 0)
   }
 
-  componentWillMount() {
-    // // For ios below 9.2 to disable touch overscroll
-    // if (typeof document !== 'undefined') {
-    //   document.addEventListener('touchmove', e => (e.preventDefault()))
-    // }
+  onKeyDown(e) {
+    switch (e.key) {
+      case 'PageDown':
+      case 'Down':
+      case 'Enter':
+      case ' ':
+      case 'ArrowRight':
+      case 'Right':
+      case 'ArrowDown':
+      case 'Spacebar':
+        e.preventDefault()
+        return this._changeIndex(this.state.index + 1)
+      case 'ArrowUp':
+      case 'Up':
+      case 'ArrowLeft':
+      case 'Left':
+      case 'PageUp':
+        e.preventDefault()
+        return this._changeIndex(this.state.index - 1)
+      default:
+        return null
+    }
+  }
 
-    /* Set for `height: 100%` as browser window inner height */
-    // eslint-disable-next-line no-unused-expressions
-    injectGlobal`
-      html, body {
-        touch-action: manipulation;
-        height: 100%;
-        overflow: hidden;
+  onWheel(e) {
+    if (Math.abs(e.deltaY) > wheelThreshold) {
+      if (e.deltaY > 0) {
+        return this._changeIndex(this.state.index + 1)
       }
-    `
-  }
-
-  componentWillUnmount() {
-    // eslint-disable-next-line no-unused-expressions
-    injectGlobal`
-      html, body {
-        touch-action: auto;
-        height: auto;
-        overflow: visible;
+      if (e.deltaY < 0) {
+        return this._changeIndex(this.state.index - 1)
       }
-    `
+    }
   }
 
-  _getAudioPlayer(instance) {
+  onTouchStart(e) {
+    const nextTouchClientY = !e.touches ? undefined : _.get(e.touches.item(0), 'clientY')
+    prevTouchClientY = nextTouchClientY
+  }
+
+  onTouchMove(e) {
+    e.preventDefault()
+    if (e.touches) {
+      const nextTouchClientY = _.get(e.touches.item(0), 'clientY')
+      return this._handleTouchClientY(nextTouchClientY)
+    }
+  }
+
+  onTouchEnd() {
+    this._resetPrevTouchClientY()
+  }
+
+  onTouchCancel() {
+    this._resetPrevTouchClientY()
+  }
+
+  onTransitionEnd() {
+    const targetIndex = this.state.toIndex
+    if (this._isIndexValueValid(targetIndex)) {
+      return this.setState({
+        index: targetIndex,
+        isChanging: false,
+        toIndex: undefined,
+      })
+    }
+  }
+
+  getAudioPlayer(instance) {
     const index = _.get(instance, 'props.index')
     if (index >= 0) {
-      this._audioPlayers[index] = instance
+      this._audioElements.push(instance._audio)
     }
   }
 
-  _changingFinished(targetIndex) {
+  goNextIndex() {
+    return this._changeIndex(this.state.index + 1)
+  }
+
+  goNextAndPreplay() {
     this.setState({
-      index: targetIndex,
-      isChanging: false,
-      toIndex: undefined,
+      isChanging: true,
+      toIndex: this.state.index + 1,
+    })
+    this._preplayAllAudios()
+  }
+
+  handlePlayed() {
+    this.setState({
+      canPlayWithoutGesture: true,
     })
   }
 
@@ -115,17 +175,10 @@ class Slides extends PureComponent {
     return (index >= 0 && index < _.get(this.props, 'slides.length'))
   }
 
-  _goNextIndex() {
-    console.log('gonext')
-    return this._changeIndex(this.state.index + 1)
-  }
-
   _changeIndex(targetIndex) {
-    if (this._isIndexValueValid(targetIndex)) {
-      if (targetIndex !== this.state.index) {
-        if (typeof window !== 'undefined') {
-          // this._playAudioOnUserInteraction(targetIndex)
-          setTimeout(this._changingFinished, pageTransitionDuration, targetIndex)
+    if (!this.state.isChanging) {
+      if (this._isIndexValueValid(targetIndex)) {
+        if (targetIndex !== this.state.index) {
           this.setState({
             isChanging: true,
             toIndex: targetIndex,
@@ -135,65 +188,16 @@ class Slides extends PureComponent {
     }
   }
 
-  _onKeyDown(e) {
-    switch (e.key) {
-      case 'ArrowRight':
-      case 'Right':
-      case 'ArrowDown':
-      case 'Down':
-        e.preventDefault()
-        return this._changeIndex(this.state.index + 1)
-      case 'ArrowLeft':
-      case 'Left':
-      case 'ArrowUp':
-      case 'Up':
-        e.preventDefault()
-        return this._changeIndex(this.state.index - 1)
-      default:
-        return null
-    }
-  }
-
-  _onWheel(e) {
-    if (e.deltaY > 0) {
-      return this._changeIndex(this.state.index + 1)
-    }
-    return this._changeIndex(this.state.index - 1)
-  }
-
-  _onTouchStart(e) {
-    console.log('touchstart')
-    const nextTouchClientY = !e.touches ? undefined : _.get(e.touches.item(0), 'clientY')
-    prevTouchClientY = nextTouchClientY
-  }
-
-  _onTouchMove(e) {
-    e.preventDefault()
-    if (e.touches) {
-      const nextTouchClientY = _.get(e.touches.item(0), 'clientY')
-      return this._handleTouchClientY(nextTouchClientY)
-    }
-  }
-
-  _onTouchEnd() {
-    console.log('touchend')
-    this._resetPrevTouchClientY()
-  }
-
-  _onTouchCancel() {
-    console.log('touchcancel')
-    this._resetPrevTouchClientY()
-  }
-
   _handleTouchClientY(nextTouchClientY) {
-    const touchDiff = nextTouchClientY - prevTouchClientY
-    if (touchDiff > 0 && Math.abs(touchDiff) > touchToNextPageThreshold) {
+    const deltaY = nextTouchClientY - prevTouchClientY
+    if (Math.abs(deltaY) > touchThreshold) {
       this._resetPrevTouchClientY()
-      this._changeIndex(this.state.index - 1)
-    }
-    if (touchDiff < 0 && Math.abs(touchDiff) > touchToPrevPageThreshold) {
-      this._resetPrevTouchClientY()
-      this._changeIndex(this.state.index + 1)
+      if (deltaY > 0) {
+        return this._changeIndex(this.state.index - 1)
+      }
+      if (deltaY < 0) {
+        return this._changeIndex(this.state.index + 1)
+      }
     }
   }
 
@@ -201,21 +205,19 @@ class Slides extends PureComponent {
     prevTouchClientY = undefined
   }
 
-  // _playAudioOnUserInteraction(targetIndex) {
-  //   const { index, isChanging, toIndex } = this.state
-  //   const premierIndex = isChanging ? toIndex : index
-  //   const nextIndex = targetIndex !== undefined ? targetIndex : premierIndex
-  //   const audio = _.get(this._audioPlayers, [nextIndex, '_audio'])
-  //   console.log('_playAudioOnUserInteraction', nextIndex)
-  //   if (audio) {
-  //     return audio.play()
-  //   }
-  // }
+  _preplayAllAudios() {
+    const n = this._audioElements.length
+    for (let i = 0; i < n; i += 1) {
+      this._audioElements[i].play()
+      this._audioElements[i].pause()
+    }
+  }
 
   render() {
-    const { slides, title } = this.props
-    const { isChanging, toIndex } = this.state
+    const { slides, title, blankAudioSrc } = this.props
+    const { isChanging, toIndex, canPlayWithoutGesture } = this.state
     const currentIndex = this.state.index
+    const isFirstPage = currentIndex === 0
     const premierIndex = isChanging ? toIndex : currentIndex
     const slideY = `${(-premierIndex) * 100}%`
     const isHeaderTitleShown = _.get(slides, [premierIndex, 'contentType']) !== CONTENT_TYPES.TITLE
@@ -223,43 +225,56 @@ class Slides extends PureComponent {
       return (
         <Slide
           key={`slide-${index}`}
-          slide={slide}
+          canPlayWithoutGesture={canPlayWithoutGesture}
           currentIndex={currentIndex}
-          getAudioPlayer={this._getAudioPlayer}
-          goNextIndex={this._goNextIndex}
+          getAudioPlayer={this.getAudioPlayer}
+          goNextIndex={this.goNextIndex}
           index={index}
           isChanging={isChanging}
+          slide={slide}
         />
       )
     })
+
+    const listenerOff = isFirstPage && !canPlayWithoutGesture
     return (
       <ViewportWrapper
         tabIndex="0"
-        onKeyDown={this._onKeyDown}
-        onTouchStart={this._onTouchStart}
-        onTouchMove={this._onTouchMove}
-        onTouchEnd={this._onTouchEnd}
-        onTouchCancel={this._onTouchCancel}
-        onWheel={this._onWheel}
+        onKeyDown={listenerOff ? null : this.onKeyDown}
+        onTouchStart={listenerOff ? null : this.onTouchStart}
+        onTouchMove={listenerOff ? null : this.onTouchMove}
+        onTouchEnd={listenerOff ? null : this.onTouchEnd}
+        onTouchCancel={listenerOff ? null : this.onTouchCancel}
+        onWheel={listenerOff ? null : this.onWheel}
       >
         <Header title={title} isTitleShown={isHeaderTitleShown} />
         <Pagination currentIndex={premierIndex} total={_.get(slides, 'length', 0)} />
-        <SlidesContainer currentIndex={currentIndex} slideY={slideY}>
+        <SlidesContainer currentIndex={currentIndex} slideY={slideY} onTransitionEnd={this.onTransitionEnd}>
           {SlidesJSX}
         </SlidesContainer>
+        <FirstPageButton
+          isFirstPage={isFirstPage}
+          canPlayWithoutGesture={canPlayWithoutGesture}
+          isChanging={isChanging}
+          handleCannotPlay={this.goNextAndPreplay}
+          handleCanPlay={this.goNextIndex}
+        />
+        <DetectPlayWithoutGesture playedCallback={this.handlePlayed} blankAudioSrc={blankAudioSrc} />
       </ViewportWrapper>
     )
   }
 }
 
 Slides.propTypes = {
-  slides: PropTypes.arrayOf(PropTypes.object),
+  slides: PropTypes.arrayOf(PropTypes.object).isRequired,
   title: PropTypes.string.isRequired,
+  blankAudioSrc: PropTypes.string,
 }
 
 Slides.defaultProps = {
   slides: [],
   title: '',
+  blankAudioSrc: '',
 }
 
 export default Slides

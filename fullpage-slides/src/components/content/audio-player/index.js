@@ -1,6 +1,6 @@
 import { screen } from 'shared/style-utils'
 import { zIndex } from '../../../constants/style-variables'
-import Captions from './captions'
+import Subtitles from './subtitles'
 import ContentContainer from '../container'
 import Progress from './progress'
 import PropTypes from 'prop-types'
@@ -64,7 +64,7 @@ const ButtonsBox = styled.div`
   `}
 `
 
-const CaptionsBox = styled.div`
+const SubtitlesBox = styled.div`
   text-align: left;
   flex-grow: 1;
   flex-shrink: 1;
@@ -114,26 +114,26 @@ class AudioPlayer extends React.Component {
       duration: 0,
       muted: false,
     }
-    this._changeMute = this._changeMute.bind(this)
+    this._handleClickSoundBtn = this._handleClickSoundBtn.bind(this)
     this._handleTimeUpdate = _.throttle(this._handleTimeUpdate, 300).bind(this)
     this._handleLoadedData = this._handleLoadedData.bind(this)
     this._getAudioElement = this._getAudioElement.bind(this)
   }
 
-  componentWillMount() {
-    if (typeof window !== 'undefined') {
-      const isIos = /iPad|iPhone|iPod/.test(_.get(window, 'navigator.userAgent')) && !window.MSStream
-      this.setState({
-        muted: isIos,
-      })
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.props.canPlayUnmutedly !== nextProps.canPlayUnmutedly) {
+  //     this.setState({
+  //       muted: !nextProps.canPlayUnmutedly,
+  //     })
+  //   }
+  // }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isFocus) {
-      this._playAudio()
-    } else {
-      this._pauseAudio()
+  componentDidUpdate(prevProps) {
+    if (this.props.isChanging) {
+      return this._pauseAudio()
+    }
+    if (!prevProps.isFocus && this.props.isFocus) {
+      return this._playAudio()
     }
   }
 
@@ -163,6 +163,13 @@ class AudioPlayer extends React.Component {
     })
   }
 
+  _handleClickSoundBtn() {
+    if (this.state.muted) {
+      this._playAudio()
+    }
+    return this._changeMute()
+  }
+
   _handleLoadedData() {
     this.setState({
       duration: this._audio.duration,
@@ -174,7 +181,7 @@ class AudioPlayer extends React.Component {
   }
 
   render() {
-    const { audioSrc, audioType, captions, isFocus } = this.props
+    const { audioSrc, audioType, subtitles, isFocus } = this.props
     const { currentTime, muted, duration } = this.state
     const SoundIcon = muted ? SoundOffIconJSX : SoundOnIconJSX
     return (
@@ -194,8 +201,22 @@ class AudioPlayer extends React.Component {
           />
         </audio>
         <Status>
-          <ButtonsBox><Button onClick={this._changeMute}>{SoundIcon}</Button></ButtonsBox>
-          <CaptionsBox><Captions ref={(ele) => { this._captions = ele }} currentTime={currentTime} isFocus={isFocus} captions={captions} /></CaptionsBox>
+          <ButtonsBox>
+            <Button
+              onClick={this._handleClickSoundBtn}
+              isMuted={this.state.muted}
+            >
+              {SoundIcon}
+            </Button>
+          </ButtonsBox>
+          <SubtitlesBox>
+            <Subtitles
+              ref={(ele) => { this._subtitles = ele }}
+              currentTime={currentTime}
+              isFocus={isFocus}
+              subtitles={subtitles}
+            />
+          </SubtitlesBox>
         </Status>
         <Debug>currentTime:{currentTime}</Debug>
         <Progress currentTime={currentTime} duration={duration} />
@@ -205,14 +226,16 @@ class AudioPlayer extends React.Component {
 }
 
 AudioPlayer.propTypes = {
-  isFocus: PropTypes.bool.isRequired,
   audioSrc: PropTypes.string.isRequired,
-  captions: PropTypes.array.isRequired,
   audioType: PropTypes.string.isRequired,
+  // canPlayUnmutedly: PropTypes.bool.isRequired,
+  subtitles: PropTypes.array.isRequired,
+  isChanging: PropTypes.bool.isRequired,
+  isFocus: PropTypes.bool.isRequired,
 }
 
 AudioPlayer.defaultProps = {
-  captions: [],
+  subtitles: [],
   audioType: 'audio/mpeg',
 }
 

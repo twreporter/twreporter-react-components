@@ -21,21 +21,17 @@ const slideFadeIn = startPoint => keyframes`
   https://stackoverflow.com/a/24589834/5814542
 */
 
-export const slideUpFadeInWhenFocus = isFocus =>
+export const slideUpFadeInWhenFocus = (isFocus, display = 'block') =>
   (!isFocus ? 'display: none;' : `
-    display: block;
+    display: ${display};
     animation: ${slideFadeIn(slideUpStartPoint)} ${time.pageItemEntranceDuration}ms ease ${time.pageItemEntranceDelay}ms both;
   `)
-// export const pageItemEntranceAnimation = isFocus => `
-//   opacity: ${isFocus ? '1' : '0'};
-//   transform: translateY(${isFocus ? '0' : slideUpStartPoint}) translateZ(0);
-//   transition: transform ${time.pageItemEntranceDuration}ms ease ${time.pageItemEntranceDelay}ms, opacity ${time.pageItemEntranceDuration}ms ease ${time.pageItemEntranceDelay}ms;
-// `
 
 const slideDownFadeInAnimation = (duration = 0, delay = 0) =>
   `animation: ${slideFadeIn(slideDownStartPoint)} ${duration}ms ease ${delay}ms both;`
 
 export const goNextBtnEntranceAnimation = slideDownFadeInAnimation(time.goNextBtnEntranceDuration, time.goNextBtnEntranceDelay)
+export const firstPageBtnEntranceAnimation = slideDownFadeInAnimation(time.firstPageBtnEntranceDuration, time.firstPageBtnEntranceDelay)
 
 export const fadeInOutKeyframes = (fadeInTime, fadeOutTime, duration) => keyframes`
   from, to {

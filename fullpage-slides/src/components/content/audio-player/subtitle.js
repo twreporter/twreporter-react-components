@@ -28,21 +28,21 @@ const Text = styled.div`
   top: 0;
   >span {
     letter-spacing: 1.2px;
-    font-size: ${fontSizes.caption.mobile};
+    font-size: ${fontSizes.subtitle.mobile};
   }
   ${screen.tabletOnly`
     >span {
-      font-size: ${fontSizes.caption.tablet};
+      font-size: ${fontSizes.subtitle.tablet};
     }
   `}
   ${screen.desktopOnly`
     >span {
-      font-size: ${fontSizes.caption.desktop};
+      font-size: ${fontSizes.subtitle.desktop};
     }
   `}
   ${screen.hdAbove`
     >span {
-      font-size: ${fontSizes.caption.hd};
+      font-size: ${fontSizes.subtitle.hd};
     }
   `}
 `
@@ -94,7 +94,7 @@ const Background = Text.extend`
   `}
 `
 
-class Caption extends React.PureComponent {
+class Subtitle extends React.PureComponent {
   render() {
     const { text, hide } = this.props
     if (!text) return null
@@ -107,14 +107,14 @@ class Caption extends React.PureComponent {
   }
 }
 
-Caption.propTypes = {
+Subtitle.propTypes = {
   text: PropTypes.string,
   hide: PropTypes.bool.isRequired,
 }
 
-Caption.defaultProps = {
+Subtitle.defaultProps = {
   text: '',
   hide: false,
 }
 
-export default Caption
+export default Subtitle

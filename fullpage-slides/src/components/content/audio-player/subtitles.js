@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
-import Caption from './caption'
+import Subtitle from './subtitle'
 
 import get from 'lodash/get'
 import map from 'lodash/map'
@@ -11,13 +11,13 @@ const _ = {
   map,
 }
 
-const CaptionsContainer = styled.div`
+const SubtitlesContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
 `
 
-class Captions extends React.Component {
+class Subtitles extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -28,12 +28,18 @@ class Captions extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const thisIndex = this.state.playingIndex
-    const { captions, currentTime } = nextProps
-    const nOfCaptions = _.get(captions, 'length')
+    const { subtitles, currentTime } = nextProps
+    const nOfSubtitles = _.get(subtitles, 'length')
     const nextIndex = thisIndex + 1
-    /* detect if next caption is start (should display) */
-    if (nextIndex < nOfCaptions) {
-      const nextStart = captions[nextIndex].start
+    /* detect if next subtitle is start (should display) */
+    if (currentTime === 0) {
+      this.setState({
+        playingIndex: -1,
+        hideAll: false,
+      })
+    }
+    if (nextIndex < nOfSubtitles) {
+      const nextStart = subtitles[nextIndex].start
       if (currentTime >= nextStart) {
         return this.setState({
           playingIndex: nextIndex,
@@ -41,9 +47,9 @@ class Captions extends React.Component {
         })
       }
     }
-    /* detect if this caption is end (should hide) */
-    if (thisIndex >= 0 && thisIndex < nOfCaptions) {
-      const thisEnd = captions[thisIndex].end
+    /* detect if this subtitle is end (should hide) */
+    if (thisIndex >= 0 && thisIndex < nOfSubtitles) {
+      const thisEnd = subtitles[thisIndex].end
       if (currentTime >= thisEnd) {
         return this.setState({
           hideAll: true,
@@ -62,33 +68,33 @@ class Captions extends React.Component {
   }
 
   render() {
-    const { captions, isFocus } = this.props
-    const nOfCaptions = _.get(captions, 'length')
+    const { subtitles, isFocus } = this.props
+    const nOfSubtitles = _.get(subtitles, 'length')
     const playingIndex = this.state.playingIndex
-    if (playingIndex >= nOfCaptions || playingIndex < 0) {
+    if (playingIndex >= nOfSubtitles || playingIndex < 0) {
       return null
     }
     const hideAll = this.state.hideAll
-    const subtitlesJSX = _.map(captions, (caption, index) => (
-      <Caption
+    const subtitlesJSX = _.map(subtitles, (subtitle, index) => (
+      <Subtitle
         key={index}
-        text={_.get(caption, 'text', '')}
+        text={_.get(subtitle, 'text', '')}
         hide={!isFocus || index !== playingIndex || hideAll}
       />
     ))
 
     return (
-      <CaptionsContainer>
+      <SubtitlesContainer>
         {subtitlesJSX}
-      </CaptionsContainer>
+      </SubtitlesContainer>
     )
   }
 }
 
-Captions.propTypes = {
-  captions: PropTypes.arrayOf(PropTypes.object).isRequired,
+Subtitles.propTypes = {
+  subtitles: PropTypes.arrayOf(PropTypes.object).isRequired,
   currentTime: PropTypes.number.isRequired,
   isFocus: PropTypes.bool.isRequired,
 }
 
-export default Captions
+export default Subtitles
