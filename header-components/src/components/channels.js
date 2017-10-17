@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import get from 'lodash/get'
 import map from 'lodash/map'
-import { channelConfigs, channels } from 'shared/configs'
+import { channelConfigs, channels, pageThemes } from 'shared/configs'
 import { arrayToCssShorthand, linkUnderline, screen } from 'shared/style-utils'
 import { colors, fonts } from 'shared/common-variables'
+import { HEADER_POSITION_UPON } from '../styles/constants'
 import { Link } from 'react-router'
 
 const _ = {
@@ -42,11 +43,18 @@ const styles = {
 const ChannelsContainer = styled.div`
   width: 100%;
   ${screen.hdAbove`
-    max-width: ${styles.channelsContainerMaxWidth}px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    ${(props) => {
+    if (props.headerPosition !== pageThemes.hpu) {
+      return `
+          max-width: ${styles.channelsContainerMaxWidth}px;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+        `
+    }
+    return ''
+  }}
   `}
 `
 
@@ -81,11 +89,10 @@ const ChannelsContent = styled.ul`
 const ChannelContainer = styled.li`
   padding: ${arrayToCssShorthand(styles.itemPadding.mobile)};
   margin: ${arrayToCssShorthand(styles.itemMargin.mobile)};
-  color: ${colors.black};
   a {
-    &, :hover, :active, :link, :visited {
-      color: inherit;
-      text-decoration: none;
+    color: ${colors.black};
+    &:hover {
+      color: ${colors.hoverCategories} !important;
     }
   }
   ${screen.tabletOnly`
@@ -95,9 +102,8 @@ const ChannelContainer = styled.li`
   ${screen.desktopAbove`
     padding: ${arrayToCssShorthand(styles.itemPadding.desktop)};
     margin: ${arrayToCssShorthand(styles.itemMargin.desktop)};
-    color: ${props => props.fontColor};
-    &:hover {
-      color: ${colors.hoverCategories};
+    a {
+      color: ${props => props.fontColor};
     }
   `}
   position: relative;
@@ -175,7 +181,7 @@ class Channels extends React.PureComponent {
   }
 
   render() {
-    const { fontColor } = this.props
+    const { fontColor, headerPosition } = this.props
     const { activeChannel } = this.state
     const channelsJSX = _.map(channels, (channelName) => {
       const channelConfig = _.get(channelConfigs, channelName, {})
@@ -200,7 +206,7 @@ class Channels extends React.PureComponent {
       )
     })
     return (
-      <ChannelsContainer>
+      <ChannelsContainer headerPosition={headerPosition}>
         <ChannelsContent>
           {channelsJSX}
         </ChannelsContent>
@@ -214,10 +220,12 @@ Channels.propTypes = {
   pathName: PropTypes.string.isRequired,
   categoriesIsOpen: PropTypes.bool.isRequired,
   fontColor: PropTypes.string,
+  headerPosition: PropTypes.string,
 }
 
 Channels.defaultProps = {
-  fontColor: colors.black,
+  fontColor: '',
+  headerPosition: HEADER_POSITION_UPON,
 }
 
 export default Channels

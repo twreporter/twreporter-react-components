@@ -4,6 +4,7 @@ import IndexPageComposite from './index-components/src'
 import ListingComposite from './listing-components/src'
 import FetchingWrapper from './shared/components/is-fetching-wrapper'
 import Pagination from './pagination/src'
+import FadeText from './fade-text-components/src'
 
 const { TopicsList, List } = ListingComposite
 
@@ -19,6 +20,7 @@ export default {
   List,
   Wrapper,
   Pagination,
+  FadeText,
 }
 
 export {
@@ -29,4 +31,5 @@ export {
   List,
   Wrapper,
   Pagination,
+  FadeText,
 }
