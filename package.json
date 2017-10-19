@@ -1,9 +1,9 @@
 {
-  "name": "twreporter-react-components",
+  "name": "@twreporter/react-article-components",
   "version": "0.1.0",
-  "description": "The Reporter React Components",
+  "description": "The Reporter react article components, which are used in Article page",
   "scripts": {
-    "build-pkg": "gulp build-packages",
+    "build": "gulp build-packages",
     "release": "gulp release",
     "clean": "./node_modules/.bin/rimraf dist",
     "lint": "eslint -c .eslintrc src",
@@ -68,8 +68,5 @@
     "url-loader": "^0.5.9",
     "watchpack": "^1.3.1",
     "webpack": "^2.6.1"
-  },
-  "pre-commit": [
-    "lint"
-  ]
+  }
 }
