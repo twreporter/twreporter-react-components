@@ -47,6 +47,7 @@ export const breakpoints = {
 export const pageThemes = {
   bright: 'BRIGHT',
   dark: 'DARK',
+  hpu: 'header-upon',
 }
 
 export const searchConfigs = {

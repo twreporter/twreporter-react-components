@@ -1,4 +1,7 @@
-### UNRELEASED
+### 1.1.1
+- Update header component to dynamic
+- Add new fade text component
+
 ### 1.1.0
 - Add theme to header and footer component
 

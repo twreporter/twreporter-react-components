@@ -1,3 +1,7 @@
+### 1.1.1
+
+- Update header.js channel.js to be compatible with keystone themes value.
+
 ### 1.0.8
 
 - Add topics in header
