@@ -17,7 +17,7 @@ git clone https://github.com/twreporter/twreporter-react-components.git
 
 ### Transpile and webpack
 ```
-npm run build-pkg
+npm run build
 ```
 
 The command above will transpile js files by babel into `dist` folder, 

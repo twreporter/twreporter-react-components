@@ -9,5 +9,5 @@ import get from 'lodash/get'
 
 export const HeaderOne = ({ content }) => {
   return <h1 className={classNames(commonStyles['inner-block'],
-           styles['title'], 'text-justify')} dangerouslySetInnerHTML={{ __html: get(content, [ 0 ], '') }}></h1>
+    styles['title'], 'text-justify')} dangerouslySetInnerHTML={{ __html: get(content, [ 0 ], '') }}></h1>
 }

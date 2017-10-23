@@ -123,14 +123,14 @@ class ImageDiff extends FitwidthMixin(Component) {
                 className={styles.rangeInput}
                 onChange={ (value)=>{
                   this.setState({ percentage: parseInt(value) })} }
-                  onMouseOver={()=>{this.setState({ onhovered: true })}}
-                  onMouseOut={()=>{this.setState({ onhovered: false })}
+                onMouseOver={()=>{this.setState({ onhovered: true })}}
+                onMouseOut={()=>{this.setState({ onhovered: false })}
                 }
                 value={50}
                 min={0}
                 max={100}
                 tipFormatter={null}
-                />
+              />
             </div>
           </figure>
         </div>

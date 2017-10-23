@@ -52,7 +52,7 @@ class Image extends FitwidthMixin(Component) {
     if (imageUrl) {
       return (
         <div className={styles['img-placeholder-outer']}
-            style={ { ...imgStyle } }>
+          style={ { ...imgStyle } }>
           <LazyLoad offset={UI_SETTING.image.loadingOffset.placeholder} height={imgStyle.height} once={true}>
             <img src={ replaceStorageUrlPrefix(imageUrl) } className={styles['img-placeholder']} style={imgStyle} />
           </LazyLoad>

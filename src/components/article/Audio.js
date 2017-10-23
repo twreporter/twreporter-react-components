@@ -65,7 +65,7 @@ const AudioController = (props) => {
       transitionAppearTimeout={1000}
       transitionEnterTimeout={1000}
       transitionLeaveTimeout={1000}
-      >
+    >
       {
         !isOncePlayed ?
           <div key="notPlayedYet">
@@ -78,7 +78,7 @@ const AudioController = (props) => {
             />
             <div className={styles['audio-duration-block']}>{getMinSecStr(duration)}</div>
           </div>
-        : null
+          : null
       }
       { isOncePlayed && !isPlaying || (isPlaying && isFocused) ?
         <div key="oncePlayed">
@@ -95,7 +95,7 @@ const AudioController = (props) => {
             seek={seek}
           />
         </div>
-      : null }
+        : null }
     </CSSTransitionGroup>
   )
 }
