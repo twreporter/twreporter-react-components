@@ -6,6 +6,7 @@ import IndexPageComposite from './index-components/src'
 import ListingComposite from './listing-components/src'
 import Pagination from './pagination/src'
 import { FullpageSlides, FullpageSlidesConstants } from './fullpage-slides/src'
+import FadeText from './fade-text-components/src'
 
 const { TopicsList, List } = ListingComposite
 
@@ -14,8 +15,9 @@ const Wrapper = {
 }
 
 export default {
-  CinemagraphHelper,
   Cinemagraph,
+  CinemagraphHelper,
+  FadeText,
   Footer,
   FullpageSlides,
   FullpageSlidesConstants,
@@ -28,8 +30,9 @@ export default {
 }
 
 export {
-  CinemagraphHelper,
   Cinemagraph,
+  CinemagraphHelper,
+  FadeText,
   Footer,
   FullpageSlides,
   FullpageSlidesConstants,
