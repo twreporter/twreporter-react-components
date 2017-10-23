@@ -41,6 +41,11 @@
     margin-right: rem($float-margin);
   }
 
+  .align-center-small {
+    max-width: $tablet-small-width;
+    margin: 0 auto;
+  }
+
   .align-center {
     width: 100%;
   }
@@ -72,6 +77,11 @@
     margin-right: rem($float-margin);
   }
 
+  .align-center-small {
+    max-width: $desktop-small-width;
+    margin: 0 auto;
+  }
+
   .align-center {
     width: 100%;
   }
@@ -101,6 +111,11 @@
     float: right;
     margin-left: rem($inner-margin);
     margin-right: rem($float-margin);
+  }
+  
+  .align-center-small {
+    max-width: $hd-desktop-small-width;
+    margin: 0 auto;
   }
 
   .align-center {

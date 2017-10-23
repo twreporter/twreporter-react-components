@@ -154,21 +154,21 @@ class Slideshow extends Component {
               <div className={styles['ss-thumbnails']} style={{
                 width: thumbnailsWidth
               }}>
-              <Thumbnails
-                currentIndex={currentIndex}
-                slideToIndex={this.slideToIndex}
-                thumbnails={thumbnails}
-                thumbnailOffset={thumbnailOffset}
-                width={thumbnailsWidth}
-              />
+                <Thumbnails
+                  currentIndex={currentIndex}
+                  slideToIndex={this.slideToIndex}
+                  thumbnails={thumbnails}
+                  thumbnailOffset={thumbnailOffset}
+                  width={thumbnailsWidth}
+                />
+              </div>
+            </div>
+            <div className={classNames('text-justify', commonStyles['desc-text-block'])}>
+              <span>{description}</span>
             </div>
           </div>
-          <div className={classNames('text-justify', commonStyles['desc-text-block'])}>
-            <span>{description}</span>
-          </div>
-        </div>
-      </LazyLoad>
-    </div>
+        </LazyLoad>
+      </div>
     )
   }
 }
