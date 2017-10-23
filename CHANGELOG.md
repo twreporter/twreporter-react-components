@@ -1,3 +1,6 @@
+### 1.1.3
+- Update fade-text components to provide screen utility.
+
 ### 1.1.2
 - Only wrap list section in Topics component for isFetching
 - Fix topics linkto bug

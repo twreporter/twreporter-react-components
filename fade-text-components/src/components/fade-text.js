@@ -1,7 +1,9 @@
-import styled, { keyframes } from 'styled-components'
+/* global __SERVER__ */
+import styled, { keyframes, injectGlobal } from 'styled-components'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { screen } from '../styles/screen'
+import scrollManager from '../utils/scroll-manager'
 
 
 const FadeOut = keyframes`
@@ -29,7 +31,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 999;
+  z-index: 500;
   body: {
     overflow: hidden;
   }
@@ -90,7 +92,7 @@ const TextFrame = styled.div`
   text-align: center;
   width: 88%;
   font-size: 50px;
-  font-weight: 200;
+  font-weight: 100;
   line-height: 1.6;
   text-align: center;
   ${screen.desktop`
@@ -101,17 +103,63 @@ const TextFrame = styled.div`
     line-height: 1.67;
   `}
 `
+const { childAnimationStoper, unlockAfterAnimation } = scrollManager
+
+const unlockScroll = (ifUnlock, node) => {
+  if (ifUnlock) {
+    unlockAfterAnimation(node)
+  } else {
+    childAnimationStoper(node)
+  }
+}
+
 
 class FadeText extends PureComponent {
-  componentDidMount() {
-    const elem = document.getElementById('pageContainer')
-    elem.style.overflowY = 'hidden'
-    elem.style.height = '100vh'
+  componentWillMount() {
+    /* eslint-disable no-unused-expressions */
+    if (this.props.ifLock) {
+      if (__SERVER__) {
+        injectGlobal`
+          html, body {
+            touch-action: manipulation;
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+          }
+        `
+      } else {
+        const body = document.body
+        const html = document.documentElement
+        body.style.overflow = 'hidden'
+        body.style.height = '100%'
+        body.style.touchAction = 'manipulation'
+        body.style.position = 'relative'
+        html.style.overflow = 'hidden'
+        html.style.height = '100%'
+        html.style.touchAction = 'manipulation'
+        html.style.position = 'relative'
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    const body = document.body
+    const html = document.documentElement
+    body.style.overflow = 'visible'
+    body.style.height = 'auto'
+    body.style.touchAction = 'auto'
+    body.style.position = 'static'
+    html.style.overflow = 'visible'
+    html.style.height = 'auto'
+    html.style.touchAction = 'auto'
+    html.style.position = 'static'
   }
 
   render() {
-    const { bgColor, duration, textArr, fontColor, bgOutDuration } = this.props
-
+    const { bgColor, duration, textArr, fontColor, bgOutDuration, ifUnlock } = this.props
     const textFrames = () => {
       return textArr.map((v, i) => {
         return (
@@ -120,6 +168,7 @@ class FadeText extends PureComponent {
             delay={i * duration}
             key={`fade_text_${v}`}
             fontColor={fontColor}
+            innerRef={childAnimationStoper}
           >
             {v}
           </TextFrame>
@@ -128,8 +177,15 @@ class FadeText extends PureComponent {
     }
 
     return (
-      <Container delay={(duration * textArr.length) + bgOutDuration + FadeOutDuration}>
-        <FadeOutContainer delay={(duration * textArr.length) + bgOutDuration}>
+      <Container
+        delay={(duration * textArr.length) + bgOutDuration + FadeOutDuration}
+        onTouchStart={(e) => { e.preventDefault() }}
+        onTouchMove={(e) => { e.preventDefault() }}
+      >
+        <FadeOutContainer
+          delay={(duration * textArr.length) + bgOutDuration}
+          innerRef={(node) => { unlockScroll(ifUnlock, node) }}
+        >
           <Background bgColor={bgColor}>
             {textFrames()}
           </Background>
@@ -145,6 +201,8 @@ FadeText.propTypes = {
   fontColor: PropTypes.string.isRequired,
   duration: PropTypes.number.isRequired,
   bgOutDuration: PropTypes.number.isRequired,
+  ifLock: PropTypes.bool.isRequired,
+  ifUnlock: PropTypes.bool.isRequired,
 }
 
 export default FadeText
