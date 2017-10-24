@@ -12,6 +12,10 @@
 ### 1.0.11
 - Make the text area of editor-picks be swipeable
 
+### 1.0.11
+- Only wrap list section in Topics component for isFetching
+- Fix topics linkto bug
+
 ### 1.0.10
 - Remove useless subfolder configs
 - Update babelrc

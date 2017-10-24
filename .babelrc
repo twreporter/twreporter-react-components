@@ -6,7 +6,8 @@
         "root": ["."],
         "alias": {
           "shared": "./shared",
-          "header-components": "./header-components/src"
+          "header-components": "./header-components/src",
+          "cinemagraph" : "./cinemagraph/src"
         }
       }
     ],
@@ -37,7 +38,6 @@
     ]
   ],
   "presets": ["env", "stage-0", "react"],
-  "comments": false,
   "ignore": [
     "src/**/*.json"
   ]

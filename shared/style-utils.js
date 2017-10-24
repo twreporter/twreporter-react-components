@@ -1,11 +1,17 @@
-import { css } from 'styled-components'
 import { breakpoints } from './configs'
-import reduce from 'lodash/reduce'
-import isArray from 'lodash/isArray'
 import { changeOpacity } from './animation'
+import { css } from 'styled-components'
+import { warning } from 'shared/utils/warning'
+
+import compact from 'lodash/compact'
+import isArray from 'lodash/isArray'
+import isEmpty from 'lodash/isEmpty'
+import reduce from 'lodash/reduce'
 
 const _ = {
+  compact,
   isArray,
+  isEmpty,
   reduce,
 }
 
@@ -206,3 +212,43 @@ export const resetLinkStyle = css`
     }
   }
 `
+
+export const animationObjectToShorthandString = (animation) => {
+  if (typeof animation === 'string') {
+    return animation
+  }
+  if (typeof animation === 'undefined') {
+    warning('Animation should be an object or a string, but is undefined')
+    return ''
+  }
+  const propertiesArray = _.compact([
+    animation.duration,
+    animation.name,
+    animation.timingFunction,
+    animation.delay,
+    animation.iterationCount,
+    animation.direction,
+    animation.fillMode,
+    animation.playState,
+  ]) // remove falsey values
+  return propertiesArray.join(' ')
+}
+
+export const animationsToCss = (animations) => {
+  const { all } = animations
+  if (!isEmpty(all)) {
+    return css`
+      animation: ${animationObjectToShorthandString(all)};
+    `
+  }
+  const { mobile, tablet, desktop } = animations
+  return css`
+    animation: ${animationObjectToShorthandString(mobile)};
+    ${screen.tabletOnly`
+      animation: ${animationObjectToShorthandString(tablet)}
+    `}
+    ${screen.desktopAbove`
+      animation: ${animationObjectToShorthandString(desktop)}
+    `}
+  `
+}
