@@ -30,6 +30,21 @@ const FetchingWrapper = (WrappedComponent) => {
     render() {
       // TODO make client customize FetchingBlock
       const { isFetching, showSpinner, ...rest } = this.props
+      if (React.isValidElement(WrappedComponent)) {
+        return (
+          <div>
+            <FetchingBlock
+              isFetching={isFetching}
+              showSpinner={showSpinner}
+            />
+            <TransitionBlock
+              isFetching={isFetching}
+            >
+              {WrappedComponent}
+            </TransitionBlock>
+          </div>
+        )
+      }
       return (
         <div>
           <FetchingBlock

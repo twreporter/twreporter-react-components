@@ -1,3 +1,7 @@
+### 1.1.2
+- Only wrap list section in Topics component for isFetching
+- Fix topics linkto bug
+
 ### 1.1.1
 - Update header component to dynamic
 - Add new fade text component
