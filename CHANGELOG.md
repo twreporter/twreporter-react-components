@@ -1,4 +1,4 @@
-### 1.1.3
+### 1.1.4
 - Update fade-text components to provide screen utility.
 
 ### 1.1.2
