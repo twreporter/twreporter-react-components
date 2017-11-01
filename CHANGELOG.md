@@ -1,3 +1,9 @@
+### 1.1.5
+- Update fade-text components with new solution for locking scroll.
+
+### 1.1.4
+- Update fade-text components to provide screen utility.
+
 ### 1.1.2
 - Only wrap list section in Topics component for isFetching
 - Fix topics linkto bug
