@@ -1,5 +1,4 @@
-/* global __SERVER__ */
-import styled, { keyframes, injectGlobal } from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { screen } from '../styles/screen'
@@ -32,15 +31,13 @@ const Container = styled.div`
   height: 100%;
   position: fixed;
   z-index: 500;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
   body: {
     overflow: hidden;
   }
-  ${screen.tablet`
-    height: 85%;
-  `}
-  ${screen.mobile`
-    height: 79%;
-  `}
   animation: ${Shrink} 100ms linear;
   animation-delay: ${props => (props.delay ? `${props.delay}s` : '10s')};
   animation-fill-mode: forwards;
@@ -105,57 +102,54 @@ const TextFrame = styled.div`
 `
 const { childAnimationStoper, unlockAfterAnimation } = scrollManager
 
+const scrollUnlocker = (e) => {
+  if (e) {
+    e.stopPropagation()
+  }
+  const body = document.body
+  const html = document.documentElement
+  body.style.overflow = 'visible'
+  body.style.height = 'auto'
+  body.style.touchAction = 'auto'
+  body.style.position = 'static'
+  html.style.overflow = 'visible'
+  html.style.height = 'auto'
+  html.style.touchAction = 'auto'
+  html.style.position = 'static'
+}
+
 const unlockScroll = (ifUnlock, node) => {
   if (ifUnlock) {
-    unlockAfterAnimation(node)
+    unlockAfterAnimation(node, scrollUnlocker)
   } else {
     childAnimationStoper(node)
   }
 }
 
-
 class FadeText extends PureComponent {
-  componentWillMount() {
-    /* eslint-disable no-unused-expressions */
+  constructor(props) {
+    super(props)
+    this.global = () => {}
+  }
+  componentDidMount() {
     if (this.props.ifLock) {
-      if (__SERVER__) {
-        injectGlobal`
-          html, body {
-            touch-action: manipulation;
-            overflow: hidden;
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            position: relative;
-          }
-        `
-      } else {
-        const body = document.body
-        const html = document.documentElement
-        body.style.overflow = 'hidden'
-        body.style.height = '100%'
-        body.style.touchAction = 'manipulation'
-        body.style.position = 'relative'
-        html.style.overflow = 'hidden'
-        html.style.height = '100%'
-        html.style.touchAction = 'manipulation'
-        html.style.position = 'relative'
-      }
+      const body = document.body
+      const html = document.documentElement
+      body.style.overflow = 'hidden'
+      body.style.height = '100%'
+      body.style.touchAction = 'manipulation'
+      body.style.position = 'relative'
+      html.style.overflow = 'hidden'
+      html.style.height = '100%'
+      html.style.touchAction = 'manipulation'
+      html.style.position = 'relative'
     }
   }
 
   componentWillUnmount() {
-    const body = document.body
-    const html = document.documentElement
-    body.style.overflow = 'visible'
-    body.style.height = 'auto'
-    body.style.touchAction = 'auto'
-    body.style.position = 'static'
-    html.style.overflow = 'visible'
-    html.style.height = 'auto'
-    html.style.touchAction = 'auto'
-    html.style.position = 'static'
+    if (this.props.ifUnlock) {
+      scrollUnlocker()
+    }
   }
 
   render() {

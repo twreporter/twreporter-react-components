@@ -21,57 +21,19 @@ const childAnimationStoper = (node) => {
   animationEndStoper(node)
 }
 
-const screenUnlocker = (e) => {
-  e.stopPropagation()
-  const body = document.body
-  const html = document.documentElement
-  body.style.overflow = 'visible'
-  body.style.height = 'auto'
-  body.style.touchAction = 'auto'
-  body.style.position = 'static'
-  html.style.overflow = 'visible'
-  html.style.height = 'auto'
-  html.style.touchAction = 'auto'
-  html.style.position = 'static'
-}
-
-const unlockAfterAnimation = (node, cb) => {
+const unlockAfterAnimation = (node, scrollUnlocker) => {
   if (node) {
     animationStartStoper(node)
-    node.addEventListener('webkitAnimationEnd', (e) => {
-      screenUnlocker(e)
-      if (cb) {
-        cb()
-      }
-    })
-    node.addEventListener('animationend', (e) => {
-      screenUnlocker(e)
-      if (cb) {
-        cb()
-      }
-    })
+    node.addEventListener('webkitAnimationEnd', (e) => { scrollUnlocker(e) })
+    node.addEventListener('animationend', (e) => { scrollUnlocker(e) })
   }
 }
 
-const screenLocker = (e) => {
-  e.stopPropagation()
-  const body = document.body
-  const html = document.documentElement
-  body.style.overflow = 'hidden'
-  body.style.height = '100%'
-  body.style.touchAction = 'manipulation'
-  body.style.position = 'relative'
-  html.style.overflow = 'hidden'
-  html.style.height = '100%'
-  html.style.touchAction = 'manipulation'
-  html.style.position = 'relative'
-}
-
-const lockBeforeAnimation = (node) => {
+const lockBeforeAnimation = (node, srcollLocker) => {
   if (node) {
     animationEndStoper(node)
-    node.addEventListener('webkitAnimationStart', (e) => { screenLocker(e) })
-    node.addEventListener('animationstart', (e) => { screenLocker(e) })
+    node.addEventListener('webkitAnimationStart', (e) => { srcollLocker(e) })
+    node.addEventListener('animationstart', (e) => { srcollLocker(e) })
   }
 }
 
