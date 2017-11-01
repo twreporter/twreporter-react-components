@@ -1,3 +1,6 @@
+### 1.1.5
+- Update fade-text components with new solution for locking scroll.
+
 ### 1.1.4
 - Update fade-text components to provide screen utility.
 
