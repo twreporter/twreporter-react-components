@@ -1,4 +1,5 @@
 ### UNRELEASED
+- [error] Add ErrorPage
 
 ### 2.1.4
 - Fix bookmark customized link warning

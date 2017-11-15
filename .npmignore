@@ -20,7 +20,10 @@ CHANGELOG.md
 README.md
 
 # source folders
+bookmarks/
+confirmation/
 cinemagraph/
+error/
 fade-text/
 footer/
 fullpage-slides/
@@ -29,8 +32,6 @@ index-page/
 listing-page/
 pagination/
 shared/
-bookmarks-components/
-confirmation-components/
 
 # NPM debug
 npm-debug.log
