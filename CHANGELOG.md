@@ -1,3 +1,11 @@
+### 1.2.2
+- Update .npmignore
+
+### 1.2.1
+- [cinemagraph] Add cinemagraph
+- [fullpage-slides] Add fullpage-slides
+- Fix eslint imports resloving
+
 ### 1.1.5
 - Update fade-text components with new solution for locking scroll.
 
@@ -38,11 +46,6 @@
 
 ### 1.0.6
 - Change image loading placeholder
-
-### 1.2.1
-- [cinemagraph] Add cinemagraph
-- [fullpage-slides] Add fullpage-slides
-- Fix eslint imports resloving
 
 ### 1.0.5
 - Bug fix. Show tags on Category listing page.
