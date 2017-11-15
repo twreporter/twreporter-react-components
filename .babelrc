@@ -6,8 +6,9 @@
         "root": ["."],
         "alias": {
           "shared": "./shared",
-          "header-components": "./header-components/src",
-          "cinemagraph" : "./cinemagraph/src"
+          "header": "./header",
+          "footer": "./footer",
+          "cinemagraph" : "./cinemagraph"
         }
       }
     ],
