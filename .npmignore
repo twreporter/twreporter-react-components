@@ -2,6 +2,9 @@
 # Commenting this out is preferred by some people, see
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-node_modules
 
+# modules
+node_modules/
+
 # source files
 .editorconfig
 .eslintignore
@@ -18,12 +21,12 @@ README.md
 
 # source folders
 cinemagraph/
+fade-text-components/
 footer-components/
 fullpage-slides/
 header-components/
 index-components/
 listing-components/
-node_modules/
 pagination/
 shared/
 
