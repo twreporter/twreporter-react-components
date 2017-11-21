@@ -1,3 +1,7 @@
+### 1.2.3
+- Add hiring channel on navigation bar
+- Add hiring info block in reporter-intro.js
+
 ### 1.2.2
 - Update .npmignore
 
