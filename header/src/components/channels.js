@@ -189,6 +189,7 @@ class Channels extends React.PureComponent {
       const channelPath = _.get(channelConfig, 'path', '')
       const channelPrefix = _.get(channelConfig, 'prefix', '')
       const channelText = _.get(channelConfig, 'text', '')
+      const channelStyles = _.get(channelConfig, 'styles', {})
       const isActive = (channelName === activeChannel)
       return (
         <ChannelContainer
@@ -199,7 +200,7 @@ class Channels extends React.PureComponent {
           data-channel-name={channelName}
           fontColor={fontColor}
         >
-          <Link to={channelType !== 'link' ? null : `${channelPrefix}${channelPath}`}>
+          <Link to={channelType !== 'link' ? null : `${channelPrefix}${channelPath}`} style={channelStyles}>
             {channelText}
           </Link>
         </ChannelContainer>

@@ -60,12 +60,12 @@ export const finalMedia = {
 }
 
 /**
-* @prop {string} position - postion of the content div
-* @prop {number} lineHeight - line-height
-* @prop {number} numberOfLine - number of line that you need in div
-* @prop {string} backgroundColor - background
-* @prop {string} textAlign - text-align
-**/
+ * @prop {string} position - postion of the content div
+ * @prop {number} lineHeight - line-height
+ * @prop {number} numberOfLine - number of line that you need in div
+ * @prop {string} backgroundColor - background
+ * @prop {string} textAlign - text-align
+ */
 export function truncate(position, lineHeight, numberOfLine, backgroundColor, textAlign) {
   const maxHeight = lineHeight * numberOfLine
   const textAlignValue = textAlign || 'justify'

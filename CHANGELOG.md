@@ -1,3 +1,13 @@
+### 1.3.1
+- Change hiring wording
+
+### 1.3.0
+- Make each sub folder could be required by clients. 
+  - EX: var Header = require('@twreporter/react-components/lib/header')
+  - var Footer = require('@twreporter/react-components/lib/footer')
+- Add hiring channel on navigation bar
+- Add hiring info block in reporter-intro.js
+
 ### 1.2.2
 - Update .npmignore
 

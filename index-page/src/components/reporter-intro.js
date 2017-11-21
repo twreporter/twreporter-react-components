@@ -1,5 +1,6 @@
 import AboutAuthorIcon from '../static/about-author.svg'
 import AboutDonateIcon from '../static/about-donate.svg'
+import AboutHiringIcon from '../static/about-hiring.svg'
 import AboutSubscribeIcon from '../static/about-subscribe.svg'
 import BottomLink, { Wrapper as BTWrapper, TextSpan as BTText, LinkIcon } from './common-utils/bottom-link'
 import ReporterIcon from '../static/reporter-large.svg'
@@ -59,12 +60,15 @@ const FlexContainer = styled.div`
   ${finalMedia.mobile`
     display: block;
   `}
+  ${finalMedia.overDesktop`
+    max-width: 1440px;
+  `}
 `
 
 const Item = styled.div`
   position: relative;
   flex-shrink: 1;
-  flex-basis: 220px;
+  flex-basis: 150px;
   display: flex;
   flex-direction:column;
   justify-content: flex-start;
@@ -72,6 +76,9 @@ const Item = styled.div`
   text-align: center;
   ${finalMedia.mobile`
     margin: 0 auto 60px auto;
+  `}
+  ${finalMedia.overDesktop`
+    flex-basis: 220px;
   `}
 `
 
@@ -150,6 +157,7 @@ class ReporterIntro extends React.PureComponent {
   render() {
     const authorHref = 'authors'
     const donationHref = 'https://twreporter.backme.tw/cashflow/checkout?project_id=175&reward_id=718'
+    const hiringHref = 'a/hiring-job-description'
     return (
       <ContentContainer
         mobileWidth={mobileWidth}
@@ -198,6 +206,16 @@ class ReporterIntro extends React.PureComponent {
                 <LinkIcon />
               </BTWrapper>
             </ItemLink>
+          </Item>
+          <Item>
+            <ItemTitle>加入我們</ItemTitle>
+            <ItemIconContainer>
+              <AboutHiringIcon />
+            </ItemIconContainer>
+            <ItemDescription>
+              歡迎你／妳成為報導者一員
+            </ItemDescription>
+            <ItemLink><BottomLink text="前往徵才說明" path={hiringHref} /></ItemLink>
           </Item>
         </FlexContainer>
       </ContentContainer>

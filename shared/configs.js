@@ -95,9 +95,18 @@ export const channelConfigs = {
     type: 'submenu',
     prefix: linkPrefix.categories,
   },
+  hiring: {
+    text: '徵才中',
+    type: 'link',
+    prefix: '/a/',
+    path: 'hiring-job-description',
+    styles: {
+      color: '#c71b0a',
+    },
+  },
 }
 
-export const channels = ['review', 'topics', 'photography', 'infographic', 'categories']
+export const channels = ['review', 'topics', 'photography', 'infographic', 'categories', 'hiring']
 
 export const externalLinks = {
   monthlyDonation: 'https://twreporter.backme.tw/cashflow/checkout?project_id=175&reward_id=1305',

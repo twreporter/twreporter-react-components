@@ -21,12 +21,12 @@ README.md
 
 # source folders
 cinemagraph/
-fade-text-components/
-footer-components/
+fade-text/
+footer/
 fullpage-slides/
-header-components/
-index-components/
-listing-components/
+header/
+index-page/
+listing-page/
 pagination/
 shared/
 
