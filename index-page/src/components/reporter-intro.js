@@ -208,14 +208,14 @@ class ReporterIntro extends React.PureComponent {
             </ItemLink>
           </Item>
           <Item>
-            <ItemTitle>職缺</ItemTitle>
+            <ItemTitle>加入我們</ItemTitle>
             <ItemIconContainer>
               <AboutHiringIcon />
             </ItemIconContainer>
             <ItemDescription>
-              加入成為報導者
+              歡迎你／妳成為報導者一員
             </ItemDescription>
-            <ItemLink><BottomLink text="前往職缺說明" path={hiringHref} /></ItemLink>
+            <ItemLink><BottomLink text="前往徵才說明" path={hiringHref} /></ItemLink>
           </Item>
         </FlexContainer>
       </ContentContainer>

@@ -1,3 +1,6 @@
+### 1.3.1
+- Change hiring wording
+
 ### 1.3.0
 - Make each sub folder could be required by clients. 
   - EX: var Header = require('@twreporter/react-components/lib/header')

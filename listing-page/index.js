@@ -5,3 +5,8 @@ export default {
   TopicsList,
   List,
 }
+
+export {
+  TopicsList,
+  List,
+}
