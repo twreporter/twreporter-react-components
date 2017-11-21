@@ -1,12 +1,12 @@
-import { Cinemagraph, CinemagraphHelper } from './cinemagraph/src'
+import { Cinemagraph, CinemagraphHelper } from './cinemagraph'
 import FetchingWrapper from './shared/components/is-fetching-wrapper'
-import Footer from './footer-components/src'
-import Header from './header-components/src'
-import IndexPageComposite from './index-components/src'
-import ListingComposite from './listing-components/src'
-import Pagination from './pagination/src'
-import FadeText from './fade-text-components/src'
-import { FullpageSlides, FullpageSlidesConstants } from './fullpage-slides/src'
+import Footer from './footer'
+import Header from './header'
+import IndexPageComposite from './index-page'
+import ListingComposite from './listing-page'
+import Pagination from './pagination'
+import FadeText from './fade-text'
+import { FullpageSlides, FullpageSlidesConstants } from './fullpage-slides'
 
 const { TopicsList, List } = ListingComposite
 

@@ -1,5 +1,5 @@
 import CategoryName from './common-utils/category-name'
-import Header from '../../../header-components/src'
+import Header from '../../../header'
 import ImgWrapper from './common-utils/img-wrapper'
 import PropTypes from 'prop-types'
 import React from 'react'
