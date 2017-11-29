@@ -1,7 +1,7 @@
 ### UNRELEASED
+- Make the text area of editor-picks be swipeable (1.0.11)
 
-### 1.1.0-beta.1.1.0
-- Make the text area of editor-picks be swipeable
+### 1.4.0
 - Create Mobile navbar feature
 
 ### 1.1.0-beta.1.0.2
