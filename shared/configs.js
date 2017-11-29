@@ -61,6 +61,15 @@ export const bookmarkConfigs = {
   path: 'bookmarks',
 }
 
+// external: html a tag
+// internal: react-router Link
+// redirect: react-router router.push() or browserHistory.push()
+export const linkType = {
+  external: 'external',
+  internal: 'internal',
+  redirect: 'redirect',
+}
+
 export const linkPrefix = {
   article: '/a/',
   interactiveArticle: '/i/',
@@ -100,7 +109,8 @@ export const channelConfigs = {
   categories: {
     text: '議題',
     type: 'submenu',
-    prefix: linkPrefix.categories,
+    prefix: '/',
+    path: '?section=category',
   },
 }
 

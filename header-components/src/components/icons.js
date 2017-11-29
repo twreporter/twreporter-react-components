@@ -8,7 +8,8 @@ import { searchConfigs, memberConfigs, bookmarkConfigs } from 'shared/configs'
 import { Link } from 'react-router'
 import PropTypes from 'prop-types'
 
-import MemberIcon from '../../static/member-icon.svg'
+import SignInIcon from '../../static/service-icons/member-icon.svg'
+import SignOutIcon from '../../static/service-icons/signout.svg'
 import BookmarkListIcon from '../../static/bookmark-list-icon.svg'
 // import DonateIcon from '../../static/donate-icon.svg'
 
@@ -27,6 +28,9 @@ const ICON_ALT_TEXT = {
 const IconsContainer = styled.div`
   position: relative;
   display: table;
+  ${screen.mobileOnly`
+    display: none;
+  `}
 `
 
 const IconContainer = styled.div`
@@ -121,10 +125,10 @@ class Icons extends React.PureComponent {
     })
   }
   render() {
-    const { pageTheme } = this.props
+    const { pageTheme, ifAuthenticated } = this.props
     const { isSearchOpened } = this.state
     const Member = (() => {
-      const { ifAuthenticated, signOutAction } = this.props
+      const { signOutAction } = this.props
       return (
         <Link
           to={`/${memberConfigs.path}`}
@@ -132,7 +136,7 @@ class Icons extends React.PureComponent {
             signOutAction()
           }}
         >
-          <MemberIcon />
+          {ifAuthenticated ? <SignOutIcon /> : <SignInIcon />}
           <span>{ifAuthenticated ? `${ICON_ALT_TEXT.SIGN_OUT}` : `${ICON_ALT_TEXT.MEMBER}` }</span>
         </Link>
       )

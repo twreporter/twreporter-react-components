@@ -1,14 +1,12 @@
 import { colors, fonts } from 'shared/common-variables'
-import { media, screen, truncate } from 'shared/style-utils'
-
-import BookmarkIcon from '../../static/bookmark.svg'
-import { linkPrefix } from 'shared/configs'
-import { Link } from 'react-router'
-import React from 'react'
 import { date2yyyymmdd } from 'shared/utils'
-// import PropTypes from 'prop-types'
+import { Link } from 'react-router'
+import { linkPrefix } from 'shared/configs'
+import { media, screen, truncate } from 'shared/style-utils'
+import BookmarkIcon from '../../static/bookmark.svg'
 import get from 'lodash/get'
 import ImgWrapper from 'shared/components/img-wrapper'
+import React from 'react'
 import styled from 'styled-components'
 
 const _ = {
@@ -116,16 +114,22 @@ const TextBox = styled.div`
   align-items: flex-start;
 `
 
-const Category = styled.div`
+const Category = styled.span`
   font-size: ${fonts.size.large};
-  margin-bottom: .8em;
   ${media.largeMobile`
     font-size: ${fonts.size.base};
-    margin-bottom: .5em;
   `}
   line-height: 1;
   box-sizing: border-box;
   color: ${colors.warmGrey};
+`
+
+const FirstRow = styled.div`
+  margin-bottom: .8em;
+  ${media.largeMobile`
+    margin-bottom: .5em;
+  `}
+  width: 100%;
   flex-basis: auto;
   flex-grow: 0;
 `
@@ -160,15 +164,21 @@ const Description = styled.div`
   `}
 `
 
+const LastRow = styled.div`
+  margin-top: 1em;
+  width: 100%;
+  position: relative;
+`
+
 const ReadMore = styled.div`
   font-size: 18px;
   text-align: left;
   color: #8c8c8c;
   font-size: ${fonts.size.large};
   cursor: pointer;
-  margin-top: 1em;
+  display: inline-block;
 `
-
+/*
 const InfoRow = styled.div`
   margin-top: 27px;
   font-size: ${fonts.size.large};
@@ -193,7 +203,7 @@ const Info = styled.div`
   position: absolute;
   bottom: 0;
 `
-/*
+
 const AuthorInfo = styled.span`
   max-width: 50%;
   display: inline-block;
@@ -220,22 +230,17 @@ const AuthorName = styled.span`
 
 const Date = styled.span`
   vertical-align: top;
+  font-size: 16px;
   font-weight: ${fonts.weight.light};
   color: ${colors.greyishBrown};
+  float: right;
 `
 
 const RemoveBookMarkBtn = styled.div`
-  bottom: ${styles.desktop.textBoxPadding[2]}px;
-  right: ${styles.desktop.textBoxPadding[1]}px;
-  ${media.tablet`
-    bottom: ${styles.tablet.textBoxPadding[2]}px;
-    right: ${styles.tablet.textBoxPadding[1]}px;
-  `}
-  ${media.largeMobile`
-    bottom: ${styles.mobile.textBoxPadding[2]}px;
-    right: ${styles.mobile.textBoxPadding[1]}px;
-  `}
   position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-44%);
   line-height: 1;
   svg {
     width: 15px;
@@ -381,27 +386,27 @@ class Bookmark extends React.PureComponent {
             </ImageFrame>
           </ImageBox>
           <TextBox>
-            <Category>{category}</Category>
+            <FirstRow>
+              <Category>{category}</Category>
+              <Date>{date2yyyymmdd(published_date * 1000, '.')}</Date>
+            </FirstRow>
             <CustomizedLink isExternal={is_external} slug={slug} host={host}>
               <Title>{title}</Title>
             </CustomizedLink>
             <Description>
               {desc}
             </Description>
-            <CustomizedLink isExternal={is_external} slug={slug} host={host}>
-              <ReadMore>{READ_MORE}</ReadMore>
-            </CustomizedLink>
-            <InfoRow>
-              <Info>
-                <Date>{date2yyyymmdd(published_date * 1000, '.')}</Date>
-              </Info>
-            </InfoRow>
+            <LastRow>
+              <CustomizedLink isExternal={is_external} slug={slug} host={host}>
+                <ReadMore>{READ_MORE}</ReadMore>
+              </CustomizedLink>
+              <RemoveBookMarkBtn>
+                <BookmarkIconComp
+                  onClick={() => { this.handleBookmarkIconOnClick(slug) }}
+                />
+              </RemoveBookMarkBtn>
+            </LastRow>
           </TextBox>
-          <RemoveBookMarkBtn>
-            <BookmarkIconComp
-              onClick={() => { this.handleBookmarkIconOnClick(slug) }}
-            />
-          </RemoveBookMarkBtn>
         </BookmarkContentContainer>
       </BookmarkFrame>
     )

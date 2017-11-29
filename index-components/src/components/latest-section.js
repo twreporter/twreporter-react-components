@@ -31,6 +31,9 @@ const Container = styled.div`
   padding-top: 62px;
   background-color: #f2f2f2;
   position: relative;
+  ${finalMedia.mobile`
+    padding: 0;
+  `}
 `
 
 const ContentContainer = ContentWrapper.extend`
@@ -142,6 +145,9 @@ const HeaderContainer = styled.div`
     `
   }};
   z-index: 2;
+  ${finalMedia.mobile`
+    position: static;
+  `}
 `
 
 class LatestSection extends React.Component {
@@ -208,6 +214,7 @@ class LatestSection extends React.Component {
             isIndex
             signOutAction={this.props.signOutAction}
             ifAuthenticated={this.props.ifAuthenticated}
+            categoryId={this.props.categoryId}
           />
         </HeaderContainer>
         <ContentContainer innerRef={(node) => { this.ContentContainer = node }}>
@@ -220,12 +227,15 @@ class LatestSection extends React.Component {
 
 LatestSection.defaultProps = {
   data: [],
+  moduleMap: {},
+  categoryId: '',
 }
 
 LatestSection.propTypes = {
   data: PropTypes.arrayOf(postPropType()),
   ifAuthenticated: PropTypes.bool.isRequired,
   signOutAction: PropTypes.func.isRequired,
+  categoryId: PropTypes.string,
 }
 
 export default LatestSection
