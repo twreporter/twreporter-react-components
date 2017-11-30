@@ -1,4 +1,4 @@
-import { VelocityComponent } from 'velocity-react'
+import { VelocityComponent } from '@twreporter/velocity-react'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Waypoint from 'react-waypoint'
