@@ -1,7 +1,7 @@
 import get from 'lodash/get'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { VelocityComponent } from 'velocity-react'
+import { VelocityComponent } from '@twreporter/velocity-react'
 
 // Prequeisite: in editor-picks section,
 // there are multiple description and image divs are setted to absolute.

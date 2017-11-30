@@ -1,3 +1,9 @@
+### 1.3.5
+- [index-page] Optimize about-hiring.svg
+
+### 1.3.3
+- [index-page] Change velocity-react to scoped version
+
 ### 1.3.1
 - Change hiring wording
 

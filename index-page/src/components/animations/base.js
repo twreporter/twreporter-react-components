@@ -1,5 +1,5 @@
 import React from 'react'
-import { VelocityComponent } from 'velocity-react'
+import { VelocityComponent } from '@twreporter/velocity-react'
 import PropTypes from 'prop-types'
 
 export const Animate = ({ animation, onAnimationFinish, children }) => {
