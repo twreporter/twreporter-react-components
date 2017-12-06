@@ -1,6 +1,6 @@
 ### UNRELEASED
 
-### 2.0.0
+### 2.0.1
 - Create Mobile navbar feature
 - Create Bookmark feature
 
