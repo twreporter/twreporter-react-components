@@ -1,3 +1,9 @@
+### UNRELEASED
+
+### 2.0.0
+- Create Mobile navbar feature
+- Create Bookmark feature
+
 ### 1.3.5
 - [index-page] Optimize about-hiring.svg
 

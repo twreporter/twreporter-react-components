@@ -56,6 +56,9 @@ const ChannelsContainer = styled.div`
     return ''
   }}
   `}
+  ${screen.mobileOnly`
+    display: none;
+  `}
 `
 
 const ChannelsContent = styled.ul`
