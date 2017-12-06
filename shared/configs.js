@@ -47,6 +47,7 @@ export const breakpoints = {
 export const pageThemes = {
   bright: 'BRIGHT',
   dark: 'DARK',
+  hpu: 'header-upon',
 }
 
 export const searchConfigs = {
@@ -112,9 +113,18 @@ export const channelConfigs = {
     prefix: '/',
     path: '?section=category',
   },
+  hiring: {
+    text: '徵才中',
+    type: 'link',
+    prefix: '/a/',
+    path: 'hiring-job-description',
+    styles: {
+      color: '#c71b0a',
+    },
+  },
 }
 
-export const channels = ['review', 'topics', 'photography', 'infographic', 'categories']
+export const channels = ['review', 'topics', 'photography', 'infographic', 'categories', 'hiring']
 
 export const externalLinks = {
   monthlyDonation: 'https://twreporter.backme.tw/cashflow/checkout?project_id=175&reward_id=1305',

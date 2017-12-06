@@ -1,38 +1,49 @@
-import Confirmation from './confiramtion-components/src'
-import Footer from './footer-components/src'
-import Header from './header-components/src'
 import Bookmark from './bookmarks-components/src'
-import IndexPageComposite from './index-components/src'
-import ListingComposite from './listing-components/src'
+import Confirmation from './confiramtion-components/src'
+import FadeText from './fade-text'
 import FetchingWrapper from './shared/components/is-fetching-wrapper'
-import Pagination from './pagination/src'
-
-const { TopicsList, List } = ListingComposite
+import Footer from './footer'
+import Header from './header'
+import IndexPageComposite from './index-page'
+import { TopicsList, List } from './listing-page'
+import Pagination from './pagination'
+import { Cinemagraph, CinemagraphHelper } from './cinemagraph'
+import { FullpageSlides, FullpageSlidesConstants } from './fullpage-slides'
 
 const Wrapper = {
   FetchingWrapper,
 }
 
 export default {
+  CinemagraphHelper,
+  Cinemagraph,
   Footer,
+  FullpageSlides,
+  FullpageSlidesConstants,
   Header,
   Bookmark,
   IndexPageComposite,
-  TopicsList,
   List,
-  Wrapper,
   Pagination,
   Confirmation,
+  FadeText,
+  TopicsList,
+  Wrapper,
 }
 
 export {
+  CinemagraphHelper,
+  Cinemagraph,
   Footer,
+  FullpageSlides,
+  FullpageSlidesConstants,
   Header,
   Bookmark,
   IndexPageComposite,
-  TopicsList,
   List,
-  Wrapper,
   Pagination,
   Confirmation,
+  FadeText,
+  TopicsList,
+  Wrapper,
 }
