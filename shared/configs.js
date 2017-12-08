@@ -124,7 +124,7 @@ export const channelConfigs = {
   },
 }
 
-export const channels = ['review', 'topics', 'photography', 'infographic', 'categories', 'hiring']
+export const channels = ['review', 'topics', 'photography', 'infographic', 'categories']
 
 export const externalLinks = {
   monthlyDonation: 'https://twreporter.backme.tw/cashflow/checkout?project_id=175&reward_id=1305',

@@ -150,15 +150,34 @@ class Header extends React.PureComponent {
     this.setState({
       ifShowSlideInPanel: !this.state.ifShowSlideInPanel,
     })
+
+  _selectLogo(logoColor) {
+    switch (logoColor) {
+      case Header.logoColor.bright:
+        return <LogoBright onMouseDown={this._closeCategoriesMenu} />
+      case Header.logoColor.dark:
+      default:
+        return <Logo onMouseDown={this._closeCategoriesMenu} />
+    }
   }
 
   render() {
-    const { pageTheme, pathName, isIndex, categoryId, signOutAction, ifAuthenticated } = this.props
+    const { bgColor, categoryId, fontColor, ifAuthenticated,
+      logoColor, pathName, isIndex, headerPosition, signOutAction } = this.props
+
     const { categoriesIsOpen, ifShowSlideInPanel } = this.state
     return (
       <HeaderContainer>
         <SlideDownPanel
           showUp={ifShowSlideInPanel}
+          isIndex={isIndex}
+          categoryId={categoryId}
+          ifAuthenticated={ifAuthenticated}
+          signOutAction={signOutAction}
+          handleOnHamburgerClick={this.handleOnHamburgerClick}
+        />
+        <TopRow
+          bgColor={bgColor}
           isIndex={isIndex}
           categoryId={categoryId}
           ifAuthenticated={ifAuthenticated}
@@ -171,7 +190,6 @@ class Header extends React.PureComponent {
               {Header._selectLogo(pageTheme)}
             </Link>
             <Icons
-              pageTheme={pageTheme}
               ifAuthenticated={ifAuthenticated}
               signOutAction={signOutAction}
             />
@@ -186,16 +204,23 @@ class Header extends React.PureComponent {
 }
 
 Header.propTypes = {
-  pageTheme: PropTypes.string,
-  pathName: PropTypes.string,
-  isIndex: PropTypes.bool,
-  ifAuthenticated: PropTypes.bool.isRequired,
-  signOutAction: PropTypes.func.isRequired,
+
+  bgColor: PropTypes.string,
   categoryId: PropTypes.string,
+  fontColor: PropTypes.string,
+  logoColor: PropTypes.string,
+  pathName: PropTypes.string,
+  ifAuthenticated: PropTypes.bool.isRequired,
+  isIndex: PropTypes.bool,
+  headerPosition: PropTypes.string,
+  signOutAction: PropTypes.func.isRequired,
 }
 
 Header.defaultProps = {
-  pageTheme: pageThemes.bright,
+  bgColor: '',
+  categoryId: '',
+  fontColor: colors.black,
+  logoColor: Header.logoColor.dark,
   isIndex: false,
   pathName: '',
   categoryId: '',

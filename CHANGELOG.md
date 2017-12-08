@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 2.0.2
+- Code adjustments after merging Mobile narvar and Bookmark features
+
 ### 2.0.1
 - Create Mobile navbar feature
 - Create Bookmark feature
@@ -7,46 +10,16 @@
 ### 1.3.5
 - [index-page] Optimize about-hiring.svg
 
-### 1.3.3
-- [index-page] Change velocity-react to scoped version
+### 1.1.0-beta.1.0.2
+- Update README.md
+- Update style of confirmation component
 
-### 1.3.1
-- Change hiring wording
+### 1.1.0-beta.1.0.1
+- Update README.md
 
-### 1.3.0
-- Make each sub folder could be required by clients. 
-  - EX: var Header = require('@twreporter/react-components/lib/header')
-  - var Footer = require('@twreporter/react-components/lib/footer')
-- Add hiring channel on navigation bar
-- Add hiring info block in reporter-intro.js
-
-### 1.2.2
-- Update .npmignore
-
-### 1.2.1
-- [cinemagraph] Add cinemagraph
-- [fullpage-slides] Add fullpage-slides
-- Fix eslint imports resloving
-
-### 1.1.5
-- Update fade-text components with new solution for locking scroll.
-
-### 1.1.4
-- Update fade-text components to provide screen utility.
-
-### 1.1.2
-- Only wrap list section in Topics component for isFetching
-- Fix topics linkto bug
-
-### 1.1.1
-- Update header component to dynamic
-- Add new fade text component
-
-### 1.1.0
-- Add theme to header and footer component
-
-### 1.0.11
-- Make the text area of editor-picks be swipeable
+### 1.1.0-beta.1.0.0
+- Create bookmark component ( based on registration system )
+- Create confirmation component ( based on bookmark component )
 
 ### 1.0.10
 - Remove useless subfolder configs

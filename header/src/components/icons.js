@@ -1,16 +1,16 @@
-import React from 'react'
+import BookmarkListIcon from '../../static/bookmark-list-icon.svg'
 import PropTypes from 'prop-types'
+import React from 'react'
 import SearchBox from './search-box'
 import SearchIcon from '../../static/search-icon.svg'
+import SignInIcon from '../../static/member-icon.svg'
+import SignOutIcon from '../../static/signout.svg'
 import styled from 'styled-components'
-import { screen } from 'shared/style-utils'
-import { colors, fonts } from 'shared/common-variables'
-import { searchConfigs, memberConfigs, bookmarkConfigs } from 'shared/configs'
 import { Link } from 'react-router'
+import { colors, fonts } from 'shared/common-variables'
+import { screen } from 'shared/style-utils'
+import { searchConfigs, memberConfigs, bookmarkConfigs } from 'shared/configs'
 
-import SignInIcon from '../../static/service-icons/member-icon.svg'
-import SignOutIcon from '../../static/service-icons/signout.svg'
-import BookmarkListIcon from '../../static/bookmark-list-icon.svg'
 // import DonateIcon from '../../static/donate-icon.svg'
 
 const styles = {
@@ -127,20 +127,19 @@ class Icons extends React.PureComponent {
   render() {
     const { ifAuthenticated } = this.props
     const { isSearchOpened } = this.state
-    const Member = (() => {
-      const { signOutAction } = this.props
-      return (
-        <Link
-          to={`/${memberConfigs.path}`}
-          onClick={() => {
-            signOutAction()
-          }}
-        >
-          {ifAuthenticated ? <SignOutIcon /> : <SignInIcon />}
-          <span>{ifAuthenticated ? `${ICON_ALT_TEXT.SIGN_OUT}` : `${ICON_ALT_TEXT.MEMBER}` }</span>
-        </Link>
-      )
-    })()
+    const { ifAuthenticated, signOutAction } = this.props
+    const Member = (
+      <Link
+        to={`/${memberConfigs.path}`}
+        onClick={() => {
+          signOutAction()
+        }}
+      >
+        {ifAuthenticated ? <SignOutIcon /> : <SignInIcon />}
+        <span>{ifAuthenticated ? `${ICON_ALT_TEXT.SIGN_OUT}` : `${ICON_ALT_TEXT.MEMBER}` }</span>
+      </Link>
+    )
+
     return (
       <IconsContainer>
         <DisplayOnDesktop

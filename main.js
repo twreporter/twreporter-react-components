@@ -1,5 +1,5 @@
-import Bookmark from './bookmarks-components/src'
-import Confirmation from './confiramtion-components/src'
+import Bookmark from './bookmarks'
+import Confirmation from './confirmation'
 import FadeText from './fade-text'
 import FetchingWrapper from './shared/components/is-fetching-wrapper'
 import Footer from './footer'
@@ -15,8 +15,11 @@ const Wrapper = {
 }
 
 export default {
-  CinemagraphHelper,
+  Bookmark,
   Cinemagraph,
+  CinemagraphHelper,
+  Confirmation,
+  FadeText,
   Footer,
   FullpageSlides,
   FullpageSlidesConstants,
@@ -25,15 +28,16 @@ export default {
   IndexPageComposite,
   List,
   Pagination,
-  Confirmation,
-  FadeText,
   TopicsList,
   Wrapper,
 }
 
 export {
-  CinemagraphHelper,
+  Bookmark,
   Cinemagraph,
+  CinemagraphHelper,
+  Confirmation,
+  FadeText,
   Footer,
   FullpageSlides,
   FullpageSlidesConstants,
@@ -42,8 +46,6 @@ export {
   IndexPageComposite,
   List,
   Pagination,
-  Confirmation,
-  FadeText,
   TopicsList,
   Wrapper,
 }
