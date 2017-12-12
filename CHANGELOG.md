@@ -1,4 +1,8 @@
 ### UNRELEASED
+### 2.0.3
+- Make whole bookmark clickable in the bookmark list
+- Return to homepage after signing out
+
 ### 2.0.2
 - Code adjustments after merging Mobile narvar and Bookmark features
 

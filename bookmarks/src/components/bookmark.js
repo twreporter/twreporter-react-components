@@ -45,7 +45,6 @@ const BookmarkFrame = styled.div`
 const BookmarkContentContainer = styled.li`
   position: relative;
   width: 100%;
-  box-sizing: border-box;
   background-color: ${colors.itemBgWhite};
 
   display: flex;
@@ -72,7 +71,6 @@ const ImageBox = styled.div`
     padding: ${styles.mobile.imageBoxPadding.map(value => `${value}px`).join(' ')};
     width: 100%;
   `}
-  box-sizing: border-box;
   flex-basis: auto;
   flex-grow: 0;
   line-height: 1;
@@ -106,7 +104,6 @@ const TextBox = styled.div`
   position: relative;
   flex-basis: auto;
   flex-grow: 1;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -115,13 +112,12 @@ const TextBox = styled.div`
 `
 
 const Category = styled.span`
-  font-size: ${fonts.size.large};
+  font-size: ${fonts.size.medium};
   ${media.largeMobile`
     font-size: ${fonts.size.base};
   `}
   line-height: 1;
-  box-sizing: border-box;
-  color: ${colors.warmGrey};
+  color: ${colors.primaryColor};
 `
 
 const FirstRow = styled.div`
@@ -145,13 +141,11 @@ const Title = styled.div`
   `}
   font-weight: ${fonts.weight.bold};
   color: ${colors.bookmarkTextGrey};
-  box-sizing: border-box;
   flex-basis: auto;
   flex-grow: 0;
 `
 
 const Description = styled.div`
-  box-sizing: border-box;
   width: 98%;
   color: ${colors.bookmarkTextGrey};
   font-size: ${fonts.size.large};
@@ -171,10 +165,9 @@ const LastRow = styled.div`
 `
 
 const ReadMore = styled.div`
-  font-size: 18px;
+  font-size: ${fonts.size.base};
   text-align: left;
   color: #8c8c8c;
-  font-size: ${fonts.size.large};
   cursor: pointer;
   display: inline-block;
 `
@@ -252,7 +245,6 @@ const RemoveBookMarkBtn = styled.div`
 // BookmarkContainer
 
 const PageContainer = styled.div`
-  box-sizing: border-box;
   padding: 50px 0;
   margin: 0;
 
@@ -263,7 +255,6 @@ const PageContainer = styled.div`
 
 const Column = styled.div`
   margin: 0 auto;
-  box-sizing: border-box;
   width: 97%;
   max-width: 834px;
   ${screen.tabletOnly`
@@ -279,7 +270,6 @@ const StatusBar = styled.div`
   ${screen.mobileOnly`
     padding-left: 1em;
   `}
-  box-sizing: border-box;
   padding-bottom: 25px;
   width: 100%;
 `
@@ -302,7 +292,6 @@ const CountNumber = styled.span`
 const BookmarksContainer = styled.ul`
   margin: 0;
   width: 100%;
-  box-sizing: border-box;
   padding: 0;
 `
 
@@ -384,22 +373,24 @@ class Bookmark extends React.PureComponent {
     return (
       <BookmarkFrame>
         <BookmarkContentContainer>
-          <ImageBox>
-            <ImageFrame>
-              <ImgWrapper src={thumbnail} alt={`Bookmark_Image_${title}`} />
-            </ImageFrame>
-          </ImageBox>
+          <CustomizedLink isExternal={is_external} slug={slug} host={host}>
+            <ImageBox>
+              <ImageFrame>
+                <ImgWrapper src={thumbnail} alt={`Bookmark_Image_${title}`} />
+              </ImageFrame>
+            </ImageBox>
+          </CustomizedLink>
           <TextBox>
-            <FirstRow>
-              <Category>{category}</Category>
-              <Date>{date2yyyymmdd(published_date * 1000, '.')}</Date>
-            </FirstRow>
             <CustomizedLink isExternal={is_external} slug={slug} host={host}>
+              <FirstRow>
+                <Category>{category}</Category>
+                <Date>{date2yyyymmdd(published_date * 1000, '.')}</Date>
+              </FirstRow>
               <Title>{title}</Title>
+              <Description>
+                {desc}
+              </Description>
             </CustomizedLink>
-            <Description>
-              {desc}
-            </Description>
             <LastRow>
               <CustomizedLink isExternal={is_external} slug={slug} host={host}>
                 <ReadMore>{READ_MORE}</ReadMore>
