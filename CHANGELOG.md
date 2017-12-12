@@ -1,4 +1,8 @@
 ### UNRELEASED
+### 2.0.3
+- Make whole bookmark clickable in the bookmark list
+- Give <a> tag a default color
+
 ### 2.0.2
 - Code adjustments after merging Mobile narvar and Bookmark features
 

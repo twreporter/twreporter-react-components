@@ -36,6 +36,10 @@ const HeaderContainer = styled.div`
   box-sizing: border-box;
   position: relative;
   width: 100%;
+
+  a {
+    color: ${colors.black};
+  }
 `
 
 const TopRow = styled.div`
