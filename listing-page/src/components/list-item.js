@@ -26,6 +26,10 @@ const Container = styled.div`
   ${screen.mobileOnly`
     width: ${(mockup.mobile.cardWidth / mockup.mobile.maxWidth) * 100}%;
   `}
+
+  a {
+    color: ${colors.textGrey};
+  }
 `
 
 const HoverEffect = styled.div`
