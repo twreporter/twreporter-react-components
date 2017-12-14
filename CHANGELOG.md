@@ -1,4 +1,8 @@
 ### UNRELEASED
+
+### 2.0.4
+- Fix header `<a>` font color
+
 ### 2.0.3
 - Make whole bookmark clickable in the bookmark list
 - Give <a> tag a default color
