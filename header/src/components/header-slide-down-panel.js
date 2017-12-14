@@ -47,6 +47,9 @@ const Container = styled.div`
   flex-wrap: wrap;
   align-content: center;
   background-color: ${props => (props.isIndex ? `${colors.sectionGrey}` : 'white')};
+  a {
+    color: ${colors.black};
+  }
   display: none;
   ${screen.mobileOnly`
     display: flex;
