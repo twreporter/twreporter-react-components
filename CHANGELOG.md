@@ -2,6 +2,7 @@
 ### 2.0.6
 - Upgrade peer dependencies, react-router
 - Fix content overflow in the editor-pick section of the homepage
+- [header] Fix serach box styling errors
 
 ### 2.0.5
 - Reset h2 margin to 0

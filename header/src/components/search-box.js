@@ -29,7 +29,7 @@ const SearchBoxContainer = styled.form`
   position: absolute;
   z-index: 99;
   right: 0;
-  top: 53%;
+  top: 49%;
   transform: translateY(-50%);
   height: ${styles.containerHeight}px;
   box-sizing: border-box;
@@ -48,6 +48,7 @@ const CellBlock = styled.div`
 
 const SearchInput = styled.input`
   width: ${styles.inputWidth}px;
+  max-width: calc(100vw - 870px);
   margin-right: .5em;
   font-size: ${fonts.size.base};
   font-weight: ${fonts.size.medium};
