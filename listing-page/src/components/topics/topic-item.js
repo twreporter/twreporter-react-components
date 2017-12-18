@@ -107,6 +107,7 @@ const TextBlock = styled.div`
 `
 
 const TopicTitle = styled.h2`
+  margin: 0;
   ${screen.mobileOnly`
     margin-bottom: ${styles.textBlock.mobile.titleMarginBottom}px;
   `}

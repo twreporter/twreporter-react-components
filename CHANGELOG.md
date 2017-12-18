@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 2.0.5
+- Reset h2 margin to 0
+
 ### 2.0.4
 - Fix header `<a>` font color
 
