@@ -43,6 +43,8 @@ const IconContainer = styled.div`
   vertical-align: middle;
   text-align: center;
   position: relative;
+  opacity: ${props => (props.isSearchOpened ? '0' : '1')};
+  transition: opacity 600ms ease;
   svg {
     height: 100%;
   }
@@ -92,9 +94,9 @@ const IconContainer = styled.div`
 
 const DisplayOnDesktop = IconContainer.extend`
   display: none;
-  ${props => (props.isSearchOpened ? '' : screen.desktopAbove`
+  ${screen.desktopAbove`
     display: table-cell;
-  `)}
+  `}
 `
 
 const HideOnDesktop = IconContainer.extend`
@@ -156,13 +158,17 @@ class Icons extends React.PureComponent {
             <SearchIcon />
           </Link>
         </HideOnDesktop>
-        <IconContainer>
+        <IconContainer
+          isSearchOpened={isSearchOpened}
+        >
           <Link to={`/${bookmarkConfigs.path}`}>
             <BookmarkListIcon />
             <span>{ICON_ALT_TEXT.BOOKMARK}</span>
           </Link>
         </IconContainer>
-        <IconContainer>
+        <IconContainer
+          isSearchOpened={isSearchOpened}
+        >
           {Member}
         </IconContainer>
       </IconsContainer>
