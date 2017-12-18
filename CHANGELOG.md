@@ -1,4 +1,7 @@
 ### UNRELEASED
+### 2.0.6
+- Upgrade peer dependencies, react-router
+- Fix content overflow in the editor-pick section of the homepage
 
 ### 2.0.5
 - Reset h2 margin to 0
