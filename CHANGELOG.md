@@ -1,4 +1,7 @@
 ### UNRELEASED
+### 2.1.0
+- Upgrade dependencies to support react@^16.0.0
+
 ### 2.0.6
 - Upgrade peer dependencies, react-router
 - Fix content overflow in the editor-pick section of the homepage

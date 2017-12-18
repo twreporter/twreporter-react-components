@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { linkType } from 'shared/configs'
 import { Link } from 'react-router'
 
@@ -23,10 +24,10 @@ CustomizedLink.defaultProps = {
 }
 
 CustomizedLink.propTypes = {
-  children: React.PropTypes.element.isRequired,
-  currentLinkType: React.PropTypes.string.isRequired,
-  path: React.PropTypes.string,
-  onClick: React.PropTypes.func,
+  children: PropTypes.element.isRequired,
+  currentLinkType: PropTypes.string.isRequired,
+  path: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 export default CustomizedLink
