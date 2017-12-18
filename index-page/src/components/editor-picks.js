@@ -53,6 +53,7 @@ const swapArrayElements = (arr, indexA, indexB) => {
 }
 
 const CarouselContainer = ContentWrapper.extend`
+  overflow-x: hidden;
   position: relative;
   @media (max-width: ${breakPoints.mobileMaxWidth}) {
     display: none;
