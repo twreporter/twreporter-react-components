@@ -7,7 +7,7 @@ import map from 'lodash/map'
 import { categoryConfigs, linkPrefix } from 'shared/configs'
 import { arrayToCssShorthand, screen } from 'shared/style-utils'
 import { colors, fonts } from 'shared/common-variables'
-import { CSSTransitionGroup } from 'react-transition-group'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import { categoriesMenuEffect } from 'shared/css-transition-group'
 
 const _ = {

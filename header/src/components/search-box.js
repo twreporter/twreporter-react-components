@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import get from 'lodash/get'
 import SearchCancel from '../../static/search-cancel.svg'
 import { colors, fonts } from 'shared/common-variables'
-import { CSSTransitionGroup } from 'react-transition-group'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import { searchBoxEffect } from 'shared/css-transition-group'
 import { searchConfigs } from 'shared/configs'
 
