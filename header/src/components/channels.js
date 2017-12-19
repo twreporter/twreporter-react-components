@@ -1,3 +1,4 @@
+import Link from 'react-router/lib/Link'
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
@@ -7,7 +8,6 @@ import { channelConfigs, channels, pageThemes } from 'shared/configs'
 import { arrayToCssShorthand, linkUnderline, screen } from 'shared/style-utils'
 import { colors, fonts } from 'shared/common-variables'
 import { HEADER_POSITION_UPON } from '../styles/constants'
-import { Link } from 'react-router'
 
 const _ = {
   get,

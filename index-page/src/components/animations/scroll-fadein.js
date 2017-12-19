@@ -1,7 +1,7 @@
-import { VelocityComponent } from '@twreporter/velocity-react'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Waypoint from 'react-waypoint'
+import VelocityComponent from '@twreporter/velocity-react/velocity-component'
 
 class ScrollFadein extends React.Component {
   constructor(props) {

@@ -1,7 +1,7 @@
+import Link from 'react-router/lib/Link'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { linkType } from 'shared/configs'
-import { Link } from 'react-router'
 
 const CustomizedLink = ({ children, currentLinkType, path, onClick }) => {
   if (currentLinkType === linkType.external) {

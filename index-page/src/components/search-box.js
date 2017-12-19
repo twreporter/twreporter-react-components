@@ -1,6 +1,6 @@
-import { browserHistory } from 'react-router'
 import PropTypes from 'prop-types'
 import React from 'react'
+import browserHistory from 'react-router/lib/browserHistory'
 import styled from 'styled-components'
 import SearchIcon from '../static/search.svg'
 import { colors } from '../styles/common-variables'
