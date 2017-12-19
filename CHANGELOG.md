@@ -1,4 +1,9 @@
 ### UNRELEASED
+
+### 2.1.1
+- Make header slide down smoothly
+- Reduce bundle size by importing only we need
+
 ### 2.1.0
 - Upgrade dependencies to support react@^16.0.0
 

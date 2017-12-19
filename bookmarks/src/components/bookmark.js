@@ -1,13 +1,13 @@
+import BookmarkIcon from '../../static/bookmark.svg'
+import ImgWrapper from 'shared/components/img-wrapper'
+import Link from 'react-router/lib/Link'
+import React from 'react'
+import get from 'lodash/get'
+import styled from 'styled-components'
 import { colors, fonts } from 'shared/common-variables'
 import { date2yyyymmdd } from 'shared/utils'
-import { Link } from 'react-router'
 import { linkPrefix } from 'shared/configs'
 import { media, screen, truncate } from 'shared/style-utils'
-import BookmarkIcon from '../../static/bookmark.svg'
-import get from 'lodash/get'
-import ImgWrapper from 'shared/components/img-wrapper'
-import React from 'react'
-import styled from 'styled-components'
 
 const _ = {
   get,

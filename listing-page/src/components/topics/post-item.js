@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import Link from 'react-router/lib/Link'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'

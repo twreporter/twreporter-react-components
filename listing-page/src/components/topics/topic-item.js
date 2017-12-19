@@ -1,11 +1,11 @@
+import Image from '../image'
+import Link from 'react-router/lib/Link'
+import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
-import { screen, linkHoverFadeOut, resetLinkStyle } from 'shared/style-utils'
-import { colors, fonts } from 'shared/common-variables'
-import { Link } from 'react-router'
 import { TEXT } from '../../constants/topics'
-import PropTypes from 'prop-types'
-import Image from '../image'
+import { colors, fonts } from 'shared/common-variables'
+import { screen, linkHoverFadeOut, resetLinkStyle } from 'shared/style-utils'
 
 const styles = {
   imgPortrait: {

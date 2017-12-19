@@ -1,3 +1,4 @@
+import Link from 'react-router/lib/Link'
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
@@ -8,7 +9,6 @@ import { arrayToCssShorthand, screen } from 'shared/style-utils'
 import { colors, fonts } from 'shared/common-variables'
 import { CSSTransitionGroup } from 'react-transition-group'
 import { categoriesMenuEffect } from 'shared/css-transition-group'
-import { Link } from 'react-router'
 
 const _ = {
   get,
