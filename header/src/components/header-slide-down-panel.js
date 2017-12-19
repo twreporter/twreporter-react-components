@@ -7,6 +7,7 @@ import SearchIcon from '../../static/search-icon.svg'
 import SignInIcon from '../../static/member-icon.svg'
 import SignOutIcon from '../../static/signout.svg'
 import SubscriptionIcon from '../../static/subscribe-icon.svg'
+import VelocityComponent from '@twreporter/velocity-react/velocity-component'
 import get from 'lodash/get'
 import serviceStrings, { SERVICE_LABELS } from 'shared/service-strings'
 import smoothScroll from 'smoothscroll'
@@ -39,9 +40,7 @@ const DEFAULT_HEIGHT_FLEX_BOX = DEFAULT_HEIGHT_DIVISION * ROW_PER_COLUMN
 
 const Container = styled.div`
   height: ${DEFAULT_HEIGHT_FLEX_BOX}px;
-  margin-top: ${props => (props.showUp ? 0 : `-${DEFAULT_HEIGHT_FLEX_BOX}px`)};
   width: 100%;
-  transition: margin-top 600ms ease-in-out;
   text-align: center;
   flex-direction: column;
   flex-wrap: wrap;
@@ -218,18 +217,25 @@ class SlideDownPanel extends React.Component {
   render() {
     const { showUp, isIndex, ifAuthenticated, signOutAction, handleOnHamburgerClick } = this.props
     return (
-      <Container showUp={showUp} isIndex={isIndex} >
-        <ColumnChannel
-          handleIssueOnClick={this.handleIssueOnClick}
-          isIndex={isIndex}
-          handleOnHamburgerClick={handleOnHamburgerClick}
-        />
-        <ColumnService
-          ifAuthenticated={ifAuthenticated}
-          signOutAction={signOutAction}
-          handleOnHamburgerClick={handleOnHamburgerClick}
-        />
-      </Container>
+      <VelocityComponent
+        animation={showUp ? { marginTop: 0 } : { marginTop: `-${DEFAULT_HEIGHT_FLEX_BOX}px` }}
+        duration={200}
+        runOnMount={false}
+        easing="ease-in-out"
+      >
+        <Container isIndex={isIndex}>
+          <ColumnChannel
+            handleIssueOnClick={this.handleIssueOnClick}
+            isIndex={isIndex}
+            handleOnHamburgerClick={handleOnHamburgerClick}
+          />
+          <ColumnService
+            ifAuthenticated={ifAuthenticated}
+            signOutAction={signOutAction}
+            handleOnHamburgerClick={handleOnHamburgerClick}
+          />
+        </Container>
+      </VelocityComponent>
     )
   }
 }
