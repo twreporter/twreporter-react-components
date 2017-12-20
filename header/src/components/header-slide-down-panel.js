@@ -1,7 +1,5 @@
 import BookmarkListIcon from '../../static/bookmark-list-icon.svg'
-import CustomizedLink from './customized-link'
 import DonationIcon from '../../static/donate-icon.svg'
-import Link from 'react-router/lib/Link'
 import PropTypes from 'prop-types'
 import React from 'react'
 import SearchIcon from '../../static/search-icon.svg'
@@ -13,7 +11,7 @@ import get from 'lodash/get'
 import serviceStrings, { SERVICE_LABELS } from 'shared/service-strings'
 import smoothScroll from 'smoothscroll'
 import styled from 'styled-components'
-import { channelConfigs, channels } from 'shared/configs'
+import { channelConfigs, channels, linkType } from 'shared/configs'
 import { colors } from 'shared/common-variables'
 import { screen } from 'shared/style-utils'
 
@@ -22,16 +20,14 @@ const _ = {
 }
 
 const serviceContent = (ifAuthenticated) => {
-  return () => {
-    const { SIGN_IN, SIGN_OUT, SEARCH, BOOKMARK, DONATION, SUSBSCRIPTION } = serviceStrings
-    return [
-      { ss: ifAuthenticated ? SIGN_OUT : SIGN_IN, Icon: ifAuthenticated ? SignOutIcon : SignInIcon },
-      { ss: SEARCH, Icon: SearchIcon },
-      { ss: BOOKMARK, Icon: BookmarkListIcon },
-      { ss: DONATION, Icon: DonationIcon },
-      { ss: SUSBSCRIPTION, Icon: SubscriptionIcon },
-    ]
-  }
+  const { SIGN_IN, SIGN_OUT, SEARCH, BOOKMARK, DONATION, SUSBSCRIPTION } = serviceStrings
+  return [
+    { ss: ifAuthenticated ? SIGN_OUT : SIGN_IN, Icon: ifAuthenticated ? SignOutIcon : SignInIcon },
+    { ss: SEARCH, Icon: SearchIcon },
+    { ss: BOOKMARK, Icon: BookmarkListIcon },
+    { ss: DONATION, Icon: DonationIcon },
+    { ss: SUSBSCRIPTION, Icon: SubscriptionIcon },
+  ]
 }
 
 const DEFAULT_HEIGHT_DIVISION = 90
@@ -40,6 +36,7 @@ const DEFAULT_HEIGHT_FLEX_BOX = DEFAULT_HEIGHT_DIVISION * ROW_PER_COLUMN
 
 const Container = styled.div`
   height: ${DEFAULT_HEIGHT_FLEX_BOX}px;
+  margin-top: -${DEFAULT_HEIGHT_FLEX_BOX}px;
   width: 100%;
   text-align: center;
   flex-direction: column;
@@ -88,42 +85,23 @@ const TextFrame = styled.div`
   display: inline-block;
 `
 
-const ColumnChannel = ({ handleIssueOnClick, isIndex, handleOnHamburgerClick }) => {
+const ColumnChannel = ({ handlePanelOnClick }) => {
   const divisions = channels.map((channel) => {
     const channelConfig = _.get(channelConfigs, channel, {})
     const channelPath = _.get(channelConfig, 'path', '')
     const channelPrefix = _.get(channelConfig, 'prefix', '')
     const channelText = _.get(channelConfig, 'text', '')
-    if (channelPath === '?section=category' && isIndex) {
-      return (
-        <Division
-          onClick={() => {
-            handleOnHamburgerClick()
-            handleIssueOnClick()
-          }}
-          key={`Division_${channelText}`}
-        >
-          <TextFrame>
-            {channelText}
-          </TextFrame>
-        </Division>
-      )
-    }
     return (
-      <Link
-        to={`${channelPrefix}${channelPath}`}
+      <Division
         key={`Division_${channelText}`}
+        onClick={() => {
+          handlePanelOnClick(channelPrefix + channelPath)
+        }}
       >
-        <Division
-          onClick={() => {
-            handleOnHamburgerClick()
-          }}
-        >
-          <TextFrame>
-            {channelText}
-          </TextFrame>
-        </Division>
-      </Link>
+        <TextFrame>
+          {channelText}
+        </TextFrame>
+      </Division>
     )
   })
   return (
@@ -133,32 +111,19 @@ const ColumnChannel = ({ handleIssueOnClick, isIndex, handleOnHamburgerClick }) 
   )
 }
 
-ColumnChannel.defaultProps = {
-  handleOnHamburgerClick: () => {},
-}
-
 ColumnChannel.propTypes = {
-  handleIssueOnClick: PropTypes.func.isRequired,
-  handleOnHamburgerClick: PropTypes.func,
-  isIndex: PropTypes.bool.isRequired,
+  handlePanelOnClick: PropTypes.func.isRequired,
 }
 
 
-const ColumnService = ({ ifAuthenticated, signOutAction, handleOnHamburgerClick }) => {
-  const divisions = serviceContent(ifAuthenticated)().map((division) => {
-    const { ss, Icon } = division
-    return (
-      <CustomizedLink
-        currentLinkType={ss.type}
-        path={ss.path}
-        key={`Division_${ss.label}`}
-      >
-        <Division
-          onClick={() => {
-            handleOnHamburgerClick()
-            if (ss.label === SERVICE_LABELS.SIGN_OUT && ifAuthenticated) signOutAction()
-          }}
-        >
+class ColumnService extends React.PureComponent {
+  render() {
+    const { ifAuthenticated, signOutAction } = this.context
+    const { handlePanelOnClick } = this.props
+    const divisions = serviceContent(ifAuthenticated).map((division) => {
+      const { ss, Icon } = division
+      const divisionJSX = (
+        <Division>
           <IconFrame>
             <Icon />
           </IconFrame>
@@ -166,73 +131,106 @@ const ColumnService = ({ ifAuthenticated, signOutAction, handleOnHamburgerClick 
             {ss.label}
           </TextFrame>
         </Division>
-      </CustomizedLink>
+      )
+      if (ss.type === linkType.external) {
+        return (
+          <a key={`Division_${ss.label}`} href={ss.path} target="_blank">
+            {divisionJSX}
+          </a>
+        )
+      }
+      return (
+        <div
+          key={`Division_${ss.label}`}
+          role="button"
+          tabIndex="-1"
+          onClick={() => {
+            if (ss.label === SERVICE_LABELS.SIGN_OUT && ifAuthenticated) {
+              signOutAction()
+            }
+            handlePanelOnClick(ss.path)
+          }}
+        >
+          {divisionJSX}
+        </div>
+      )
+    })
+    return (
+      <ColumnFrame>
+        {divisions}
+      </ColumnFrame>
     )
-  })
-  return (
-    <ColumnFrame>
-      {divisions}
-    </ColumnFrame>
-  )
-}
-
-ColumnService.defaultProps = {
-  handleOnHamburgerClick: () => {},
+  }
 }
 
 ColumnService.propTypes = {
-  ifAuthenticated: PropTypes.bool.isRequired,
-  signOutAction: PropTypes.func.isRequired,
-  handleOnHamburgerClick: PropTypes.func,
+  handlePanelOnClick: PropTypes.func.isRequired,
 }
 
+ColumnService.contextTypes = {
+  // context.ifAuthenticated and context.signOutAction
+  // should be passed in the context by Clients who using this React Component
+  ifAuthenticated: PropTypes.bool.isRequired,
+  signOutAction: PropTypes.func.isRequired,
+}
+
+
+const duration = 100
 
 class SlideDownPanel extends React.Component {
   constructor(props) {
     super(props)
-    this.handleIssueOnClick = this._handleIssueOnClick.bind(this)
-    this.firstScroll = true
+    this.state = {
+      isOpen: false,
+    }
+    this.handlePanelOnClick = this._handleOnClick.bind(this)
   }
 
-  _smoothScroll() {
-    if (typeof document !== 'undefined') {
-      const { categoryId } = this.props
-      const elem = document.getElementById(categoryId)
+  _handleOnClick(pushTo) {
+    // if current page is homepage,
+    // and users want to go to categories section,
+    // just scroll to that section by id.
+    const { isIndex } = this.props
+    if (isIndex && pushTo === channelConfigs.categories.prefix + channelConfigs.categories.path) {
+      const elem = document.getElementById('categories')
       const offsetTop = _.get(elem, 'offsetTop', 0)
       if (offsetTop) {
-        if (this.firstScroll) {
-          this.firstScroll = false
-          return smoothScroll(offsetTop - 100)
-        }
         return smoothScroll(offsetTop)
       }
+    } else {
+      // if users want to go to other pages,
+      // close panel first,
+      // and then redirect to the page
+      this.setState({
+        isOpen: !this.state.isOpen,
+      }, () => {
+        const redirect = () => {
+          this.context.router.push(pushTo)
+        }
+        if (pushTo) {
+          // give `duration` + 100 ms buffer to open/close the panel
+          setTimeout(redirect.bind(this), duration + 100)
+        }
+      })
     }
-    return null
-  }
-
-  _handleIssueOnClick() {
-    this._smoothScroll()
   }
 
   render() {
-    const { showUp, isIndex, ifAuthenticated, signOutAction, handleOnHamburgerClick } = this.props
+    const { isOpen } = this.state
+    const { isIndex } = this.props
     return (
       <VelocityComponent
-        animation={showUp ? { marginTop: 0 } : { marginTop: `-${DEFAULT_HEIGHT_FLEX_BOX}px` }}
-        duration={200}
+        animation={isOpen ? { marginTop: 0 } : { marginTop: `-${DEFAULT_HEIGHT_FLEX_BOX}px` }}
+        duration={duration}
         runOnMount={false}
         easing="ease-in-out"
       >
         <Container isIndex={isIndex}>
           <ColumnChannel
-            handleIssueOnClick={this.handleIssueOnClick}
-            isIndex={isIndex}
-            handleOnHamburgerClick={handleOnHamburgerClick}
+            handlePanelOnClick={this.handlePanelOnClick}
           />
           <ColumnService
-            ifAuthenticated={ifAuthenticated}
-            signOutAction={signOutAction}
-            handleOnHamburgerClick={handleOnHamburgerClick}
+            handlePanelOnClick={this.handlePanelOnClick}
           />
         </Container>
       </VelocityComponent>
@@ -241,19 +239,17 @@ class SlideDownPanel extends React.Component {
 }
 
 SlideDownPanel.defaultProps = {
-  showUp: false,
   isIndex: false,
-  categoryId: '',
-  handleOnHamburgerClick: () => {},
 }
 
 SlideDownPanel.propTypes = {
-  showUp: PropTypes.bool,
-  categoryId: PropTypes.string,
   isIndex: PropTypes.bool,
-  ifAuthenticated: PropTypes.bool.isRequired,
-  signOutAction: PropTypes.func.isRequired,
-  handleOnHamburgerClick: PropTypes.func,
+}
+
+SlideDownPanel.contextTypes = {
+  // context.router is passed by react-router.Router
+  // Hence, SlideDownPanel should be the descendant of the Router
+  router: PropTypes.object.isRequired,
 }
 
 export default SlideDownPanel

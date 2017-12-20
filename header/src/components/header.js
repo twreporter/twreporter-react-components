@@ -116,6 +116,7 @@ class Header extends React.PureComponent {
     this._closeCategoriesMenu = this._handleToggleCategoriesMenu.bind(this, 'close')
     this._handleToggleCategoriesMenu = this._handleToggleCategoriesMenu.bind(this)
     this.handleOnHamburgerClick = this._handleOnHamburgerClick.bind(this)
+    this.panel = null
   }
 
   componentWillReceiveProps(nextProps) {
@@ -127,6 +128,10 @@ class Header extends React.PureComponent {
     }
   }
 
+  componentWillUnmount() {
+    this.panel = null
+  }
+
   _handleToggleCategoriesMenu(force = '') {
     const result = force || (this.state.categoriesIsOpen ? 'close' : 'open')
     this.setState({
@@ -135,9 +140,9 @@ class Header extends React.PureComponent {
   }
 
   _handleOnHamburgerClick() {
-    this.setState({
-      ifShowSlideInPanel: !this.state.ifShowSlideInPanel,
-    })
+    if (this.panel) {
+      this.panel.handlePanelOnClick()
+    }
   }
 
   _selectLogo(logoColor) {
@@ -151,18 +156,16 @@ class Header extends React.PureComponent {
   }
 
   render() {
-    const { bgColor, categoryId, fontColor, ifAuthenticated,
-      logoColor, pathName, isIndex, headerPosition, signOutAction } = this.props
-    const { categoriesIsOpen, ifShowSlideInPanel } = this.state
+    const { bgColor, fontColor, logoColor, pathName,
+      isIndex, headerPosition } = this.props
+    const { categoriesIsOpen } = this.state
     return (
       <HeaderContainer>
         <SlideDownPanel
-          showUp={ifShowSlideInPanel}
+          ref={(node) => {
+            this.panel = node
+          }}
           isIndex={isIndex}
-          categoryId={categoryId}
-          ifAuthenticated={ifAuthenticated}
-          signOutAction={signOutAction}
-          handleOnHamburgerClick={this.handleOnHamburgerClick}
         />
         <TopRow
           bgColor={bgColor}
@@ -172,10 +175,7 @@ class Header extends React.PureComponent {
             <Link to="/">
               {this._selectLogo(logoColor)}
             </Link>
-            <Icons
-              ifAuthenticated={ifAuthenticated}
-              signOutAction={signOutAction}
-            />
+            <Icons />
             <Hamburger onClick={this.handleOnHamburgerClick} />
           </TopRowContent>
         </TopRow>
@@ -193,19 +193,15 @@ Header.logoColor = {
 
 Header.propTypes = {
   bgColor: PropTypes.string,
-  categoryId: PropTypes.string,
   fontColor: PropTypes.string,
   logoColor: PropTypes.string,
   pathName: PropTypes.string,
-  ifAuthenticated: PropTypes.bool.isRequired,
   isIndex: PropTypes.bool,
   headerPosition: PropTypes.string,
-  signOutAction: PropTypes.func.isRequired,
 }
 
 Header.defaultProps = {
   bgColor: '',
-  categoryId: '',
   fontColor: colors.black,
   logoColor: Header.logoColor.dark,
   isIndex: false,

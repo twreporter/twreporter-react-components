@@ -1,5 +1,11 @@
 ### UNRELEASED
 
+### 2.1.3
+- Update donation links
+
+### 2.1.2
+- Bug fix. Redirect to the page or scroll to the position after clicking link in the header panel.
+
 ### 2.1.1
 - Make header slide down smoothly
 - Reduce bundle size by importing only we need

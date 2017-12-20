@@ -111,7 +111,7 @@ export const channelConfigs = {
     text: '議題',
     type: 'submenu',
     prefix: '/',
-    path: '?section=category',
+    path: '?section=categories',
   },
   hiring: {
     text: '徵才中',
@@ -127,8 +127,8 @@ export const channelConfigs = {
 export const channels = ['review', 'topics', 'photography', 'infographic', 'categories']
 
 export const externalLinks = {
-  monthlyDonation: 'https://twreporter.backme.tw/cashflow/checkout?project_id=175&reward_id=1305',
-  onceDonation: 'https://twreporter.backme.tw/cashflow/checkout?project_id=175&reward_id=718',
+  monthlyDonation: 'https://twreporter.backme.tw/checkout/175/3788',
+  onceDonation: 'https://twreporter.backme.tw/checkout/175/3789',
   github: 'https://github.com/twreporter',
   line: 'http://line.me/ti/p/%40nbs5015j',
   facebook: 'https://www.facebook.com/twreporter/',

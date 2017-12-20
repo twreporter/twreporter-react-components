@@ -14,6 +14,7 @@ import smoothScroll from 'smoothscroll'
 import styled from 'styled-components'
 import { centerBlock, finalMedia, breakPoints } from '../utils/style-utils'
 import { colors, fonts } from '../styles/common-variables'
+import { externalLinks } from 'shared/configs'
 import { itemPlusPaddingWidthPct } from '../constants/mobile-mockup-specification'
 
 const mobileWidth = breakPoints.mobileMaxWidth
@@ -156,7 +157,7 @@ class ReporterIntro extends React.PureComponent {
 
   render() {
     const authorHref = 'authors'
-    const donationHref = 'https://twreporter.backme.tw/cashflow/checkout?project_id=175&reward_id=718'
+    const donationHref = externalLinks.monthlyDonation
     const hiringHref = 'a/hiring-job-description'
     return (
       <ContentContainer
