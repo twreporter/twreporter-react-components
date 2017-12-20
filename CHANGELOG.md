@@ -1,5 +1,9 @@
 ### UNRELEASED
 
+### 2.1.4
+- Fix bookmark customized link warning
+- Fix redirection of bookmarks page in signin condition (header slide down panel)
+
 ### 2.1.3
 - Update donation links
 
@@ -41,7 +45,7 @@
 - Change hiring wording
 
 ### 1.3.0
-- Make each sub folder could be required by clients. 
+- Make each sub folder could be required by clients.
   - EX: var Header = require('@twreporter/react-components/lib/header')
   - var Footer = require('@twreporter/react-components/lib/footer')
 - Add hiring channel on navigation bar

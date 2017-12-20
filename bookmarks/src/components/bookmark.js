@@ -450,8 +450,15 @@ BookmarkContainer.propTypes = {
   handleBookmarkIconOnClick: React.PropTypes.func.isRequired,
 }
 
+CustomizedLink.defaultProps = {
+  children: {},
+}
+
 CustomizedLink.propTypes = {
-  children: React.PropTypes.element.isRequired,
+  children: React.PropTypes.oneOfType([
+    React.PropTypes.element,
+    React.PropTypes.array,
+  ]),
   isExternal: React.PropTypes.bool.isRequired,
   slug: React.PropTypes.string.isRequired,
   host: React.PropTypes.string.isRequired,
