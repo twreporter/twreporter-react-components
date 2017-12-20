@@ -138,7 +138,9 @@ class SideBar extends React.PureComponent {
   }
 
   _scrollTo(moduleID, e) {
-    e.preventDefault()
+    if (e) {
+      e.preventDefault()
+    }
     const node = this.moduleMap[moduleID]
     if (node) {
       return smoothScroll(node.offsetTop)

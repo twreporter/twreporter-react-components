@@ -212,9 +212,6 @@ class LatestSection extends React.Component {
         <HeaderContainer ifPinned={this.state.ifPinned}>
           <Header
             isIndex
-            signOutAction={this.props.signOutAction}
-            ifAuthenticated={this.props.ifAuthenticated}
-            categoryId={this.props.categoryId}
           />
         </HeaderContainer>
         <ContentContainer innerRef={(node) => { this.ContentContainer = node }}>
@@ -228,14 +225,10 @@ class LatestSection extends React.Component {
 LatestSection.defaultProps = {
   data: [],
   moduleMap: {},
-  categoryId: '',
 }
 
 LatestSection.propTypes = {
   data: PropTypes.arrayOf(postPropType()),
-  ifAuthenticated: PropTypes.bool.isRequired,
-  signOutAction: PropTypes.func.isRequired,
-  categoryId: PropTypes.string,
 }
 
 export default LatestSection

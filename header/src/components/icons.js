@@ -128,7 +128,7 @@ class Icons extends React.PureComponent {
   }
   render() {
     const { isSearchOpened } = this.state
-    const { ifAuthenticated, signOutAction } = this.props
+    const { ifAuthenticated, signOutAction } = this.context
     const Member = (
       <Link
         to={`/${memberConfigs.path}`}
@@ -176,7 +176,9 @@ class Icons extends React.PureComponent {
   }
 }
 
-Icons.propTypes = {
+Icons.contextTypes = {
+  // context.ifAuthenticated and context.signOutAction
+  // should be passed in the context by Clients who using this React Component
   ifAuthenticated: PropTypes.bool.isRequired,
   signOutAction: PropTypes.func.isRequired,
 }

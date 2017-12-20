@@ -111,7 +111,7 @@ export const channelConfigs = {
     text: '議題',
     type: 'submenu',
     prefix: '/',
-    path: '?section=category',
+    path: '?section=categories',
   },
   hiring: {
     text: '徵才中',
