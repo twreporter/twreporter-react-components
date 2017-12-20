@@ -203,15 +203,14 @@ class SlideDownPanel extends React.Component {
       // and then redirect to the page
       this.setState({
         isOpen: !this.state.isOpen,
-      }, () => {
-        const redirect = () => {
-          this.context.router.push(pushTo)
-        }
-        if (pushTo) {
-          // give `duration` + 100 ms buffer to open/close the panel
-          setTimeout(redirect.bind(this), duration + 100)
-        }
       })
+      const redirect = () => {
+        this.context.router.push(pushTo)
+      }
+      if (pushTo) {
+        // give `duration` + 100 ms buffer to open/close the panel
+        setTimeout(redirect.bind(this), duration + 100)
+      }
     }
   }
 
