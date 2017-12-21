@@ -1,4 +1,5 @@
 ### UNRELEASED
+- Move bookmark to @twreporter/registration
 
 ### 2.1.12
 - Refine font-weight settings
