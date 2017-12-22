@@ -22,7 +22,7 @@ export const footerSections = [
       {
         slug: 'license',
         text: '許可協議',
-        link: externalLinks.ccLicense,
+        link: `${linkPrefix.article}lience-footer`,
       },
     ],
   },
