@@ -6,9 +6,9 @@
         "root": ["."],
         "alias": {
           "shared": "./shared",
-          "header-components": "./header-components/src",
-          "footer-components": "./footer-components/src",
-          "cinemagraph" : "./cinemagraph/src"
+          "header": "./header",
+          "footer": "./footer",
+          "cinemagraph" : "./cinemagraph"
         }
       }
     ],

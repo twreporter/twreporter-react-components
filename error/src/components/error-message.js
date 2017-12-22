@@ -222,18 +222,18 @@ const NumberImageWrapper = styled.div`
   position: absolute;
   right: 0;
   top: 10px;
+  width: 39.64%;
+  ${screen.tabletOnly`
+    width: 230px;
+  `}
+  ${screen.desktopOnly`
+    width: 313px;
+  `}
+  ${screen.hdAbove`
+    width: 353px;
+  `}
   >svg {
-    width: 39.64%;
-    ${screen.tabletOnly`
-      width: 230px;
-    `}
-    ${screen.desktopOnly`
-      width: 38%;
-      width: 313px;
-    `}
-    ${screen.hdAbove`
-      width: 353px;
-    `}
+    width: 100%;
   }
 `
 
