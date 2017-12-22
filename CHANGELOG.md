@@ -1,4 +1,9 @@
 ### UNRELEASED
+
+### 2.1.6
+- [error] Fixup Error modules
+
+### 2.1.5
 - [error] Add ErrorPage
 
 ### 2.1.4
