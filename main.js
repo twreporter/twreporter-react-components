@@ -9,6 +9,7 @@ import { TopicsList, List } from './listing-page'
 import Pagination from './pagination'
 import { Cinemagraph, CinemagraphHelper } from './cinemagraph'
 import { FullpageSlides, FullpageSlidesConstants } from './fullpage-slides'
+import ErrorPage from './error'
 
 const Wrapper = {
   FetchingWrapper,
@@ -20,6 +21,7 @@ export default {
   CinemagraphHelper,
   Confirmation,
   FadeText,
+  ErrorPage,
   Footer,
   FullpageSlides,
   FullpageSlidesConstants,
@@ -37,6 +39,7 @@ export {
   CinemagraphHelper,
   Confirmation,
   FadeText,
+  ErrorPage,
   Footer,
   FullpageSlides,
   FullpageSlidesConstants,
