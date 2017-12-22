@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 2.1.7
+- Update lience link in the footer. Link to /a/lience-footer
+
 ### 2.1.6
 - [error] Fixup Error modules
 
