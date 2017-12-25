@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 2.1.8
+- Optimize svg files
+
 ### 2.1.7
 - Update lience link in the footer. Link to /a/lience-footer
 

@@ -38,6 +38,17 @@ const HeaderContainer = styled.div`
   width: 100%;
 `
 
+const MobileOnlyContainer = styled.div`
+  display: none;
+  ${screen.mobileOnly`
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+  `}
+`
+
+
 const TopRow = styled.div`
   background-color: ${props => props.bgColor};
   height: ${props => (props.isIndex ? styles.headerHeightIndex : styles.headerHeight)}px;
@@ -161,12 +172,14 @@ class Header extends React.PureComponent {
     const { categoriesIsOpen } = this.state
     return (
       <HeaderContainer>
-        <SlideDownPanel
-          ref={(node) => {
-            this.panel = node
-          }}
-          isIndex={isIndex}
-        />
+        <MobileOnlyContainer>
+          <SlideDownPanel
+            ref={(node) => {
+              this.panel = node
+            }}
+            isIndex={isIndex}
+          />
+        </MobileOnlyContainer>
         <TopRow
           bgColor={bgColor}
           isIndex={isIndex}
