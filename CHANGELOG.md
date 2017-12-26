@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 2.1.9
+- Update error 500 English svg
+
 ### 2.1.8
 - Optimize svg files
 

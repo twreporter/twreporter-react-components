@@ -2,6 +2,8 @@ import { Link } from 'react-router'
 import { screen } from 'shared/style-utils'
 import Building from '../../static/building.svg'
 import Dot from '../../static/dot.svg'
+import Eng500 from '../../static/server-error.svg'
+import Eng500Mobile from '../../static/server-error-mobile.svg'
 import Eng404 from '../../static/not-found-eng.svg'
 import Eng404Mobile from '../../static/not-found-eng-mobile.svg'
 import Number404 from '../../static/num404.svg'
@@ -238,33 +240,6 @@ const NumberImageWrapper = styled.div`
 `
 
 class ErrorMessage extends React.PureComponent {
-  // _selectNumberImage(errorType) {
-  //   function stylingImage(Number) {
-  //     return styled(Number)`
-  //       position: absolute;
-  //       right: 0;
-  //       top: 10px;
-  //       width: 39.64%;
-  //       ${screen.tabletOnly`
-  //         width: 230px;
-  //       `}
-  //       ${screen.desktopOnly`
-  //         width: 38%;
-  //         width: 313px;
-  //       `}
-  //       ${screen.hdAbove`
-  //         width: 353px;
-  //       `}
-  //     `
-  //   }
-  //   switch (errorType) {
-  //     case '404':
-  //       return stylingImage(Number404)
-  //     case '500':
-  //     default:
-  //       return stylingImage(Number500)
-  //   }
-  // }
   _buildChineseMessageJSX(errorType) {
     switch (errorType) {
       case '404':
@@ -285,11 +260,10 @@ class ErrorMessage extends React.PureComponent {
         )
       case '500':
       default:
-        /* wait for Eng500 implement */
         return (
           <EngishWrapper>
-            <Eng404Mobile className="show-mobile" />
-            <Eng404 className="hide-mobile" />
+            <Eng500Mobile className="show-mobile" />
+            <Eng500 className="hide-mobile" />
           </EngishWrapper>
         )
     }
@@ -313,7 +287,6 @@ class ErrorMessage extends React.PureComponent {
   }
   render() {
     const { errorType } = this.props
-    // const ErrorNumber = this._selectNumberImage(errorType)
     return (
       <Container>
         <ErrorMessageBlock>
