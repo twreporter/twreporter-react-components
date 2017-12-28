@@ -1,6 +1,7 @@
 import BookmarkIcon from '../../static/bookmark.svg'
 import ImgWrapper from 'shared/components/img-wrapper'
 import Link from 'react-router/lib/Link'
+import PropTypes from 'prop-types'
 import React from 'react'
 import get from 'lodash/get'
 import styled from 'styled-components'
@@ -409,7 +410,7 @@ class Bookmark extends React.PureComponent {
 }
 
 Bookmark.propTypes = {
-  handleBookmarkIconOnClick: React.PropTypes.func.isRequired,
+  handleBookmarkIconOnClick: PropTypes.func.isRequired,
 }
 
 class BookmarkContainer extends React.Component {
@@ -445,9 +446,9 @@ BookmarkContainer.defaultProps = {
 }
 
 BookmarkContainer.propTypes = {
-  bookmarkData: React.PropTypes.array,
-  total: React.PropTypes.number,
-  handleBookmarkIconOnClick: React.PropTypes.func.isRequired,
+  bookmarkData: PropTypes.array,
+  total: PropTypes.number,
+  handleBookmarkIconOnClick: PropTypes.func.isRequired,
 }
 
 CustomizedLink.defaultProps = {
@@ -455,13 +456,13 @@ CustomizedLink.defaultProps = {
 }
 
 CustomizedLink.propTypes = {
-  children: React.PropTypes.oneOfType([
-    React.PropTypes.element,
-    React.PropTypes.array,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.array,
   ]),
-  isExternal: React.PropTypes.bool.isRequired,
-  slug: React.PropTypes.string.isRequired,
-  host: React.PropTypes.string.isRequired,
+  isExternal: PropTypes.bool.isRequired,
+  slug: PropTypes.string.isRequired,
+  host: PropTypes.string.isRequired,
 }
 
 export default BookmarkContainer
