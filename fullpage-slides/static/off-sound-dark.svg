@@ -1,1 +1,15 @@
-<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg"><g transform="translate(1 1)" fill="none" fill-rule="evenodd" opacity=".7"><path d="M10.6 10.437H6.263a.268.268 0 0 0-.264.27v8.585c0 .15.118.271.264.271h4.335a.26.26 0 0 1 .159.054l4.323 3.328c.175.134.423.007.423-.216V7.27c0-.223-.248-.35-.423-.216l-4.323 3.328a.26.26 0 0 1-.159.054" fill="#000"/><circle stroke="#000" stroke-width="2" cx="15" cy="15" r="15"/></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>0ff-sound copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Desktop-1024x768" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.7">
+        <g id="0ff-sound-copy" transform="translate(1.000000, 1.000000)">
+            <g id="0ff-sound">
+                <path d="M10.5993571,10.4369505 L6.26399708,10.4369505 C6.11827069,10.4369505 6,10.5583283 6,10.7078832 L6,19.2921168 C6,19.4416717 6.11827069,19.5630495 6.26399708,19.5630495 L10.5993571,19.5630495 C10.6563805,19.5630495 10.7118199,19.5820148 10.7577554,19.6172361 L15.0814996,22.9453741 C15.2557377,23.0792149 15.5038949,22.9518765 15.5038949,22.7286279 L15.5038949,7.27137212 C15.5038949,7.04812352 15.2557377,6.92078513 15.0814996,7.05462591 L10.7577554,10.3827639 C10.7118199,10.4179852 10.6563805,10.4369505 10.5993571,10.4369505" id="onsound" fill="#000000"></path>
+                <circle id="Oval" stroke="#000000" stroke-width="2" cx="15" cy="15" r="15"></circle>
+            </g>
+        </g>
+    </g>
+</svg>
