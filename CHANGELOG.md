@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 2.1.10
+- Revert `Optimize svg files` commit(in v2.1.8)
+
 ### 2.1.9
 - Update error 500 English svg
 
