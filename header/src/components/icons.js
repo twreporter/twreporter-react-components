@@ -106,15 +106,26 @@ const HideOnDesktop = IconContainer.extend`
   `}
 `
 
-class Icons extends React.PureComponent {
+class Icons extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isSearchOpened: false,
+      ifAuthenticated: false,
     }
     this._closeSearchBox = this._closeSearchBox.bind(this)
     this._handleClickSearch = this._handleClickSearch.bind(this)
   }
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    const nextIfAuthenticated = nextContext.ifAuthenticated
+    const currentIfAuthenticated = this.context.ifAuthenticated
+    if (nextIfAuthenticated !== currentIfAuthenticated) {
+      return true
+    }
+    return false
+  }
+
   _closeSearchBox() {
     this.setState({
       isSearchOpened: false,
@@ -126,14 +137,17 @@ class Icons extends React.PureComponent {
       isSearchOpened: true,
     })
   }
+
   render() {
     const { isSearchOpened } = this.state
     const { ifAuthenticated, signOutAction } = this.context
+    const linkTo = ifAuthenticated ? '/' : `/${memberConfigs.path}`
     const Member = (
       <Link
-        to={`/${memberConfigs.path}`}
+        to={linkTo}
         onClick={() => {
           signOutAction()
+          this.forceUpdate()
         }}
       >
         {ifAuthenticated ? <SignOutIcon /> : <SignInIcon />}

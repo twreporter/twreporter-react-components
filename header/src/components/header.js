@@ -107,7 +107,7 @@ Hamburger.propTypes = {
   onClick: PropTypes.func.isRequired,
 }
 
-class Header extends React.PureComponent {
+class Header extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
