@@ -1,3 +1,6 @@
+[![Tag](https://img.shields.io/github/tag/twreporter/twreporter-react.svg)](https://github.com/twreporter/twreporter-react/tags)
+[![NPM version](https://img.shields.io/npm/v/@twreporter/react-components.svg)](https://www.npmjs.com/package/@twreporter/react-components)
+
 # twreporter-react-components
 
 ## INSTALL
