@@ -25,7 +25,7 @@ const Container = styled.div`
 
 const Header = styled.div`
   font-size: ${fonts.size.title.xlarge};
-  font-weight: ${fonts.weight.heavy};
+  font-weight: ${fonts.weight.bold};
   color: ${colors.ListHeader};
   margin: 0 auto 45px auto;
   text-align: center;

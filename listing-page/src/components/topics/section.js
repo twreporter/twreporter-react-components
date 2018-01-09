@@ -67,7 +67,7 @@ const GoToTopic = styled.div`
     text-overflow: ellipsis;
     letter-space: .1px;
     font-size: ${fonts.size.medium};
-    font-weight: ${fonts.weight.medium};
+    font-weight: ${fonts.weight.normal};
   }
   svg {
     height: ${fonts.size.medium};

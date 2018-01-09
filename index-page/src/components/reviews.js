@@ -105,7 +105,7 @@ const Category = CategoryName.extend`
 const Title = styled.div`
   margin-top: 2px;
   font-size: ${fonts.size.title.base};
-  font-weight: ${fonts.weight.semiBold};
+  font-weight: ${fonts.weight.bold};
   line-height: 1.5;
   ${finalMedia.tablet`
     width: 144px;

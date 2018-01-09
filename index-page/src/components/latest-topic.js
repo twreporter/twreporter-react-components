@@ -44,7 +44,7 @@ const TopicFrame = styled.div`
 const Title = styled.div`
   width: 374px;
   font-size: ${fonts.size.title.large};
-  font-weight: ${fonts.weight.semiBold};
+  font-weight: ${fonts.weight.bold};
   line-height: 1.25;
   color: ${colors.textGrey};
   text-align: center;
@@ -128,7 +128,7 @@ const RelatedCategory = CategoryName.extend`
 
 const RelatedTitle = styled.div`
   font-size: ${fonts.size.title.base};
-  font-weight: ${fonts.weight.semiBold};
+  font-weight: ${fonts.weight.bold};
   color: ${colors.textGrey};
   line-height: 1.5;
 `
