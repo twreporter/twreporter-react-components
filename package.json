@@ -2,7 +2,7 @@
   "name": "@twreporter/react-components",
   "repository": "https://github.com/twreporter/twreporter-react-components.git",
   "license": "AGPL-3.0",
-  "version": "2.1.11",
+  "version": "2.1.12",
   "main": "lib/main.js",
   "scripts": {
     "lint": "eslint \"**/src/**/*.js\" --config .eslintrc",
