@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 2.1.11
+- Stop using `React.PropTypes`, `import PropTypes from 'prop-types'` instead
+
 ### 2.1.10
 - Revert `Optimize svg files` commit(in v2.1.8)
 
