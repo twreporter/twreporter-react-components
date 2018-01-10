@@ -53,7 +53,7 @@ const Title = styled.div`
   transform: translateX(-50%);
   width: ${itemWidthPct}%;
   font-size: ${fonts.size.title.medium};
-  font-weight: ${fonts.weight.semiBold};
+  font-weight: ${fonts.weight.bold};
   color: ${colors.textGrey};
   position: absolute;
 `

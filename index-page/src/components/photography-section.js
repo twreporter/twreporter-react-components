@@ -88,7 +88,7 @@ const Title = styled.div`
   transform: translate(-50%, -50%);
   line-height: 1.5;
   text-align: justify;
-  font-weight: ${fonts.weight.medium};
+  font-weight: ${fonts.weight.normal};
 `
 
 const Img = styled.div`

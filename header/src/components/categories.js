@@ -107,7 +107,7 @@ const ItemContainer = styled.li`
 const ItemContent = styled.span`
   color: ${colors.headerCategory};
   font-size: ${fonts.size.medium};
-  font-weight: ${fonts.weight.medium};
+  font-weight: ${fonts.weight.normal};
   cursor: pointer;
   &:hover {
     color: ${colors.black};

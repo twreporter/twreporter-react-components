@@ -125,7 +125,7 @@ const Category = styled(CategoryName)`
 const Title = styled.div`
   height: auto;
   font-size: ${fonts.size.medium};
-  font-weight: ${fonts.weight.semiBold};
+  font-weight: ${fonts.weight.bold};
   color: #4a4949;
 `
 

@@ -160,7 +160,7 @@ const MiddleCategory = CategoryName.extend`
 
 const Title = styled.div`
   font-size: ${props => (props.middle ? `${fonts.size.title.large}` : `${fonts.size.medium}`)};
-  font-weight: ${fonts.weight.semiBold};
+  font-weight: ${fonts.weight.bold};
   color: ${colors.textGrey};
   width: ${props => (props.middle ? '450px' : '150px')};
   position: absolute;

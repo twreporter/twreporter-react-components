@@ -125,7 +125,7 @@ const WordBlock = styled.div`
 
 const Title = styled.h3`
   margin: 0;
-  font-weight: ${fonts.weight.semiBold};
+  font-weight: ${fonts.weight.bold};
   font-size: ${fonts.size.title.base};
   color: #4a4a4a;
   @media (min-width: ${breakPoints.desktopMinWidth}) {

@@ -23,7 +23,7 @@ const NoData = styled.div`
   width: 100%;
   fonts: ${fonts.size.medium};
   color: ${colors.textGrey};
-  font-weight: ${fonts.weight.medium};
+  font-weight: ${fonts.weight.normal};
   text-align: center;
 `
 

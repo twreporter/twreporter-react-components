@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 2.1.12
+- Refine font-weight settings
+
 ### 2.1.11
 - Stop using `React.PropTypes`, `import PropTypes from 'prop-types'` instead
 

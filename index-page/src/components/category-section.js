@@ -103,7 +103,7 @@ const CategoryName = styled.div`
   background-color: ${backgroundColor};
   width: 100%;
   color: ${colors.textGrey};
-  font-weight: ${fonts.weight.semiBold};
+  font-weight: ${fonts.weight.bold};
   line-height: 1.4;
   text-align: center;
   font-size: ${fonts.size.title.base};
@@ -117,7 +117,7 @@ const TextFrame = styled.div`
 `
 
 const Title = styled.div`
-  font-weight: ${fonts.weight.semiBold};
+  font-weight: ${fonts.weight.bold};
   font-size: ${fonts.size.title.base};
   color: ${colors.textGrey};
   line-height: 1.4;

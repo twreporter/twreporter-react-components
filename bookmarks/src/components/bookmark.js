@@ -225,7 +225,7 @@ const AuthorName = styled.span`
 const Date = styled.span`
   vertical-align: top;
   font-size: 16px;
-  font-weight: ${fonts.weight.light};
+  font-weight: ${fonts.weight.normal};
   color: ${colors.greyishBrown};
   float: right;
 `
