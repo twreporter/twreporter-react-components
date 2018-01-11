@@ -1,3 +1,3 @@
-import Header from './src/components/header'
+import HeaderComposite from './src/components/header'
 
-export default Header
+export default HeaderComposite

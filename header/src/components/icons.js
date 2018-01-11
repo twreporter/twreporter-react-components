@@ -111,19 +111,16 @@ class Icons extends React.Component {
     super(props)
     this.state = {
       isSearchOpened: false,
-      ifAuthenticated: false,
     }
     this._closeSearchBox = this._closeSearchBox.bind(this)
     this._handleClickSearch = this._handleClickSearch.bind(this)
   }
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    const nextIfAuthenticated = nextContext.ifAuthenticated
-    const currentIfAuthenticated = this.context.ifAuthenticated
-    if (nextIfAuthenticated !== currentIfAuthenticated) {
-      return true
-    }
-    return false
+  componentWillMount() {
+    const { authenticationContext } = this.context
+    authenticationContext.subscribe(() => {
+      this.forceUpdate()
+    })
   }
 
   _closeSearchBox() {
@@ -140,7 +137,8 @@ class Icons extends React.Component {
 
   render() {
     const { isSearchOpened } = this.state
-    const { ifAuthenticated, signOutAction } = this.context
+    const { authenticationContext } = this.context
+    const { ifAuthenticated, signOutAction } = authenticationContext
     const linkTo = ifAuthenticated ? '/' : `/${memberConfigs.path}`
     const Member = (
       <Link
@@ -193,8 +191,9 @@ class Icons extends React.Component {
 Icons.contextTypes = {
   // context.ifAuthenticated and context.signOutAction
   // should be passed in the context by Clients who using this React Component
-  ifAuthenticated: PropTypes.bool.isRequired,
-  signOutAction: PropTypes.func.isRequired,
+  // ifAuthenticated: PropTypes.bool.isRequired,
+  // signOutAction: PropTypes.func.isRequired,
+  authenticationContext: PropTypes.object.isRequired,
 }
 
 export default Icons

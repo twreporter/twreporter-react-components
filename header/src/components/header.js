@@ -11,6 +11,7 @@ import styled from 'styled-components'
 import { arrayToCssShorthand, screen } from 'shared/style-utils'
 import { colors } from 'shared/common-variables'
 import { HEADER_POSITION_UPON } from '../styles/constants'
+import AuthenticationContext from '../utils/authentication-context'
 
 const styles = {
   headerHeight: 109, // px
@@ -107,7 +108,7 @@ Hamburger.propTypes = {
   onClick: PropTypes.func.isRequired,
 }
 
-class Header extends React.Component {
+class Header extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
@@ -209,4 +210,4 @@ Header.defaultProps = {
   headerPosition: '',
 }
 
-export default Header
+export default { Header, AuthenticationContext }
