@@ -106,7 +106,7 @@ const HideOnDesktop = IconContainer.extend`
   `}
 `
 
-class Icons extends React.Component {
+class Icons extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
@@ -116,8 +116,12 @@ class Icons extends React.Component {
     this._handleClickSearch = this._handleClickSearch.bind(this)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { authenticationContext } = this.context
+    // Becuase intermediate children are PureComponent,
+    // Icons will not re-render if App.js (entry point of project) re-render
+    // Therefore, Icons subscribe authenticationContext which is intizted in App.js
+    // to keep up with the latest props of App.js. Speciffically focus on ifAuthenticated.
     authenticationContext.subscribe(() => {
       this.forceUpdate()
     })

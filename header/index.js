@@ -1,3 +1,7 @@
-import HeaderComposite from './src/components/header'
+import Header from './src/components/header'
+import AuthenticationContext from './src/utils/authentication-context'
 
-export default HeaderComposite
+export default {
+  Header,
+  AuthenticationContext,
+}
