@@ -1,11 +1,11 @@
-# twreporter-react-components
+# @twreporter/react-article-components
 
-This repo is used to build up [twreporter-react-components pkg](https://www.npmjs.com/package/twreporter-react-components).
+This `articles` branch is used to build up [@twreporter/react-article-components pkg](https://www.npmjs.com/package/@twreporter/react-article-components).
 
-## Why need twreporter-react-components?
+## Why need @twreporter/react-article-components?
 The goal is to separate the `react components` from [twreporter-react](https://github.com/twreporter/twreporter-react), 
 
-and make `twreporter-react-components` be able to used by other projects, such as [twreporter-keystone](https://github.com/twreporter/keystone).
+and make `@twreporter/react-article-components` be able to used by other projects, such as [twreporter-keystone](https://github.com/twreporter/keystone).
 
 
 ## How to use?
