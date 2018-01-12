@@ -1,7 +1,7 @@
 [![Tag](https://img.shields.io/github/tag/twreporter/twreporter-react-components.svg)](https://github.com/twreporter/twreporter-react-components/tags)
 [![NPM version](https://img.shields.io/npm/v/@twreporter/react-components.svg)](https://www.npmjs.com/package/@twreporter/react-components)
 
-# twreporter-react-components
+# @twreporter/react-components
 
 ## INSTALL
 
@@ -14,132 +14,57 @@ yarn add react react-dom react-router
 Install:
 
 ```
-yarn add twreporter-react-components
+yarn add @twreporter/react-components
 ```
 
-## USE
+## Usage
+@twreporter/react-components pkg provides many react components we are using in our website.
+It contains 
+- [index-component](https://github.com/twreporter/twreporter-react-components#index-components)
+- [header](https://github.com/twreporter/twreporter-react-components#header) 
+- [footer](https://github.com/twreporter/twreporter-react-components#footer)
+- [pagination](https://github.com/twreporter/twreporter-react-components#pagination)
+- [listing-page](https://github.com/twreporter/twreporter-react-components#listing-page)
+- [fullpage-slides](https://github.com/twreporter/twreporter-react-components#fullpage-slides)
+- [cinemagraph](https://github.com/twreporter/twreporter-react-components#cinemagraph)
+- [confirmation](https://github.com/twreporter/twreporter-react-components#confirmation)
 
 ### index-components
+These components are used to render [twreporter main site homepage](https://www.twreporter.org).
 
-```javascript
-import { IndexPageComposite } from 'twreporter-react-components'
+Check [source code](https://github.com/twreporter/twreporter-react/tree/master/src/containers/Home.js) to understand how to use it.
 
-const { CategorySection, EditorPicks, Header, InforgraphicSection,
-  LatestSection, LatestTopicSection, NewsLetterSection, PhotographySection,
-  ReporterIntro,  ReviewsSection, SideBar, TopicsSection } = IndexPageComposite.components
-```
+### header
+[Our main site](https://www.twreporter.org) uses `header` component to render the header.
 
-### header-components
+Check [source code](https://github.com/twreporter/twreporter-react/blob/master/src/helpers/with-layout.js) to understand how to use it well.
 
-```javascript
-import { Header } from 'twreporter-react-components'
+### footer
+[Our main site](https://www.twreporter.org) uses `footer` component to render the footer.
 
-const Page = (props) => (
-  <div>
-    <Header
-      isIndex
-      pageTheme={props.pageTheme}
-      pathName={props.pathName}
-    />
-    {props.children}
-  </div>
-)
-```
+### pagination 
+[Topic listing page](https://www.twreporter.org/topics) uses `pagination` component to show the page list.
 
-**Props:**
+Check [source code](https://github.com/twreporter/twreporter-react/blob/master/src/containers/Topics.js) here.
 
-* `isIndex`: (boolean) The Component is used on index page or not. (default: `false`)
-* `pageTheme`: (string) The page theme passed by `twreporter-react`. `DARK` or `BRIGHT`. (default: `'BRIGHT'`)
-* `pathName`: (string) The pathname passed by `twreporter-react`. With format likes `/categories/inforgraphic`, `/photography` . (default: `''`)
+### listing-page
+`listing-page` contains two different lists, one is [topic list](https://www.twreporter.org/topics), another is [post list](https://www.twreporter.org/categories/reviews).
 
-### footer-components
+Check [topic list source code](https://github.com/twreporter/twreporter-react/blob/master/src/containers/Topics.js) and [post list source code](https://github.com/twreporter/twreporter-react/blob/master/src/containers/Category.js) to know how to use it.
 
-```javascript
-import { Footer } from 'twreporter-react-components'
+### fullpage-slides
+This [high-risk-youth-life-is-a-struggle multimedia work](https://www.twreporter.org/i/high-risk-youth-life-is-a-struggle) is using `fullpage-slides` to render.
 
-const Page = (props) => (
-  <div>
-    {props.children}
-    <Footer />
-  </div>
-)
-```
+Check out the [source code](https://github.com/twreporter/static-fe-boilerplate/blob/master/child-in-relic/src/components/root.js)
 
-**Props:**
+### cinemagraph
+In [high-risk-youth-life-is-a-struggle multimedia work](https://www.twreporter.org/i/high-risk-youth-life-is-a-struggle), you will see two images sliding from different direction to compose a single full image. That tech is using `cinemagraph` component.
 
-none
-
-### listing-components
-
-#### Topics
-
-```javascript
-import { TopicsList } from 'twreporter-react-components'
-
-
-const Page = (props) =>(
-  <div>
-    <PageContent>
-      <TopicsList
-        currentPage={props.page}
-        topics={props.data}
-        isFetching={props.isFetching}
-        />
-    </PageContent>
-  </div>
-)
-```
-
-**props:**
-
-`currentPage`(number): current page
-`topics`(array): topics data
-`isFetching`(boolean): is data ready
-
-### bookmarks-components
-
-#### twreporter-react -> src -> container -> BookmarkList
-
-```javascript
-import { Bookmark } from 'twreporter-react-components'
-
-
-const Page = (props) =>(
-  <div>
-    <Bookmark
-      bookmarkData={bookmarkData}
-      handleBookmarkIconOnClick={this.handleBookmarkIconOnClick}
-      total={total}
-    />
-  </div>
-)
-```
-
-**props:**
-
-* `bookmarkData`(array): array of objs. The obj should has following keys
-```javascript
-const {
-  thumbnail,
-  category,
-  title,
-  desc,
-  published_date,
-  slug,
-  is_external,
-  host,
-} = _.get(this.props, 'bookmarkData', {})
-```
-* `handleBookmarkIconOnClick`(func): Each bookmark row contains a bookmark icon. OnClick the icon will trigger the func
-* `total`(number): total number of bookmarks of the user.
-
+Checkout the [source code](https://github.com/twreporter/static-fe-boilerplate/blob/master/child-in-relic/src/data/cinemagraph.js) here.
 
 ### confirmation-components
-
-#### twreporter-react -> src -> container -> BookmarkList
-
 ```javascript
-import { Confirmation } from 'twreporter-react-components'
+import { Confirmation } from '@twreporter/react-components'
 
 
 const Page = (props) =>(
@@ -162,8 +87,6 @@ const Page = (props) =>(
 * `content`(string): Information in dialog
 * `confirm`(string): confirm button text
 * `cancel`(string): cancel button text
-
-
 
 ## Developement
 
