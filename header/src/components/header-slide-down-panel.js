@@ -117,8 +117,16 @@ ColumnChannel.propTypes = {
 
 
 class ColumnService extends React.PureComponent {
+  componentWillMount() {
+    const { authenticationContext } = this.context
+    authenticationContext.subscribe(() => {
+      this.forceUpdate()
+    })
+  }
+
   render() {
-    const { ifAuthenticated, signOutAction } = this.context
+    const { authenticationContext } = this.context
+    const { ifAuthenticated, signOutAction } = authenticationContext
     const { handlePanelOnClick } = this.props
     const divisions = serviceContent(ifAuthenticated).map((division) => {
       const { ss, Icon } = division
@@ -170,8 +178,9 @@ ColumnService.propTypes = {
 ColumnService.contextTypes = {
   // context.ifAuthenticated and context.signOutAction
   // should be passed in the context by Clients who using this React Component
-  ifAuthenticated: PropTypes.bool.isRequired,
-  signOutAction: PropTypes.func.isRequired,
+  // ifAuthenticated: PropTypes.bool.isRequired,
+  // signOutAction: PropTypes.func.isRequired,
+  authenticationContext: PropTypes.object.isRequired,
 }
 
 

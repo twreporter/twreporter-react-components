@@ -80,6 +80,11 @@ class Slides extends PureComponent {
     this._handleTouchClientY = _.throttle(this._handleTouchClientY, 0)
   }
 
+  getChildContext() {
+    const { bookmarkPostMessage } = this.props
+    return { bookmarkPostMessage }
+  }
+
   onKeyDown(e) {
     switch (e.key) {
       case 'PageDown':
@@ -269,16 +274,22 @@ class Slides extends PureComponent {
   }
 }
 
+Slides.childContextTypes = {
+  bookmarkPostMessage: PropTypes.object,
+}
+
 Slides.propTypes = {
   slides: PropTypes.arrayOf(PropTypes.object).isRequired,
   title: PropTypes.string.isRequired,
   blankAudioSrc: PropTypes.string,
+  bookmarkPostMessage: PropTypes.object,
 }
 
 Slides.defaultProps = {
   slides: [],
   title: '',
   blankAudioSrc: '',
+  bookmarkPostMessage: {},
 }
 
 export default Slides

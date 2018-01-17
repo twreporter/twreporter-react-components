@@ -115,6 +115,18 @@ class Icons extends React.PureComponent {
     this._closeSearchBox = this._closeSearchBox.bind(this)
     this._handleClickSearch = this._handleClickSearch.bind(this)
   }
+
+  componentDidMount() {
+    const { authenticationContext } = this.context
+    // Becuase intermediate children are PureComponent,
+    // Icons will not re-render if App.js (entry point of project) re-render
+    // Therefore, Icons subscribe authenticationContext which is intizted in App.js
+    // to keep up with the latest props of App.js. Speciffically focus on ifAuthenticated.
+    authenticationContext.subscribe(() => {
+      this.forceUpdate()
+    })
+  }
+
   _closeSearchBox() {
     this.setState({
       isSearchOpened: false,
@@ -126,14 +138,18 @@ class Icons extends React.PureComponent {
       isSearchOpened: true,
     })
   }
+
   render() {
     const { isSearchOpened } = this.state
-    const { ifAuthenticated, signOutAction } = this.context
+    const { authenticationContext } = this.context
+    const { ifAuthenticated, signOutAction } = authenticationContext
+    const linkTo = ifAuthenticated ? '/' : `/${memberConfigs.path}`
     const Member = (
       <Link
-        to={`/${memberConfigs.path}`}
+        to={linkTo}
         onClick={() => {
           signOutAction()
+          this.forceUpdate()
         }}
       >
         {ifAuthenticated ? <SignOutIcon /> : <SignInIcon />}
@@ -179,8 +195,9 @@ class Icons extends React.PureComponent {
 Icons.contextTypes = {
   // context.ifAuthenticated and context.signOutAction
   // should be passed in the context by Clients who using this React Component
-  ifAuthenticated: PropTypes.bool.isRequired,
-  signOutAction: PropTypes.func.isRequired,
+  // ifAuthenticated: PropTypes.bool.isRequired,
+  // signOutAction: PropTypes.func.isRequired,
+  authenticationContext: PropTypes.object.isRequired,
 }
 
 export default Icons
