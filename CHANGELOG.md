@@ -1,9 +1,9 @@
 ### UNRELEASED
+
+### 3.0.0
 - Move bookmark to @twreporter/registration
 - Update page slides to contain bookmark service
-- Update header to be compatible with updated main-website (Following)
-- To solve server/clietn render conflict, move auth process from Client.js to App.js.
-
+- Add AuthenticationContext which is used as react.context to avoid not re-rendering problem
 
 ### 2.1.12
 - Refine font-weight settings
