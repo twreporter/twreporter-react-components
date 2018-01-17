@@ -1,5 +1,11 @@
 ### UNRELEASED
 
+### 3.0.2
+- [Bug] Import Header component the right way
+
+### 3.0.1
+- [Bug] Export Header component with back foward compatibly 
+
 ### 3.0.0
 - Move bookmark to @twreporter/registration
 - Update page slides to contain bookmark service

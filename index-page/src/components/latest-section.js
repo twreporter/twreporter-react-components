@@ -1,5 +1,5 @@
 import CategoryName from './common-utils/category-name'
-import HeaderComposite from '../../../header'
+import Header from '../../../header'
 import ImgWrapper from './common-utils/img-wrapper'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -15,8 +15,6 @@ import { breakPoints, finalMedia } from '../utils/style-utils'
 const _ = {
   get,
 }
-
-const { Header } = HeaderComposite
 
 const mobileMaxWidth = breakPoints.mobileMaxWidth
 const mobileMidWidth = '578px'
