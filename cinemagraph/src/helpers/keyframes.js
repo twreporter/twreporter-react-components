@@ -15,7 +15,7 @@ const _ = {
 }
 
 
-/* 
+/*
 Mock Data:
 
 animationName = 'AT3F0'
@@ -47,7 +47,7 @@ class Keyframes {
 
   /**
    * Set keyframes in the instance
-   * 
+   *
    * @param {number | string} selector - a number from 0 to 100 OR string 'from' or 'to'
    * @param {string} cssProperty
    * @param {string} cssValue
@@ -89,8 +89,8 @@ class Keyframes {
   }
 
   /**
-   * Inject css to html and get keyframes name string 
-   * 
+   * Inject css to html and get keyframes name string
+   *
    * @returns
    * @memberof Keyframes
    */

@@ -101,10 +101,10 @@ class Layers {
 
   /**
    * set this._bgPosition
-   * 
+   *
    * @param {string} [bgPosition=''] css value of background-position
    * @param {string} [screen=DEVICES.ALL] device type
-   * @returns 
+   * @returns
    * @memberof Layers
    */
   setBgPosition(bgPosition = '', screen = DEVICES.ALL) {
@@ -122,10 +122,10 @@ class Layers {
 
   /**
    * set css properties in this._animation (not include animation-name)
-   * 
+   *
    * @param {object} [animation={}] kry: animation-* property, value: css value
    * @param {string} [screen=DEVICES.ALL] device type
-   * @returns 
+   * @returns
    * @memberof Layers
    */
   setAnimationOptions(animation = {}, screen = DEVICES.ALL) {
@@ -145,11 +145,11 @@ class Layers {
   }
 
   /**
-   * set animation-name and keyframes in this._animation 
-   * 
+   * set animation-name and keyframes in this._animation
+   *
    * @param {object} [keyframes={}] key: selector, value: declaration
    * @param {string} [screen=DEVICES.ALL] device type
-   * @returns 
+   * @returns
    * @memberof Layers
    */
   setCustomKeyframes(keyframes = {}, screen = DEVICES.ALL) {
@@ -172,11 +172,11 @@ class Layers {
 
   /**
    * set keyframes by preset type
-   * 
-   * @param {string} type 
-   * @param {any} start 
-   * @param {any} to 
-   * @param {any} [screen=DEVICES.ALL] 
+   *
+   * @param {string} type
+   * @param {any} start
+   * @param {any} to
+   * @param {any} [screen=DEVICES.ALL]
    * @memberof Layers
    */
   setKeyframesByType(type, start, to, screen = DEVICES.ALL) {
@@ -236,10 +236,10 @@ class Layers {
 
   /**
    * set this._bgSize
-   * 
+   *
    * @param {string} [bgSize=''] css value of background-size
    * @param {string} [screen=DEVICES.ALL] device type
-   * @returns 
+   * @returns
    * @memberof Layers
    */
   setBgSize(bgSize = '', screen = DEVICES.ALL) {
@@ -260,9 +260,9 @@ class Layers {
 
   /**
    * set meta properties in this._image
-   * 
-   * @param {object} [meta={}] 
-   * @returns 
+   *
+   * @param {object} [meta={}]
+   * @returns
    * @memberof Layers
    */
   setImageMeta(meta = {}) {
@@ -279,10 +279,10 @@ class Layers {
 
   /**
    * set image path in this._image
-   * 
+   *
    * @param {string} [path=''] image path
    * @param {string} [screen=DEVICES.ALL] device type
-   * @returns 
+   * @returns
    * @memberof Layers
    */
   setImagePath(path = '', screen = DEVICES.ALL) {

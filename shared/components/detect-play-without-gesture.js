@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
   1. Mount a html5 audio element with testing file and set muted = false
   2. Try to play it when componentDidMount
   3. trigger `props.playedCallback` if played success
-  4. will not 
+  4. will not
 */
 
 class DetectPlayWithoutClick extends React.Component {
