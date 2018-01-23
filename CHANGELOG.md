@@ -1,5 +1,9 @@
 ### UNRELEASED
 
+### 4.0.0
+- Create a Side Bar High Order Component in side-bar/components/side-bar.js
+- Delete index-page/src/components/side-bar.js
+
 ### 3.0.2
 - [Bug] Import Header component the right way
 
