@@ -160,10 +160,16 @@ export default function decorateSideBar(DecoratedComponent) {
 
     render() {
       const { anchors, children, ...passThroughProps } = this.props
-      let modules = children
-      if (children && !Array.isArray(children)) {
+
+      let modules
+      if (!children) {
+        modules = []
+      } else if (Array.isArray(children)) {
+        modules = children
+      } else {
         modules = [children]
       }
+
       const webSiteContent = modules.map((module, index) => {
         const moduleID = _.get(anchors, [index, 'id'], `side_bar_module_${index}`)
         let order
@@ -180,7 +186,7 @@ export default function decorateSideBar(DecoratedComponent) {
             onEnter={(props) => { this.handleOnEnter(moduleID, props) }}
             fireOnRapidScroll
             topOffset="4%"
-            bottomOffset={(index + 1) === modules.length ? '50%' : '95%'}
+            bottomOffset={order === lastSection ? '50%' : '95%'}
             scrollableAncestor="window"
           >
             <div
@@ -191,12 +197,10 @@ export default function decorateSideBar(DecoratedComponent) {
             </div>
           </Waypoint>
         )
-      },
-      )
+      })
 
       return (
         <DecoratedComponent
-          ref={(node) => { this.anchorsNode = node }}
           anchors={anchors}
           handleClickAnchor={this.handleClickAnchor}
           currentAnchorId={this.state.currentSection}
