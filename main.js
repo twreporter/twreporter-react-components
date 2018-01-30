@@ -1,4 +1,3 @@
-import Bookmark from './bookmarks'
 import Confirmation from './confirmation'
 import FadeText from './fade-text'
 import FetchingWrapper from './shared/components/is-fetching-wrapper'
@@ -16,7 +15,6 @@ const Wrapper = {
 }
 
 export default {
-  Bookmark,
   Cinemagraph,
   CinemagraphHelper,
   Confirmation,
@@ -34,7 +32,6 @@ export default {
 }
 
 export {
-  Bookmark,
   Cinemagraph,
   CinemagraphHelper,
   Confirmation,

@@ -9,7 +9,6 @@ import ReporterIntro from './src/components/reporter-intro'
 import ReviewsSection from './src/components/reviews'
 import ScrollFadein from './src/components/animations/scroll-fadein'
 import SeachBox from './src/components/search-box'
-import SideBar from './src/components/side-bar'
 import TopicsSection from './src/components/topics-section'
 
 export default {
@@ -25,7 +24,6 @@ export default {
     ReviewsSection,
     ScrollFadein,
     SeachBox,
-    SideBar,
     TopicsSection,
   },
 }
