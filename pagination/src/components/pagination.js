@@ -182,6 +182,7 @@ class Pagination extends React.PureComponent {
 
   render() {
     const { currentPage, totalPages, handleClickPrev, handleClickNext } = this.props
+    if (!totalPages || !currentPage) return <PaginationContainer><Boxes /></PaginationContainer>
     const pagesArrayJSX = this._buildPagesArray(currentPage, totalPages)
     const belowFirstPage = currentPage <= 1
     const aboveFinalPage = currentPage >= totalPages
@@ -210,6 +211,7 @@ Pagination.propTypes = {
 
 Pagination.defaultProps = {
   currentPage: 1,
+  totalPages: 1,
   ellipsis: '…',
   nOfCenterPages: 4,
   nOfMarginPages: 1,
