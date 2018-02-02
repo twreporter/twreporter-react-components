@@ -2,6 +2,7 @@
 
 ### 4.0.1
 - Update props of `Pagination`
+- Update `.babelrc` to remove unsupported svg attributes
 
 ### 4.0.0
 - Create a Side Bar High Order Component in side-bar/components/side-bar.js

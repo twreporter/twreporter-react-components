@@ -24,6 +24,14 @@
           "plugins": [
             {
               "cleanupIDs": false
+            },
+            {
+              "removeAttrs": {
+                "attrs": [
+                  "serif.id",
+                  "xmlns.serif"
+                ]
+              }
             }
           ]
         }
