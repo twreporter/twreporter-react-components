@@ -13,12 +13,6 @@ const _ = {
   get,
 }
 
-const options = {
-  nOfCenterPages: 4,
-  nOfMarginPages: 1,
-  ellipsis: '…',
-}
-
 const styles = {
   btnBoxSize: {
     mobile: 36,
@@ -143,7 +137,7 @@ class Pagination extends React.PureComponent {
   }
 
   _buildPagesArray(currentPage, totalPages) {
-    const { nOfMarginPages, nOfCenterPages, ellipsis } = options
+    const { nOfMarginPages, nOfCenterPages, ellipsis } = this.props
     const pagesArrayMaxLength = nOfCenterPages + ((nOfMarginPages + 1) * 2)
     /* Case 1: display all pages (no ellipsis) */
     if (totalPages <= pagesArrayMaxLength) {
@@ -205,14 +199,20 @@ class Pagination extends React.PureComponent {
 
 Pagination.propTypes = {
   currentPage: PropTypes.number.isRequired,
-  totalPages: PropTypes.number.isRequired,
-  handleClickPrev: PropTypes.func.isRequired,
-  handleClickPage: PropTypes.func.isRequired,
+  ellipsis: PropTypes.string.isRequired,
   handleClickNext: PropTypes.func.isRequired,
+  handleClickPage: PropTypes.func.isRequired,
+  handleClickPrev: PropTypes.func.isRequired,
+  nOfCenterPages: PropTypes.number.isRequired,
+  nOfMarginPages: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
 }
 
 Pagination.defaultProps = {
   currentPage: 1,
+  ellipsis: '…',
+  nOfCenterPages: 4,
+  nOfMarginPages: 1,
 }
 
 export default Pagination
