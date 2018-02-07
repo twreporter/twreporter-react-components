@@ -43,6 +43,7 @@ const Content = styled.div`
 const FuncitonArea = styled.div``
 
 const FunctionButton = styled.button`
+  cursor: pointer;
   font-weight: ${fonts.weight.bold};
   font-size: ${fonts.size.large};
   width: 127px;
@@ -78,14 +79,17 @@ const TextContainer = styled.span`
 `
 
 const Confirmation = (props) => {
-  const { width, content, cancel, confirm, onConfirm, onCancel } = props
+  const { width, content, cancel, confirm, onConfirm, onCancel, toShowWarningIcon } = props
+  const iconJSX = toShowWarningIcon ? (
+    <IconContainer>
+      <WarningSign />
+    </IconContainer>
+  ) : null
   return (
     <Container>
       <Dialog width={width}>
         <Content>
-          <IconContainer>
-            <WarningSign />
-          </IconContainer>
+          {iconJSX}
           <TextContainer>
             {content}
           </TextContainer>
@@ -108,6 +112,7 @@ Confirmation.defaultProps = {
   cancel: 'Cancel',
   confirm: 'Confirm',
   width: '490px',
+  toShowWarningIcon: true,
 }
 
 Confirmation.propTypes = {
@@ -117,5 +122,6 @@ Confirmation.propTypes = {
   confirm: PropTypes.string,
   onConfirm: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
+  toShowWarningIcon: PropTypes.bool,
 }
 export default Confirmation
