@@ -10,7 +10,7 @@ export const categoryConfigs = [
     path: 'environment_and_education',
   },
   {
-    text: '政治．經濟',
+    text: '政經．產業',
     name: 'politicsAndEconomy',
     path: 'politics_and_economy',
   },
