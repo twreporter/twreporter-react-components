@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 4.0.3
+- Changes the text of politicsAndEconomy in categoryConfigs.(政治．經濟 -> 政經．產業)
+
 ### 4.0.2
 - Update confirmation component. Show warning icon on demand
 - Add more side bar handling for edge cases
