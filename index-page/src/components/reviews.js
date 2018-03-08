@@ -24,7 +24,6 @@ const _ = {
 const tabletMaxWidth = '1023px'
 const tabletMinWidth = breakPoints.tabletMinWidth
 const mobileWidth = breakPoints.mobileMaxWidth
-const desktopMinWidth = breakPoints.desktopMinWidth
 const maxSwipableItems = 3
 const moreText = '更多評論文章'
 
