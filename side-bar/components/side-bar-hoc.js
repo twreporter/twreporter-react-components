@@ -89,6 +89,7 @@ function getDisplayName(DecoratedComponent) {
 export default function decorateSideBar(DecoratedComponent) {
   const firstSection = 'first'
   const lastSection = 'last'
+  const secondLastSection = 'second-last'
   class DecoratedSideBar extends React.PureComponent {
     constructor(props) {
       super(props)
@@ -143,7 +144,8 @@ export default function decorateSideBar(DecoratedComponent) {
         // the following conditions are for edge cases.
         // avoid Waypoint not invoking `onEnter` function.
         if ((order === firstSection && props.currentPosition === 'above') ||
-          (order === lastSection && props.currentPosition === 'below')) {
+          (order === lastSection && props.currentPosition === 'below') ||
+          (order === secondLastSection && props.currentPosition === 'above')) {
           return this.setState({
             currentSection: this.state.previousSection,
             previousSection: onLeaveSection,
@@ -177,6 +179,8 @@ export default function decorateSideBar(DecoratedComponent) {
           order = firstSection
         } else if (index === (modules.length - 1)) {
           order = lastSection
+        } else if (index === (modules.length - 2)) {
+          order = secondLastSection
         }
 
         return (
