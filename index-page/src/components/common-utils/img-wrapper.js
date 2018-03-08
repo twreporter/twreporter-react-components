@@ -46,15 +46,15 @@ class ImgWrapper extends React.Component {
   }
 
   render() {
-    const { src, alt, srcSet } = this.props
+    const { src, alt, srcSet, sizes } = this.props
     const isObjectFit = this.state.isObjectFit
-
     return isObjectFit ? (
       <ImgObjectFit>
         <img
           alt={alt}
           src={replaceStorageUrlPrefix(src)}
           srcSet={srcSet}
+          sizes={sizes}
           style={{
             transform: 'translateZ(0)',
           }}
@@ -76,6 +76,7 @@ ImgWrapper.defaultProps = {
   children: null,
   src: '',
   srcSet: '',
+  sizes: '',
 }
 
 ImgWrapper.propTypes = {
@@ -83,6 +84,7 @@ ImgWrapper.propTypes = {
   children: PropTypes.element,
   src: PropTypes.string.isRequired,
   srcSet: PropTypes.string,
+  sizes: PropTypes.string,
 }
 
 export default ImgWrapper
