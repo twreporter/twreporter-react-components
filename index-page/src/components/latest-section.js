@@ -194,6 +194,8 @@ class LatestSection extends React.Component {
     const latestItems = this.props.data.map((item) => {
       const style = _.get(item, 'style', '')
       const href = getHref(_.get(item, 'slug', 'error'), style)
+      const srcSet = srcSetDependOnResolutions(item)
+
       return (
         <ItemFrame
           key={_.get(item, 'id')}
@@ -206,8 +208,12 @@ class LatestSection extends React.Component {
               <ImgWrapper
                 alt={_.get(item, 'hero_image.description', '')}
                 src={_.get(item, 'hero_image.resized_targets.mobile.url', '')}
-                srcSet={srcSetDependOnResolutions(item)}
-                sizes={`(min-width: ${desktopMinWidth}) 199px, (min-width: ${tabletMinWidth}) 160px, 50vw`}
+                srcSet={srcSet}
+                sizes={
+                  `(min-width: ${desktopMinWidth}) 199px, ` +
+                  `(min-width: ${tabletMinWidth}) 160px, ` +
+                  '50vw'
+                }
               />
             </ImageFrame>
             <ContentFrame>
