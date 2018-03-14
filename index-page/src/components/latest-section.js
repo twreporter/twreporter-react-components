@@ -16,6 +16,8 @@ const _ = {
   get,
 }
 
+const desktopMinWidth = breakPoints.desktopMinWidth
+const tabletMinWidth = breakPoints.tabletMinWidth
 const mobileMaxWidth = breakPoints.mobileMaxWidth
 const mobileMidWidth = '578px'
 const mobileSemiMidWidth = '414px'
@@ -194,6 +196,12 @@ class LatestSection extends React.Component {
               <ImgWrapper
                 alt={_.get(item, 'hero_image.description', '')}
                 src={_.get(item, 'hero_image.resized_targets.mobile.url', '')}
+                srcSet={_.get(item, 'hero_image.resized_targets', '')}
+                sizes={
+                  `(min-width: ${desktopMinWidth}) 199px, ` +
+                  `(min-width: ${tabletMinWidth}) 160px, ` +
+                  '136px'
+                }
               />
             </ImageFrame>
             <ContentFrame>

@@ -176,6 +176,12 @@ class Infographic extends React.PureComponent {
             <ImgWrapper
               alt={imgObj.alt}
               src={imgObj.src}
+              srcSet={imgObj.srcSet}
+              sizes={
+                `(min-width: ${breakPoints.desktopMinWidth}) 430px, ` +
+                `(min-width: ${breakPoints.tabletMinWidth}) 220px, ` +
+                '372px'
+              }
             />
           </ImgFrame>
           <WordBlock>
@@ -225,6 +231,7 @@ class InfographicSection extends React.PureComponent {
           imgObj={{
             alt: _.get(imgObj, 'description'),
             src: _.get(imgObj, ['resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url']),
+            srcSet: _.get(imgObj, 'resized_targets'),
           }}
           title={_.get(item, 'title')}
           isPortrait={index === 0 || index === 4 || index === 5}
