@@ -427,6 +427,11 @@ class EditorPicks extends React.Component {
                   alt={_.get(heroImg, 'description')}
                   src={_.get(heroImg, 'resized_targets.tablet.url')}
                   srcSet={_.get(heroImg, 'resized_targets', '')}
+                  sizes={
+                    `(min-width: ${breakPoints.desktopMinWidth}) 886px, ` +
+                    `(min-width: ${breakPoints.tabletMinWidth}) 450px, ` +
+                    '307px'
+                  }
                 />
               </ImgFrame>
             </HoverEffect>

@@ -182,6 +182,11 @@ class LatestTopic extends React.PureComponent {
                 alt={_.get(post, 'hero_image.description')}
                 src={_.get(post, ['hero_image', 'resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
                 srcSet={_.get(post, 'hero_image.resized_targets', '')}
+                sizes={
+                  `(min-width: ${breakPoints.desktopMinWidth}) 426px, ` +
+                  `(min-width: ${breakPoints.tabletMinWidth}) 220px, ` +
+                  '279px'
+                }
               />
             </ImgFrame>
             <RelatedsContentFrame>

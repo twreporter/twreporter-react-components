@@ -177,6 +177,11 @@ class Infographic extends React.PureComponent {
               alt={imgObj.alt}
               src={imgObj.src}
               srcSet={imgObj.srcSet}
+              sizes={
+                `(min-width: ${breakPoints.desktopMinWidth}) 430px, ` +
+                `(min-width: ${breakPoints.tabletMinWidth}) 220px, ` +
+                '372px'
+              }
             />
           </ImgFrame>
           <WordBlock>

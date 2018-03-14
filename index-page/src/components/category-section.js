@@ -21,8 +21,8 @@ const _ = {
   get,
 }
 
-// const desktopWidth = '1440px'
-// const tabletWidth = '1024px'
+const desktopMinWidth = breakPoints.desktopMinWidth
+const tabletMinWidth = breakPoints.tabletMinWidth
 const mobileWidth = breakPoints.mobileMaxWidth
 const backgroundColor = '#e2e2e2'
 
@@ -161,6 +161,11 @@ class Category extends React.PureComponent {
                 alt={_.get(item, 'hero_image.description')}
                 src={_.get(item, ['hero_image', 'resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
                 srcSet={_.get(item, 'hero_image.resized_targets', '')}
+                sizes={
+                  `(min-width: ${desktopMinWidth}) 202px, ` +
+                  `(min-width: ${tabletMinWidth}) 210px, ` +
+                  '308px'
+                }
               />
             </ImgFrame>
             <TextFrame>

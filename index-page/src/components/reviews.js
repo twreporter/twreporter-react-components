@@ -21,7 +21,8 @@ const _ = {
   get,
 }
 
-const tabletMaxWidth = '1023px'
+const desktopMinWidth = breakPoints.desktopMinWidth
+const tabletMaxWidth = breakPoints.tabletMaxWidth
 const tabletMinWidth = breakPoints.tabletMinWidth
 const mobileWidth = breakPoints.mobileMaxWidth
 const maxSwipableItems = 3
@@ -148,7 +149,11 @@ class Reviews extends React.PureComponent {
                 alt={_.get(post, 'hero_image.description')}
                 src={_.get(post, ['hero_image', 'resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
                 srcSet={_.get(post, 'hero_image.resized_targets', '')}
-                sizes={`(min-width: ${tabletMinWidth}) 20vw, 70vw`}
+                sizes={
+                  `(min-width: ${desktopMinWidth}) 312px, ` +
+                  `(min-width: ${tabletMinWidth}) 160px, ` +
+                  '279px'
+                }
               />
             </ImgFrame>
             <TextFrame>
