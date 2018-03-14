@@ -151,16 +151,6 @@ const HeaderContainer = styled.div`
     position: static;
   `}
 `
-const srcSetDependOnResolutions = (item) => {
-  const mobileInherentWidth = '800w'
-  const w400InherentWidth = '400w'
-  const mobile_url = _.get(item, 'hero_image.resized_targets.mobile.url', '')
-  const w400_url = _.get(item, 'hero_image.resized_targets.w400.url', '')
-  if (!w400_url) {
-    return `${mobile_url} ${mobileInherentWidth}`
-  }
-  return `${mobile_url} ${mobileInherentWidth}, ${w400_url} ${w400InherentWidth}`
-}
 
 class LatestSection extends React.Component {
   constructor(props) {
@@ -194,8 +184,6 @@ class LatestSection extends React.Component {
     const latestItems = this.props.data.map((item) => {
       const style = _.get(item, 'style', '')
       const href = getHref(_.get(item, 'slug', 'error'), style)
-      const srcSet = srcSetDependOnResolutions(item)
-
       return (
         <ItemFrame
           key={_.get(item, 'id')}
@@ -208,11 +196,11 @@ class LatestSection extends React.Component {
               <ImgWrapper
                 alt={_.get(item, 'hero_image.description', '')}
                 src={_.get(item, 'hero_image.resized_targets.mobile.url', '')}
-                srcSet={srcSet}
+                srcSet={_.get(item, 'hero_image.resized_targets', '')}
                 sizes={
                   `(min-width: ${desktopMinWidth}) 199px, ` +
                   `(min-width: ${tabletMinWidth}) 160px, ` +
-                  '50vw'
+                  '136px'
                 }
               />
             </ImageFrame>

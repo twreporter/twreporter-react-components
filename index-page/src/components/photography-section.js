@@ -261,6 +261,7 @@ class PhotographySection extends React.PureComponent {
               imgObj={{
                 alt: _.get(imgObj, 'description'),
                 src: _.get(imgObj, ['resized_targets', useTinyImg ? 'tiny' : 'tablet', 'url']),
+                srcSet: _.get(imgObj, 'resized_targets'),
               }}
               isHover={isHover}
               slug={_.get(item, 'slug')}

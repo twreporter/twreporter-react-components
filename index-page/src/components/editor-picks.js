@@ -426,6 +426,7 @@ class EditorPicks extends React.Component {
                 <ImgWrapper
                   alt={_.get(heroImg, 'description')}
                   src={_.get(heroImg, 'resized_targets.tablet.url')}
+                  srcSet={_.get(heroImg, 'resized_targets', '')}
                 />
               </ImgFrame>
             </HoverEffect>

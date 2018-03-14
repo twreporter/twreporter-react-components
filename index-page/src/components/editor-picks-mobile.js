@@ -112,6 +112,7 @@ class EditorPicksMobile extends SwipableMixin {
             <ImgWrapper
               alt={_.get(heroImg, 'description')}
               src={_.get(heroImg, 'resized_targets.mobile.url')}
+              srcSet={_.get(heroImg, 'resized_targets', '')}
             />
           </ImgFrame>
         </TRLink>

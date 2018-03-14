@@ -160,6 +160,7 @@ class Category extends React.PureComponent {
               <ImgWrapper
                 alt={_.get(item, 'hero_image.description')}
                 src={_.get(item, ['hero_image', 'resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
+                srcSet={_.get(item, 'hero_image.resized_targets', '')}
               />
             </ImgFrame>
             <TextFrame>

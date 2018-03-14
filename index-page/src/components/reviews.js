@@ -131,16 +131,6 @@ const More = styled.div`
   text-align: center;
   margin-top: 60px;
 `
-const srcSetDependOnResolutions = (item) => {
-  const mobileInherentWidth = '800w'
-  const w400InherentWidth = '400w'
-  const mobile_url = _.get(item, 'hero_image.resized_targets.mobile.url', '')
-  const w400_url = _.get(item, 'hero_image.resized_targets.w400.url', '')
-  if (!w400_url) {
-    return `${mobile_url} ${mobileInherentWidth}`
-  }
-  return `${mobile_url} ${mobileInherentWidth}, ${w400_url} ${w400InherentWidth}`
-}
 
 class Reviews extends React.PureComponent {
   render() {
@@ -157,7 +147,7 @@ class Reviews extends React.PureComponent {
               <ImgWrapper
                 alt={_.get(post, 'hero_image.description')}
                 src={_.get(post, ['hero_image', 'resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
-                srcSet={srcSetDependOnResolutions(post)}
+                srcSet={_.get(post, 'hero_image.resized_targets', '')}
                 sizes={`(min-width: ${tabletMinWidth}) 20vw, 70vw`}
               />
             </ImgFrame>

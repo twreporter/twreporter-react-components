@@ -283,8 +283,9 @@ class TopicsInARow extends React.PureComponent {
         >
           <TRLink href={href} plain>
             <ImgWrapper
-              src={_.get(imgObj, ['resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
               alt={_.get(imgObj, 'description')}
+              src={_.get(imgObj, ['resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
+              srcSet={_.get(imgObj, 'resized_targets', '')}
             />
           </TRLink>
         </ImgColumn>,
@@ -345,6 +346,7 @@ class TopicsSection extends React.PureComponent {
           imgObj={{
             alt: _.get(imgObj, 'description'),
             src: _.get(imgObj, ['resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url']),
+            srcSet: _.get(imgObj, 'resized_targets', ''),
           }}
           slug={_.get(item, 'slug')}
         />

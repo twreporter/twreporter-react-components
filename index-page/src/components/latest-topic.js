@@ -181,6 +181,7 @@ class LatestTopic extends React.PureComponent {
               <ImgWrapper
                 alt={_.get(post, 'hero_image.description')}
                 src={_.get(post, ['hero_image', 'resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
+                srcSet={_.get(post, 'hero_image.resized_targets', '')}
               />
             </ImgFrame>
             <RelatedsContentFrame>
