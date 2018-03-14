@@ -29,6 +29,18 @@ const ImgFallback = styled.div`
   background-position: center center;
 `
 
+const srcSetDependOnResolutions = (sources) => {
+  // console.log(sources)
+  const mobileInherentWidth = '800w'
+  const w400InherentWidth = '400w'
+  const mobile_url = _.get(sources, 'mobile.url', '')
+  const w400_url = _.get(sources, 'w400.url', '')
+  if (!w400_url) {
+    return `${mobile_url} ${mobileInherentWidth}`
+  }
+  return `${mobile_url} ${mobileInherentWidth}, ${w400_url} ${w400InherentWidth}`
+}
+
 class ImgWrapper extends React.Component {
   constructor(props) {
     super(props)
@@ -46,15 +58,15 @@ class ImgWrapper extends React.Component {
   }
 
   render() {
-    const { src, alt, srcSet } = this.props
+    const { src, alt, srcSet, sizes } = this.props
     const isObjectFit = this.state.isObjectFit
-
     return isObjectFit ? (
       <ImgObjectFit>
         <img
           alt={alt}
           src={replaceStorageUrlPrefix(src)}
-          srcSet={srcSet}
+          srcSet={srcSetDependOnResolutions(srcSet)}
+          sizes={sizes}
           style={{
             transform: 'translateZ(0)',
           }}
@@ -75,14 +87,16 @@ ImgWrapper.defaultProps = {
   alt: '',
   children: null,
   src: '',
-  srcSet: '',
+  srcSet: {},
+  sizes: '',
 }
 
 ImgWrapper.propTypes = {
   alt: PropTypes.string,
   children: PropTypes.element,
   src: PropTypes.string.isRequired,
-  srcSet: PropTypes.string,
+  srcSet: PropTypes.object,
+  sizes: PropTypes.string,
 }
 
 export default ImgWrapper
