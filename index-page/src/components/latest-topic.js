@@ -23,6 +23,16 @@ const _ = {
   get,
 }
 
+const mockup = {
+  img: {
+    sizes: {
+      desktop: '426px',
+      tablet: '220px',
+      mobile: '279px',
+    },
+  },
+}
+
 const categoryPrefix = strings.topic + strings.fullShapeDot
 const mobileWidth = breakPoints.mobileMaxWidth
 const Container = styled.div`
@@ -183,9 +193,9 @@ class LatestTopic extends React.PureComponent {
                 src={_.get(post, ['hero_image', 'resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
                 srcSet={_.get(post, 'hero_image.resized_targets', '')}
                 sizes={
-                  `(min-width: ${breakPoints.desktopMinWidth}) 426px, ` +
-                  `(min-width: ${breakPoints.tabletMinWidth}) 220px, ` +
-                  '279px'
+                  `(min-width: ${breakPoints.desktopMinWidth}) ${mockup.img.sizes.desktop}, ` +
+                  `(min-width: ${breakPoints.tabletMinWidth}) ${mockup.img.sizes.tablet}, ` +
+                  `${mockup.img.sizes.mobile}`
                 }
               />
             </ImgFrame>

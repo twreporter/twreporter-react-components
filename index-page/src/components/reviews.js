@@ -21,6 +21,16 @@ const _ = {
   get,
 }
 
+const mockup = {
+  img: {
+    sizes: {
+      desktop: '312px',
+      tablet: '160px',
+      mobile: '279px',
+    },
+  },
+}
+
 const desktopMinWidth = breakPoints.desktopMinWidth
 const tabletMaxWidth = breakPoints.tabletMaxWidth
 const tabletMinWidth = breakPoints.tabletMinWidth
@@ -150,9 +160,9 @@ class Reviews extends React.PureComponent {
                 src={_.get(post, ['hero_image', 'resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
                 srcSet={_.get(post, 'hero_image.resized_targets', '')}
                 sizes={
-                  `(min-width: ${desktopMinWidth}) 312px, ` +
-                  `(min-width: ${tabletMinWidth}) 160px, ` +
-                  '279px'
+                  `(min-width: ${desktopMinWidth}) ${mockup.img.sizes.desktop}, ` +
+                  `(min-width: ${tabletMinWidth}) ${mockup.img.sizes.tablet}, ` +
+                  `${mockup.img.sizes.mobile}`
                 }
               />
             </ImgFrame>

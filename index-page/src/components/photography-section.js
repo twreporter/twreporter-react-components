@@ -20,6 +20,16 @@ const _ = {
   get,
 }
 
+const mockup = {
+  img: {
+    sizes: {
+      desktop: '672px',
+      tablet: '350px',
+      mobile: '414px',
+    },
+  },
+}
+
 // If window is less than oneColumnWidth,
 // there will be only one column. Default is two columns.
 const oneColumnWidth = breakPoints.mobileMaxWidth
@@ -150,9 +160,11 @@ class Photography extends React.PureComponent {
               alt={imgObj.alt}
               src={imgObj.src}
               srcSet={imgObj.srcSet}
-              sizes={`(min-width: ${breakPoints.desktopMinWidth}) 672px, ` +
-                `(min-width: ${breakPoints.tabletMinWidth}) 350px, ` +
-                '414px'}
+              sizes={
+                `(min-width: ${breakPoints.desktopMinWidth}) ${mockup.img.sizes.desktop}, ` +
+                `(min-width: ${breakPoints.tabletMinWidth}) ${mockup.img.sizes.tablet}, ` +
+                `${mockup.img.sizes.mobile}`
+              }
             >
               <Overlay
                 isHover={isHover}

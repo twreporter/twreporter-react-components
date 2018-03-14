@@ -25,6 +25,16 @@ const _ = {
 // there will be only one column. Default is three columns.
 const oneColumnWidth = breakPoints.mobileMaxWidth
 
+const mockup = {
+  img: {
+    sizes: {
+      desktop: '430px',
+      tablet: '220px',
+      mobile: '372px',
+    },
+  },
+}
+
 const Container = styled.div`
   background-color: #f2f2f2;
 `
@@ -178,9 +188,9 @@ class Infographic extends React.PureComponent {
               src={imgObj.src}
               srcSet={imgObj.srcSet}
               sizes={
-                `(min-width: ${breakPoints.desktopMinWidth}) 430px, ` +
-                `(min-width: ${breakPoints.tabletMinWidth}) 220px, ` +
-                '372px'
+                `(min-width: ${breakPoints.desktopMinWidth}) ${mockup.img.sizes.desktop}, ` +
+                `(min-width: ${breakPoints.tabletMinWidth}) ${mockup.img.sizes.tablet}, ` +
+                `${mockup.img.sizes.mobile}`
               }
             />
           </ImgFrame>

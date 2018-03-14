@@ -40,6 +40,13 @@ const mockup = {
       default: 280,
     },
   },
+  img: {
+    sizes: {
+      desktop: '543px',
+      tablet: '280px',
+      mobile: '308px',
+    },
+  },
 }
 
 const Container = styled.div`
@@ -181,9 +188,10 @@ const More = styled.div`
   text-align: center;
 `
 
-const sizesForsrcSet = `(min-width: ${breakPoints.desktopMinWidth}) 543px, ` +
-  `(min-width: ${breakPoints.tabletMinWidth}) 280px, ` +
-  '308px'
+const sizesForsrcSet = `(min-width: ${breakPoints.desktopMinWidth}) ${mockup.img.sizes.desktop}, ` +
+  `(min-width: ${breakPoints.tabletMinWidth}) ${mockup.img.sizes.tablet}, ` +
+  `${mockup.img.sizes.mobile}`
+
 
 class MobileTopic extends React.PureComponent {
   render() {

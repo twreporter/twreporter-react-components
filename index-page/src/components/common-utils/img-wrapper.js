@@ -29,8 +29,12 @@ const ImgFallback = styled.div`
   background-position: center center;
 `
 
+/**
+ * @description Pick hero-image between 800px or 400px depends on the resolution.
+ * @param {object} sources Get srcSet from hero_images of post
+ * @return {string} Return the srcSet which will be srcSet of img element
+ * * */
 const srcSetDependOnResolutions = (sources) => {
-  // console.log(sources)
   const mobileInherentWidth = '800w'
   const w400InherentWidth = '400w'
   const mobile_url = _.get(sources, 'mobile.url', '')

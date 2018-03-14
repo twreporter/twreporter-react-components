@@ -31,6 +31,13 @@ const mockup = {
     titleWidth: 209,
     titleFrameWidth: 237,
   },
+  img: {
+    sizes: {
+      desktop: '202px',
+      tablet: '210px',
+      mobile: '308px',
+    },
+  },
 }
 
 const Container = styled.div`
@@ -162,9 +169,9 @@ class Category extends React.PureComponent {
                 src={_.get(item, ['hero_image', 'resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
                 srcSet={_.get(item, 'hero_image.resized_targets', '')}
                 sizes={
-                  `(min-width: ${desktopMinWidth}) 202px, ` +
-                  `(min-width: ${tabletMinWidth}) 210px, ` +
-                  '308px'
+                  `(min-width: ${desktopMinWidth}) ${mockup.img.sizes.desktop}, ` +
+                  `(min-width: ${tabletMinWidth}) ${mockup.img.sizes.tablet}, ` +
+                  `${mockup.img.sizes.mobile}`
                 }
               />
             </ImgFrame>

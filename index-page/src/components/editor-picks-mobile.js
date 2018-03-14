@@ -25,6 +25,16 @@ const _ = {
 
 const mobileWidth = breakPoints.mobileMaxWidth
 
+const mockup = {
+  img: {
+    sizes: {
+      desktop: '886px',
+      tablet: '450px',
+      mobile: '307px',
+    },
+  },
+}
+
 const CarouselContainer = Section.extend`
   padding-top: 0;
   background: ${colors.sectionWhite};
@@ -114,9 +124,9 @@ class EditorPicksMobile extends SwipableMixin {
               src={_.get(heroImg, 'resized_targets.mobile.url')}
               srcSet={_.get(heroImg, 'resized_targets', '')}
               sizes={
-                `(min-width: ${breakPoints.desktopMinWidth}) 886px, ` +
-                `(min-width: ${breakPoints.tabletMinWidth}) 450px, ` +
-                '307px'
+                `(min-width: ${breakPoints.desktopMinWidth}) ${mockup.img.sizes.desktop}, ` +
+                `(min-width: ${breakPoints.tabletMinWidth}) ${mockup.img.sizes.tablet}, ` +
+                `${mockup.img.sizes.mobile}`
               }
             />
           </ImgFrame>
