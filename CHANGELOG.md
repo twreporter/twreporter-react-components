@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 4.0.4
+- Add `srcSet` and `sizes` to `img-wrapper.js` so that images of different sizes will be render resolution demand
+
 ### 4.0.3
 - Changes the text of politicsAndEconomy in categoryConfigs.(政治．經濟 -> 政經．產業)
 
