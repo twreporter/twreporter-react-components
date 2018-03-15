@@ -21,8 +21,8 @@ const _ = {
   get,
 }
 
-// const desktopWidth = '1440px'
-// const tabletWidth = '1024px'
+const desktopMinWidth = breakPoints.desktopMinWidth
+const tabletMinWidth = breakPoints.tabletMinWidth
 const mobileWidth = breakPoints.mobileMaxWidth
 const backgroundColor = '#e2e2e2'
 
@@ -30,6 +30,13 @@ const mockup = {
   mobile: {
     titleWidth: 209,
     titleFrameWidth: 237,
+  },
+  img: {
+    sizes: {
+      desktop: '202px',
+      tablet: '210px',
+      mobile: '308px',
+    },
   },
 }
 
@@ -160,6 +167,12 @@ class Category extends React.PureComponent {
               <ImgWrapper
                 alt={_.get(item, 'hero_image.description')}
                 src={_.get(item, ['hero_image', 'resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
+                srcSet={_.get(item, 'hero_image.resized_targets', '')}
+                sizes={
+                  `(min-width: ${desktopMinWidth}) ${mockup.img.sizes.desktop}, ` +
+                  `(min-width: ${tabletMinWidth}) ${mockup.img.sizes.tablet}, ` +
+                  `${mockup.img.sizes.mobile}`
+                }
               />
             </ImgFrame>
             <TextFrame>

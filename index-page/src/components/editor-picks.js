@@ -21,6 +21,16 @@ import { truncate, breakPoints, finalMedia } from '../utils/style-utils'
 const OVER_DESKTOP = 'OVERDESKTOP'
 const BELOW_DESKTOP = 'BELOWDESKTOP'
 
+const mockup = {
+  img: {
+    sizes: {
+      desktop: '886px',
+      tablet: '450px',
+      mobile: '307px',
+    },
+  },
+}
+
 const getScreenObj = () => {
   if (typeof window !== 'undefined') {
     if (window.innerWidth <= parseInt(breakPoints.desktopMaxWidth.replace('px', ''), 10)) {
@@ -426,6 +436,12 @@ class EditorPicks extends React.Component {
                 <ImgWrapper
                   alt={_.get(heroImg, 'description')}
                   src={_.get(heroImg, 'resized_targets.tablet.url')}
+                  srcSet={_.get(heroImg, 'resized_targets', '')}
+                  sizes={
+                    `(min-width: ${breakPoints.desktopMinWidth}) ${mockup.img.sizes.desktop}, ` +
+                    `(min-width: ${breakPoints.tabletMinWidth}) ${mockup.img.sizes.tablet}, ` +
+                    `${mockup.img.sizes.mobile}`
+                  }
                 />
               </ImgFrame>
             </HoverEffect>

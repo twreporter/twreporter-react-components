@@ -16,10 +16,22 @@ const _ = {
   get,
 }
 
+const desktopMinWidth = breakPoints.desktopMinWidth
+const tabletMinWidth = breakPoints.tabletMinWidth
 const mobileMaxWidth = breakPoints.mobileMaxWidth
 const mobileMidWidth = '578px'
 const mobileSemiMidWidth = '414px'
 const mobileMinWidth = '320px'
+
+const mockup = {
+  img: {
+    sizes: {
+      desktop: '199px',
+      tablet: '160px',
+      mobile: '136px',
+    },
+  },
+}
 
 const headerPadding = {
   desktop: '47px',
@@ -194,6 +206,12 @@ class LatestSection extends React.Component {
               <ImgWrapper
                 alt={_.get(item, 'hero_image.description', '')}
                 src={_.get(item, 'hero_image.resized_targets.mobile.url', '')}
+                srcSet={_.get(item, 'hero_image.resized_targets', '')}
+                sizes={
+                  `(min-width: ${desktopMinWidth}) ${mockup.img.sizes.desktop}, ` +
+                  `(min-width: ${tabletMinWidth}) ${mockup.img.sizes.tablet}, ` +
+                  `${mockup.img.sizes.mobile}`
+                }
               />
             </ImageFrame>
             <ContentFrame>

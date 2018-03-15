@@ -40,6 +40,13 @@ const mockup = {
       default: 280,
     },
   },
+  img: {
+    sizes: {
+      desktop: '543px',
+      tablet: '280px',
+      mobile: '308px',
+    },
+  },
 }
 
 const Container = styled.div`
@@ -181,6 +188,10 @@ const More = styled.div`
   text-align: center;
 `
 
+const sizesForsrcSet = `(min-width: ${breakPoints.desktopMinWidth}) ${mockup.img.sizes.desktop}, ` +
+  `(min-width: ${breakPoints.tabletMinWidth}) ${mockup.img.sizes.tablet}, ` +
+  `${mockup.img.sizes.mobile}`
+
 
 class MobileTopic extends React.PureComponent {
   render() {
@@ -198,6 +209,7 @@ class MobileTopic extends React.PureComponent {
               src={imgObj.src}
               alt={imgObj.alt}
               srcSet={imgObj.srcSet}
+              sizes={sizesForsrcSet}
             />
           </Mobile.Img>
           <Mobile.DescFrame>
@@ -283,8 +295,10 @@ class TopicsInARow extends React.PureComponent {
         >
           <TRLink href={href} plain>
             <ImgWrapper
-              src={_.get(imgObj, ['resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
               alt={_.get(imgObj, 'description')}
+              src={_.get(imgObj, ['resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
+              srcSet={_.get(imgObj, 'resized_targets', '')}
+              sizes={sizesForsrcSet}
             />
           </TRLink>
         </ImgColumn>,
@@ -345,6 +359,7 @@ class TopicsSection extends React.PureComponent {
           imgObj={{
             alt: _.get(imgObj, 'description'),
             src: _.get(imgObj, ['resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url']),
+            srcSet: _.get(imgObj, 'resized_targets', ''),
           }}
           slug={_.get(item, 'slug')}
         />

@@ -25,6 +25,16 @@ const _ = {
 // there will be only one column. Default is three columns.
 const oneColumnWidth = breakPoints.mobileMaxWidth
 
+const mockup = {
+  img: {
+    sizes: {
+      desktop: '430px',
+      tablet: '220px',
+      mobile: '372px',
+    },
+  },
+}
+
 const Container = styled.div`
   background-color: #f2f2f2;
 `
@@ -176,6 +186,12 @@ class Infographic extends React.PureComponent {
             <ImgWrapper
               alt={imgObj.alt}
               src={imgObj.src}
+              srcSet={imgObj.srcSet}
+              sizes={
+                `(min-width: ${breakPoints.desktopMinWidth}) ${mockup.img.sizes.desktop}, ` +
+                `(min-width: ${breakPoints.tabletMinWidth}) ${mockup.img.sizes.tablet}, ` +
+                `${mockup.img.sizes.mobile}`
+              }
             />
           </ImgFrame>
           <WordBlock>
@@ -225,6 +241,7 @@ class InfographicSection extends React.PureComponent {
           imgObj={{
             alt: _.get(imgObj, 'description'),
             src: _.get(imgObj, ['resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url']),
+            srcSet: _.get(imgObj, 'resized_targets'),
           }}
           title={_.get(item, 'title')}
           isPortrait={index === 0 || index === 4 || index === 5}

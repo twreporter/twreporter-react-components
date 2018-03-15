@@ -23,6 +23,16 @@ const _ = {
   get,
 }
 
+const mockup = {
+  img: {
+    sizes: {
+      desktop: '426px',
+      tablet: '220px',
+      mobile: '279px',
+    },
+  },
+}
+
 const categoryPrefix = strings.topic + strings.fullShapeDot
 const mobileWidth = breakPoints.mobileMaxWidth
 const Container = styled.div`
@@ -181,6 +191,12 @@ class LatestTopic extends React.PureComponent {
               <ImgWrapper
                 alt={_.get(post, 'hero_image.description')}
                 src={_.get(post, ['hero_image', 'resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
+                srcSet={_.get(post, 'hero_image.resized_targets', '')}
+                sizes={
+                  `(min-width: ${breakPoints.desktopMinWidth}) ${mockup.img.sizes.desktop}, ` +
+                  `(min-width: ${breakPoints.tabletMinWidth}) ${mockup.img.sizes.tablet}, ` +
+                  `${mockup.img.sizes.mobile}`
+                }
               />
             </ImgFrame>
             <RelatedsContentFrame>

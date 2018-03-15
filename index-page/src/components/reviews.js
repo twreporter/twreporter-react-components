@@ -21,7 +21,19 @@ const _ = {
   get,
 }
 
-const tabletMaxWidth = '1023px'
+const mockup = {
+  img: {
+    sizes: {
+      desktop: '312px',
+      tablet: '160px',
+      mobile: '279px',
+    },
+  },
+}
+
+const desktopMinWidth = breakPoints.desktopMinWidth
+const tabletMaxWidth = breakPoints.tabletMaxWidth
+const tabletMinWidth = breakPoints.tabletMinWidth
 const mobileWidth = breakPoints.mobileMaxWidth
 const maxSwipableItems = 3
 const moreText = '更多評論文章'
@@ -146,6 +158,12 @@ class Reviews extends React.PureComponent {
               <ImgWrapper
                 alt={_.get(post, 'hero_image.description')}
                 src={_.get(post, ['hero_image', 'resized_targets', useTinyImg ? 'tiny' : 'mobile', 'url'])}
+                srcSet={_.get(post, 'hero_image.resized_targets', '')}
+                sizes={
+                  `(min-width: ${desktopMinWidth}) ${mockup.img.sizes.desktop}, ` +
+                  `(min-width: ${tabletMinWidth}) ${mockup.img.sizes.tablet}, ` +
+                  `${mockup.img.sizes.mobile}`
+                }
               />
             </ImgFrame>
             <TextFrame>
