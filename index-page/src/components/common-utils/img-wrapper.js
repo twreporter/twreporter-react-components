@@ -40,9 +40,9 @@ const srcSetDependOnResolutions = (sources) => {
   const mobile_url = _.get(sources, 'mobile.url', '')
   const w400_url = _.get(sources, 'w400.url', '')
   if (!w400_url) {
-    return `${mobile_url} ${mobileInherentWidth}`
+    return `${replaceStorageUrlPrefix(mobile_url)} ${mobileInherentWidth}`
   }
-  return `${mobile_url} ${mobileInherentWidth}, ${w400_url} ${w400InherentWidth}`
+  return `${replaceStorageUrlPrefix(mobile_url)} ${mobileInherentWidth}, ${replaceStorageUrlPrefix(w400_url)} ${w400InherentWidth}`
 }
 
 class ImgWrapper extends React.Component {
