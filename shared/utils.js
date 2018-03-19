@@ -1,5 +1,6 @@
-/* global __DEVELOPMENT__ */
 import { storage, mainSite } from './configs'
+
+const _isDev = process.env.NODE_ENV !== 'production'
 
 export function date2yyyymmdd(time, separator) {
   if (!time) return ''
@@ -10,7 +11,7 @@ export function date2yyyymmdd(time, separator) {
   return [year, mon, day].join(separator)
 }
 
-export function replaceStorageUrlPrefix(url = '', isDev = __DEVELOPMENT__) {
+export function replaceStorageUrlPrefix(url = '', isDev = _isDev) {
   if (isDev || typeof url !== 'string') {
     return url
   }
