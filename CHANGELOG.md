@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 4.0.5
+- Bug fix. Replace url prefix of images resources in production state
+
 ### 4.0.4
 - Add `srcSet` and `sizes` to `img-wrapper.js` so that images of different sizes will be rendered on resolution demand
 
