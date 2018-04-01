@@ -1,4 +1,4 @@
-import { externalLinks, linkPrefix } from 'shared/configs'
+import { externalLinks, linkPrefix, mainSite } from 'shared/configs'
 
 export const footerSections = [
   {
@@ -7,22 +7,26 @@ export const footerSections = [
       {
         slug: 'about',
         text: '關於我們',
-        link: `${linkPrefix.article}about-us-footer`,
+        link: `${mainSite.url}${linkPrefix.article}about-us-footer`,
+        target: '_blank',
       },
       {
         slug: 'contact',
         text: '聯絡我們',
-        link: `${linkPrefix.article}contact-footer`,
+        link: `${mainSite.url}${linkPrefix.article}contact-footer`,
+        target: '_blank',
       },
       {
         slug: 'privacy',
         text: '隱私政策',
-        link: `${linkPrefix.article}privacy-footer`,
+        link: `${mainSite.url}${linkPrefix.article}privacy-footer`,
+        target: '_blank',
       },
       {
         slug: 'license',
         text: '許可協議',
-        link: `${linkPrefix.article}lience-footer`,
+        link: `${mainSite.url}${linkPrefix.article}lience-footer`,
+        target: '_blank',
       },
     ],
   },
