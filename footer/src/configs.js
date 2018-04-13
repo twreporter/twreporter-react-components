@@ -25,7 +25,7 @@ export const footerSections = [
       {
         slug: 'license',
         text: '許可協議',
-        link: `${mainSite.url}${linkPrefix.article}lience-footer`,
+        link: `${mainSite.url}${linkPrefix.article}license-footer`,
         target: '_blank',
       },
     ],
