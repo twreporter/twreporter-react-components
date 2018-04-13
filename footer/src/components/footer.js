@@ -1,5 +1,4 @@
 import DonateIcon from '../../static/donate-icon.svg'
-import Link from 'react-router/lib/Link'
 import PropTypes from 'prop-types'
 import React from 'react'
 import ReporterLogo from '../../static/reporter-large.svg'
@@ -149,20 +148,6 @@ const selectIcon = (name) => {
   }
 }
 
-class EnhancedLink extends React.PureComponent {
-  render() {
-    const { to } = this.props
-    if (typeof to === 'string' && (to.startsWith('http://') || (to.startsWith('https://')))) {
-      return <a href={to} {...this.props} /> // eslint-disable-line jsx-a11y/anchor-has-content
-    }
-    return <Link {...this.props} />
-  }
-}
-
-EnhancedLink.propTypes = {
-  to: PropTypes.string.isRequired,
-}
-
 const buildSectionsJSX = (sections, fontColor) => _.map(sections, (section) => {
   const sectionName = section.name
   const sectionItems = section.items
@@ -174,11 +159,11 @@ const buildSectionsJSX = (sections, fontColor) => _.map(sections, (section) => {
         </SectionTitle>
         <SectionItems fontColor={fontColor} >
           {_.map(sectionItems, item => (
-            <EnhancedLink to={item.link} target={item.target || null} key={item.slug}>
+            <a href={item.link} target={item.target || null} key={item.slug}>
               <SectionItem>
                 {item.text}
               </SectionItem>
-            </EnhancedLink>
+            </a>
           ))}
         </SectionItems>
       </SectionContent>
