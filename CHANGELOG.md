@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 4.0.6
+- To provide footer to other projects which doesn't have react-router[#95](https://github.com/twreporter/twreporter-react-components/pull/95)
+
 ### 4.0.5
 - Bug fix. Replace url prefix of images resources in production state
 
