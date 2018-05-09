@@ -6,7 +6,6 @@ import SearchIcon from '../../static/search-icon.svg'
 import SignInIcon from '../../static/member-icon.svg'
 import SignOutIcon from '../../static/signout.svg'
 import SubscriptionIcon from '../../static/subscribe-icon.svg'
-import VelocityComponent from '@twreporter/velocity-react/velocity-component'
 import get from 'lodash/get'
 import serviceStrings, { SERVICE_LABELS } from 'shared/service-strings'
 import smoothScroll from 'smoothscroll'
@@ -36,7 +35,7 @@ const DEFAULT_HEIGHT_FLEX_BOX = DEFAULT_HEIGHT_DIVISION * ROW_PER_COLUMN
 
 const Container = styled.div`
   height: ${DEFAULT_HEIGHT_FLEX_BOX}px;
-  margin-top: -${DEFAULT_HEIGHT_FLEX_BOX}px;
+  margin-top: ${props => (props.isOpen ? 0 : `-${DEFAULT_HEIGHT_FLEX_BOX}px`)};
   width: 100%;
   text-align: center;
   flex-direction: column;
@@ -50,6 +49,7 @@ const Container = styled.div`
   ${screen.mobileOnly`
     display: flex;
   `}
+  transition: margin-top 0.1s ease-in-out;
 `
 
 const ColumnFrame = styled.div`
@@ -227,21 +227,17 @@ class SlideDownPanel extends React.Component {
     const { isOpen } = this.state
     const { isIndex } = this.props
     return (
-      <VelocityComponent
-        animation={isOpen ? { marginTop: 0 } : { marginTop: `-${DEFAULT_HEIGHT_FLEX_BOX}px` }}
-        duration={duration}
-        runOnMount={false}
-        easing="ease-in-out"
+      <Container
+        isIndex={isIndex}
+        isOpen={isOpen}
       >
-        <Container isIndex={isIndex}>
-          <ColumnChannel
-            handlePanelOnClick={this.handlePanelOnClick}
-          />
-          <ColumnService
-            handlePanelOnClick={this.handlePanelOnClick}
-          />
-        </Container>
-      </VelocityComponent>
+        <ColumnChannel
+          handlePanelOnClick={this.handlePanelOnClick}
+        />
+        <ColumnService
+          handlePanelOnClick={this.handlePanelOnClick}
+        />
+      </Container>
     )
   }
 }
