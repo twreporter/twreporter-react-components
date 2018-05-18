@@ -1,5 +1,10 @@
 ### UNRELEASED
 
+### 4.0.7
+- Remove `velocityComponent` in `fadein-fadeout component` to fix the layout of editor-picks on tablet
+- Remove `velocityComponent` in `editor-picks` for wrong positioning of title
+- Remove `velocityComponent` and use css `transition` instead to animate the header-slide-down-panel
+
 ### 4.0.6
 - To provide footer to other projects which doesn't have react-router[#95](https://github.com/twreporter/twreporter-react-components/pull/95)
 
