@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 4.0.8
+- [Bug] Fix the transparency bug of editor-picks on IE and Edge
+
 ### 4.0.7
 - Remove `velocityComponent` in `fadein-fadeout component` to fix the layout of editor-picks on tablet
 - Remove `velocityComponent` in `editor-picks` for wrong positioning of title
