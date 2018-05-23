@@ -2,7 +2,6 @@
 import CategoryName from './common-utils/category-name'
 import ContentWrapper from './common-utils/section-content-wrapper'
 import EditorPicksMobile from './editor-picks-mobile'
-import FadeInFadeOut from './animations/fadein-fadeout'
 import ImgWrapper from './common-utils/img-wrapper'
 import LeftArrowIcon from '../static/left-arrow.svg'
 import PropTypes from 'prop-types'
@@ -179,7 +178,7 @@ const Description = styled.div`
   transform: translateX(-50%);
   ${truncate('absolute', 1.43, 2, 'white')};
   @media (min-width: ${breakPoints.tabletMinWidth}) {
-    ${props => (props.ifHover ? 'opacity: 0.7' : '')}
+    ${props => (props.ifHover ? 'opacity: 0.7;' : '')}
     transition: .2s opacity linear;
   }
   z-index: 2;
@@ -190,9 +189,14 @@ const HoverEffect = styled.div`
   text-decoration: none;
   color: ${colors.textGrey};
   @media (min-width: ${breakPoints.tabletMinWidth}) {
-    ${props => (props.ifHover ? 'opacity: 0.7' : 'opacity: 1')}
+    ${props => (props.ifHover ? 'opacity: 0.7;' : 'opacity: 1;')}
     transition: .2s opacity linear;
   }
+`
+const FadeInFadeOut = styled.div`
+  opacity: ${props => (props.isSelected ? '1' : '0')};  
+  z-index: ${props => (props.isSelected ? '1' : '0')};
+  transition: .5s opacity linear;
 `
 
 // this is a container
@@ -331,6 +335,11 @@ class EditorPicks extends React.Component {
             middle: this.state.selected,
             right: this.state.selected + 1,
           }
+          const fadingStyle = {
+            opacity: index === selectDataToShow[theProp.position] ? '1' : '0',
+            zIndex: index === selectDataToShow[theProp.position] ? '1' : '0',
+            transition: 'opacity .5s linear',
+          }
           return (
             <FadeInFadeOut
               key={_.get(post, 'id')}
@@ -344,6 +353,8 @@ class EditorPicks extends React.Component {
                     left={theProp.propsForComponent.left}
                     onMouseEnter={this.handleOnMouseEnter}
                     onMouseLeave={this.handleOnMouseLeave}
+                    // Adds fade-in fade-out inline style for IE and Edge
+                    style={fadingStyle}
                   >
                     {currentData}
                   </theProp.component>
@@ -352,6 +363,8 @@ class EditorPicks extends React.Component {
                 <theProp.component
                   top={theProp.propsForComponent.top}
                   left={theProp.propsForComponent.left}
+                  // Adds fade-in fade-out inline style for IE and Edge
+                  style={fadingStyle}
                 >
                   {currentData}
                 </theProp.component>
@@ -366,6 +379,11 @@ class EditorPicks extends React.Component {
       const heroImg = _.get(post, 'hero_image')
       const style = _.get(post, 'style', '')
       const href = getHref(_.get(post, 'slug', 'error'), style)
+      const fadingStyle = {
+        opacity: this.state.selected === index ? 1 : 0,
+        zIndex: this.state.selected === index ? '1' : '0',
+        transition: 'opacity .5s linear',
+      }
       return (
         <FadeInFadeOut
           key={_.get(heroImg, 'id')}
@@ -376,6 +394,8 @@ class EditorPicks extends React.Component {
               <ImgFrame
                 onMouseEnter={this.handleOnMouseEnter}
                 onMouseLeave={this.handleOnMouseLeave}
+                // Adds fade-in fade-out inline style for IE and Edge
+                style={fadingStyle}
               >
                 <ImgWrapper
                   alt={_.get(heroImg, 'description')}
