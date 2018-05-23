@@ -336,7 +336,7 @@ class EditorPicks extends React.Component {
             right: this.state.selected + 1,
           }
           const fadingStyle = {
-            opacity: index === selectDataToShow[theProp.position] ? 1 : 0,
+            opacity: index === selectDataToShow[theProp.position] ? '1' : '0',
             zIndex: index === selectDataToShow[theProp.position] ? '1' : '0',
             transition: 'opacity .5s linear',
           }
