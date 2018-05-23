@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 4.0.9
+- Remove `velocityComponent` in `editor-picks-mobile` and use css `transition` instead to implement fade-in-fade-out animation
+
 ### 4.0.8
 - [Bug] Fix the transparency bug of editor-picks on IE and Edge
 
