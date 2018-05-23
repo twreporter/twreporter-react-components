@@ -380,7 +380,7 @@ class EditorPicks extends React.Component {
       const style = _.get(post, 'style', '')
       const href = getHref(_.get(post, 'slug', 'error'), style)
       const fadingStyle = {
-        opacity: this.state.selected === index ? 1 : 0,
+        opacity: this.state.selected === index ? '1' : '0',
         zIndex: this.state.selected === index ? '1' : '0',
         transition: 'opacity .5s linear',
       }

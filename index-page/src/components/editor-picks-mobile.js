@@ -1,5 +1,4 @@
 import CategoryName from './common-utils/category-name'
-import FadeInFadeOut from './animations/fadein-fadeout'
 import ImgWrapper from './common-utils/img-wrapper'
 import MobileFlexSwipeable from './mobile-flex-swipeable'
 import PropTypes from 'prop-types'
@@ -89,6 +88,12 @@ const ImgFrame = styled.div`
   height: 186px;
 `
 
+const FadeInFadeOut = styled.div `
+  opacity: ${props => (props.isSelected ? '1' : '0')};  
+  z-index: ${props => (props.isSelected ? '1' : '0')};
+  transition: .5s opacity linear;
+`
+
 class EditorPicksMobile extends SwipableMixin {
   constructor(props) {
     super(props)
@@ -149,13 +154,20 @@ class EditorPicksMobile extends SwipableMixin {
     const textFrameContent = data.map((post, index) => {
       const style = _.get(post, 'style', '')
       const href = getHref(_.get(post, 'slug', 'error'), style)
+      const fadingStyle = {
+        opacity: this.state.selected === index ? '1' : '0',
+        zIndex: this.state.selected === index ? '1' : '0',
+        transition: 'opacity .5s linear',
+      }
       return (
         <FadeInFadeOut
           key={_.get(post, 'id')}
           isSelected={index === this.state.selected}
         >
           <Category>{_.get(post, 'categories[0].name', '')}</Category>
-          <Title>
+          <Title
+            style={fadingStyle}
+          >
             <TRLink
               href={href}
               redirect={style === 'interactive'}
