@@ -245,8 +245,8 @@ class EditorPicks extends React.Component {
     const { data } = this.props
     const swappedData = swapArrayElements(data, 0, 1)
     const getTruncate = (title) => {
-      if (title.length > 26) {
-        return `${title.slice(0, 25)}...`
+      if (title.length > 25) {
+        return `${title.slice(0, 24)}...`
       }
       return title
     }
