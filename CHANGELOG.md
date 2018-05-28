@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 4.0.10
+- [Bug] Modifies the length of truncated title in editor-picks
+
 ### 4.0.9
 - Remove `velocityComponent` in `editor-picks-mobile` and use css `transition` instead to implement fade-in-fade-out animation
 
