@@ -80,6 +80,7 @@ export const linkPrefix = {
   topics: '/topics/',
   author: '/author/',
   authors: '/authors',
+  aboutus: '/about-us',
 }
 
 export const channelConfigs = {

@@ -7,7 +7,7 @@ export const footerSections = [
       {
         slug: 'about',
         text: '關於我們',
-        link: `${mainSite.url}${linkPrefix.article}about-us-footer`,
+        link: `${mainSite.url}${linkPrefix.aboutus}`,
         target: '_blank',
       },
       {
