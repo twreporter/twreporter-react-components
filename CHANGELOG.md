@@ -1,4 +1,6 @@
 ### UNRELEASED
+### 4.0.11
+- Add about-us page link to Footer
 
 ### 4.0.10
 - [Bug] Modifies the length of truncated title in editor-picks
