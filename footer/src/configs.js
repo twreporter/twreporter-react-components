@@ -19,8 +19,8 @@ export const footerItemList = [
   {
     slug: 'authors',
     text: '作者群',
-    link: `${mainSite.url}authors`,
-    target: '_blank',
+    link: `${mainSite.url}/authors`,
+    target: '',
   },
   {
     slug: 'privacy',
