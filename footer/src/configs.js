@@ -20,7 +20,7 @@ export const footerItemList = [
     slug: 'authors',
     text: '作者群',
     link: `${mainSite.url}/authors`,
-    target: '',
+    target: '_self',
   },
   {
     slug: 'privacy',
@@ -89,12 +89,14 @@ export const footerIconList = [
     text: 'Medium',
     link: externalLinks.medium,
     target: '_blank',
+    logoInPureBlackWhite: true,
   },
   {
     slug: 'github',
     text: 'Github',
     link: externalLinks.github,
     target: '_blank',
+    logoInPureBlackWhite: true,
   },
   {
     slug: 'rss',
@@ -104,5 +106,5 @@ export const footerIconList = [
   },
 ]
 
-export const DonateUSText = '贊助我們'
-export const CopyRightText = `Copyright © ${currentYear} The Reporter.`
+export const donateUSText = '贊助我們'
+export const copyRightText = `Copyright © ${currentYear} The Reporter.`

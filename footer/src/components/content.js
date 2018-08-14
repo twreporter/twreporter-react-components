@@ -1,5 +1,5 @@
 import { colors, fonts } from 'shared/common-variables'
-import { footerItemList, DonateUSText, donatePage } from '../configs.js'
+import { footerItemList, donateUSText, donatePage } from '../configs.js'
 import { screen } from 'shared/style-utils'
 import { styles } from '../styles/theme'
 import appConfig from '../../../index-page/src/conf/app-config.json'
@@ -249,7 +249,7 @@ class Content extends React.PureComponent {
           href={donatePage.link}
           target={donatePage.target}
         >
-          <p>{DonateUSText}</p>
+          <p>{donateUSText}</p>
         </DonateButton>
       </ContentRow>
     )

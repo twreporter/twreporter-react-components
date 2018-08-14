@@ -1,6 +1,6 @@
 import { arrayToCssShorthand, screen } from 'shared/style-utils'
 import { colors, fonts } from 'shared/common-variables'
-import { CopyRightText } from '../configs.js'
+import { footerIconList, copyRightText } from '../configs.js'
 import { styles } from '../styles/theme'
 import Content from './content'
 import IconList from './icon-list'
@@ -68,8 +68,10 @@ class Footer extends React.PureComponent {
       >
         <FooterContent>
           <Content />
-          <IconList />
-          <CopyRight>{CopyRightText}</CopyRight>
+          <IconList
+            list={footerIconList}
+          />
+          <CopyRight>{copyRightText}</CopyRight>
         </FooterContent>
       </FooterContainer>
     )

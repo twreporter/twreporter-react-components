@@ -1,22 +1,18 @@
-import { footerIconList } from '../configs.js'
 import { screen } from 'shared/style-utils'
 import { styles } from '../styles/theme'
 import chunk from 'lodash/chunk'
-import map from 'lodash/map'
-import React from 'react'
-import styled from 'styled-components'
 import FBIcon from '../../static/fb-logo_hover.svg'
-import FBIconDefault from '../../static/fb-logo_default.svg'
 import GithubIcon from '../../static/github-logo_hover.svg'
-import GithubIconDefault from '../../static/github-logo_default.svg'
 import IGIcon from '../../static/ig-logo_hover.svg'
-import IGIconDefault from '../../static/ig-logo_default.svg'
 import LineIcon from '../../static/line-icon_hover.svg'
-import LineIconDefault from '../../static/line-icon_default.svg'
+import map from 'lodash/map'
 import MediumIcon from '../../static/Medium-logo_hover.svg'
-import MediumIconDefault from '../../static/Medium-logo_default.svg'
+import PropTypes from 'prop-types'
+import React from 'react'
 import RSSIcon from '../../static/rss-logo_hover.svg'
-import RSSIconDefault from '../../static/rss-logo_default.svg'
+import styled from 'styled-components'
+
+const totalIconNumber = 6
 
 const _ = {
   map, chunk,
@@ -28,6 +24,12 @@ const StyledIcon = styled.a`
   svg {
     width: ${styles.icon.width.tabletAbove}px;
     height: ${styles.icon.height.tabletAbove}px;
+  }
+  filter: grayscale(100%);
+  opacity: ${props => props.defaultOpacity};
+  &:hover{
+    filter: none;
+    opacity: 1;
   }
   ${screen.mobileOnly`
     margin-right: 0;
@@ -41,6 +43,7 @@ const StyledIcon = styled.a`
 const Icons = styled.div`
   margin-top: 20px;
   transform: translateX(-5px);
+  opacity: 0.8;
   ${screen.mobileOnly`
     display: flex;
     justify-content: space-between;
@@ -52,7 +55,7 @@ class IconList extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      isIconOnHover: _.map(footerIconList, () => { return false }),
+      isIconOnHover: _.map([...Array(totalIconNumber)], () => { return false }),
     }
     this.handleMouseEnter = this._handleMouseEnter.bind(this)
     this.handleMouseLeave = this._handleMouseLeave.bind(this)
@@ -75,49 +78,38 @@ class IconList extends React.PureComponent {
       isIconOnHover: newOnHoverArray,
     })
   }
-  _getIconByHoverState(name, onHover) {
+  _getIconByHoverState(name) {
     switch (name) {
       case 'facebook':
         return (
-          onHover ?
-            <FBIcon />
-            : <FBIconDefault />
+          <FBIcon />
         )
       case 'instagram':
         return (
-          onHover ?
-            <IGIcon />
-            : <IGIconDefault />
+          <IGIcon />
         )
       case 'line':
         return (
-          onHover ?
-            <LineIcon />
-            : <LineIconDefault />
+          <LineIcon />
         )
       case 'medium':
         return (
-          onHover ?
-            <MediumIcon />
-            : <MediumIconDefault />
+          <MediumIcon />
         )
       case 'github':
         return (
-          onHover ?
-            <GithubIcon />
-            : <GithubIconDefault />
+          <GithubIcon />
         )
       case 'rss':
         return (
-          onHover ?
-            <RSSIcon />
-            : <RSSIconDefault />
+          <RSSIcon />
         )
       default:
         return null
     }
   }
   render() {
+    const { list } = this.props
     const selectIcon = (name, index) => {
       const onHover = this.state.isIconOnHover[index]
       return this.getIconByHoverState(name, onHover)
@@ -127,14 +119,13 @@ class IconList extends React.PureComponent {
         onMouseLeave={this.handleMouseLeave}
       >
         {
-          _.map(footerIconList, (icon, indexofIcon) => {
+          _.map(list, (icon, indexofIcon) => {
             return (
               <StyledIcon
                 key={indexofIcon}
                 href={icon.link}
                 target={icon.target}
-                onMouseEnter={e => this.handleMouseEnter(e, indexofIcon)}
-                onMouseLeave={this.handleMouseLeave}
+                defaultOpacity={icon.logoInPureBlackWhite ? 0.4 : 0.8}
               >
                 {selectIcon(icon.slug, indexofIcon)}
               </StyledIcon>
@@ -144,6 +135,14 @@ class IconList extends React.PureComponent {
       </Icons>
     )
   }
+}
+
+IconList.propTypes = {
+  list: PropTypes.array.isRequired,
+}
+
+IconList.defaultProps = {
+  list: [],
 }
 
 export default IconList
