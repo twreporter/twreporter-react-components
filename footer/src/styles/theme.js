@@ -1,10 +1,12 @@
 export const styles = {
   reporterLogo: {
     width: {
+      mobile: 300, // px
       desktop: 258, // px
       hd: 300, // px
     },
     height: {
+      mobile: 55, // px
       desktop: 45, // px
       hd: 55, // px
     },
@@ -42,5 +44,9 @@ export const styles = {
       desktop: 123, // px
       hd: 96, // px
     },
+  },
+  grayScaleOpacity: {
+    pureBlackWhiteSrc: 0.4,
+    normal: 0.8,
   },
 }

@@ -37,7 +37,7 @@ export const footerItemList = [
   {
     slug: 'donate',
     text: '捐款徵信',
-    link: `${mainSite.url}${linkPrefix.article}about-us-footer`,
+    link: `${mainSite.url}${linkPrefix.article}credit-donate`,
     target: '_blank',
   },
   {
@@ -49,7 +49,7 @@ export const footerItemList = [
   {
     slug: 'license',
     text: '常見問題',
-    link: `${mainSite.url}${linkPrefix.article}license-footer`,
+    link: `${mainSite.url}${linkPrefix.article}about-us-questions`,
     target: '_blank',
   },
   {

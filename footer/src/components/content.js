@@ -4,40 +4,16 @@ import { screen } from 'shared/style-utils'
 import { styles } from '../styles/theme'
 import appConfig from '../../../index-page/src/conf/app-config.json'
 import chunk from 'lodash/chunk'
+import Logo from './logo'
 import map from 'lodash/map'
 import React from 'react'
-import ReporterLogo from '../../static/logo-horizontal02.svg'
 import styled from 'styled-components'
 
 const _ = {
   map, chunk,
 }
 
-const StyledReporterLogo = styled.div`
-  transform: translateX(-25px);
-  svg {
-    opacity: 0.4;
-    filter: grayscale(100%);
-  }
-  &:hover{
-    svg {
-      opacity: 1;
-      filter: none;
-    }
-  }
-  ${screen.tabletAbove`
-    svg {
-      width: ${styles.reporterLogo.width.desktop}px;
-      height: ${styles.reporterLogo.height.desktop}px;
-    }
-  `}
-  ${screen.hdAbove`
-    svg {
-      width: ${styles.reporterLogo.width.hd}px;
-      height: ${styles.reporterLogo.height.hd}px;
-    }
-  `}
-`
+const groupNumOfChunk = 3
 
 const Intro = styled.p`
   width: 100%;
@@ -70,6 +46,9 @@ const ContentRow = styled.div`
 const Column = styled.div`
   display: inline-block;
   height: 100%;
+  ${screen.mobileOnly`
+    max-width: 100%;
+  `}
 `
 
 const IntroColumn = Column.extend `
@@ -231,13 +210,11 @@ const ItemList = itemGroup => _.map(itemGroup, (group, indexofGroup) => {
 class Content extends React.PureComponent {
   render() {
     const description = appConfig.description
-    const groupedItemList = _.chunk(footerItemList, 3)
+    const groupedItemList = _.chunk(footerItemList, groupNumOfChunk)
     return (
       <ContentRow>
         <IntroColumn>
-          <StyledReporterLogo >
-            <ReporterLogo />
-          </StyledReporterLogo>
+          <Logo />
           <Intro>{description}</Intro>
         </IntroColumn>
         <LinksColumn>
