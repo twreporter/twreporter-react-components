@@ -79,11 +79,10 @@ class Footer extends React.PureComponent {
 }
 
 Footer.propTypes = {
-  bgColor: PropTypes.string,
+  bgColor: PropTypes.string.isRequired,
 }
 
 Footer.defaultProps = {
-  fontColor: colors.footerTextDark,
   bgColor: colors.footerBg,
 }
 
