@@ -7,7 +7,7 @@ import chunk from 'lodash/chunk'
 import Logo from './logo'
 import map from 'lodash/map'
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 const _ = {
   map, chunk,
@@ -105,6 +105,16 @@ const StyledItemGroup = styled.div`
   `}
 `
 
+const flickerAnimation = keyframes`
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .6;
+  }
+`
+
 const StyledItem = styled.a`
   display: block;
   width: 100%;
@@ -117,20 +127,18 @@ const StyledItem = styled.a`
   }
   span{
     visibility: ${props => (props.visible ? 'visible' : 'hidden')};
-    background: ${colors.footerGray};
+    background: ${colors.footerNewsFlagRed};
     color: ${colors.white};
     font-size: ${fonts.size.xsmall};
     font-family: Roboto;
     margin-right: 5px;
-    padding: 1px 5px;
+    padding: 0 5px;
     vertical-align: middle;
+    animation: ${flickerAnimation} .7s infinite;    
   }
   &:hover{
     p{
       color: ${colors.black};
-    }
-    span{
-      background: ${colors.footerNewsFlagRed};
     }
   }
   ${screen.desktopAbove`
