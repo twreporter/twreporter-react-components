@@ -59,13 +59,17 @@ const ContentContainer = styled.div`
     display: block;
     text-align: center;
     padding: 0;
+    h3{
+      font-size: ${fonts.size.title.medium};
+      line-height: 2.17;
+    }
     p{
-      margin-top: 20px;
+      margin-top: 0;
     }
   `}
 `
 
-const DonateButton = styled.button`
+const DonateButton = styled.a`
   width: 116px;
   height: 40px;
   border-radius: 20px;
@@ -74,14 +78,21 @@ const DonateButton = styled.button`
   color: ${colors.sectionTanBrown};
   font-size: ${fonts.size.medium};
   cursor: pointer;
+  display: table;
   ${finalMedia.tablet`
     position: absolute;
     right: 110px;
     top: 9px;
   `}
   ${finalMedia.mobile`
-    margin-top: 40px;
-  `}  
+    margin: 40px auto 0 auto;
+  `}
+  span{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: ${fonts.weight.bold};
+  }  
 `
 
 const TextColumn = styled.div`
@@ -98,14 +109,6 @@ const Icon = styled.div`
 `
 
 class DonationBoxSection extends React.PureComponent {
-  constructor(props) {
-    super(props)
-    this.handleClick = this._handleClick.bind(this)
-  }
-  _handleClick(e, url) {
-    e.preventDefault()
-    window.open(url, '_blank')
-  }
   render() {
     return (
       <Container>
@@ -115,12 +118,15 @@ class DonationBoxSection extends React.PureComponent {
             <p>深度調查報導必須投入優秀記者、足夠時間與大量資源。歡迎您成為「《報導者》贊助夥伴」，一起為打造更好的社會及媒體環境努力。</p>
           </TextColumn>
           <DonateButton
-            onClick={e => this.handleClick(e, DONATION_SITE_URL)}
+            href={DONATION_SITE_URL}
+            target={'_blank'}
           >
-            贊助我們
-            <Icon>
-              <ArrowIcon />
-            </Icon>
+            <span>
+              贊助我們
+              <Icon>
+                <ArrowIcon />
+              </Icon>
+            </span>
           </DonateButton>
         </ContentContainer>
       </Container>
