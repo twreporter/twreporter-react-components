@@ -19,6 +19,7 @@ const fonts = {
   },
   weight: {
     normal: '300',
+    medium: '500',
     bold: '700',
   },
 }
@@ -49,9 +50,11 @@ const colors = {
   bookmarkTextGrey: '#3e3f3f',
   iconAltText: '#e60013',
   greyishBrown: '#4a4a4a',
-  footerBg: '#cdcdcd',
+  footerBg: '#ffffff',
   footerTextLight: '#808080',
   footerTextDark: '#4a4a4a',
+  footerGray: '#9c9c9c',
+  footerNewsFlagRed: '#c7000a',
   indexBodyBgWhite: '#ffffff',
   lineGrey: '#d8d8d8',
 }
