@@ -25,6 +25,7 @@ const colors = {
   moreBlue: '#55a1e5',
   lightBlue: '#5eb2fe',
   blue: '#5eb2fd',
+  sectionTanBrown: '#a67a44',
   sectionWhite: '#ffffff',
   sectionGrey: '#f2f2f2',
 }
