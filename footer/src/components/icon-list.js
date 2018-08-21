@@ -1,5 +1,4 @@
 import { screen } from 'shared/style-utils'
-import { STATICFILEPREFIX } from '../configs'
 import { styles } from '../styles/theme'
 import chunk from 'lodash/chunk'
 import map from 'lodash/map'
@@ -45,7 +44,7 @@ const StyledIcon = styled.div`
 
 class IconList extends React.PureComponent {
   render() {
-    const { list } = this.props
+    const { list, staticFilePrefix } = this.props
     return (
       <Icons>
         {
@@ -59,9 +58,9 @@ class IconList extends React.PureComponent {
                 <StyledIcon>
                   <img
                     alt={icon.slug}
-                    src={`${STATICFILEPREFIX}${icon.slug}-logo-default.svg`}
-                    onMouseOver={(e) => { e.currentTarget.src = `${STATICFILEPREFIX}${icon.slug}-logo-hover.svg` }}
-                    onMouseOut={(e) => { e.currentTarget.src = `${STATICFILEPREFIX}${icon.slug}-logo-default.svg` }}
+                    src={`${staticFilePrefix}${icon.slug}-logo-default.svg`}
+                    onMouseOver={(e) => { e.currentTarget.src = `${staticFilePrefix}${icon.slug}-logo-hover.svg` }}
+                    onMouseOut={(e) => { e.currentTarget.src = `${staticFilePrefix}${icon.slug}-logo-default.svg` }}
                   />
                 </StyledIcon>
               </IconLink>
@@ -75,10 +74,12 @@ class IconList extends React.PureComponent {
 
 IconList.propTypes = {
   list: PropTypes.array,
+  staticFilePrefix: PropTypes.string.isRequired,
 }
 
 IconList.defaultProps = {
   list: [],
+  staticFilePrefix: '',
 }
 
 export default IconList

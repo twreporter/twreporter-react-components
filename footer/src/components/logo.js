@@ -1,14 +1,16 @@
+import { mainSite } from 'shared/configs'
 import { screen } from 'shared/style-utils'
-import { STATICFILEPREFIX } from '../configs'
 import { styles } from '../styles/theme'
+import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
 const REPORTERLOGOSLUG = 'reporter-logo-horizontal'
 const REPORTERLOGOFILENAME = 'logo-horizontal02.svg'
 
-const Container = styled.div `
+const Container = styled.a`
   position: relative;
+  cursor: pointer;
 `
 
 const StyledReporterLogo = styled.div `
@@ -36,17 +38,28 @@ const StyledReporterLogo = styled.div `
 
 class Logo extends React.PureComponent {
   render() {
+    const { staticFilePrefix } = this.props
     return (
-      <Container>
+      <Container
+        href={mainSite.url}
+      >
         <StyledReporterLogo >
           <img
             alt={REPORTERLOGOSLUG}
-            src={`${STATICFILEPREFIX}${REPORTERLOGOFILENAME}`}
+            src={`${staticFilePrefix}${REPORTERLOGOFILENAME}`}
           />
         </StyledReporterLogo>
       </Container>
     )
   }
+}
+
+Logo.propTypes = {
+  staticFilePrefix: PropTypes.string.isRequired,
+}
+
+Logo.defaultProps = {
+  staticFilePrefix: '',
 }
 
 export default Logo

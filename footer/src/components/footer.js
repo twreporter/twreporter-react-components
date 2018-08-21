@@ -9,6 +9,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const FooterContainer = styled.div`
+  border-top: solid 0.5px ${colors.lineGrey};
   width: 100%;
   background-color: ${props => props.bgColor};
   padding: 0;
@@ -19,7 +20,6 @@ const FooterContainer = styled.div`
 
 const FooterContent = styled.div`
   position: relative;
-  border-top: solid 0.5px ${colors.lineGrey};
   ${screen.mobileOnly`
     padding: ${arrayToCssShorthand(styles.footerContentPadding.mobile)};
   `}
@@ -61,15 +61,18 @@ const CopyRight = styled.p`
 
 class Footer extends React.PureComponent {
   render() {
-    const { bgColor } = this.props
+    const { bgColor, staticFilePrefix } = this.props
     return (
       <FooterContainer
         bgColor={bgColor}
       >
         <FooterContent>
-          <Content />
+          <Content
+            staticFilePrefix={staticFilePrefix}
+          />
           <IconList
             list={footerIconList}
+            staticFilePrefix={staticFilePrefix}
           />
           <CopyRight>{copyRightText}</CopyRight>
         </FooterContent>
@@ -80,10 +83,12 @@ class Footer extends React.PureComponent {
 
 Footer.propTypes = {
   bgColor: PropTypes.string.isRequired,
+  staticFilePrefix: PropTypes.string.isRequired,
 }
 
 Footer.defaultProps = {
   bgColor: colors.footerBg,
+  staticFilePrefix: '',
 }
 
 export default Footer
