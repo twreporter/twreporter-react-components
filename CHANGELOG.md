@@ -1,4 +1,8 @@
 ### UNRELEASED
+### 4.1.0
+- Add new Footer
+- Add donation section to homepage
+
 ### 4.0.11
 - Add about-us page link to Footer
 
