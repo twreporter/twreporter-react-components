@@ -6,6 +6,7 @@ import appConfig from '../../../index-page/src/conf/app-config.json'
 import chunk from 'lodash/chunk'
 import Logo from './logo'
 import map from 'lodash/map'
+import PropTypes from 'prop-types'
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
@@ -45,7 +46,9 @@ const ContentRow = styled.div`
 
 const Column = styled.div`
   display: inline-block;
-  height: 100%;
+  ${screen.tabletAbove`
+    height: 100%;
+  `}
   ${screen.mobileOnly`
     max-width: 100%;
   `}
@@ -90,7 +93,9 @@ const LinksColumn = Column.extend `
 
 const StyledItemList = styled.div`
   width: 100%;
-  height: 100%;
+  ${screen.desktopAbove`
+    height: 100%;
+  `}
 `
 
 const StyledItemGroup = styled.div`
@@ -132,7 +137,7 @@ const StyledItem = styled.a`
     font-size: ${fonts.size.xsmall};
     font-family: Roboto;
     margin-right: 5px;
-    padding: 0 5px;
+    padding: 2px 5px;
     vertical-align: middle;
     animation: ${flickerAnimation} .7s infinite;    
   }
@@ -217,12 +222,13 @@ const ItemList = itemGroup => _.map(itemGroup, (group, indexofGroup) => {
 
 class Content extends React.PureComponent {
   render() {
+    const { staticFilePrefix } = this.props
     const description = appConfig.description
     const groupedItemList = _.chunk(footerItemList, groupNumOfChunk)
     return (
       <ContentRow>
         <IntroColumn>
-          <Logo />
+          <Logo staticFilePrefix={staticFilePrefix} />
           <Intro>{description}</Intro>
         </IntroColumn>
         <LinksColumn>
@@ -241,4 +247,13 @@ class Content extends React.PureComponent {
   }
 }
 
+Content.propTypes = {
+  staticFilePrefix: PropTypes.string.isRequired,
+}
+
+Content.defaultProps = {
+  staticFilePrefix: '',
+}
+
 export default Content
+

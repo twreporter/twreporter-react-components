@@ -108,5 +108,4 @@ export const footerIconList = [
 
 export const donateUSText = '贊助我們'
 export const copyRightText = `Copyright © ${currentYear} The Reporter.`
-export const STATICFILEPREFIX = '/asset/footer/'
 
