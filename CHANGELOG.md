@@ -1,4 +1,7 @@
 ### UNRELEASED
+### 4.1.1
+-  Some updates in the new footer component after testing
+
 ### 4.1.0
 - Add new Footer
 - Add donation section to homepage
