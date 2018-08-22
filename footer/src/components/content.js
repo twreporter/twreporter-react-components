@@ -46,7 +46,9 @@ const ContentRow = styled.div`
 
 const Column = styled.div`
   display: inline-block;
-  height: 100%;
+  ${screen.tabletAbove`
+    height: 100%;
+  `}
   ${screen.mobileOnly`
     max-width: 100%;
   `}
@@ -91,7 +93,9 @@ const LinksColumn = Column.extend `
 
 const StyledItemList = styled.div`
   width: 100%;
-  height: 100%;
+  ${screen.desktopAbove`
+    height: 100%;
+  `}
 `
 
 const StyledItemGroup = styled.div`

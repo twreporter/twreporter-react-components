@@ -16,6 +16,9 @@ const FooterContainer = styled.div`
   ${screen.tabletAbove`
     min-height: ${styles.footerHeight.desktop}px;
   `}
+  ${screen.mobileOnly`
+    max-height: 811px;
+  `}
 `
 
 const FooterContent = styled.div`
