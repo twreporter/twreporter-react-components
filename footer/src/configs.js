@@ -2,6 +2,7 @@ import { externalLinks, linkPrefix, mainSite } from 'shared/configs'
 
 const currentYear = new Date().getFullYear().toString()
 
+export const staticFilePrefix = `${mainSite.url}/images/footer/`
 export const footerItemList = [
   {
     slug: 'about',

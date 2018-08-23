@@ -14,7 +14,7 @@ const Container = styled.a`
 `
 
 const StyledReporterLogo = styled.div `
-  transform: translateX(-25px);
+  transform: translateX(-22px);
   width: ${styles.reporterLogo.width.mobile}px;
   height: ${styles.reporterLogo.height.mobile}px;
   img {
@@ -31,6 +31,7 @@ const StyledReporterLogo = styled.div `
     height: ${styles.reporterLogo.height.desktop}px;
   `}
   ${screen.hdAbove`
+    transform: translateX(-25px);
     width: ${styles.reporterLogo.width.hd}px;
     height: ${styles.reporterLogo.height.hd}px;
   `}
