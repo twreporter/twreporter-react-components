@@ -1,6 +1,6 @@
 import { arrayToCssShorthand, screen } from 'shared/style-utils'
 import { colors, fonts } from 'shared/common-variables'
-import { footerIconList, copyRightText } from '../configs.js'
+import { footerIconList, copyRightText, staticFilePrefix } from '../configs.js'
 import { styles } from '../styles/theme'
 import Content from './content'
 import IconList from './icon-list'
@@ -64,7 +64,7 @@ const CopyRight = styled.p`
 
 class Footer extends React.PureComponent {
   render() {
-    const { bgColor, staticFilePrefix } = this.props
+    const { bgColor } = this.props
     return (
       <FooterContainer
         bgColor={bgColor}
@@ -86,12 +86,10 @@ class Footer extends React.PureComponent {
 
 Footer.propTypes = {
   bgColor: PropTypes.string.isRequired,
-  staticFilePrefix: PropTypes.string.isRequired,
 }
 
 Footer.defaultProps = {
   bgColor: colors.footerBg,
-  staticFilePrefix: '',
 }
 
 export default Footer
