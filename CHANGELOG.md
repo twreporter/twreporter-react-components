@@ -1,4 +1,7 @@
 ### UNRELEASED
+### 4.1.2
+- [Bug] Fix wrong height of footer when it is used on sites apart from our main website
+
 ### 4.1.1
 -  Some updates in the new footer component after testing
 
