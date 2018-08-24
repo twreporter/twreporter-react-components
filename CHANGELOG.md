@@ -1,4 +1,7 @@
 ### UNRELEASED
+### 4.1.3
+- [Bug] Fix block scrolling bug in Footer
+
 ### 4.1.2
 - [Bug] Fix wrong height of footer when it is used on sites apart from our main website
 
