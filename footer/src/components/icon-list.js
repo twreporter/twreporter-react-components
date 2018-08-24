@@ -1,21 +1,26 @@
 import { screen } from 'shared/style-utils'
 import { styles } from '../styles/theme'
-import chunk from 'lodash/chunk'
 import map from 'lodash/map'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
 const _ = {
-  map, chunk,
+  map,
 }
 
 const IconLink = styled.a`
   position: relative;
   display: inline-block;
   margin-right: 11px;
+  ${screen.tabletAbove`
+    width: ${styles.icon.width.tabletAbove}px;
+    height: ${styles.icon.height.tabletAbove}px;  
+  `}
   ${screen.mobileOnly`
     margin-right: 0;
+    width: 30px;
+    height: 30px;
   `}
 `
 
@@ -30,18 +35,6 @@ const Icons = styled.div`
   `}
 `
 
-const StyledIcon = styled.div`
-  width: ${styles.icon.width.tabletAbove}px;
-  height: ${styles.icon.height.tabletAbove}px;
-  ${screen.mobileOnly`
-    width: ${styles.icon.width.mobile}px;
-    height: ${styles.icon.height.mobile}px;
-  `}
-  img {
-    width: 100%;
-  }
-`
-
 class IconList extends React.PureComponent {
   render() {
     const { list, staticFilePrefix } = this.props
@@ -49,20 +42,20 @@ class IconList extends React.PureComponent {
       <Icons>
         {
           _.map(list, (icon, indexofIcon) => {
+            const url = `${staticFilePrefix}${icon.slug}-logo-default.svg`
+            const url_hover = `${staticFilePrefix}${icon.slug}-logo-hover.svg`
             return (
               <IconLink
                 key={`${icon.slug}-${indexofIcon}`}
                 href={icon.link}
                 target={icon.target}
               >
-                <StyledIcon>
-                  <img
-                    alt={icon.slug}
-                    src={`${staticFilePrefix}${icon.slug}-logo-default.svg`}
-                    onMouseOver={(e) => { e.currentTarget.src = `${staticFilePrefix}${icon.slug}-logo-hover.svg` }}
-                    onMouseOut={(e) => { e.currentTarget.src = `${staticFilePrefix}${icon.slug}-logo-default.svg` }}
-                  />
-                </StyledIcon>
+                <img
+                  alt={icon.slug}
+                  src={url}
+                  onMouseOver={(e) => { e.currentTarget.src = url_hover }}
+                  onMouseOut={(e) => { e.currentTarget.src = url }}
+                />
               </IconLink>
             )
           })
