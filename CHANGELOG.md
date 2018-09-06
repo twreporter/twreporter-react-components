@@ -1,4 +1,7 @@
 ### UNRELEASED
+### 4.1.4
+- [Bug] Fix block scrolling bug in Footer on Android devices
+
 ### 4.1.3
 - [Bug] Fix block scrolling bug in Footer
 

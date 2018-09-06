@@ -35,30 +35,74 @@ const Icons = styled.div`
   `}
 `
 
+class Icon extends React.PureComponent {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isMouseEnter: false,
+    }
+    this.handleMouseLeave = this.handleMouseLeave.bind(this)
+    this.handleMouseEnter = this.handleMouseEnter.bind(this)
+  }
+
+  handleMouseEnter(e) {
+    e.preventDefault()
+    this.setState({
+      isMouseEnter: true,
+    })
+  }
+
+  handleMouseLeave(e) {
+    e.preventDefault()
+    this.setState({
+      isMouseEnter: false,
+    })
+  }
+
+  render() {
+    const { isMouseEnter } = this.state
+    const { icon, staticFilePrefix } = this.props
+    const url = `${staticFilePrefix}${icon.slug}-logo-default.svg`
+    const url_hover = `${staticFilePrefix}${icon.slug}-logo-hover.svg`
+    return (
+      <IconLink
+        href={icon.link}
+        target={icon.target}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+      >
+        <img
+          alt={icon.slug}
+          src={isMouseEnter ? url_hover : url}
+        />
+      </IconLink>
+    )
+  }
+}
+
+Icon.propTypes = {
+  icon: PropTypes.shape({
+    link: PropTypes.string,
+    slug: PropTypes.string,
+    target: PropTypes.string,
+  }).isRequired,
+  staticFilePrefix: PropTypes.string.isRequired,
+}
+
 class IconList extends React.PureComponent {
   render() {
     const { list, staticFilePrefix } = this.props
     return (
       <Icons>
         {
-          _.map(list, (icon, indexofIcon) => {
-            const url = `${staticFilePrefix}${icon.slug}-logo-default.svg`
-            const url_hover = `${staticFilePrefix}${icon.slug}-logo-hover.svg`
-            return (
-              <IconLink
-                key={`${icon.slug}-${indexofIcon}`}
-                href={icon.link}
-                target={icon.target}
-              >
-                <img
-                  alt={icon.slug}
-                  src={url}
-                  onMouseOver={(e) => { e.currentTarget.src = url_hover }}
-                  onMouseOut={(e) => { e.currentTarget.src = url }}
-                />
-              </IconLink>
-            )
-          })
+          _.map(list, (icon, i) => (
+            <Icon
+              key={`${icon.slug}-${i}}`}
+              icon={icon}
+              index={i}
+              staticFilePrefix={staticFilePrefix}
+            />
+          ))
         }
       </Icons>
     )
