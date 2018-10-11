@@ -14,8 +14,6 @@ const _ = {
   map, chunk,
 }
 
-const groupNumOfChunk = 3
-
 const Intro = styled.p`
   width: 100%;
   font-size: ${fonts.size.small};
@@ -96,6 +94,9 @@ const StyledItemGroup = styled.div`
   display: inline-block;
   width: calc(100% / 3);
   white-space: nowrap;
+  ${screen.desktopAbove`
+    float: left;
+  `}
   ${screen.tabletBelow`
     width: calc(100% / 2);
     &:last-child{
@@ -218,7 +219,6 @@ class Content extends React.PureComponent {
   render() {
     const { staticFilePrefix } = this.props
     const description = appConfig.description
-    const groupedItemList = _.chunk(footerItemList, groupNumOfChunk)
     return (
       <ContentRow>
         <IntroColumn>
@@ -227,7 +227,7 @@ class Content extends React.PureComponent {
         </IntroColumn>
         <LinksColumn>
           <StyledItemList>
-            {ItemList(groupedItemList)}
+            {ItemList(footerItemList)}
           </StyledItemList>
         </LinksColumn>
         <DonateButton
