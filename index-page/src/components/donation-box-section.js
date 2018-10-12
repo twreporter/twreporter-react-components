@@ -2,6 +2,7 @@ import { finalMedia } from '../utils/style-utils'
 import { fonts, colors } from '../styles/common-variables'
 import ArrowIcon from '../static/icon-donate-arrow-gold.svg'
 import React from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 
 const DONATION_SITE_URL = 'https://twreporter.backme.tw/checkout/175/3788'
@@ -69,30 +70,32 @@ const ContentContainer = styled.div`
   `}
 `
 
-const DonateButton = styled.a`
-  width: 116px;
-  height: 40px;
-  border-radius: 20px;
-  background: ${colors.sectionWhite};
-  border: none;
-  color: ${colors.sectionTanBrown};
-  font-size: ${fonts.size.medium};
-  cursor: pointer;
-  display: table;
-  ${finalMedia.tablet`
-    position: absolute;
-    right: 110px;
-    top: 9px;
-  `}
-  ${finalMedia.mobile`
-    margin: 40px auto 0 auto;
-  `}
-  span{
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    font-weight: ${fonts.weight.bold};
-  }  
+const DonateButton = styled.div`
+  a{
+    width: 116px;
+    height: 40px;
+    border-radius: 20px;
+    background: ${colors.sectionWhite};
+    border: none;
+    color: ${colors.sectionTanBrown};
+    font-size: ${fonts.size.medium};
+    cursor: pointer;
+    display: table;
+    ${finalMedia.tablet`
+      position: absolute;
+      right: 110px;
+      top: 9px;
+    `}
+    ${finalMedia.mobile`
+      margin: 40px auto 0 auto;
+    `}
+    span{
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      font-weight: ${fonts.weight.bold};
+    }  
+  }
 `
 
 const TextColumn = styled.div`
@@ -108,7 +111,42 @@ const Icon = styled.div`
   height: 12px;
 `
 
+const DonateInfo = (
+  <span>
+    贊助我們
+    <Icon>
+      <ArrowIcon />
+    </Icon>
+  </span>
+)
+
+
 class DonationBoxSection extends React.PureComponent {
+  constructor(props) {
+    super(props)
+    this.donationLink = this._donationLink.bind(this)
+  }
+  _donationLink() {
+    if (typeof window !== 'undefined' && window.ga) {
+      return (
+        <ReactGA.OutboundLink
+          eventLabel="homepage_donation_section_button_click"
+          to={DONATION_SITE_URL}
+          target="_blank"
+        >
+          {DonateInfo}
+        </ReactGA.OutboundLink>
+      )
+    }
+    return (
+      <a
+        href={DONATION_SITE_URL}
+        target={'_blank'}
+      >
+        {DonateInfo}
+      </a>
+    )
+  }
   render() {
     return (
       <Container>
@@ -117,16 +155,8 @@ class DonationBoxSection extends React.PureComponent {
             <h3>用行動支持報導者</h3>
             <p>深度調查報導必須投入優秀記者、足夠時間與大量資源。歡迎您成為「《報導者》贊助夥伴」，一起為打造更好的社會及媒體環境努力。</p>
           </TextColumn>
-          <DonateButton
-            href={DONATION_SITE_URL}
-            target={'_blank'}
-          >
-            <span>
-              贊助我們
-              <Icon>
-                <ArrowIcon />
-              </Icon>
-            </span>
+          <DonateButton>
+            {this.donationLink()}
           </DonateButton>
         </ContentContainer>
       </Container>
