@@ -2,7 +2,7 @@
   "name": "@twreporter/react-components",
   "repository": "https://github.com/twreporter/twreporter-react-components.git",
   "license": "AGPL-3.0",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "main": "lib/main.js",
   "scripts": {
     "lint": "eslint \"**/*.js\" --config .eslintrc",
@@ -37,7 +37,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
-    "gulp": "gulpjs/gulp#4.0",
+    "gulp": "4",
     "gulp-babel": "^7.0.0",
     "lint-staged": "^4.0.2",
     "merge-stream": "^1.0.1",

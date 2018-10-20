@@ -1,4 +1,11 @@
 ### UNRELEASED
+
+### 5.0.1
+- Upgrade dependencies due to vulnerabilities warning
+
+### 5.0.0
+- Update styled-components@^3.0.0
+
 ### 4.1.4
 - [Bug] Fix block scrolling bug in Footer on Android devices
 
