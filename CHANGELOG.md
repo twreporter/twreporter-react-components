@@ -1,5 +1,9 @@
 ### UNRELEASED
 
+### 5.1.1
+- Update react-ga@^2.5.3
+- Fix prop mismatch between client and server in ga Outbound link
+
 ### 5.1.0
 - Add ga event to donation button in footer and homepage donation section
 - Add IJM brochure download link to footer
