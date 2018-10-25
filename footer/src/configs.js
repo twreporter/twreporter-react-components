@@ -4,61 +4,73 @@ const currentYear = new Date().getFullYear().toString()
 
 export const staticFilePrefix = `${mainSite.url}/images/footer/`
 export const footerItemList = [
-  {
-    slug: 'about',
-    text: '關於我們',
-    link: `${mainSite.url}${linkPrefix.aboutus}`,
-    target: '_blank',
-    newFlag: true,
-  },
-  {
-    slug: 'contact',
-    text: '聯絡我們',
-    link: `${mainSite.url}${linkPrefix.article}contact-footer`,
-    target: '_blank',
-  },
-  {
-    slug: 'authors',
-    text: '作者群',
-    link: `${mainSite.url}/authors`,
-    target: '_self',
-  },
-  {
-    slug: 'privacy',
-    text: '隱私政策',
-    link: `${mainSite.url}${linkPrefix.article}privacy-footer`,
-    target: '_blank',
-  },
-  {
-    slug: 'license',
-    text: '許可協議',
-    link: `${mainSite.url}${linkPrefix.article}license-footer`,
-    target: '_blank',
-  },
-  {
-    slug: 'donate',
-    text: '捐款徵信',
-    link: `${mainSite.url}${linkPrefix.article}credit-donate`,
-    target: '_blank',
-  },
-  {
-    slug: 'about',
-    text: '加入我們',
-    link: `${mainSite.url}${linkPrefix.article}hiring-job-description`,
-    target: '_blank',
-  },
-  {
-    slug: 'license',
-    text: '常見問題',
-    link: `${mainSite.url}${linkPrefix.article}about-us-questions`,
-    target: '_blank',
-  },
-  {
-    slug: 'subcribe',
-    text: '訂閱電子報',
-    link: externalLinks.newsLetter,
-    target: '_blank',
-  },
+  [
+    {
+      slug: 'about',
+      text: '關於我們',
+      link: `${mainSite.url}${linkPrefix.aboutus}`,
+      target: '_blank',
+      newFlag: true,
+    },
+    {
+      slug: 'contact',
+      text: '聯絡我們',
+      link: `${mainSite.url}${linkPrefix.article}contact-footer`,
+      target: '_blank',
+    },
+    {
+      slug: 'authors',
+      text: '作者群',
+      link: `${mainSite.url}/authors`,
+      target: '_self',
+    },
+  ],
+  [
+    {
+      slug: 'privacy',
+      text: '隱私政策',
+      link: `${mainSite.url}${linkPrefix.article}privacy-footer`,
+      target: '_blank',
+    },
+    {
+      slug: 'license',
+      text: '許可協議',
+      link: `${mainSite.url}${linkPrefix.article}license-footer`,
+      target: '_blank',
+    },
+    {
+      slug: 'donate',
+      text: '捐款徵信',
+      link: `${mainSite.url}${linkPrefix.article}credit-donate`,
+      target: '_blank',
+    },
+  ],
+  [
+    {
+      slug: 'about',
+      text: '加入我們',
+      link: `${mainSite.url}${linkPrefix.article}hiring-job-description`,
+      target: '_blank',
+    },
+    {
+      slug: 'license',
+      text: '常見問題',
+      link: `${mainSite.url}${linkPrefix.article}about-us-questions`,
+      target: '_blank',
+    },
+    {
+      slug: 'subcribe',
+      text: '訂閱電子報',
+      link: externalLinks.newsLetter,
+      target: '_blank',
+    },
+    {
+      slug: 'download-ijm-brochure',
+      text: '下載調查報導手冊',
+      link: externalLinks.IJMBrochureDownloadLink,
+      target: '_blank',
+    },
+  ],
 ]
 
 export const donatePage = {
