@@ -1,5 +1,8 @@
 ### UNRELEASED
 
+### 5.1.3
+- Add url event label to google analysis click event
+
 ### 5.1.1
 - Update react-ga@^2.5.3
 - Fix prop mismatch between client and server in ga Outbound link
