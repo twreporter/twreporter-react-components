@@ -1,5 +1,9 @@
 ### UNRELEASED
 
+### 5.1.0
+- Add ga event to donation button in footer and homepage donation section
+- Add IJM brochure download link to footer
+
 ### 5.0.1
 - Upgrade dependencies due to vulnerabilities warning
 
