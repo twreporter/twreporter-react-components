@@ -225,9 +225,10 @@ class Content extends React.PureComponent {
   }
   _donationLink() {
     if (typeof window !== 'undefined' && window.ga) {
+      const url = window.location.href
       return (
         <ReactGA.OutboundLink
-          eventLabel="footer_donation_button_click"
+          eventLabel={`[footer_donation_button_click]: ${url}`}
           to={donatePage.link}
           target={donatePage.target}
         >
