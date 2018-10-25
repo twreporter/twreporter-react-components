@@ -128,9 +128,10 @@ class DonationBoxSection extends React.PureComponent {
   }
   _donationLink() {
     if (typeof window !== 'undefined' && window.ga) {
+      const url = window.location.href
       return (
         <ReactGA.OutboundLink
-          eventLabel="homepage_donation_section_button_click"
+          eventLabel={`[homepage_donation_section_button_click]: ${url}`}
           to={DONATION_SITE_URL}
           target="_blank"
         >
