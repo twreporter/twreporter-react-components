@@ -4108,6 +4108,12 @@ react-dom@^16.0.0:
     prop-types "^15.6.2"
     schedule "^0.5.0"
 
+react-ga@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.1.2.tgz#7af206c5e8761d7176e15773fe826acdb70ac653"
+  dependencies:
+    object-assign "^4.0.1"
+
 react-is@^16.3.1:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.5.2.tgz#e2a7b7c3f5d48062eb769fcb123505eb928722e3"

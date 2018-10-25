@@ -8,6 +8,7 @@ import Logo from './logo'
 import map from 'lodash/map'
 import PropTypes from 'prop-types'
 import React from 'react'
+import ReactGA from 'react-ga'
 import styled, { keyframes } from 'styled-components'
 
 const _ = {
@@ -152,44 +153,46 @@ const StyledItem = styled.a`
   `}
 `
 
-const DonateButton = styled.a`
-  width: 140px;
-  height: 55px;
-  background-color: ${colors.white};
-  border: solid 0.5px ${colors.pageMain};
-  display: table;
-  &:hover{
-    background-color: ${colors.pageMain};
-  }
-  p {
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-    color: ${colors.pageMain};
-    font-size: ${fonts.size.base};
-    font-weight: ${fonts.weight.medium};
-    letter-spacing: 1.3px;
+const DonateButton = styled.div`
+  a {
+    width: 140px;
+    height: 55px;
+    background-color: ${colors.white};
+    border: solid 0.5px ${colors.pageMain};
+    display: table;
     &:hover{
-      color: ${colors.white};
+      background-color: ${colors.pageMain};
     }
+    p {
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle;
+      color: ${colors.pageMain};
+      font-size: ${fonts.size.base};
+      font-weight: ${fonts.weight.medium};
+      letter-spacing: 1.3px;
+      &:hover{
+        color: ${colors.white};
+      }
+    }
+    ${screen.tabletAbove`
+      position: absolute;
+      right: 0;
+      top: 0;
+    `}
+    ${screen.desktopAbove`
+      margin-top: ${styles.footerContentPadding.desktop[0]}px;
+      margin-right: ${styles.footerContentPadding.desktop[1]}px;
+    `}
+    ${screen.tabletOnly`
+      margin-top: ${styles.footerContentPadding.tablet[0]}px;
+      margin-right: ${styles.footerContentPadding.tablet[1]}px;
+    `}
+    ${screen.mobileOnly`
+      width: 100%;
+      margin: 60px auto 40px auto;
+    `}
   }
-  ${screen.tabletAbove`
-    position: absolute;
-    right: 0;
-    top: 0;
-  `}
-  ${screen.desktopAbove`
-    margin-top: ${styles.footerContentPadding.desktop[0]}px;
-    margin-right: ${styles.footerContentPadding.desktop[1]}px;
-  `}
-  ${screen.tabletOnly`
-    margin-top: ${styles.footerContentPadding.tablet[0]}px;
-    margin-right: ${styles.footerContentPadding.tablet[1]}px;
-  `}
-  ${screen.mobileOnly`
-    width: 100%;
-    margin: 60px auto 40px auto;
-  `}
 `
 
 const ItemList = itemGroup => _.map(itemGroup, (group, indexofGroup) => {
@@ -215,6 +218,31 @@ const ItemList = itemGroup => _.map(itemGroup, (group, indexofGroup) => {
 })
 
 class Content extends React.PureComponent {
+  constructor(props) {
+    super(props)
+    this.donationLink = this._donationLink.bind(this)
+  }
+  _donationLink() {
+    if (typeof window !== 'undefined' && window.ga) {
+      return (
+        <ReactGA.OutboundLink
+          eventLabel="footer_donation_button_click"
+          to={donatePage.link}
+          target={donatePage.target}
+        >
+          <p>{donateUSText}</p>
+        </ReactGA.OutboundLink>
+      )
+    }
+    return (
+      <a
+        href={donatePage.link}
+        target={donatePage.target}
+      >
+        <p>{donateUSText}</p>
+      </a>
+    )
+  }
   render() {
     const { staticFilePrefix } = this.props
     const description = appConfig.description
@@ -230,11 +258,8 @@ class Content extends React.PureComponent {
             {ItemList(groupedItemList)}
           </StyledItemList>
         </LinksColumn>
-        <DonateButton
-          href={donatePage.link}
-          target={donatePage.target}
-        >
-          <p>{donateUSText}</p>
+        <DonateButton>
+          {this.donationLink()}
         </DonateButton>
       </ContentRow>
     )
