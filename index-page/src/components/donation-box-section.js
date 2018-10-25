@@ -141,6 +141,7 @@ class DonationBoxSection extends React.PureComponent {
     return (
       <a
         href={DONATION_SITE_URL}
+        to={DONATION_SITE_URL}
         target={'_blank'}
       >
         {DonateInfo}

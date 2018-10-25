@@ -238,6 +238,7 @@ class Content extends React.PureComponent {
     return (
       <a
         href={donatePage.link}
+        to={donatePage.link}
         target={donatePage.target}
       >
         <p>{donateUSText}</p>
