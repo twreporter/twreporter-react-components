@@ -11,6 +11,7 @@ const REPORTERLOGOFILENAME = 'logo-horizontal02.svg'
 const Container = styled.a`
   position: relative;
   cursor: pointer;
+  text-decoration: none !important;
 `
 
 const StyledReporterLogo = styled.div `

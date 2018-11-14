@@ -117,6 +117,7 @@ const flickerAnimation = keyframes`
 `
 
 const StyledItem = styled.a`
+  text-decoration: none !important;
   display: block;
   width: 100%;
   p{
@@ -156,6 +157,7 @@ const StyledItem = styled.a`
 
 const DonateButton = styled.div`
   a {
+    text-decoration: none !important;
     width: 140px;
     height: 55px;
     background-color: ${colors.white};
