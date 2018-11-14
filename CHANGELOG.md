@@ -6,6 +6,7 @@
 - Remove built-in Header in latest-section of index-page
 - Remove text-decoration of links in Footer
 - Replace the `OutboundLink` of `react-ga` with customized `TrackedLink`
+- Add rel="noopener noreferrer" to external links
 
 ### 5.1.3
 - Add url event label to google analysis click event

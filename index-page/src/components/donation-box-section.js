@@ -139,6 +139,7 @@ class DonationBoxSection extends React.PureComponent {
               clickActionName="homepage_donation_section_button_click"
               to={DONATION_SITE_URL}
               target="_blank"
+              rel="noopener noreferrer"
             >
               {DonateInfo}
             </TrackedLink>

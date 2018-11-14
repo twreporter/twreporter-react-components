@@ -73,7 +73,7 @@ class Header extends React.PureComponent {
     const { title, isTitleShown } = this.props
     return (
       <Container>
-        <Link href="https://www.twreporter.org/" target="_blank"><Logo /></Link>
+        <Link href="https://www.twreporter.org/" target="_blank" rel="noopener noreferrer"><Logo /></Link>
         {!title ? null : <Separator isTitleShown={isTitleShown} />}
         {!title ? null : <Title isTitleShown={isTitleShown}>{title}</Title>}
       </Container>
