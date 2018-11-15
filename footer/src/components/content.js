@@ -8,8 +8,8 @@ import Logo from './logo'
 import map from 'lodash/map'
 import PropTypes from 'prop-types'
 import React from 'react'
-import ReactGA from 'react-ga'
 import styled, { keyframes } from 'styled-components'
+import TrackedLink from 'shared/components/link-with-tracker'
 
 const _ = {
   map, chunk,
@@ -221,33 +221,6 @@ const ItemList = itemGroup => _.map(itemGroup, (group, indexofGroup) => {
 })
 
 class Content extends React.PureComponent {
-  constructor(props) {
-    super(props)
-    this.donationLink = this._donationLink.bind(this)
-  }
-  _donationLink() {
-    if (typeof window !== 'undefined' && window.ga) {
-      const url = window.location.href
-      return (
-        <ReactGA.OutboundLink
-          eventLabel={`[footer_donation_button_click]: ${url}`}
-          to={donatePage.link}
-          target={donatePage.target}
-        >
-          <p>{donateUSText}</p>
-        </ReactGA.OutboundLink>
-      )
-    }
-    return (
-      <a
-        href={donatePage.link}
-        to={donatePage.link}
-        target={donatePage.target}
-      >
-        <p>{donateUSText}</p>
-      </a>
-    )
-  }
   render() {
     const { staticFilePrefix } = this.props
     const description = appConfig.description
@@ -263,7 +236,13 @@ class Content extends React.PureComponent {
           </StyledItemList>
         </LinksColumn>
         <DonateButton>
-          {this.donationLink()}
+          <TrackedLink
+            clickActionName="footer_donation_button_click"
+            to={donatePage.link}
+            target={donatePage.target}
+          >
+            <p>{donateUSText}</p>
+          </TrackedLink>
         </DonateButton>
       </ContentRow>
     )
