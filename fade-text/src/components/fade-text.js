@@ -162,7 +162,7 @@ class FadeText extends PureComponent {
             delay={i * duration}
             key={`fade_text_${v}`}
             fontColor={fontColor}
-            innerRef={childAnimationStoper}
+            ref={childAnimationStoper}
           >
             {v}
           </TextFrame>
@@ -178,7 +178,7 @@ class FadeText extends PureComponent {
       >
         <FadeOutContainer
           delay={(duration * textArr.length) + bgOutDuration}
-          innerRef={(node) => { unlockScroll(ifUnlock, node) }}
+          ref={(node) => { unlockScroll(ifUnlock, node) }}
         >
           <Background bgColor={bgColor}>
             {textFrames()}

@@ -47,7 +47,7 @@ const paddingTop = {
   hd: '110px',
 }
 
-const Container = DefaultContainer.extend`
+const Container = styled(DefaultContainer)`
   width: 100%;
   ${screen.mobileOnly`
     padding: 66px 22px;

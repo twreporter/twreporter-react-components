@@ -48,7 +48,7 @@ const Container = styled.div`
   `}
 `
 
-const ContentContainer = ContentWrapper.extend`
+const ContentContainer = styled(ContentWrapper)`
   display: flex;
   padding: 30px ${headerPadding.desktop};
   overflow-x: hidden;
@@ -232,7 +232,7 @@ class LatestSection extends React.Component {
             isIndex
           />
         </HeaderContainer>
-        <ContentContainer innerRef={(node) => { this.ContentContainer = node }}>
+        <ContentContainer ref={(node) => { this.ContentContainer = node }}>
           {latestItems}
         </ContentContainer>
       </Container>

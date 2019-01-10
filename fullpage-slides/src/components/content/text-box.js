@@ -156,7 +156,7 @@ const positionTypeToCss = (textBoxPosition) => {
   }
 }
 
-const TextBoxContaniner = ContentContainer.extend`
+const TextBoxContaniner = styled(ContentContainer)`
   ${props => positionTypeToCss(props.textBoxPosition)}
   >* {
     ${props => slideUpFadeInWhenFocus(props.isFocus)}

@@ -14,7 +14,7 @@ const padding = {
   hd: '58px 85px',
 }
 
-const Container = ContentContainer.extend`
+const Container = styled(ContentContainer)`
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;

@@ -15,7 +15,7 @@ const ImgContainer = styled.div`
   position: relative;
 `
 
-const ImgObjectFit = ImgContainer.extend`
+const ImgObjectFit = styled(ImgContainer)`
   opacity: ${props => props.opacity};
   transition: opacity 1s ease;
   > img {
@@ -25,7 +25,7 @@ const ImgObjectFit = ImgContainer.extend`
   }
 `
 
-const ImgFallback = ImgContainer.extend`
+const ImgFallback = styled(ImgContainer)`
   background-size: cover;
   background-image: ${(props) => {
     return `url(${_.get(props, 'url')})`
@@ -34,7 +34,7 @@ const ImgFallback = ImgContainer.extend`
 `
 
 // Vertically and horizontally centering
-const LogoCenteringBlock = ImgContainer.extend`
+const LogoCenteringBlock = styled(ImgContainer)`
   position: absolute;
   justify-content: center;
   align-items: center;
