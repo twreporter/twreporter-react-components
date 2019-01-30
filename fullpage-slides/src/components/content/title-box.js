@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
-const TitleBoxContainer = ContentContainer.extend`
+const TitleBoxContainer = styled(ContentContainer)`
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;

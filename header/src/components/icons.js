@@ -1,5 +1,5 @@
 import BookmarkListIcon from '../../static/bookmark-list-icon.svg'
-import Link from 'react-router/lib/Link'
+import Link from 'react-router-dom/Link'
 import PropTypes from 'prop-types'
 import React from 'react'
 import SearchBox from './search-box'
@@ -92,14 +92,14 @@ const IconContainer = styled.div`
   `}
 `
 
-const DisplayOnDesktop = IconContainer.extend`
+const DisplayOnDesktop = styled(IconContainer)`
   display: none;
   ${screen.desktopAbove`
     display: table-cell;
   `}
 `
 
-const HideOnDesktop = IconContainer.extend`
+const HideOnDesktop = styled(IconContainer)`
   display: table-cell;
   ${screen.desktopAbove`
     display: none;

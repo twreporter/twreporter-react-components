@@ -66,22 +66,22 @@ const Row = styled.div`
   text-align: center;
 `
 
-const TopicNameRow = Row.extend`
+const TopicNameRow = styled(Row)`
   align-items: flex-end;
   justify-content: center;
 `
 
-const TitleRow = Row.extend`
+const TitleRow = styled(Row)`
   align-items: center;
   justify-content: center;
 `
 
-const ImgRow = Row.extend`
+const ImgRow = styled(Row)`
   align-items: flex-start;
   justify-content: center;
 `
 
-const DescRow = Row.extend`
+const DescRow = styled(Row)`
   align-items: flex-start;
   justify-content: center;
   text-align: justify;
@@ -110,13 +110,13 @@ const Column = styled.div`
   `}
 `
 
-const TopicNameColumn = Column.extend`
+const TopicNameColumn = styled(Column)`
   margin-bottom: 0;
   font-size: ${fonts.size.small};
   color: ${colors.primaryColor};
 `
 
-const TitleColumn = Column.extend`
+const TitleColumn = styled(Column)`
   font-size: ${fonts.size.title.large};
   font-weight: 600;
 `
@@ -126,7 +126,7 @@ const Title = styled.div`
   line-height: 1.25;
 `
 
-const ImgColumn = Column.extend`
+const ImgColumn = styled(Column)`
   height: 364px;
   flex: 0 0 ${mockup.hd.width.default}px;
 
@@ -139,7 +139,7 @@ const ImgColumn = Column.extend`
   `}
 `
 
-const DescColumn = Column.extend`
+const DescColumn = styled(Column)`
   font-size: ${fonts.size.medium};
   line-height: 1.5
 `
@@ -151,14 +151,14 @@ const Desc = styled.div`
 `
 
 const Mobile = {
-  TopicName: CategoryName.extend`
+  TopicName: styled(CategoryName)`
     text-align: center;
   `,
   Item: styled.div`
     padding-bottom: 40px;
     width: 100%;
   `,
-  Title: Title.extend`
+  Title: styled(Title)`
     line-height: 1.33;
     text-align: center;
     font-weight: 600;
@@ -176,7 +176,7 @@ const Mobile = {
     height: 165px;
     margin-top: 15px;
   `,
-  Desc: Desc.extend`
+  Desc: styled(Desc)`
     width: 100%;
     font-size: ${fonts.size.large};
     ${truncate('relative', 1.5, 6, colors.sectionGrey)}

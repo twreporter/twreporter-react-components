@@ -1,10 +1,10 @@
-import Link from 'react-router/lib/Link'
+import Link from 'react-router-dom/Link'
 import PropTypes from 'prop-types'
 import React from 'react'
-import styled from 'styled-components'
-import { colors, fonts } from 'shared/common-variables'
-import { arrayToCssShorthand, screen, resetLinkStyle } from 'shared/style-utils'
 import RightArrowIcon from '../../static/arrow-right.svg'
+import styled from 'styled-components'
+import { arrayToCssShorthand, screen, resetLinkStyle } from 'shared/style-utils'
+import { colors, fonts } from 'shared/common-variables'
 
 const styles = {
   goToTopicMargin: [20, 'auto', 0, 'auto'],

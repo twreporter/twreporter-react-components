@@ -1,16 +1,16 @@
-import { Link } from 'react-router'
-import { screen } from 'shared/style-utils'
 import Building from '../../static/building.svg'
 import Dot from '../../static/dot.svg'
-import Eng500 from '../../static/server-error.svg'
-import Eng500Mobile from '../../static/server-error-mobile.svg'
 import Eng404 from '../../static/not-found-eng.svg'
 import Eng404Mobile from '../../static/not-found-eng-mobile.svg'
+import Eng500 from '../../static/server-error.svg'
+import Eng500Mobile from '../../static/server-error-mobile.svg'
+import Link from 'react-router-dom/Link'
 import Number404 from '../../static/num404.svg'
 import Number500 from '../../static/num500.svg'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
+import { screen } from 'shared/style-utils'
 
 const Container = styled.div`
   position: relative;

@@ -1,9 +1,8 @@
 import HoverEffect from './hover-effect'
-import Link from 'react-router/lib/Link'
+import Link from 'react-router-dom/Link'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
-// import { colors } from '../../styles/common-variables'
 
 const A = styled.a`
   text-decoration: none;

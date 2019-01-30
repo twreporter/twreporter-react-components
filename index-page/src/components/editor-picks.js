@@ -42,7 +42,7 @@ const swapArrayElements = (arr, indexA, indexB) => {
   return arr
 }
 
-const CarouselContainer = ContentWrapper.extend`
+const CarouselContainer = styled(ContentWrapper)`
   overflow-x: hidden;
   position: relative;
   @media (max-width: ${breakPoints.mobileMaxWidth}) {
@@ -100,7 +100,7 @@ const Arrow = styled.div`
 `
 
 // top: sideCategory + 27px
-const LeftArrow = Arrow.extend`
+const LeftArrow = styled(Arrow)`
   left: 17%;
   display: ${props => (props.selected === 0 ? 'none' : 'inline')};
   @media (max-width: ${breakPoints.desktopMaxWidth}) {
@@ -108,7 +108,7 @@ const LeftArrow = Arrow.extend`
   }
   transition: .2s display linear;
 `
-const RightArrow = Arrow.extend`
+const RightArrow = styled(Arrow)`
   right: 17%;
   display: ${props => (props.selected === (props.dataLength - 1) ? 'none' : 'inline')};
   @media (max-width: ${breakPoints.desktopMaxWidth}) {
@@ -117,7 +117,7 @@ const RightArrow = Arrow.extend`
   transition: .2s display linear;
 `
 
-const SideCategory = CategoryName.extend`
+const SideCategory = styled(CategoryName)`
   text-align: center;
   height: 16px;
   line-height: 1.33;
@@ -134,7 +134,7 @@ const SideCategory = CategoryName.extend`
   }
 `
 
-const MiddleCategory = CategoryName.extend`
+const MiddleCategory = styled(CategoryName)`
   text-align: center;
   height: 16px;
   line-height: 1.33;

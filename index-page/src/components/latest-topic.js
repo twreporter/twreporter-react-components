@@ -39,7 +39,7 @@ const Container = styled.div`
   background-color: #f2f2f2;
 `
 
-const ContentContainer = Section.extend`
+const ContentContainer = styled(Section)`
   text-align: center;
 `
 
@@ -121,7 +121,7 @@ const FlexItem = styled.div`
   `}
 `
 
-const MobileList = MobileListUtils.extend`
+const MobileList = styled(MobileListUtils)`
   margin-top: 30px;
 `
 
@@ -131,7 +131,7 @@ const RelatedsContentFrame = styled.div`
   padding: 0 8px 0 8px;
 `
 
-const RelatedCategory = CategoryName.extend`
+const RelatedCategory = styled(CategoryName)`
   text-align: left;
   margin: 12px 0 2px 0;
 `

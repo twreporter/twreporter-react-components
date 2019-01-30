@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import browserHistory from 'react-router/lib/browserHistory'
-import styled from 'styled-components'
 import SearchIcon from '../static/search.svg'
+import styled from 'styled-components'
 import { colors } from '../styles/common-variables'
+import { withRouter } from 'react-router'
 
 const mobileWidth = '400px'
 
@@ -58,7 +58,7 @@ class SearchInput extends React.Component {
 
   _handleSubmit(e) {
     e.preventDefault()
-    browserHistory.push(`/search?q=${this.state.inputValue}`)
+    this.props.history.push(`/search?q=${this.state.inputValue}`)
   }
 
   render() {
@@ -82,6 +82,7 @@ SearchInput.defaultProps = {
 
 SearchInput.propTypes = {
   isToggled: PropTypes.bool,
+  history: PropTypes.object.isRequired,
 }
 
 
@@ -111,10 +112,15 @@ class SearchBox extends React.Component {
         </SearchIconContainer>
         <SearchInput
           isToggled={this.state.isToggled}
+          history={this.props.history}
         />
       </Conatiner>
     )
   }
 }
 
-export default SearchBox
+SearchBox.propTypes = {
+  history: PropTypes.object.isRequired,
+}
+
+export default withRouter(SearchBox)

@@ -44,7 +44,7 @@ const Container = styled.div`
   background-color: ${backgroundColor};
 `
 
-const SectionWrapper = Section.extend`
+const SectionWrapper = styled(Section)`
   background-color: initial;
   padding-bottom: 10px;
 `

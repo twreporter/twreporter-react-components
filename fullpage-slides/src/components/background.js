@@ -24,7 +24,7 @@ const BackgroundContainer = styled.div`
   `)}
 `
 
-const ContainerWithImage = BackgroundContainer.extend`
+const ContainerWithImage = styled(BackgroundContainer)`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;

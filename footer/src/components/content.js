@@ -50,7 +50,7 @@ const Column = styled.div`
   `}
 `
 
-const IntroColumn = Column.extend `
+const IntroColumn = styled(Column)`
   ${screen.desktopAbove`
     padding-right: 60px;
   `}
@@ -65,7 +65,7 @@ const IntroColumn = Column.extend `
   `}
 `
 
-const LinksColumn = Column.extend `
+const LinksColumn = styled(Column)`
   padding-left: 40px;
   ${screen.hdAbove`
     width: 397px;

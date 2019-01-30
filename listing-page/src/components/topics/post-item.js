@@ -1,10 +1,10 @@
-import Link from 'react-router/lib/Link'
+import Image from '../image'
+import Link from 'react-router-dom/Link'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 import { arrayToCssShorthand, screen, linkHoverFadeOut, resetLinkStyle } from 'shared/style-utils'
 import { colors, fonts } from 'shared/common-variables'
-import Image from '../image'
 
 const styles = {
   imgLandscape: {
