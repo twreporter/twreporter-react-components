@@ -177,7 +177,7 @@ class LatestSection extends React.Component {
 
     return (
       <Container>
-        <ContentContainer innerRef={(node) => { this.ContentContainer = node }}>
+        <ContentContainer>
           {latestItems}
         </ContentContainer>
       </Container>
