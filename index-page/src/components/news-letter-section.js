@@ -153,6 +153,7 @@ class NewsLetterSection extends React.PureComponent {
             method="post"
             name="subscribe-form"
             target="_blank"
+            rel="noopener noreferrer"
             onSubmit={this.handleSubmit}
             novalidate
           >

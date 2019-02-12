@@ -2,8 +2,11 @@
 - Upgrade react-router-dom@^4.3.1
 - Upgrade react@^16.3.0
 - Upgrade react-dom@^16.3.0
-- Upgrade styled-components@^4.1.3
+- Upgrade styled-components@^4.0.0
 - Remove built-in Header in latest-section of index-page
+- Remove text-decoration of links in Footer
+- Replace the `OutboundLink` of `react-ga` with customized `TrackedLink`
+- Add rel="noopener noreferrer" to external links
 
 ### 5.1.3
 - Add url event label to google analysis click event

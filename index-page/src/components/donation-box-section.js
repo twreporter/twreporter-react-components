@@ -2,8 +2,8 @@ import { finalMedia } from '../utils/style-utils'
 import { fonts, colors } from '../styles/common-variables'
 import ArrowIcon from '../static/icon-donate-arrow-gold.svg'
 import React from 'react'
-import ReactGA from 'react-ga'
 import styled from 'styled-components'
+import TrackedLink from 'shared/components/link-with-tracker'
 
 const DONATION_SITE_URL = 'https://twreporter.backme.tw/checkout/175/3788'
 
@@ -126,29 +126,6 @@ class DonationBoxSection extends React.PureComponent {
     super(props)
     this.donationLink = this._donationLink.bind(this)
   }
-  _donationLink() {
-    if (typeof window !== 'undefined' && window.ga) {
-      const url = window.location.href
-      return (
-        <ReactGA.OutboundLink
-          eventLabel={`[homepage_donation_section_button_click]: ${url}`}
-          to={DONATION_SITE_URL}
-          target="_blank"
-        >
-          {DonateInfo}
-        </ReactGA.OutboundLink>
-      )
-    }
-    return (
-      <a
-        href={DONATION_SITE_URL}
-        to={DONATION_SITE_URL}
-        target={'_blank'}
-      >
-        {DonateInfo}
-      </a>
-    )
-  }
   render() {
     return (
       <Container>
@@ -158,7 +135,14 @@ class DonationBoxSection extends React.PureComponent {
             <p>深度調查報導必須投入優秀記者、足夠時間與大量資源。歡迎您成為「《報導者》贊助夥伴」，一起為打造更好的社會及媒體環境努力。</p>
           </TextColumn>
           <DonateButton>
-            {this.donationLink()}
+            <TrackedLink
+              clickActionName="homepage_donation_section_button_click"
+              to={DONATION_SITE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {DonateInfo}
+            </TrackedLink>
           </DonateButton>
         </ContentContainer>
       </Container>

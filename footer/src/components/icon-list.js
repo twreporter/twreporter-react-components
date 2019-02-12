@@ -10,6 +10,7 @@ const _ = {
 }
 
 const IconLink = styled.a`
+  text-decoration: none !important;
   position: relative;
   display: inline-block;
   margin-right: 11px;

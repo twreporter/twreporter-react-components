@@ -142,7 +142,7 @@ class ColumnService extends React.PureComponent {
       )
       if (ss.type === linkType.external) {
         return (
-          <a key={`Division_${ss.label}`} href={ss.path} target="_blank">
+          <a key={`Division_${ss.label}`} href={ss.path} target="_blank" rel="noopener noreferrer">
             {divisionJSX}
           </a>
         )

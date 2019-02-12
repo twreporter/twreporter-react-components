@@ -71,7 +71,11 @@ class RelatedItem extends React.PureComponent {
   render() {
     const { imageSrc, title, to } = this.props
     return (
-      <Container href={to} target="_blank">
+      <Container
+        href={to}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <ImageBox imageSrc={imageSrc} />
         <TitleBox><span>{title}</span></TitleBox>
       </Container>
