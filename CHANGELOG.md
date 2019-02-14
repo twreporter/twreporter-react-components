@@ -1,5 +1,8 @@
 # UNRELEASED
 
+## 6.1.1
+- Update styles of `Footer` for standalone usage
+
 # RLEASED
 ## 6.1.0
 ### Major change

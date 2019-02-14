@@ -19,6 +19,9 @@ const FooterContainer = styled.div`
   ${screen.mobileOnly`
     max-height: 811px;
   `}
+  * {
+    box-sizing: border-box;
+  }
 `
 
 const FooterContent = styled.div`
@@ -40,7 +43,6 @@ const FooterContent = styled.div`
   `}
   margin-left: auto;
   margin-right: auto;
-  box-sizing: border-box;
   position: relative;
   width: 100%;
 `
