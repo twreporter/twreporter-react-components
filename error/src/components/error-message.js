@@ -4,7 +4,6 @@ import Eng404 from '../../static/not-found-eng.svg'
 import Eng404Mobile from '../../static/not-found-eng-mobile.svg'
 import Eng500 from '../../static/server-error.svg'
 import Eng500Mobile from '../../static/server-error-mobile.svg'
-import Link from 'react-router-dom/Link'
 import Number404 from '../../static/num404.svg'
 import Number500 from '../../static/num500.svg'
 import PropTypes from 'prop-types'
@@ -181,12 +180,17 @@ const EngishWrapper = styled.div`
   `}
 `
 
-const BackToHomeBtn = styled(Link)`
+const BackToHomeBtn = styled.a`
   display: block;
   cursor: pointer;
   text-align: center;
   background-color: #000000;
   color: #FFFFFF;
+  text-decoration: none;
+  &:hover, &:active, &:focus, &:visited {
+    color: #FFFFFF;
+    text-decoration: none;
+  }
   ${screen.mobileOnly`
     margin: 35px auto;
     width: 87.5%;
@@ -214,10 +218,6 @@ const BackToHomeBtn = styled(Link)`
   ${screen.hdAbove`
     left: 19%;
   `}
-  &:hover, &:active, &:focus, &:visited {
-    color: #FFFFFF;
-    text-decoration: none;
-  }
 `
 
 const NumberImageWrapper = styled.div`
@@ -296,7 +296,7 @@ class ErrorMessage extends React.PureComponent {
           {this._buildEnglishMessageJSX(errorType)}
           {this._buildErrorNumberJSX(errorType)}
         </ErrorMessageBlock>
-        <BackToHomeBtn to="/">返回首頁</BackToHomeBtn>
+        <BackToHomeBtn href="/">返回首頁</BackToHomeBtn>
       </Container>
     )
   }
