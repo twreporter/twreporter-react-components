@@ -1,10 +1,10 @@
 # UNRELEASED
 
+# RLEASED
 ## 6.1.1
 - Update styles of `Footer` for standalone usage
 - Replace `react-router-dom/Link` with `<a>` in `Error` for standaline usage
 
-# RLEASED
 ## 6.1.0
 ### Major change
 #### Dependencies Upgrade:
