@@ -1,11 +1,10 @@
+import { externalLinks } from 'shared/configs'
 import { finalMedia } from '../utils/style-utils'
 import { fonts, colors } from '../styles/common-variables'
 import ArrowIcon from '../static/icon-donate-arrow-gold.svg'
 import React from 'react'
 import styled from 'styled-components'
 import TrackedLink from 'shared/components/link-with-tracker'
-
-const DONATION_SITE_URL = 'https://twreporter.backme.tw/checkout/175/3788'
 
 const mockup = {
   defaultWidth: 320,
@@ -122,10 +121,6 @@ const DonateInfo = (
 
 
 class DonationBoxSection extends React.PureComponent {
-  constructor(props) {
-    super(props)
-    this.donationLink = this._donationLink.bind(this)
-  }
   render() {
     return (
       <Container>
@@ -137,7 +132,7 @@ class DonationBoxSection extends React.PureComponent {
           <DonateButton>
             <TrackedLink
               clickActionName="homepage_donation_section_button_click"
-              to={DONATION_SITE_URL}
+              to={externalLinks.donation}
               target="_blank"
               rel="noopener noreferrer"
             >

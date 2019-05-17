@@ -1,4 +1,5 @@
 # UNRELEASED
+- Revise donation page links on index-page and footer
 
 # RLEASED
 ## 6.1.1
