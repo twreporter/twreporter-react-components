@@ -3,7 +3,7 @@ import { screen } from 'shared/style-utils'
 import ContentContainer from './container'
 import PropTypes from 'prop-types'
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import * as time from '../../constants/time'
 
 const padding = {
@@ -36,9 +36,9 @@ const fadeIn = keyframes`
   }
 `
 
-const fadeInAnimation = `animation: ${fadeIn} ${time.firstPageItemEntranceDuration}ms ease ${time.firstPageItemEntranceDelay}ms both;`
+const fadeInAnimation = css`animation: ${fadeIn} ${time.firstPageItemEntranceDuration}ms ease ${time.firstPageItemEntranceDelay}ms both;`
 
-const Container = ContentContainer.extend`
+const Container = styled(ContentContainer)`
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;

@@ -24,7 +24,7 @@ const ButtonContainer = styled.div`
   ${firstPageBtnEntranceAnimation};
 `
 
-const ClickButtonContainer = ButtonContainer.extend`
+const ClickButtonContainer = styled(ButtonContainer)`
   width: 36px;
 `
 

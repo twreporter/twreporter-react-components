@@ -1,13 +1,13 @@
-import Link from 'react-router/lib/Link'
-import React from 'react'
+import LinkWrapper from 'shared/components/link-wrapper'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import React from 'react'
 import get from 'lodash/get'
 import map from 'lodash/map'
-import { channelConfigs, channels, pageThemes } from 'shared/configs'
-import { arrayToCssShorthand, linkUnderline, screen } from 'shared/style-utils'
-import { colors, fonts } from 'shared/common-variables'
+import styled from 'styled-components'
 import { HEADER_POSITION_UPON } from '../styles/constants'
+import { arrayToCssShorthand, linkUnderline, screen } from 'shared/style-utils'
+import { channelConfigs, channels, pageThemes } from 'shared/configs'
+import { colors, fonts } from 'shared/common-variables'
 
 const _ = {
   get,
@@ -203,9 +203,9 @@ class Channels extends React.PureComponent {
           data-channel-name={channelName}
           fontColor={fontColor}
         >
-          <Link to={channelType !== 'link' ? null : `${channelPrefix}${channelPath}`} style={channelStyles}>
+          <LinkWrapper to={channelType !== 'link' ? null : `${channelPrefix}${channelPath}`} style={channelStyles}>
             {channelText}
-          </Link>
+          </LinkWrapper>
         </ChannelContainer>
       )
     })

@@ -47,7 +47,7 @@ const Text = styled.div`
   `}
 `
 
-const Content = Text.extend`
+const Content = styled(Text)`
   color: ${colors.white};
   >span {
     background-color: transparent;
@@ -65,7 +65,7 @@ const Content = Text.extend`
   `}
 `
 
-const Background = Text.extend`
+const Background = styled(Text)`
   user-select: none;
   transform: translateY(7px) scale(1.05,0.78);
   transform-origin: center top;

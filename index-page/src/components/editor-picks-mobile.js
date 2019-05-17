@@ -3,16 +3,15 @@ import ImgWrapper from './common-utils/img-wrapper'
 import MobileFlexSwipeable from './mobile-flex-swipeable'
 import PropTypes from 'prop-types'
 import React from 'react'
-import Swipeable from 'react-swipeable'
-import SwipableMixin from './common-utils/swipable-mixin'
-import styled from 'styled-components'
 import Section from './common-utils/section'
 import SectionName from './common-utils/section-name'
+import SwipableMixin from './common-utils/swipable-mixin'
+import Swipeable from 'react-swipeable'
 import TRLink from './common-utils/twreporter-link'
-import browserHistory from 'react-router/lib/browserHistory'
 import get from 'lodash/get'
 import postPropType from './prop-types/post'
 import sectionStrings from '../constants/section-strings'
+import styled from 'styled-components'
 import { fonts, colors } from '../styles/common-variables'
 import { getHref } from '../utils/getHref'
 import { itemWidthPct } from '../constants/mobile-mockup-specification'
@@ -34,7 +33,7 @@ const mockup = {
   },
 }
 
-const CarouselContainer = Section.extend`
+const CarouselContainer = styled(Section)`
   padding-top: 0;
   background: ${colors.sectionWhite};
   @media (min-width: ${breakPoints.tabletMinWidth}) {
@@ -95,15 +94,6 @@ const FadeInFadeOut = styled.div `
 `
 
 class EditorPicksMobile extends SwipableMixin {
-  constructor(props) {
-    super(props)
-    this.redirect = this._redirect.bind(this)
-  }
-
-  _redirect(href) {
-    browserHistory.push(`/${href}`)
-  }
-
   render() {
     const onSwiping = (e, deltaX, deltaY, absX, absY) => {
       // In order to avoid slightly vibrating while swiping left and right,
@@ -113,7 +103,6 @@ class EditorPicksMobile extends SwipableMixin {
         e.preventDefault()
       }
     }
-
     const ImageComp = (post) => {
       const style = _.get(post, 'style', '')
       const href = getHref(_.get(post, 'slug', 'error'), style)

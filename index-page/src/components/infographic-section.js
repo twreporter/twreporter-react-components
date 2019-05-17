@@ -51,7 +51,7 @@ const UpperList = styled.div`
   `}
 `
 
-const LowerList = UpperList.extend`
+const LowerList = styled(UpperList)`
   align-items: flex-end;
   margin-top: -282px;
   margin-bottom: 59px;
@@ -66,7 +66,7 @@ const LowerList = UpperList.extend`
   `}
 `
 
-const MobileList = MobileListBase.extend`
+const MobileList = styled(MobileListBase)`
   margin-bottom: 39px;
 `
 
@@ -140,7 +140,7 @@ const Title = styled.h3`
   color: #4a4a4a;
   @media (min-width: ${breakPoints.desktopMinWidth}) {
     ${truncate('relative', 1.4, 2, '#fff')};
-  }
+  
 
   ${finalMedia.tablet`
     font-size: 16px;

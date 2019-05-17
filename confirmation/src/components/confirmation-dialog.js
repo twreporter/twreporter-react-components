@@ -57,12 +57,12 @@ const FunctionButton = styled.button`
   letter-spacing: 1.6px;
 `
 
-const Cancel = FunctionButton.extend`
+const Cancel = styled(FunctionButton)`
   border: solid 2px #3e3f3f;
   margin-right: 25px;
 `
 
-const Confirm = FunctionButton.extend`
+const Confirm = styled(FunctionButton)`
   border: solid 2px #e60013;
   color: ${colors.bookmarkIcon};
 `

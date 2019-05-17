@@ -47,7 +47,11 @@ function Button(props) {
   return (
     <Container>
       <Title>{title}</Title>
-      <Icon href={to} target="_blank">{children}</Icon>
+      <Icon
+        href={to}
+        target="_blank"
+        rel="noopener noreferrer"
+      >{children}</Icon>
     </Container>
   )
 }

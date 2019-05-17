@@ -53,7 +53,7 @@ const Box = styled.div`
   }
 `
 
-const PageNumberBox = Box.extend`
+const PageNumberBox = styled(Box)`
   border: solid 1px ${colors.pageMain};
   border-radius: 50%;
   line-height: ${styles.btnBoxSize.desktop}px;
@@ -66,7 +66,7 @@ const PageNumberBox = Box.extend`
   `}
 `
 
-const EllipsisBox = Box.extend`
+const EllipsisBox = styled(Box)`
   cursor: default;
   padding: ${arrayToCssShorthand(styles.ellipsisBoxPadding)};
   ${screen.mobileOnly`
@@ -74,7 +74,7 @@ const EllipsisBox = Box.extend`
   `}
 `
 
-const PrevNextBtn = Box.extend`
+const PrevNextBtn = styled(Box)`
   padding: ${arrayToCssShorthand(styles.prevNextBtnPadding)};
   cursor: pointer;
   path {

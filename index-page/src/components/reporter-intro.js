@@ -18,7 +18,7 @@ import { externalLinks } from 'shared/configs'
 import { itemPlusPaddingWidthPct } from '../constants/mobile-mockup-specification'
 
 const mobileWidth = breakPoints.mobileMaxWidth
-const ContentContainer = Section.extend`
+const ContentContainer = styled(Section)`
   padding-bottom: 123px;
   color: ${colors.textGrey};
   ${finalMedia.mobile`

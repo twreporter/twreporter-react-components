@@ -1,14 +1,14 @@
-import Link from 'react-router/lib/Link'
-import React from 'react'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import Link from 'react-router-dom/Link'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import React from 'react'
 import get from 'lodash/get'
 import map from 'lodash/map'
-import { categoryConfigs, linkPrefix } from 'shared/configs'
+import styled from 'styled-components'
 import { arrayToCssShorthand, screen } from 'shared/style-utils'
-import { colors, fonts } from 'shared/common-variables'
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import { categoriesMenuEffect } from 'shared/css-transition-group'
+import { categoryConfigs, linkPrefix } from 'shared/configs'
+import { colors, fonts } from 'shared/common-variables'
 
 const _ = {
   get,

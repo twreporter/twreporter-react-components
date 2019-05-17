@@ -1,5 +1,4 @@
 import CategoryName from './common-utils/category-name'
-import Header from '../../../header'
 import ImgWrapper from './common-utils/img-wrapper'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -40,7 +39,6 @@ const headerPadding = {
 }
 
 const Container = styled.div`
-  padding-top: 62px;
   background-color: #f2f2f2;
   position: relative;
   ${finalMedia.mobile`
@@ -48,7 +46,7 @@ const Container = styled.div`
   `}
 `
 
-const ContentContainer = ContentWrapper.extend`
+const ContentContainer = styled(ContentWrapper)`
   display: flex;
   padding: 30px ${headerPadding.desktop};
   overflow-x: hidden;
@@ -141,55 +139,7 @@ const Title = styled.div`
   color: #4a4949;
 `
 
-const HeaderContainer = styled.div`
-  width: 100%;
-  background-color: white;
-  ${(props) => {
-    if (props.ifPinned) {
-      return `
-        position: absolute;
-        bottom: 0;
-      `
-    }
-    return `
-      position: fixed;
-      top: 0;
-    `
-  }};
-  z-index: 2;
-  ${finalMedia.mobile`
-    position: static;
-  `}
-`
-
 class LatestSection extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      ifPinned: false,
-    }
-    this.handleScroll = this._handleScroll.bind(this)
-  }
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll)
-  }
-
-  _handleScroll() {
-    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
-    if (this.ContentContainer) {
-      if (currentScrollTop >= (this.ContentContainer.offsetHeight || 278)) {
-        this.setState({
-          ifPinned: true,
-        })
-      } else {
-        this.setState({
-          ifPinned: false,
-        })
-      }
-    }
-  }
-
   render() {
     const latestItems = this.props.data.map((item) => {
       const style = _.get(item, 'style', '')
@@ -227,12 +177,7 @@ class LatestSection extends React.Component {
 
     return (
       <Container>
-        <HeaderContainer ifPinned={this.state.ifPinned}>
-          <Header
-            isIndex
-          />
-        </HeaderContainer>
-        <ContentContainer innerRef={(node) => { this.ContentContainer = node }}>
+        <ContentContainer>
           {latestItems}
         </ContentContainer>
       </Container>

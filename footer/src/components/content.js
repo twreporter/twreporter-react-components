@@ -8,8 +8,8 @@ import Logo from './logo'
 import map from 'lodash/map'
 import PropTypes from 'prop-types'
 import React from 'react'
-import ReactGA from 'react-ga'
 import styled, { keyframes } from 'styled-components'
+import TrackedLink from 'shared/components/link-with-tracker'
 
 const _ = {
   map, chunk,
@@ -50,7 +50,7 @@ const Column = styled.div`
   `}
 `
 
-const IntroColumn = Column.extend `
+const IntroColumn = styled(Column)`
   ${screen.desktopAbove`
     padding-right: 60px;
   `}
@@ -65,7 +65,7 @@ const IntroColumn = Column.extend `
   `}
 `
 
-const LinksColumn = Column.extend `
+const LinksColumn = styled(Column)`
   padding-left: 40px;
   ${screen.hdAbove`
     width: 397px;
@@ -117,6 +117,7 @@ const flickerAnimation = keyframes`
 `
 
 const StyledItem = styled.a`
+  text-decoration: none !important;
   display: block;
   width: 100%;
   p{
@@ -156,6 +157,7 @@ const StyledItem = styled.a`
 
 const DonateButton = styled.div`
   a {
+    text-decoration: none !important;
     width: 140px;
     height: 55px;
     background-color: ${colors.white};
@@ -219,33 +221,6 @@ const ItemList = itemGroup => _.map(itemGroup, (group, indexofGroup) => {
 })
 
 class Content extends React.PureComponent {
-  constructor(props) {
-    super(props)
-    this.donationLink = this._donationLink.bind(this)
-  }
-  _donationLink() {
-    if (typeof window !== 'undefined' && window.ga) {
-      const url = window.location.href
-      return (
-        <ReactGA.OutboundLink
-          eventLabel={`[footer_donation_button_click]: ${url}`}
-          to={donatePage.link}
-          target={donatePage.target}
-        >
-          <p>{donateUSText}</p>
-        </ReactGA.OutboundLink>
-      )
-    }
-    return (
-      <a
-        href={donatePage.link}
-        to={donatePage.link}
-        target={donatePage.target}
-      >
-        <p>{donateUSText}</p>
-      </a>
-    )
-  }
   render() {
     const { staticFilePrefix } = this.props
     const description = appConfig.description
@@ -261,7 +236,13 @@ class Content extends React.PureComponent {
           </StyledItemList>
         </LinksColumn>
         <DonateButton>
-          {this.donationLink()}
+          <TrackedLink
+            clickActionName="footer_donation_button_click"
+            to={donatePage.link}
+            target={donatePage.target}
+          >
+            <p>{donateUSText}</p>
+          </TrackedLink>
         </DonateButton>
       </ContentRow>
     )

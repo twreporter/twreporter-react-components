@@ -138,7 +138,14 @@ class TopicBox extends React.PureComponent {
     const { topicTitle, topicImage, to } = this.props
     const { mobile, tablet, desktop } = topicImage
     return (
-      <Container href={to} target="_blank" mobileSrc={mobile} tabletSrc={tablet} desktopSrc={desktop} >
+      <Container
+        href={to}
+        target="_blank"
+        rel="noopener noreferrer"
+        mobileSrc={mobile}
+        tabletSrc={tablet}
+        desktopSrc={desktop}
+      >
         <Infos>
           <Icon><TopicIcon /></Icon>
           <Title>{topicTitle}</Title>

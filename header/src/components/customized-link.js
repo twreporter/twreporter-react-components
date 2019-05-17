@@ -1,12 +1,12 @@
-import Link from 'react-router/lib/Link'
-import React from 'react'
+import Link from 'react-router-dom/Link'
 import PropTypes from 'prop-types'
+import React from 'react'
 import { linkType } from 'shared/configs'
 
 const CustomizedLink = ({ children, currentLinkType, path, onClick }) => {
   if (currentLinkType === linkType.external) {
     return (
-      <a href={path} target="_blank">
+      <a href={path} target="_blank" rel="noopener noreferrer">
         {children}
       </a>
     )

@@ -38,7 +38,7 @@ const mobileWidth = breakPoints.mobileMaxWidth
 const maxSwipableItems = 3
 const moreText = '更多評論文章'
 
-const Container = Section.extend`
+const Container = styled(Section)`
   background-color: white;
   @media(max-width: ${tabletMaxWidth}) {
     padding-top: 36px;
@@ -107,7 +107,7 @@ const TextFrame = styled.div`
   width: 92%;
 `
 
-const Category = CategoryName.extend`
+const Category = styled(CategoryName)`
   line-height: 1.33;
   @media(max-width: ${mobileWidth}) {
     margin-top: 9px;
