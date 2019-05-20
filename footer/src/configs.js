@@ -73,11 +73,6 @@ export const footerItemList = [
   ],
 ]
 
-export const donatePage = {
-  link: externalLinks.monthlyDonation,
-  target: '_blank',
-}
-
 export const footerIconList = [
   {
     slug: 'facebook',

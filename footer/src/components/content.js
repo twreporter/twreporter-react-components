@@ -1,9 +1,9 @@
 import { colors, fonts } from 'shared/common-variables'
-import { footerItemList, donateUSText, donatePage } from '../configs.js'
+import { externalLinks } from 'shared/configs'
+import { footerItemList, donateUSText } from '../configs'
 import { screen } from 'shared/style-utils'
 import { styles } from '../styles/theme'
 import appConfig from '../../../index-page/src/conf/app-config.json'
-import chunk from 'lodash/chunk'
 import Logo from './logo'
 import map from 'lodash/map'
 import PropTypes from 'prop-types'
@@ -12,7 +12,7 @@ import styled, { keyframes } from 'styled-components'
 import TrackedLink from 'shared/components/link-with-tracker'
 
 const _ = {
-  map, chunk,
+  map,
 }
 
 const Intro = styled.p`
@@ -238,8 +238,9 @@ class Content extends React.PureComponent {
         <DonateButton>
           <TrackedLink
             clickActionName="footer_donation_button_click"
-            to={donatePage.link}
-            target={donatePage.target}
+            to={externalLinks.donation}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <p>{donateUSText}</p>
           </TrackedLink>

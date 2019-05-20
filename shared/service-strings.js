@@ -32,7 +32,7 @@ export default {
   },
   DONATION: {
     label: SERVICE_LABELS.DONATION,
-    path: externalLinks.onceDonation,
+    path: externalLinks.donation,
     type: linkType.external,
   },
   SUSBSCRIPTION: {
