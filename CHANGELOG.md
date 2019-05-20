@@ -1,7 +1,8 @@
 # UNRELEASED
+# RLEASED
+## 6.1.2
 - Revise donation page links on index-page and footer
 
-# RLEASED
 ## 6.1.1
 - Update styles of `Footer` for standalone usage
 - Replace `react-router-dom/Link` with `<a>` in `Error` for standaline usage
