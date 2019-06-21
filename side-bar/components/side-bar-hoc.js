@@ -1,9 +1,9 @@
 import get from 'lodash/get'
 import PropTypes from 'prop-types'
 import React from 'react'
-import Waypoint from 'react-waypoint'
 import hoistStatics from 'hoist-non-react-statics'
 import smoothScroll from 'smoothscroll'
+import { Waypoint } from 'react-waypoint'
 
 const _ = {
   get,
