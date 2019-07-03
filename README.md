@@ -1,7 +1,7 @@
-[![Tag](https://img.shields.io/github/tag/twreporter/twreporter-react-components.svg)](https://github.com/twreporter/twreporter-react-components/tags)
-[![NPM version](https://img.shields.io/npm/v/@twreporter/react-components.svg)](https://www.npmjs.com/package/@twreporter/react-components)
-
 # @twreporter/react-components
+
+The package is still maintained but *this repo is deprecated*. The source code of `@twreporter/react-components` had been already moved **to our new monorepo** [twreporter-npm-packages](https://github.com/twreporter/twreporter-npm-packages)
+
 
 ## INSTALL
 
