@@ -27,22 +27,16 @@
     margin-bottom: rem($inner-margin);
   }
 
-  .align-left {
-    @extend .base-align;
-    float: left;
-    margin-right: rem($inner-margin);
-    margin-left: rem($float-margin);
-  }
-
   .align-right {
-    @extend .base-align;
+    width: $aligned-width;
+    margin-bottom: rem($inner-margin);
     float: right;
     margin-left: rem($inner-margin);
     margin-right: rem($float-margin);
   }
 
   .align-center-small {
-    max-width: $tablet-small-width;
+    width: 513px;
     margin: 0 auto;
   }
 
@@ -63,22 +57,16 @@
     margin-bottom: rem($inner-margin);
   }
 
-  .align-left {
-    @extend .base-align;
-    float: left;
-    margin-right: rem($inner-margin);
-    margin-left: rem($float-margin);
-  }
-
   .align-right {
-    @extend .base-align;
     float: right;
+    width: $aligned-width;
+    margin-bottom: rem($inner-margin);
     margin-left: rem($inner-margin);
     margin-right: rem($float-margin);
   }
 
   .align-center-small {
-    max-width: $desktop-small-width;
+    width: 550px;
     margin: 0 auto;
   }
 
@@ -99,22 +87,16 @@
     margin-bottom: rem($inner-margin);
   }
 
-  .align-left {
-    @extend .base-align;
-    float: left;
-    margin-right: rem($inner-margin);
-    margin-left: rem($float-margin);
-  }
-
   .align-right {
-    @extend .base-align;
     float: right;
+    width: $aligned-width;
+    margin-bottom: rem($inner-margin);
     margin-left: rem($inner-margin);
     margin-right: rem($float-margin);
   }
   
   .align-center-small {
-    max-width: $hd-desktop-small-width;
+    width: 730px;
     margin: 0 auto;
   }
 
