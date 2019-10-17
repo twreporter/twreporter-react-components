@@ -78,5 +78,8 @@
   },
   "pre-commit": [
     "lint"
+  ],
+  "files": [
+    "dist"
   ]
 }
