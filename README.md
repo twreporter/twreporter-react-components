@@ -1,3 +1,6 @@
+# THIS REPO IS DEPRECATED
+For further development, please go to https://github.com/twreporter/twreporter-npm-packages
+
 # @twreporter/react-article-components
 
 This `articles` branch is used to build up [@twreporter/react-article-components pkg](https://www.npmjs.com/package/@twreporter/react-article-components).
